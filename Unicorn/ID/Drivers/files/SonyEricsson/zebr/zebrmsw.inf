@@ -1,0 +1,134 @@
+;*****************************************************************************
+;
+; Name:  zebrmsw.inf
+;
+; Function:
+;	Install Sony Ericsson WDM drivers
+;
+; Copyright (c) 2007 MCCI
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+;Missing CAT file entry added by RTGL
+CatalogFile=zebrmsw.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[PreCopySection]
+HKR,,NoSetupUI,,1
+
+;---------------------------------------------------------------;
+;		Directory and File Names and Locations
+;---------------------------------------------------------------;
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"zebrmsw.sys",,\i386
+
+[SourceDisksFiles]
+zebrmsw.sys=1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir = 11
+SEMC.Files.Drv = 10,System32\Drivers	
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_D030&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_D031&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_E030&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_E031&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_D058&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_D037&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_E092&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_E065&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_E0CD&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_E0CB&Class_08&Subclass_06&Prot_50&OS_9X
+%DeviceDescription% = SEMC.Install, USB\VID_0FCE&PID_E0CE&Class_08&Subclass_06&Prot_50&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SEMC.Install]
+AddReg=SEMC.AddReg, SEMC.W9x.AddReg
+CopyFiles=SEMC.Files.Drv
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC.AddReg]
+HKR,,NTMPDriver,,zebrmsw.sys
+HKLM,System\CurrentControlSet\Services\ZEBRMSW\Parameters,MCCIUSB_DebugLevel, 0x10001, 00,00,00,00
+
+; only for Win9x....
+[SEMC.W9x.AddReg]
+HKR,,DevLoader,,*ntkern
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[SEMC.Files.Drv]
+zebrmsw.sys
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "MCCI Corporation"
+SEMC = "SEMC"
+DiskString = "Sony Ericsson installation disk"
+
+DeviceDescription = "Sony Ericsson Mass Storage Device"
+UpperDescription = "Sony Ericsson Mass Storage"
+
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;--strings for InstallRight Pro (tm)--
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+McciOptions = "Uninstallable NotInstallOnWinMe NotInstallOnWinVer5"
+;-------------------------------------
+
+
+;*** end of file ***

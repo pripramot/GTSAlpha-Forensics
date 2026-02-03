@@ -1,0 +1,68 @@
+; Windows XP Virtual Serial Port Setup File
+; Copyright (c) 2006-2007 NOKIA Incorporated
+; Manufacturer: NOKIA Incorporated
+;
+
+[Version]
+signature  = "$Chicago$"
+Class      = Ports
+Provider   = %NOKIA%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer  = 11/30/2008,2.0.3.6
+DriverVer  = 04/21/2009,2.0.3.6
+CatalogFile = NOKIA_1706_PHONE_SER_XP32.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+  1000 = %NOKIASrcDisk%,"",,
+
+[SourceDisksFiles]
+  NOKIA_1706_PHONE.sys = 1000
+
+[Manufacturer]
+%NOKIA% = NOKIASerialPort, NTia64, NTamd64
+
+[NOKIASerialPort]
+%NOKIA_DIAG%   = NportInstall00, USB\VID_0421&PID_0397&MI_00
+
+[NOKIASerialPort.NTia64]
+%NOKIA_DIAG%   = NportInstall00, USB\VID_0421&PID_0397&MI_00
+
+[NOKIASerialPort.NTamd64]
+%NOKIA_DIAG%   = NportInstall00, USB\VID_0421&PID_0397&MI_00
+
+[NportInstall00.NT]
+CopyFiles=NOKIAUsbDriverFiles
+AddReg = All00, AddReg
+
+[NOKIAUsbDriverFiles]
+NOKIA_1706_PHONE.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[NportInstall00.NT.Services]
+AddService=NOKIA_1706_PHONE, 0x00000002, NOKIA_USBSerialService
+
+[NOKIA_USBSerialService]
+DisplayName   = %NOKIAUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\NOKIA_1706_PHONE.sys
+
+[All00]
+HKR,,NTMPDriver,,NOKIA_1706_PHONE.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+NOKIASrcDisk = "Nokia 1706 Phone USB Driver Disk"
+NOKIA   = "NOKIA"
+NOKIA_DIAG = "Nokia 1706 Diag Port"
+NOKIAUSBSER = "NOKIA 1706 phone"

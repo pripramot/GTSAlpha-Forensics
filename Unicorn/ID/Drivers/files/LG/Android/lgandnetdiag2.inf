@@ -1,0 +1,141 @@
+
+;*****************************************************************************
+; Name:  lgandnetdiag2.inf 
+;
+; Copyright (c) 2010-2011 LG Electronics Inc.
+; Manufacturer: LG Electronics Inc.
+;
+;*****************************************************************************
+
+[Version]
+signature   = "$WINDOWS NT$"
+Class       = Ports
+ClassGuid   = {4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider    = %Provider%
+DriverVer   = 05/12/2015,4.0.0.0
+CatalogFile = lgandnet32.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lgandnetdiag2.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+lgandnetdiag2.sys= 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir  = 12             	; system32\drivers
+CopyFiles       = 12                    ; system32\drivers
+CopyFiles.Win2K = 12                    ;
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGSI%=LGSI
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGSI]
+; For individual driver
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6314&MI_03
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6315&MI_03
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6316&MI_03
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6317&MI_03
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6318&MI_05
+%Lgsi.Comm.Desc02% = LGSI.Install, USB\VID_1004&PID_6319&MI_03
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_631A&MI_04
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_631B&MI_03
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6334&MI_03
+%Lgsi.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_633F&MI_04
+%Lgsi.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_6343&MI_05
+%Verizon.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6204&MI_03
+%Verizon.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_620C&MI_05
+%Verizon.Comm.Desc02% = LGSI.Install, USB\VID_1004&PID_620F&MI_03
+%Verizon.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6214&MI_03
+%Verizon.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6226&MI_03
+%Verizon.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_622E&MI_03
+%Verizon.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_624A&MI_03
+%Verizon.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_6264&MI_03
+%Verizon.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_6282&MI_04
+%Verizon.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_62A3&MI_05
+%Verizon.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_62A5&MI_03
+; Verizon Common PID
+%Verizon.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_62C3&MI_05
+%Verizon.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_62C8&MI_03
+%Verizon.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_62CA&MI_03
+%Verizon.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_62CF&MI_04
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Lgsi.Install.nt]
+AddReg		= Lgsi.AddReg,Lgsi.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Lgsi.AddReg]
+HKR,,NTMPDriver,,lgandnetdiag2.sys
+
+; only for NT...
+[Lgsi.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+lgandnetdiag2.sys
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+[Lgsi.Install.NT.Services]
+AddService = AndNetDiag2, 0x00000002, Lgsi.Install.AddService
+
+[Lgsi.Install.AddService]
+DisplayName	= %Lgsi.Service.Name%
+Description	= %Lgsi.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\lgandnetdiag2.sys
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+Provider          = "LG Electronics, Inc."
+Lgsi              = "LG Electronics, Inc."
+
+DiskString        = "LGE USB Serial Port Drivers installation disk"
+Lgsi.Comm.Desc01  = "LGE AndroidNet For Diagnostics Port"
+Lgsi.Comm.Desc02  = "LGE AndroidNet For LLDM Port"
+Lgsi.Comm.Desc03  = "LGE Mobile USB Diagnostic Port"
+
+Verizon.Comm.Desc01 = "LGE AndroidNet for VZW Diagnostics Port"
+Verizon.Comm.Desc02 = "LGE AndroidNet for VZW LLDM Port"
+Verizon.Comm.Desc03 = "LGE Mobile for VZW Diagnostics Port"
+Lgsi.Service.Name = "LGE AndroidNet For Diagnostics Port"
+Lgsi.Service.Desc = "LGE AndroidNet For Diagnostics Port"
+CustomerDataPath  = "LGE USB AndroidNet Diagnostic Kit"
+DriverSet         = "LGE USB AndroidNet Mobile Software" 
+

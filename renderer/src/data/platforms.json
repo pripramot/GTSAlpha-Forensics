@@ -1,0 +1,34 @@
+[
+  {
+    "id": "ios",
+    "title": "iOS Forensics",
+    "subtitle": "Apple iPhone / iPad",
+    "status": "offline",
+    "icon": "ios",
+    "enabled": true
+  },
+  {
+    "id": "android",
+    "title": "Android Forensics",
+    "subtitle": "Android Devices",
+    "status": "offline",
+    "icon": "android",
+    "enabled": true
+  },
+  {
+    "id": "desktop",
+    "title": "PC / Desktop",
+    "subtitle": "Windows / macOS / Linux",
+    "status": "offline",
+    "icon": "desktop",
+    "enabled": false
+  },
+  {
+    "id": "cloud",
+    "title": "Cloud / Server",
+    "subtitle": "Remote & Server Evidence",
+    "status": "offline",
+    "icon": "cloud",
+    "enabled": false
+  }
+]

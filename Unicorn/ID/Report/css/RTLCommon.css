@@ -1,0 +1,1922 @@
+/* This file contains the common CSS styles that apply globally for all products */
+body {
+    background-color: white;
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: left;
+}
+
+table p {
+    display: inline;
+}
+
+div {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-weight: normal;
+    font-size: 14px
+}
+
+h1 {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-weight: 800;
+    font-size: 24px
+}
+
+h2 {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+    font-size: 18px
+}
+
+h3 {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+    font-size: 16px
+}
+
+h4 {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-weight: 600;
+    font-size: 14px
+}
+
+h5 {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-weight: 500;
+    font-size: 13px
+}
+
+h6 {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+.centre {
+    text-align: center;
+}
+
+.boldcentre {
+    font-weight: bold;
+    text-align: center;
+}
+
+hr {
+    display: none;
+    border-style: none;
+    background-color: gray;
+    margin-left: 0.5px;
+    margin-right: 0.5px;
+    margin-top: 20px;
+    height: 4;
+}
+
+.frontpageheading {
+    text-align: center;
+    margin-left: 0.5in;
+    margin-right: 0.5in;
+}
+
+.frontpagebody {
+    text-align: left;
+    margin-left: 0.5in;
+    margin-right: 0.5in
+}
+
+img.header {
+    max-height: 320px;
+}
+
+img.headerlarge {
+    max-width: 100%;
+}
+
+.summary {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.reportBody {
+    overflow: auto;
+}
+
+.mainbody {
+    text-align: left;
+    margin-left: 0.25in;
+    margin-right: 0.25in
+}
+
+.section {
+    text-align: left;
+    margin-left: 0.15in;
+}
+
+.subsection {
+    text-align: left;
+    margin-left: 0.0in;
+}
+
+.frontpagefooter {
+    text-align: center;
+    margin-left: 0.25in;
+    margin-right: 0.25in;
+    page-break-after: always;
+    page-break-before: always;
+}
+
+.frontpagefooter2 {
+    text-align: center;
+    margin-left: 0.25in;
+    margin-right: 0.25in;
+    page-break-after: always;
+    page-break-before: always;
+    font-size: 12px
+}
+
+.frontpagefooter3 {
+    text-align: center;
+    margin-left: 0.25in;
+    margin-right: 0.25in;
+    page-break-after: always;
+}
+
+.customheaderbody {
+    text-align: left;
+    margin-left: 0.25in;
+    margin-right: 0.25in;
+    font-family: sans-serif, Arial, Segoe UI Symbol, Segoe UI Emoji
+}
+
+.customheaderbody2 {
+    text-align: left;
+    margin-left: 0.25in;
+    margin-right: 0.25in;
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px
+}
+
+.customheaderbody3 {
+    text-align: left;
+    margin-left: 0.25in;
+    margin-right: 0.25in;
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    page-break-before: always;
+}
+
+.RTLModal {
+    display: none;
+    position: fixed;
+    height: 100%;
+    z-index: 1100;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+}
+
+.RTLModal-content {
+    background-color: #fefefe;
+    position: relative;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    overflow: auto;
+    border: 2px solid #000000;
+    width: 90%;
+    height: 90%
+}
+
+.imageModal {
+    display: none;
+    position: absolute;
+    z-index: 30;
+    background-color: rgba(0,0,0,0);
+}
+
+.modalSelected {
+    background-color: #63be71;
+}
+/* testing segment start*/
+div.expanded {
+    width: 100%;
+    height: 100%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+div.collapsed {
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+/* testing segment end */
+div.multipage {
+    padding-bottom: 90px;
+}
+
+div.multipagerpt {
+    padding-bottom: 130px;
+}
+
+img.hidden {
+    display: none
+}
+
+div.details {
+    overflow: auto;
+}
+
+    div.details table tr td:nth-child(1) {
+        text-align: left;
+        padding-right: 20px;
+    }
+
+    div.details table tr td:nth-child(2) {
+        text-align: left;
+    }
+
+.fullWidth {
+    width: 100%;
+}
+
+.halfWidth {
+    width: 50%;
+}
+
+.border {
+    border: 1px solid #000000;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    padding: 5px;
+}
+
+.tablePadding {
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    padding: 5px;
+}
+
+table.fmt {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    background-color: white;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+    table.fmt tr {
+        vertical-align: top;
+    }
+
+        table.fmt tr.even {
+            background-color: #f2f2f2;
+        }
+        /* changed from #cornsilk */
+        table.fmt tr.odd {
+            background-color: white;
+        }
+
+    table.fmt th {
+        border: 1px solid silver;
+        background-color: lavender;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+        text-align: left
+    }
+
+        table.fmt th.centre {
+            text-align: center;
+        }
+
+    table.fmt tr th {
+        background-color: #92b3d3;
+    }
+    /* changed from lightsteelblue */
+
+    table.fmt td {
+        border: 1px solid silver;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+        table.fmt td.description {
+            border: 1px solid silver;
+            padding-left: 4px;
+            padding-right: 4px;
+            text-align: left;
+        }
+
+        table.fmt td.items {
+            border: 1px solid silver;
+            padding-left: 4px;
+            padding-right: 4px;
+            text-align: right;
+        }
+
+table.file td.details {
+    vertical-align: top;
+}
+
+table.file {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    background-color: white;
+    padding: 4px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+    table.file tr.even {
+        background-color: #f2f2f2;
+    }
+    /* changed from #cornsilk */
+    table.file tr.odd {
+        background-color: white;
+    }
+
+    table.file th {
+        border: 1px solid silver;
+        background-color: lightsteelblue;
+        text-align: left;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+        text-align: left
+    }
+
+    table.file td {
+        border: 1px solid silver;
+        padding: 4px;
+    }
+
+table.fmt tr.file_table_hidden {
+    display: none;
+}
+
+table.fmt td img.small_image {
+    height: 20px;
+    width: 20px;
+}
+
+table.fmt td img.expand {
+    height: 20px;
+    width: 20px;
+}
+
+table.fmt td img.expanded {
+    height: 20px;
+    width: 20px;
+    display: none
+}
+/* the width bit is to make ie do max-height right*/
+table.file img {
+    border: 0px;
+}
+
+    table.file img.originalsize {
+        height: auto;
+    }
+
+table.filedetails {
+    border: 0px;
+}
+
+    table.filedetails td {
+        border: 0px;
+        padding: 0px;
+    }
+
+    table.filedetails tr.filename {
+        font-weight: bold;
+    }
+
+    table.filedetails img {
+        border: 0px;
+        height: auto;
+    }
+
+    table.filedetails a:link {
+        color: black;
+    }
+
+    table.filedetails a:active {
+        color: black;
+    }
+
+    table.filedetails a:visited {
+        color: black;
+    }
+
+table.customheader td.details {
+    vertical-align: top;
+}
+
+table.customheader {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    background-color: white;
+    padding: 4px;
+}
+
+    table.customheader th {
+        border: 1px solid silver;
+        background-color: lightsteelblue;
+        text-align: left;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    table.customheader td {
+        border: 1px solid silver;
+        padding: 4px;
+        width: 20%;
+        text-align: left;
+    }
+
+table.customheader2 {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    background-color: white;
+    padding: 4px;
+}
+
+    table.customheader2 th {
+        border: 1px solid silver;
+        background-color: lightsteelblue;
+        text-align: center;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    table.customheader2 td {
+        border: 1px solid silver;
+        padding: 4px;
+        text-align: center;
+    }
+
+table.customparameters td.details {
+    vertical-align: top;
+}
+
+table.customparameters {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    background-color: white;
+    padding: 4px;
+}
+
+    table.customparameters th {
+        border: 1px solid silver;
+        background-color: lightsteelblue;
+        text-align: center;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    table.customparameters td {
+        border: 1px solid silver;
+        padding: 4px;
+        text-align: center;
+        width: 25%;
+    }
+
+        table.customparameters td.odd {
+            border: 1px solid silver;
+            padding: 4px;
+            background-color: #f2f2f2;
+        }
+/* changed from #cornsilk */
+table.customparameters6column td.details {
+    vertical-align: top;
+}
+
+table.customparameters6column {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    background-color: white;
+    padding: 4px;
+}
+
+    table.customparameters6column th {
+        border: 1px solid silver;
+        background-color: lightsteelblue;
+        text-align: center;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    table.customparameters6column td {
+        border: 1px solid silver;
+        padding: 4px;
+        text-align: center;
+        width: 16.5%;
+    }
+
+        table.customparameters6column td.odd {
+            border: 1px solid silver;
+            padding: 4px;
+            background-color: #f2f2f2;
+        }
+/* changed from #cornsilk */
+table.customdetails td.details {
+    vertical-align: top;
+}
+
+table.customdetails {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    background-color: white;
+    padding: 4px;
+}
+
+    table.customdetails th {
+        border: 1px solid silver;
+        background-color: lightsteelblue;
+        text-align: center;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    table.customdetails td {
+        border: 1px solid silver;
+        padding: 4px;
+        text-align: center;
+    }
+
+        table.customdetails td.odd {
+            border: 1px solid silver;
+            padding: 4px;
+            background-color: #f2f2f2;
+        }
+/* changed from #cornsilk */
+.hotlisttag {
+    background-color: lightcoral;
+}
+
+table.toctable {
+    border-collapse: collapse;
+    border-width: 1px;
+    border-style: solid;
+}
+
+
+
+
+
+
+
+    table.toctable tr.greytext {
+        color: Grey
+    }
+
+    table.toctable td.description {
+        text-align: left;
+    }
+
+    table.toctable tr.toc1 td img.hidden {
+        display: none
+    }
+
+
+
+div.tableofcontents {
+    padding-bottom: 110px;
+}
+
+div.searchpage {
+    padding-bottom: 110px;
+}
+
+
+div.padtop {
+    padding-top: 40px;
+}
+
+div.pagecontrol {
+    background: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    z-index: 1000;
+    background-color: transparent;
+    background-size: cover;
+}
+
+
+
+
+div.pagecontrol2 {
+    background: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    z-index: 1000;
+    background-color: transparent;
+    background-size: cover;
+}
+
+tr.pagecontrol2 td input {
+    height: 110px;
+}
+
+table.toctable tbody.hidden tr.toc1 td.items img.expanded {
+    display: none
+}
+
+table.toctable tbody.expanded tr.toc1 td.items img.expand {
+    display: none
+}
+
+table.toctable tbody.hidden tr.toc2 {
+    display: none
+}
+
+table.toctable tbody.hidden tr.toc3 {
+    display: none
+}
+
+table.toctable tbody.expanded tr.toc3 {
+    display: none
+}
+
+table.toctable tbody.expanded tr.toc2 td.items img.expanded {
+    display: none
+}
+
+
+
+/* chat display classes */
+
+table.fmt_chat {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    background-color: white;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+    table.fmt_chat th {
+        background-color: #92b3d3;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+        text-align: left
+    }
+
+    table.fmt_chat tr.even {
+        background-color: #e3e3e3;
+    }
+
+    table.fmt_chat tr.odd {
+        background-color: white;
+    }
+
+    table.fmt_chat td {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+        table.fmt_chat td.description {
+            padding-left: 4px;
+            padding-right: 4px;
+            text-align: left;
+        }
+
+        table.fmt_chat td.items {
+            padding-left: 4px;
+            padding-right: 4px;
+            text-align: right;
+        }
+
+    table.fmt_chat tr.hidden_chat {
+        display: none
+    }
+
+    table.fmt_chat tr.expanded_chat {
+        vertical-align: top;
+    }
+
+    table.fmt_chat tr.separator_chat {
+        vertical-align: top;
+        width: 100%;
+        height: 0px;
+    }
+
+    table.fmt_chat td.outgoing_message_chat {
+        vertical-align: top;
+        text-align: right;
+        background-color: #FFF8C2;
+    }
+
+        table.fmt_chat td.outgoing_message_chat.hotlist {
+            background-color: #E2A9F3
+        }
+
+        table.fmt_chat td.outgoing_message_chat div.dropdown {
+            float: inherit;
+        }
+
+        table.fmt_chat td.outgoing_message_chat div.dropdown-content {
+            left: inherit;
+            right: 0;
+        }
+
+    table.fmt_chat td:first-child.outgoing_message_chat {
+        text-align: left;
+    }
+
+    table.fmt_chat td.incoming_message_chat {
+        vertical-align: top;
+        text-align: left;
+        background-color: #aee5e5;
+    }
+
+        table.fmt_chat td.incoming_message_chat.hotlist {
+            background-color: #E2A9F3
+        }
+
+    table.fmt_chat td.notification_chat {
+        vertical-align: top;
+        text-align: center;
+        background-color: #FEDCE1;
+    }
+
+        table.fmt_chat td.notification_chat.hotlist {
+            background-color: #E2A9F3
+        }
+
+        table.fmt_chat td.notification_chat div.dropdown {
+            float: inherit;
+        }
+
+    table.fmt_chat td:first-child.notification_chat {
+        text-align: left;
+    }
+
+    table.fmt_chat td.unknown_chat {
+        vertical-align: top;
+        background-color: gray;
+    }
+
+
+    table.fmt_chat th.centre {
+        text-align: center;
+    }
+
+    table.fmt_chat tr th {
+        background-color: #92b3d3;
+    }
+
+    table.fmt_chat tr.expanded_chat th {
+        background-color: white;
+    }
+
+    table.fmt_chat td.outgoing_timestamp_one {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #FFF8C2;
+    }
+
+
+
+    table.fmt_chat td.outgoing_timestamp_two {
+        vertical-align: top;
+        text-align: right;
+        padding-left: 20px;
+        background-color: #FFF8C2;
+    }
+
+    table.fmt_chat td.deleted_message_outgoing {
+        vertical-align: top;
+        text-align: right;
+        padding-left: 20px;
+        background-color: #FFF8C2;
+        color: red;
+    }
+
+    table.fmt_chat td.incoming_timestamp_one {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #aee5e5;
+    }
+
+
+
+    table.fmt_chat td.incoming_timestamp_two {
+        vertical-align: top;
+        text-align: left;
+        padding-right: 20px;
+        background-color: #aee5e5;
+    }
+
+    table.fmt_chat td.deleted_message_incoming {
+        vertical-align: top;
+        text-align: left;
+        padding-right: 20px;
+        background-color: #aee5e5;
+        color: red;
+    }
+
+    table.fmt_chat td.notification_one {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #FEDCE1;
+    }
+
+
+
+    table.fmt_chat td.notification_two {
+        vertical-align: top;
+        text-align: center;
+        background-color: #FEDCE1;
+    }
+
+    table.fmt_chat td img.small_image {
+        height: 20px;
+        width: 20px;
+    }
+
+    table.fmt_chat td img.expand {
+        height: 20px;
+        width: 20px;
+    }
+
+    table.fmt_chat td img.expanded {
+        height: 20px;
+        width: 20px;
+        display: none
+    }
+
+    table.fmt_chat td p {
+        vertical-align: top;
+        font-weight: normal;
+    }
+
+    table.fmt_chat tr.outgoing_timestamp_one > th {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #FFF8C2;
+    }
+
+    table.fmt_chat tr.incoming_timestamp_one > th {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #aee5e5;
+    }
+
+    table.fmt_chat tr.outgoing_timestamp_one > td {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #FFF8C2;
+    }
+
+    table.fmt_chat tr.incoming_timestamp_one > td {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #aee5e5;
+    }
+
+    table.fmt_chat tr.notification_one > th {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #FEDCE1;
+    }
+
+    table.fmt_chat tr.notification_one > td {
+        font-weight: bold;
+        vertical-align: top;
+        text-align: left;
+        background-color: #FEDCE1;
+    }
+
+    table.fmt_chat table.subreportmenu {
+        background: #fff;
+        position: absolute;
+        z-index: 500;
+        border-width: 1px;
+        border-style: solid;
+        vertical-align: bottom;
+        margin: 51px 0px 0px 0px;
+    }
+
+        table.fmt_chat table.subreportmenu > tr {
+            font-weight: normal;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            outline: none;
+        }
+
+            table.fmt_chat table.subreportmenu > tr > td {
+                margin: 0px
+            }
+
+    table.fmt_chat.selected table.subreportmenu tr td {
+        background-color: #f9f9f9;
+    }
+
+img.small_image {
+    height: 20px;
+    width: 20px;
+}
+/*end of chat display classes */
+
+
+
+
+table td.break {
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.css-treeview ul {
+    padding: 0;
+    margin: 0;
+    list-style: inherit;
+}
+
+.css-treeview li {
+    padding: 0;
+    margin: 0px 0px 0px 25px;
+    list-style: inherit;
+}
+
+table tr td.tablesubtitle {
+    background-color: lightsteelblue;
+}
+
+table.subreportmenu tr {
+    font-weight: normal;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+table.select table.subreportmenu tr {
+    outline: none;
+}
+
+table.subreportmenuhidden {
+    display: none;
+}
+
+div.multipage.subreportedit {
+    padding-bottom: 160px;
+    display: block;
+}
+
+div.subreportedit {
+    display: inline;
+}
+
+div.subreportedithidden {
+    display: none;
+}
+
+table tr th.subreportedithidden {
+    display: none;
+}
+
+table tr td.subreportedithidden {
+    display: none;
+}
+
+table.header {
+    margin: 25px 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-collapse: collapse
+}
+
+    table.header tr {
+        margin: 0px;
+        padding: 0px;
+        border-width: 0px
+    }
+
+        table.header tr td {
+            margin: 0px;
+            padding: 0px;
+            border-width: 0px;
+            border-collapse: collapse
+        }
+
+            table.header tr td.break {
+                margin: 0px;
+                padding: 0px;
+                border-width: 0px;
+                border-collapse: collapse;
+                word-break: break-word;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+/* Green shades: http://www.color-hex.com/color/77dd77 */
+
+/* greens changed to RT green (#63BE71) and lighter shades thereof */
+
+table.selected tr.odd {
+    background-color: #d2ecd6;
+}
+
+table.selected tr.even {
+    background-color: #edf8ef;
+}
+
+table.selected tr th {
+    background-color: #63be71;
+}
+
+table tr.even.selected {
+    background-color: #63be71;
+}
+
+table tr.odd.selected {
+    background-color: #63be71;
+}
+
+table tr.selected td.tablesubtitle {
+    background-color: #63be71;
+}
+
+table.selected tr td.tablesubtitle {
+    background-color: #63be71;
+}
+
+table tr td.selected {
+    background-color: #63be71;
+}
+
+table.select tr {
+    outline: thin solid black;
+    outline-offset: -2px;
+}
+
+    table.select tr th {
+        outline: thin solid black;
+        outline-offset: -2px;
+    }
+
+table tr.select:not(.rowspan) {
+    outline: thin solid black;
+    outline-offset: -2px;
+}
+
+table tr.select.rowspan > td {
+    outline: thin solid black;
+    outline-offset: -2px;
+}
+
+table.select.selected tr.odd {
+    background-color: #9fe79f;
+}
+
+table.select.selected tr.even {
+    background-color: #92e392;
+}
+
+table.select.selected tr th {
+    background-color: #84e084;
+}
+
+table tr.select.selected {
+    background-color: #84e084;
+}
+
+    table tr.select.selected td.tablesubtitle {
+        background-color: #84e084;
+    }
+
+
+table.mark tr {
+    outline: thin solid black;
+    outline-offset: -2px;
+}
+
+    table.mark tr th {
+        outline: thin solid black;
+        outline-offset: -2px;
+    }
+
+table tr.mark:not(.rowspan) {
+    outline: thin solid black;
+    outline-offset: -2px;
+}
+
+table tr.mark.rowspan > td {
+    outline: thin solid black;
+    outline-offset: -2px;
+}
+
+table.selected.mark tr.odd {
+    background-color: #9fe79f;
+}
+
+table.selected.mark tr.even {
+    background-color: #92e392;
+}
+
+table.selected.mark tr th {
+    background-color: #84e084;
+}
+
+table tr.selected.mark {
+    background-color: #84e084;
+}
+
+table tr.select.selected.mark td.tablesubtitle {
+    background-color: #84e084;
+}
+
+table.select.selected.mark tr td.tablesubtitle {
+    background-color: #84e084;
+}
+
+table.fmt_chat.selected tr {
+    background-color: #63be71;
+}
+
+    table.fmt_chat.selected tr th {
+        background-color: #63be71;
+    }
+
+    table.fmt_chat.selected tr td {
+        background-color: #63be71;
+    }
+
+table.fmt_chat.select tr, table.fmt_chat.select th {
+    outline: none;
+}
+
+table.fmt_chat.select.selected tr {
+    background-color: #63be71;
+}
+
+    table.fmt_chat.select.selected tr th {
+        background-color: #63be71;
+    }
+
+table.fmt_chat.mark {
+    outline: 2px solid #494948;
+}
+
+    table.fmt_chat.mark tr, table.fmt_chat.mark th {
+        outline: none;
+    }
+
+table.fmt_chat.selected.mark tr {
+    background-color: #63be71;
+}
+
+    table.fmt_chat.selected.mark tr th {
+        background-color: #63be71;
+    }
+
+p.searchable {
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+    p.searchable span.highlight {
+        background-color: #FFE928;
+    }
+
+td.searchable {
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+    td.searchable span.highlight {
+        background-color: #FFE928;
+    }
+
+span.searchable span.highlight {
+    background-color: #FFE928;
+}
+
+button.searchable span.highlight {
+    background-color: #FFE928;
+}
+
+a.searchable span.highlight {
+    background-color: #FFE928;
+}
+
+p.searchable span.hotlistKeyword {
+    background-color: #E2A9F3;
+}
+
+td.searchable span.hotlistKeyword {
+    background-color: #E2A9F3;
+}
+
+span.searchable span.hotlistKeyword {
+    background-color: #E2A9F3;
+}
+
+button.searchable span.hotlistKeyword {
+    background-color: #E2A9F3;
+}
+
+a.searchable span.hotlistKeyword {
+    background-color: #E2A9F3;
+}
+
+/* Analysis Suite - Subreporting Colouring */
+table.markadd.selected tr.odd {
+    background-color: #CFFECF;
+}
+
+table.markadd.selected tr.even {
+    background-color: #9EFE9E;
+}
+
+table.markadd.selected tr th {
+    background-color: ForestGreen;
+}
+
+table tr.markadd.selected {
+    background-color: ForestGreen;
+}
+
+
+table.markadd tr.odd {
+    background-color: #CFFECF;
+}
+
+table.markadd tr.even {
+    background-color: #9EFE9E;
+}
+
+table.markadd tr th {
+    background-color: ForestGreen;
+}
+
+table tr.markadd {
+    background-color: ForestGreen;
+}
+
+
+    table tr.markadd td.tablesubtitle {
+        background-color: ForestGreen;
+    }
+
+table.markadd tr td.tablesubtitle {
+    background-color: ForestGreen;
+}
+
+table.fmt.markadd.selected tr.odd {
+    background-color: #CFFECF;
+}
+
+table.fmt.markadd.selected tr.even {
+    background-color: #9EFE9E;
+}
+
+table.fmt.markadd.selected tr th {
+    background-color: ForestGreen;
+}
+
+
+table.fmt.markadd tr.odd {
+    background-color: #CFFECF;
+}
+
+table.fmt.markadd tr.even {
+    background-color: #9EFE9E;
+}
+
+table.fmt.markadd tr th {
+    background-color: ForestGreen;
+}
+
+
+table.fmt.markremove.selected tr.odd {
+    background-color: #FECBCB;
+}
+
+table.fmt.markremove.selected tr.even {
+    background-color: #FE9898;
+}
+
+table.fmt.markremove.selected tr th {
+    background-color: FireBrick;
+}
+
+table tr.markremove.selected {
+    background-color: FireBrick;
+}
+
+
+table.fmt.markremove tr.odd {
+    background-color: #FECBCB;
+}
+
+table.fmt.markremove tr.even {
+    background-color: #FE9898;
+}
+
+table.fmt.markremove tr th {
+    background-color: FireBrick;
+}
+
+table tr.markremove {
+    background-color: FireBrick;
+}
+
+
+    table tr.markremove td.tablesubtitle {
+        background-color: FireBrick;
+    }
+
+table.markremove tr td.tablesubtitle {
+    background-color: FireBrick;
+}
+
+table.markremove.selected tr.odd {
+    background-color: #FECBCB;
+}
+
+table.markremove.selected tr.even {
+    background-color: #FE9898;
+}
+
+table.markremove.selected tr th {
+    background-color: FireBrick;
+}
+
+
+table.markremove tr.odd {
+    background-color: #FECBCB;
+}
+
+table.markremove tr.even {
+    background-color: #FE9898;
+}
+
+table.markremove tr th {
+    background-color: FireBrick;
+}
+
+/* End Analysis Suite - Subreporting Colouring */
+
+table tr th img.sr_button_add {
+    height: 12px;
+    margin: 0 5px 0 0;
+}
+
+table tr th img.sr_button_mark {
+    height: 12px;
+    margin: 0 5px 0 0;
+}
+
+table tr th img.sr_button_cancel_mark {
+    display: none;
+    height: 12px;
+    margin: 0 5px 0 0;
+}
+
+table tr th img.sr_button_remove {
+    display: none;
+    height: 12px;
+    margin: 0 5px 0 0;
+}
+
+
+
+
+
+table.mark tr th img.sr_button_mark {
+    display: none;
+}
+
+table.mark tr th img.sr_button_cancel_mark {
+    display: inline;
+}
+
+table.selected tr th img.sr_button_add {
+    display: none;
+}
+
+table.selected tr th img.sr_button_remove {
+    display: inline;
+}
+
+
+
+
+
+table.select.mark tr th img.sr_button_remove {
+    display: inline;
+}
+
+table.select.selected.mark tr th img.sr_button_add {
+    display: inline;
+}
+
+
+table tr td img.sr_button_add {
+    height: 12px;
+    margin: 0 5px 0 0;
+}
+
+table tr td img.sr_button_mark {
+    height: 12px;
+    margin: 0 5px 0 0;
+}
+
+table tr td img.sr_button_cancel_mark {
+    display: none;
+    height: 12px;
+    margin: 0 5px 0 0;
+}
+
+table tr td img.sr_button_remove {
+    display: none;
+    height: 12px;
+    margin: 0 5px 0 0;
+}
+
+
+
+
+
+table tr.mark td img.sr_button_mark {
+    display: none;
+}
+
+table tr.mark td img.sr_button_cancel_mark {
+    display: inline;
+}
+
+table tr.selected td img.sr_button_add {
+    display: none;
+}
+
+table tr.selected td img.sr_button_remove {
+    display: inline;
+}
+
+
+
+
+table tr.select.mark td img.sr_button_remove {
+    display: inline;
+}
+
+table tr.select.selected.mark td img.sr_button_add {
+    display: inline;
+}
+
+
+.hotlist {
+    background-color: #E2A9F3;
+}
+
+table.imagegrid {
+    border-color: silver;
+    border-spacing: 2px;
+    border: 1px solid silver;
+    padding: 1px 1px 1px 1px;
+    border-collapse: separate;
+    margin: auto;
+}
+
+
+table.devicesummary {
+    border-spacing: 0px;
+    margin: 0px;
+    border-style: none;
+    padding: 0px;
+}
+
+    table.devicesummary tr.devicesummary {
+        border-spacing: 0px;
+        margin: 0px;
+        border-style: none;
+        padding: 0px;
+    }
+
+        table.devicesummary tr.devicesummary td.devicesummary {
+            border-spacing: 0px;
+            margin: 0px;
+            border-style: none;
+            padding: 0px;
+        }
+
+.dropbutton {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: underline;
+    color: blue;
+    text-align: left;
+    padding: 0 0 0 0;
+}
+
+.disabledbutton {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    font-size: 12px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    overflow: hidden;
+    text-align: left;
+    color: black;
+    outline: none;
+    padding: 0 0 0 0;
+}
+
+.dropdown {
+    float: left;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    left: 0;
+    z-index: 40;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+.dropdown div.show {
+    display: block;
+}
+
+    .dropdown div.show a.hidden {
+        display: none;
+    }
+
+table.search {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    text-align: center;
+    width: 100%;
+}
+
+    table.search td.searchExplanation {
+        font-style: italic;
+    }
+
+    table.search td.searchWarning {
+        font-style: italic;
+        color: rgb(255,0,0);
+    }
+
+    table.search img {
+        height: 20px
+    }
+
+table.advancedsearch {
+    font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    text-align: left;
+    width: 100%;
+}
+
+    table.advancedsearch td.searchExplanation {
+        font-style: italic;
+    }
+
+    table.advancedsearch td.searchWarning {
+        font-style: italic;
+        color: rgb(255,0,0);
+    }
+
+    table.advancedsearch img {
+        height: 20px
+    }
+
+table.MG11NoBorder {
+    width: 100%;
+    border-spacing: 0px;
+}
+
+table.MG11 {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    page-break-inside: avoid;
+    font-family: "Times New Roman",serif;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+table tr td.MG11URN_2 {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-collapse: collapse;
+    width: 10%;
+    height: 25px;
+    padding: 0px;
+}
+
+table tr td.MG11URN_3 {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-collapse: collapse;
+    width: 15%;
+    height: 25px;
+    padding: 0px;
+}
+
+table tr td.MG11URN_1 {
+    width: 55%;
+    text-align: right;
+}
+
+table.MG11 tr td {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+    table.MG11 tr td ul {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+table.MG22A {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    page-break-inside: avoid;
+    font-family: "Arial",sans-serif;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+    table.MG22A tr td {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: solid black 1.0pt
+    }
+
+        table.MG22A tr td ul {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+@media print {
+    a:link {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:active {
+        color: black;
+        text-decoration: none;
+    }
+
+    table.fmt {
+        border: 1px solid black;
+    }
+
+        table.fmt th {
+            border: 1px solid black;
+        }
+
+        table.fmt td {
+            border: 1px solid black;
+        }
+
+            table.fmt td.description {
+                border: 1px solid black;
+            }
+
+            table.fmt td.items {
+                border: 1px solid black;
+            }
+
+    table.fmt_table {
+        border: 1px solid black;
+    }
+
+        table.fmt_table th {
+            border: 1px solid black;
+        }
+
+        table.fmt_table td {
+            border: 1px solid black;
+        }
+
+            table.fmt_table td.description {
+                border: 1px solid black;
+            }
+
+            table.fmt_table td.items {
+                border: 1px solid black;
+            }
+
+    table.file {
+        border: 1px solid black;
+    }
+
+        table.file th {
+            border: 1px solid black;
+        }
+
+        table.file td {
+            border: 1px solid black;
+        }
+
+    table.filedetails {
+        border: 0px;
+    }
+
+    table.customheader {
+        border: 1px solid black;
+    }
+
+        table.customheader th {
+            border: 1px solid black;
+        }
+
+        table.customheader td {
+            border: 1px solid black;
+        }
+
+    table.customheader2 {
+        border: 1px solid black;
+    }
+
+        table.customheader2 th {
+            border: 1px solid black;
+        }
+
+        table.customheader2 td {
+            border: 1px solid black;
+        }
+
+    table.customparameters {
+        border: 1px solid black;
+    }
+
+        table.customparameters th {
+            border: 1px solid black;
+        }
+
+        table.customparameters td {
+            border: 1px solid black;
+        }
+
+            table.customparameters td.odd {
+                border: 1px solid black;
+            }
+
+    table.customparameters6column {
+        border: 1px solid black;
+    }
+
+        table.customparameters6column th {
+            border: 1px solid black;
+        }
+
+        table.customparameters6column td {
+            border: 1px solid black;
+        }
+
+            table.customparameters6column td.odd {
+                border: 1px solid black;
+            }
+
+    table.customdetails {
+        border: 1px solid black;
+    }
+
+        table.customdetails th {
+            border: 1px solid black;
+        }
+
+        table.customdetails td {
+            border: 1px solid black;
+        }
+
+            table.customdetails td.odd {
+                border: 1px solid black;
+            }
+
+    table.subreportmenu tr {
+        border: 1px solid black;
+    }
+
+    .summary {
+        margin: auto;
+        margin-left: auto
+    }
+}

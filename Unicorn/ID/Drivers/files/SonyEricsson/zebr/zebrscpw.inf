@@ -1,0 +1,158 @@
+;*****************************************************************************
+;
+; Name:  zebrscpw.inf
+;
+; Function:
+;	Install the Sony Ericsson PC-Connect Port (WDM) on Win9x/Me
+;
+; Copyright (c) 2007 MCCI Corporation
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=ZEBRSCE
+ClassGuid={70D0D3B2-6F59-42dd-97A8-06C93EE0B638}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+;Missing CAT file entry added by RTGL
+CatalogFile=zebrscpw.cat
+
+;-----------------------------------------------------------------------------
+; Install class (for NT and Win95)
+;-----------------------------------------------------------------------------
+[ClassInstall32]
+AddReg=SEMCClassReg
+
+[SEMCClassReg]
+HKR,,,0,"SEMC Serial Cable Emulation Device"
+HKR,,Icon,,-5
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"zebrsce.sys",,\i386
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+zebrsce.sys = 1
+zebrcr.sys = 1
+zebrvcr.vxd = 1
+zebrcm95.sys = 1
+zebrcmnt.sys = 1
+zebrcomm.vxd = 1
+zebrvcd.vxd = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%SEMC.SCE_Comm.Desc% = SEMC.Install, MCCICEB\CEB_zebrceb&SCE_{8164CCDF-8A85-48c4-9A2D-5D9735DAF48E}&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SEMC.Install]
+;AddReg		= SEMC.AddReg,SEMC.W95.AddReg,SEMC.W95.AddReg.CRGuid
+AddReg		= SEMC.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC.AddReg]
+HKR,,NTMPDriver,,zebrsce.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,EnableCR1146, 0x10001, 01,00,00,00 
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for Win95....
+;[SEMC.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+
+;[SEMC.W95.Addreg.CRGuid]
+;HKR,,CRGuid,,{8A572185-9558-41e2-BA5C-5E00C9E46F48}
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;zebrvcr.vxd
+;zebrcomm.vxd
+;zebrvcd.vxd
+;
+[CopyFiles.sys]
+zebrsce.sys
+zebrcr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;zebrcm.sys,zebrcm95.sys
+;zebrcm95.sys
+;zebrcmnt.sys
+;
+;[Copyfiles.W95.inf]
+;zebrscep.inf
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson Mobile Communications AB"
+SEMC = "Sony Ericsson Mobile Communications AB"
+DiskString = "Sony Ericsson PC-Connect Port Installation Disk"
+
+SEMC.SCE_Comm.Desc = "Sony Ericsson PC-Connect Port"
+UpperDescription = "Sony Ericsson PC-Connect Port (VCOMM)"
+
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+McciOptions = "Uninstallable NotInstallOnWinVer5"
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

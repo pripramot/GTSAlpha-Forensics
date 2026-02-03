@@ -1,0 +1,171 @@
+;*****************************************************************************
+;
+; U81xbus.inf   -- Install the LG Electronics U8110 drivers
+;
+; Copyright (c) 1997-2004 by MCCI 
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=03/29/2004, 4.20.0.2700
+DriverVer=04/21/2009, 4.20.0.2700
+CatalogFile=U81xbus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+LGEU8110Wdm.W95.CopyFiles       = 11                    ; LDID_SYS
+LGEU8110Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"U81xbus.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+U81xbus.sys = 1
+;U81xwh95.sys = 1; RTGL: remove unused files from legacy OS versions
+U81xwhnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGEU8110%=LGEU8110
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[LGEU8110]
+%LGEU8110.CdcBus.Desc% = LGEU8110Wdm.Install, USB\VID_1004&PID_1FAE
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[LGEU8110.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[LGEU8110Wdm.Install]
+DriverVer=03/29/2004, 4.20.0.2700
+CopyFiles       = LGEU8110Wdm.W95.CopyFiles, LGEU8110.CopyFiles, PropPages.CopyFiles
+AddReg          = LGEU8110Wdm.AddReg, LGEU8110Wdm.W95.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[LGEU8110Wdm.Install.NT]
+DriverVer=03/29/2004, 4.20.0.2700
+CopyFiles       = LGEU8110Wdm.NT.CopyFiles
+AddReg          = LGEU8110Wdm.AddReg, LGEU8110Wdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[LGEU8110Wdm.Install.NT.Services]
+AddService      = U81xbus, 2, LGEU8110Wdm.AddService
+
+[LGEU8110Wdm.AddService]
+DisplayName             = %LGEU8110.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\U81xbus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[LGEU8110Wdm.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[LGEU8110Wdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,U81xbus.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[LGEU8110Wdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[LGEU8110Wdm.W95.CopyFiles]
+U81xbus.sys
+;U81xwh.sys,U81xwh95.sys; RTGL: remove unused files from legacy OS versions
+;U81xwh95.sys; RTGL: remove unused files from legacy OS versions
+U81xwhnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[LGEU8110Wdm.NT.CopyFiles]
+U81xbus.sys
+U81xwh.sys,U81xwhnt.sys
+U81xwhnt.sys
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "LG Electronics"
+LGEU8110 = "LG Electronics"
+DiskString = "LGE U8110 Installation disk"
+
+LGEU8110.CdcBus.Desc = "LGE U8110"
+LGEU8110.Service.Desc = "LGE U8110 driver (WDM)"
+
+CustomerDataPath = "LGE U8110 Kit"
+DriverSet = "LGE U8110 Software"
+UninstallFile = "U81XUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

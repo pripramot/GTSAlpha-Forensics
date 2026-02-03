@@ -1,0 +1,177 @@
+;*-----------------------------------------------------*
+;| Installation inf for NOKIA                          |
+;|-----------------------------------------------------|
+;| Copyright (c) 1998 - 2008 by Hajesoft Corporation.  |
+;|                                                     |
+;| This inf file is lisenced. Any Modification is not  |
+;| permitted unless authorized by Hajesoft corporation.|
+;| For more information contact to www.hajesoft.com    |
+;*-----------------------------------------------------*
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = Ports
+Provider    = %Provider%
+ClassGuid   = {4D36E978-E325-11CE-BFC1-08002BE10318}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer   = 08/27/2008, 1.0.1.133
+DriverVer   = 04/21/2009, 1.0.1.133
+CatalogFile = nok_prt.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1 = %DiskString%, "nok_prt.sys",,
+
+[SourceDisksFiles]
+nok_prt.sys = 1
+nok_flt.sys = 1
+
+[DestinationDirs]
+NOKIA.Files.Ext         = 12
+NOKIA.Files.Ext.nt      = 12 ; ERROR(1275) in target OS NTamd64: Section 'NOKIA.Files.Ext.nt' is not listed in [DestinationDirs]
+NOKIA.Files.Ext.ntamd64 = 12 ; ERROR(1275) in target OS NTamd64: Section 'NOKIA.Files.Ext.ntamd64' is not listed in [DestinationDirs]
+
+[Manufacturer]
+%Provider% = NOKIA, ntamd64
+      
+[NOKIA]
+%Nokia3606_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_00B8&MI_02
+%Nokia3606_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_00B8&MI_03
+%Nokia1606_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_00B9&MI_02    
+%Nokia1606_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_00B9&MI_03    
+%Nokia2228_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_00BA&MI_02
+%Nokia2228_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_00BA&MI_03
+%Nokia3608_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_0161&MI_02    
+%Nokia3608_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_0161&MI_03    
+%Nokia1006_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_01A7&MI_02
+%Nokia1006_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_01A7&MI_03
+%Nokia3706_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_02D8&MI_02
+%Nokia3706_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_02D8&MI_03
+%Nokia6316slide_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_0303&MI_02
+%Nokia6316slide_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_0303&MI_03
+%Nokia6316s_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_0304&MI_02
+%Nokia6316s_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_0304&MI_03
+
+[NOKIA.ntamd64]
+%Nokia3606_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_00B8&MI_02
+%Nokia3606_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_00B8&MI_03
+%Nokia1606_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_00B9&MI_02    
+%Nokia1606_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_00B9&MI_03    
+%Nokia2228_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_00BA&MI_02
+%Nokia2228_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_00BA&MI_03
+%Nokia3608_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_0161&MI_02    
+%Nokia3608_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_0161&MI_03    
+%Nokia1006_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_01A7&MI_02
+%Nokia1006_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_01A7&MI_03
+%Nokia3706_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_02D8&MI_02
+%Nokia3706_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_02D8&MI_03
+%Nokia6316slide_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_0303&MI_02
+%Nokia6316slide_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_0303&MI_03
+%Nokia6316s_1.DeviceDesc% = NOKIA1.Install, USB\Vid_0421&Pid_0304&MI_02
+%Nokia6316s_2.DeviceDesc% = NOKIA2.Install, USB\Vid_0421&Pid_0304&MI_03
+
+
+[NOKIA1.Install.nt]
+AddReg    = NOKIA.AddReg
+CopyFiles = NOKIA.Files.Ext.nt
+
+[NOKIA1.Install.ntamd64]
+AddReg    = NOKIA.AddReg
+CopyFiles = NOKIA.Files.Ext.ntamd64
+
+[NOKIA2.Install.nt]
+AddReg    = Nokia.AddReg
+CopyFiles = NOKIA.Files.Ext.nt
+
+[NOKIA2.Install.ntamd64]
+AddReg    = Nokia.AddReg
+CopyFiles = NOKIA.Files.Ext.ntamd64
+
+[NOKIA.AddReg]
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,LocationInformationOverride,,"NOKIA Mobile Technologies"
+
+[NOKIA.Files.Ext.nt]
+nok_prt.sys
+nok_flt.sys
+
+[NOKIA.Files.Ext.ntamd64]
+nok_prt.sys
+nok_flt.sys
+
+[NOKIA1.Install.NT.HW]
+AddReg = UpperFilterAddReg
+
+[NOKIA2.Install.NT.HW]
+AddReg = UpperFilterAddReg
+
+[NOKIA1.Install.nt.Services]
+AddService = nokiaprt, 0x00000002, NOKIA.Install.AddService.nt
+AddService = nokiaflt,, NOKIA.Install.AddFilter.nt
+
+[NOKIA1.Install.ntamd64.Services]
+AddService = nokiaprt, 0x00000002, NOKIA.Install.AddService.ntamd64
+AddService = nokiaflt,, NOKIA.Install.AddFilter.ntamd64
+
+[NOKIA2.Install.nt.Services]
+AddService = nokiaprt, 0x00000002, NOKIA.Install.AddService.nt
+AddService = nokiaflt,, NOKIA.Install.AddFilter.nt
+
+[NOKIA2.Install.ntamd64.Services]
+AddService = nokiaprt, 0x00000002, NOKIA.Install.AddService.ntamd64
+AddService = nokiaflt,, NOKIA.Install.AddFilter.ntamd64
+
+[NOKIA.Install.AddService.nt]
+DisplayName   = %Nokia.Port.ServiceDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\nok_prt.sys
+
+[NOKIA.Install.AddService.ntamd64]
+DisplayName   = %Nokia.Port.ServiceDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\nok_prt_64.sys
+
+[NOKIA.Install.AddFilter.nt]
+DisplayName   = %Nokia.Filter.ServiceDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl	= 1
+ServiceBinary	= %12%\nok_flt.sys
+
+[NOKIA.Install.AddFilter.ntamd64]
+DisplayName   = %Nokia.Filter.ServiceDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl	= 1
+ServiceBinary	= %12%\nok_flt_64.sys
+
+[UpperFilterAddreg]
+HKR,,"UpperFilters",0x00010000,"nokiaflt"
+
+[Strings]
+Provider                 = "Nokia"
+DiskString               = "Nokia Mobile USB Port Install Disk"
+Nokia3606_1.DeviceDesc   = "Nokia 3606 USB Diagnostic Port"
+Nokia1606_1.DeviceDesc   = "Nokia 1606 USB Diagnostic Port"
+Nokia2228_1.DeviceDesc   = "Nokia 2228 USB Diagnostic Port"
+Nokia3608_1.DeviceDesc   = "Nokia 3608 USB Diagnostic Port"
+Nokia1006_1.DeviceDesc   = "Nokia 1006 USB Diagnostic Port"
+Nokia3706_1.DeviceDesc   = "Nokia 3706 USB Diagnostic Port"
+Nokia6316slide_1.DeviceDesc   = "Nokia 6316 slide USB Diagnostic Port"
+Nokia6316s_1.DeviceDesc   = "Nokia 6316s USB Diagnostic Port"
+Nokia3606_2.DeviceDesc   = "Nokia 3606 USB Application Port"
+Nokia1606_2.DeviceDesc   = "Nokia 1606 USB Application Port"
+Nokia2228_2.DeviceDesc   = "Nokia 2228 USB Application Port"
+Nokia3608_2.DeviceDesc   = "Nokia 3608 USB Application Port"
+Nokia1006_2.DeviceDesc   = "Nokia 1006 USB Application Port"
+Nokia3706_2.DeviceDesc   = "Nokia 3706 USB Application Port"
+Nokia6316slide_2.DeviceDesc   = "Nokia 6316 slide USB Application Port"
+Nokia6316s_2.DeviceDesc   = "Nokia 6316s USB Application Port"
+Nokia.Port.ServiceDesc   = "Nokia USB Port Services (Vacom)"
+Nokia.Filter.ServiceDesc = "Nokia USB Filter Services (Vacom)"

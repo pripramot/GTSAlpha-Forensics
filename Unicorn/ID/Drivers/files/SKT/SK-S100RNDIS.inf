@@ -1,0 +1,51 @@
+;***********************************************************************************************
+;
+; Name:  SK-S100RNDIS.inf
+;
+; Function:  Install SKY Handset USB Ethernet/RNDIS Device Driver on Win2K/XP/VISTA/Win7
+;            inf file is based on wceIsVista.inf (microsoft) and tetherxp.inf(google)
+;	
+;  Copyright (c)
+;***********************************************************************************************
+
+[Version]
+Signature           = "$Windows NT$"
+Class               = Net
+ClassGUID           = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider            = %Provider%
+CatalogFile         = SK-S100RNDIS.cat
+DriverVer           =09/16/2010,1.0.1700.0916
+
+[Manufacturer]
+%SK-S100% = SK-S100Devices, NTx86, NTamd64
+
+[SK-S100Devices.NTx86]
+%SK-S100.VID_1F53&PID_A007.Desc%    = SK-S100.install.NT.5.1, USB\VID_1F53&PID_A007
+%SK-S100.VID_1F53&PID_A008.Desc%    = SK-S100.install.NT.5.1, USB\VID_1F53&PID_A008&MI_00
+
+[SK-S100Devices.NTamd64]
+%SK-S100.VID_1F53&PID_A007.Desc%    = SK-S100.install.NT.5.1, USB\VID_1F53&PID_A007
+%SK-S100.VID_1F53&PID_A008.Desc%    = SK-S100.install.NT.5.1, USB\VID_1F53&PID_A008&MI_00
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+; Windows LH specific sections -----------------------------------
+
+[SK-S100.install.NT.5.1]
+Characteristics = 0x84   ; NCF_PHYSICAL + NCF_HAS_UI
+BusType         = 15
+include         = netrndis.inf
+needs           = Usb_Rndis.ndi
+
+[SK-S100.install.NT.5.1.Services]
+include     = netrndis.inf
+needs       = Usb_Rndis.ndi.Services
+
+; no sys copyfiles - the sys files are already in place
+
+[Strings]
+Provider    = "SK telesys"
+SK-S100     = "SK telesys"
+SK-S100.VID_1F53&PID_A007.Desc="SK telesys USB Ethernet/RNDIS"
+SK-S100.VID_1F53&PID_A008.Desc="SK telesys USB Ethernet/RNDIS"

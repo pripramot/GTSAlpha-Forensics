@@ -1,0 +1,252 @@
+;*****************************************************************************
+;
+; s1317ndis.inf   -- Install the Sony Ericsson Device 1317 USB Ethernet Emulation (NDIS)
+;
+; Copyright (c) 1997-2007 MCCI Corporation
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=Net
+ClassGUID={4D36E972-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=11/01/2007,4.42.0.0
+DriverVer=04/21/2009,4.42.0.0
+Compatible = 1
+CatalogFile=s1317unic.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir = 11           ; LDID_SYS
+S1317.ndi3.CopyFiles = 11  ; LDID_SYS
+S1317.ndi5.CopyFiles = 11  ; LDID_SYS
+S1317.ndi3.nt.CopyFiles = 12
+S1317.ndi5.nt.CopyFiles = 12
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s1317nd5.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s1317nd5.sys",,\amd64
+
+[SourceDisksFiles]
+s1317nd3.sys=1
+s1317nd5.sys=1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%S1317%=S1317,NTamd64
+
+;-----------------------------------------------------------------------------
+; The ndis devices
+;-----------------------------------------------------------------------------
+[S1317]
+%Ndis5Desc% = S1317.ndi5, s1317CR\{02869915-7ECA-4600-808C-829138CDB2F5}
+%Ndis3Desc% = S1317.ndi3, s1317CR\{B42F687F-100D-4444-9942-0EA62DB6915F}
+
+[S1317.NTamd64]
+%Ndis5Desc% = S1317.ndi5, s1317CR\{02869915-7ECA-4600-808C-829138CDB2F5}
+
+;*****************************************************************************
+;
+; NDIS services:
+;
+;	You would think that '\' continuation would make the following 
+;	more readable.  It only succeeds in breaking NDIS.  Keep all this
+;	on one line!
+;
+;*****************************************************************************
+
+[S1317.ndi5]
+DriverVer=11/01/2007,4.42.0.0
+Characteristics = 0x4 ;NCF_PHYSICAL
+BusType = 15 ; PNPbus
+AddReg = S1317.ndi.reg,S1317.ndi.reg.W9x,S1317.ndi5.reg,S1317.ndi5.reg.W9x,S1317.ndi.Gen.Resources,S1317.ndi.Gen.Params,S1317.ndi5.Gen.Params
+CopyFiles = S1317.ndi5.CopyFiles
+
+[S1317.ndi5.nt]
+Characteristics = 0x4 ;NCF_PHYSICAL
+BusType = 15 ; PNPbus
+AddReg = S1317.ndi.reg,S1317.ndi.reg.nt,S1317.ndi5.reg,S1317.ndi5.reg.nt,S1317.ndi.Gen.Resources,S1317.ndi.Gen.Params,S1317.ndi5.Gen.Params
+CopyFiles = S1317.ndi5.nt.CopyFiles
+
+[S1317.ndi3]
+Characteristics = 0x4 ;NCF_PHYSICAL
+BusType = 15 ; PNPbus
+AddReg = S1317.ndi.reg,S1317.ndi.reg.W9x,S1317.ndi3.reg,S1317.ndi3.reg.W9x,S1317.ndi.Gen.Resources,S1317.ndi.Gen.Params,S1317.ndi3.Gen.Params
+CopyFiles = S1317.ndi3.CopyFiles
+
+[S1317.ndi3.nt]
+Characteristics = 0x4 ;NCF_PHYSICAL
+BusType = 15 ; PNPbus
+AddReg = S1317.ndi.reg,S1317.ndi.reg.nt,S1317.ndi3.reg,S1317.ndi3.reg.nt,S1317.ndi.Gen.Resources,S1317.ndi.Gen.Params,S1317.ndi3.Gen.Params
+CopyFiles = S1317.ndi3.nt.CopyFiles
+
+;-----------------------------------------------------------------------------
+; Install all the normal things in the registry 
+;-----------------------------------------------------------------------------
+[S1317.ndi3.reg]
+HKR,NDIS,LogDriverName,,"s1317nd3"
+; NDIS Info
+HKR,NDIS,MajorNdisVersion,1,03
+HKR,NDIS,MinorNdisVersion,1,0A
+HKR,Ndi\Interfaces,DefUpper,,"ndis3"
+HKR,Ndi\Interfaces,UpperRange,,"ndis3"
+
+[S1317.ndi5.reg]
+HKR,NDIS,LogDriverName,,"s1317nd5"
+; NDIS Info
+HKR,NDIS,MajorNdisVersion,1,05
+HKR,NDIS,MinorNdisVersion,1,00
+HKR,Ndi\Interfaces,DefUpper,,"ndis3,ndis5"
+HKR,Ndi\Interfaces,UpperRange,,"ndis3,ndis5"
+
+[S1317.ndi.reg]
+HKR,,EnumPropPages,,"netdi.dll,EnumPropPages"
+
+; Interfaces
+HKR,Ndi\Interfaces,DefLower,,"ethernet"
+HKR,Ndi\Interfaces,LowerRange,,"ethernet"
+
+
+;-----------------------------------------------------------------------------
+; General Resources (used to set NDI\params....)
+;-----------------------------------------------------------------------------
+[S1317.ndi.Gen.Resources]
+
+;-----------------------------------------------------------------------------
+; General Params.
+;-----------------------------------------------------------------------------
+[S1317.ndi.Gen.Params]
+HKR,,BoardType,,%S1317.BoardType%
+HKR,,MediaType,,"Ethernet"
+
+[S1317.ndi3.Gen.Params]
+HKR,,BoardName,,"%S1317.ndi3.guid%"
+HKR,,DeviceName,,"%S1317.ndi3.guid%"
+
+[S1317.ndi5.Gen.Params]
+HKR,,BoardName,,"%S1317.ndi5.guid%"
+HKR,,DeviceName,,"%S1317.ndi5.guid%"
+
+;-----------------------------------------------------------------------------
+;	NDIS devload info for W95/W98
+;-----------------------------------------------------------------------------
+[S1317.ndi.reg.W9x]
+HKR,,DevLoader,,*ndis
+HKR,,DriverDesc,,%S1317.ndi.DriverDesc%
+
+[S1317.ndi3.reg.W9x]
+HKR,,DeviceVxDs,, s1317nd3.sys
+HKR,Ndi,DeviceId,,%S1317.ndi3.guid%
+
+[S1317.ndi5.reg.W9x]
+HKR,,DeviceVxDs,, s1317nd5.sys
+HKR,Ndi,DeviceId,,%S1317.ndi5.guid%
+
+;-----------------------------------------------------------------------------
+;	NDIS devload info for Win2K
+;-----------------------------------------------------------------------------
+[S1317.ndi.reg.nt]
+HKR,,DriverDesc,,%S1317.ndi.DriverDesc%
+
+[S1317.ndi3.reg.nt]
+HKR,Ndi,DeviceId,,%S1317.ndi3.guid%
+HKR,Ndi,Service,,"s1317nd3"
+
+[S1317.ndi5.reg.nt]
+HKR,Ndi,DeviceId,,%S1317.ndi5.guid%
+HKR,Ndi,Service,,"s1317nd5"
+
+
+[S1317.ndi5.NT.Services]
+AddService      = s1317nd5, 2, S1317.ndi5.AddService
+
+[S1317.ndi5.AddService]
+DisplayName             = %S1317.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s1317nd5.sys
+LoadOrderGroup          = NDIS
+
+[S1317.ndi3.NT.Services]
+AddService      = s1317nd3, 2, S1317.ndi3.AddService
+
+[S1317.ndi3.AddService]
+DisplayName             = %S1317.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s1317nd3.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+; Some copyfiles sections
+;-----------------------------------------------------------------------------
+[S1317.ndi3.CopyFiles]
+s1317nd3.sys
+
+[S1317.ndi5.CopyFiles]
+s1317nd5.sys
+
+[S1317.ndi3.nt.CopyFiles]
+s1317nd3.sys
+
+[S1317.ndi5.nt.CopyFiles]
+s1317nd5.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+S1317 = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 1317 USB Ethernet Emulation Installation Disk"
+
+S1317.ndi.DriverDesc = "Sony Ericsson Device 1317 USB Ethernet Emulation (NDIS)"
+Ndis3Desc = "Sony Ericsson Device 1317 USB Ethernet Emulation (NDIS 3)"
+Ndis5Desc = "Sony Ericsson Device 1317 USB Ethernet Emulation (NDIS 5)"
+S1317.Service.Desc = "Sony Ericsson Device 1317 USB Ethernet Emulation SEMC1317 (NDIS)"
+S1317.BoardType = "Sony Ericsson Device 1317 USB Ethernet Emulation (for Networking Device)"
+
+CustomerDataPath = "Sony Ericsson USB WMC"
+DriverSet = "Sony Ericsson USB WMC Software"
+UninstallFile = "S1317Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+S1317.ndi5.guid = "s1317CR\{02869915-7ECA-4600-808C-829138CDB2F5}"
+S1317.ndi3.guid = "s1317CR\{B42F687F-100D-4444-9942-0EA62DB6915F}"
+
+
+;*** end of file ***

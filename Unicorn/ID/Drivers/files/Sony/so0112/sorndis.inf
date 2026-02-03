@@ -1,0 +1,71 @@
+﻿;**************************************************************************
+;
+; sorndis.inf   -- Sony Android RNDIS Interface Driver
+;
+;**************************************************************************
+
+[Version]
+Signature           = "$Windows NT$"
+Class               = Net
+ClassGUID           = {4D36E972-E325-11CE-BFC1-08002BE10318}
+Provider            = %ProviderName%
+DriverVer           = 07/02/2015,0.0.0000.00001
+CatalogFile.NTx86   = sorndis86.cat
+
+[Manufacturer]
+%ProviderName%         = RndisDevices,NTx86
+
+; Decoration for x86 architecture
+[RndisDevices.NTx86]
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71AA&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81AA&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71AB&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81AB&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71AD&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81AD&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71B5&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81B5&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71B8&MI_00
+;%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81B8&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71BC&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81BC&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71C5&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81C5&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71CB&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81CB&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71D2&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81D2&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71C4&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81C4&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71D6&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81D6&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_71D7&MI_00
+%RndisDevice%    = RNDIS.NT.5.1, USB\VID_0FCE&PID_81D7&MI_00
+
+
+
+;@@@ This is the common setting for setup
+[ControlFlags]
+ExcludeFromSelect=*
+
+; DDInstall section
+; References the in-build Netrndis.inf
+[RNDIS.NT.5.1]
+Characteristics = 0x84   ; NCF_PHYSICAL + NCF_HAS_UI
+BusType         = 15
+; NEVER REMOVE THE FOLLOWING REFERENCE FOR NETRNDIS.INF
+include         = netrndis.inf
+needs           = Usb_Rndis.ndi
+
+; DDInstal.Services section
+[RNDIS.NT.5.1.Services]
+include     = netrndis.inf
+needs       = Usb_Rndis.ndi.Services
+
+; No sys copyfiles - the sys files are already in-build
+; (part of the operating system).
+
+; Modify these strings for your device as needed.
+[Strings]
+ProviderName                = "Sony"
+RndisDevice                 = "Sony Android Remote NDIS based Device"

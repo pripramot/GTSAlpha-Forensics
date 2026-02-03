@@ -1,0 +1,56 @@
+============================================
+เนื้อหาอีเมลสำหรับส่งให้ Supabase
+คัดลอกด้านล่างไปวางในอีเมล แล้วส่งถึง Supabase Support / Billing
+============================================
+
+--- เรื่อง (Subject) ---
+
+Account setup request: Pro plan, 1 paid project + 2 free projects (gittisakwannakeeree@gmail.com)
+
+หรือ (ภาษาไทย):
+ขอตั้งค่าบัญชี: แผน Pro, โครงการชำระเงิน 1 + โครงการฟรี 2 (gittisakwannakeeree@gmail.com)
+
+---
+
+--- เนื้อความ (Body) ---
+
+Dear Supabase Team,
+
+We would like to request the following account setup (approved and ready to proceed):
+
+ACCOUNT
+- Email: gittisakwannakeeree@gmail.com
+- Plan: Pro (Paid)
+
+PROJECTS
+- Paid projects: 1
+- Free projects: 2
+
+PROJECT REFERENCE
+- Folder/Project name: GTSAlpha-Forensics
+- App name: Unicorn (mobile forensics / ACESO toolset)
+- Use case: Backend (Auth, Database, RLS) for GTSAlpha-Forensics (Unicorn)
+
+Please configure the account and projects as above. We are ready to upload project files and proceed.
+
+Thank you.
+
+---
+(ภาษาไทย — สรุป)
+
+เรียน ทีม Supabase
+
+ขอตั้งค่าบัญชีตามรายการด้านล่าง (อนุมัติแล้ว พร้อมดำเนินการ):
+
+บัญชี: gittisakwannakeeree@gmail.com
+แผน: Pro (ชำระเงิน)
+
+โครงการ: โครงการชำระเงิน 1 โครงการ, โครงการฟรี 2 โครงการ
+
+อ้างอิงโครงการ: ชื่อโฟลเดอร์ GTSAlpha-Forensics, ชื่อโปรแกรม Unicorn (นิติวิทยาศาสตร์มือถือ) — ใช้ Supabase เป็น backend (Auth, DB, RLS)
+
+ขอให้ตั้งค่าตามรายการด้านบน ขณะนี้พร้อมอัพโหลดไฟล์โครงการและดำเนินการต่อ
+
+ขอบคุณครับ
+
+============================================

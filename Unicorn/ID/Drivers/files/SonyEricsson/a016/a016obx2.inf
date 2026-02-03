@@ -1,0 +1,154 @@
+;*****************************************************************************
+;
+; Name:  a016obx2.inf
+;
+; Function:
+;	Install the Sony Ericsson Device A016 USB WMC OBEX Interface on Win2000/XP
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=10/23/2007,4.42.0.0
+DriverVer=04/21/2009,4.42.0.0
+CatalogFile=a016obex.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"a016obex.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"a016obex.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+a016obex.sys = 1
+a016cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SonyEricsson%=seda016, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[seda016]
+%seda016.Comm.Desc% = seda016.Install, USB\VID_0fce&PID_d0d0&Class_02&SubClass_0b&Prot_00&OS_NT
+
+[seda016.NTamd64]
+%seda016.Comm.Desc% = seda016.Install, USB\VID_0fce&PID_d0d0&Class_02&SubClass_0b&Prot_00&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[seda016.Install.nt]
+AddReg		= seda016.AddReg,seda016.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[seda016.AddReg]
+HKR,,NTMPDriver,,a016obex.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[seda016.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+a016obex.sys
+a016cm.sys,a016cmnt.sys
+a016cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[seda016.Install.NT.Services]
+AddService = a016obex, 0x00000002, seda016.Install.AddService
+
+
+[seda016.Install.AddService]
+DisplayName	= %seda016.Service.Name%
+Description	= %seda016.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\a016obex.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+SonyEricsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device A016 USB WMC OBEX Interface installation disk"
+
+seda016.Comm.Desc = "Sony Ericsson Device A016 USB WMC OBEX Interface"
+seda016.Service.Name = "Sony Ericsson Device A016 USB WMC OBEX Interface"
+seda016.Service.Desc = "Sony Ericsson Device A016 USB WMC OBEX Interface"
+
+
+CustomerDataPath = "Sony Ericsson Device A016"
+DriverSet = "Sony Ericsson Device A016 Software"
+UninstallFile = "A016Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

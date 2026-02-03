@@ -1,0 +1,137 @@
+;*****************************************************************************
+;
+; NKHSBUS.inf   
+;
+; Function   :  Install NOKIA USB Composite Device drivers on Win 2000/XP/2003/VISTA
+;
+; Copyright (c) DEVGURU
+;
+;*****************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=03/07/2007, 1.1.0.0
+DriverVer=04/21/2009, 1.1.0.0
+CatalogFile=nkhsbus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+NOKIAWdm.NT.CopyFiles        = 12                    ; system32\drivers
+
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+;[SourceDisksNames.ia64]
+;1 = %DiskString%,,,\ia64
+
+;[SourceDisksNames.amd64]
+;1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+nkhsbus.sys = 1
+
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+;%NOKIA%=NOKIA, NTx86, NTia64, NTamd64
+%NOKIA%=NOKIA, NTx86
+
+;-----------------------------------------------------------------------------
+; The phone devices
+;-----------------------------------------------------------------------------
+[NOKIA]
+%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_0479
+%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_04F4
+%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_04F5
+
+; For XP and later
+[NOKIA.NTx86]
+%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_0479
+%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_04F4
+%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_04F5
+
+;[NOKIA.NTia64]
+;%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_0479
+;%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_04F4
+;%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_04F5
+
+;[NOKIA.NTamd64]
+;%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_0479
+;%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_04F4
+;%NOKIA.CdcBus.Desc% = NOKIAWdm.Install, USB\VID_0421&PID_04F5
+
+
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[NOKIAWdm.Install.NT]
+CopyFiles       = NOKIAWdm.NT.CopyFiles
+AddReg          = NOKIAWdm.AddReg, NOKIAWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[NOKIAWdm.Install.NT.Services]
+AddService      = nkhsbus, 2, NOKIAWdm.AddService
+
+[NOKIAWdm.AddService]
+DisplayName             = %NOKIA.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\nkhsbus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[NOKIAWdm.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[NOKIAWdm.NT.AddReg]
+
+
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[NOKIAWdm.NT.CopyFiles]
+nkhsbus.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Nokia"
+NOKIA = "Nokia"
+DiskString = "Nokia Handset USB Composite Device Installation disk (UDP)"
+
+NOKIA.CdcBus.Desc = "Nokia Handset USB Composite Device (UDP)"
+NOKIA.Service.Desc = "Nokia Handset USB Composite Device driver (UDP)"

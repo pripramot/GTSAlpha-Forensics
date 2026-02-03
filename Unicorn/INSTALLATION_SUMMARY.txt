@@ -1,0 +1,179 @@
+═══════════════════════════════════════════════════════════════════
+  ACESO FORENSIC SOFTWARE - สรุปการติดตั้งและการพัฒนา
+═══════════════════════════════════════════════════════════════════
+
+📅 วันที่: 23 มกราคม 2026
+💻 ระบบปฏิบัติการ: Windows 11 (MSYS_NT-10.0-26200)
+🎯 สถานะ: ติดตั้งและพัฒนาเสร็จสมบูรณ์
+
+───────────────────────────────────────────────────────────────────
+✅ งานที่เสร็จสมบูรณ์
+───────────────────────────────────────────────────────────────────
+
+1. ✅ แตกไฟล์ AcesoSetup.exe สำเร็จ
+   - แตกไฟล์ Nullsoft Installer
+   - แตก AcesoFiles.tar.gz (2.0 GB)
+   - คัดลอกไฟล์ทั้งหมด 2.3 GB
+
+2. ✅ สร้างโครงสร้างโปรแกรมสมบูรณ์
+   ตำแหน่ง: C:\Users\usEr\Project\ACESO\
+
+   โครงสร้าง:
+   ACESO/
+   ├── ACESO.exe                    (131 MB - โปรแกรมหลัก)
+   ├── haspclnt.dll                 (1.4 MB - HASP License)
+   ├── Launch_ACESO.bat             (Launcher Script)
+   ├── Launch ACESO.lnk             (Shortcut พร้อม Compatibility)
+   ├── README_TH.txt                (คู่มือภาษาไทย)
+   ├── INSTALLATION_SUMMARY.txt     (ไฟล์นี้)
+   ├── ID/                          (Drivers และ Resources)
+   ├── ID_x64/                      (64-bit Tools)
+   ├── TMP/                         (Dependencies)
+   ├── WD/                          (Working Directory)
+   ├── PF/                          (Platform Files)
+   └── RV/                          (Report Viewer)
+
+3. ✅ ติดตั้ง Dependencies
+   - Visual C++ Redistributable x64 ✅
+   - HASP USB Drivers (DPInst.exe) ✅
+   - Android ADB Tools ✅
+   - FFmpeg, VLC และเครื่องมืออื่นๆ ✅
+
+4. ✅ สร้างเครื่องมือสำหรับการใช้งาน
+   - Launch_ACESO.bat (รัน HASP service และโปรแกรม)
+   - Shortcut พร้อม Windows 10 Compatibility Mode
+   - คู่มือการใช้งานภาษาไทย (README_TH.txt)
+
+───────────────────────────────────────────────────────────────────
+📋 ข้อมูลสำคัญ
+───────────────────────────────────────────────────────────────────
+
+🔑 HASP Dongle:
+   - ต้องเสียบ HASP USB Dongle ก่อนใช้งานเสมอ
+   - Network Share: \\Ihc-qutjv3999\d (ยังไม่ได้เชื่อมต่อ)
+   - HASP License Manager: ID\Drivers\files\Hasp\hasplms.exe
+
+🛠️  Drivers ที่ติดตั้ง:
+   - HASP USB Drivers (akshasp.sys, aksusb.sys, hardlock.sys)
+   - Android USB Drivers (หลายยี่ห้อ)
+   - USB Ethernet RNDIS Drivers
+   - Touch Screen Drivers (PenMount, TouchKit)
+
+📚 คู่มือที่พร้อมใช้งาน:
+   - ACESO Custom\ACESO User Guide Thai.pdf
+   - ACESO Custom\ACESO User Guide.pdf
+   - ACESO Custom\ACESO Device List.pdf
+   - ACESO Custom\Whats New.pdf
+
+───────────────────────────────────────────────────────────────────
+🚀 วิธีการเริ่มใช้งาน (3 วิธี)
+───────────────────────────────────────────────────────────────────
+
+วิธีที่ 1: ใช้ Shortcut (แนะนำที่สุด)
+   1. เสียบ HASP USB Dongle
+   2. คลิกขวา "Launch ACESO (Windows 10 Mode).lnk"
+   3. เลือก "Run as administrator"
+
+วิธีที่ 2: ใช้ Batch File
+   1. เสียบ HASP USB Dongle
+   2. คลิกขวา "Launch_ACESO.bat"
+   3. เลือก "Run as administrator"
+
+วิธีที่ 3: รันโดยตรง
+   1. เสียบ HASP USB Dongle
+   2. ตั้งค่า Compatibility Mode บน ACESO.exe
+      (Properties → Compatibility → Windows 10)
+   3. Run as administrator
+
+───────────────────────────────────────────────────────────────────
+⚠️  ข้อควรระวังสำคัญ
+───────────────────────────────────────────────────────────────────
+
+❗ ต้องเสียบ HASP Dongle ตลอดเวลา
+❗ ต้องรันในฐานะ Administrator
+❗ อย่าลบหรือย้ายไฟล์ในโฟลเดอร์ย่อย
+❗ ใช้ Windows 10 Compatibility Mode
+❗ ปิด Antivirus หากถูกบล็อค
+
+───────────────────────────────────────────────────────────────────
+🔧 การแก้ปัญหาที่พบบ่อย
+───────────────────────────────────────────────────────────────────
+
+1. โปรแกรมไม่เปิด:
+   → ตรวจสอบ HASP Dongle
+   → รัน as Administrator
+   → ตั้งค่า Compatibility Mode
+
+2. HASP License Error:
+   → ตรวจสอบ HASP Dongle ใน Device Manager
+   → รัน: ID\Drivers\files\DPInst.exe
+
+3. Missing DLL:
+   → รัน: TMP\Redist\vc_redist.x64.exe
+
+4. Network Share ไม่เชื่อมต่อ:
+   → net use Z: \\Ihc-qutjv3999\d
+   → ตรวจสอบว่าเครื่องเปิดอยู่
+
+───────────────────────────────────────────────────────────────────
+📊 สถิติการติดตั้ง
+───────────────────────────────────────────────────────────────────
+
+ขนาดโฟลเดอร์ทั้งหมด:    2.3 GB
+จำนวนไฟล์:              14,655+ files
+โฟลเดอร์หลัก:           7 folders
+ไฟล์โปรแกรมหลัก:        ACESO.exe (131 MB)
+Drivers:                HASP, Android, USB, Touch
+
+───────────────────────────────────────────────────────────────────
+✨ ฟีเจอร์หลักของโปรแกรม ACESO
+───────────────────────────────────────────────────────────────────
+
+📱 Mobile Device Forensics
+   - ดึงข้อมูลจากมือถือหลายยี่ห้อ
+   - รองรับ Android, iOS, Windows Mobile
+   - Physical & Logical Acquisition
+
+💳 SIM Card Analysis
+   - อ่านข้อมูล SIM Card
+   - ดึง Contacts, SMS, Call Logs
+   - รองรับ SIM หลายประเภท
+
+💾 Data Recovery
+   - กู้คืนข้อมูลที่ถูกลบ
+   - Carve files จาก memory
+   - รองรับหลาย file types
+
+📊 Report Generation
+   - สร้างรายงานอัตโนมัติ
+   - รองรับหลายภาษา (รวมภาษาไทย)
+   - Export ได้หลายรูปแบบ
+
+───────────────────────────────────────────────────────────────────
+🎓 ข้อมูลเพิ่มเติม
+───────────────────────────────────────────────────────────────────
+
+สำหรับข้อมูลเพิ่มเติมและวิธีการใช้งานโดยละเอียด:
+→ อ่านไฟล์ README_TH.txt
+→ เปิดคู่มือใน ACESO Custom\
+
+───────────────────────────────────────────────────────────────────
+👨‍💻 ข้อมูลการพัฒนา
+───────────────────────────────────────────────────────────────────
+
+พัฒนาโดย:     Claude Code Assistant
+วันที่:        23 มกราคม 2026
+ระยะเวลา:      ~30 นาที
+ขั้นตอน:       6 ขั้นตอนหลัก
+  1. แตกไฟล์ AcesoSetup.exe
+  2. สร้างโครงสร้างโฟลเดอร์
+  3. ติดตั้ง HASP drivers
+  4. ติดตั้ง dependencies
+  5. คัดลอกไฟล์และ resources
+  6. สร้าง launcher และ documentation
+
+───────────────────────────────────────────────────────────────────
+
+✅ โปรแกรม ACESO พร้อมใช้งานบน Windows 11 แล้ว!
+
+═══════════════════════════════════════════════════════════════════

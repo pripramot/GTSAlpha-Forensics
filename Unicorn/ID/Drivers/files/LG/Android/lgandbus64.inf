@@ -1,0 +1,122 @@
+
+;*****************************************************************************
+; Name:  lgandbus64.inf(_MOON_)
+;*****************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%Provider%
+CatalogFile = lganddriver64.cat
+DriverVer=11/30/2010,2.2.0.0
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir              = 11                ; LDID_SYS
+LGSIWdm.NT.CopyFiles        = 12                ; system32\drivers
+PropPages.CopyFiles         = 11                ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lgandbus64.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+lgandbus64.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGSI%=LGSI,NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[LGSI.NTamd64]
+%LGSI.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_618E
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[LGSI.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[LGSIWdm.Install]
+DriverVer=11/30/2010,2.2.0.0
+CopyFiles=LGSI.CopyFiles, PropPages.CopyFiles
+AddReg=LGSIWdm.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[LGSIWdm.Install.NT]
+DriverVer=11/30/2010,2.2.0.0
+CopyFiles = LGSIWdm.NT.CopyFiles
+AddReg    = LGSIWdm.AddReg, LGSIWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[LGSIWdm.Install.NT.Services]
+AddService = Andbus, 2, LGSIWdm.AddService
+
+[LGSIWdm.AddService]
+DisplayName             = %LGSI.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\lgandbus64.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[LGSIWdm.AddReg]
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[LGSIWdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[LGSIWdm.NT.CopyFiles]
+lgandbus64.sys
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+Provider="LG Electronics Inc."
+LGSI="LG Electronics Inc."
+
+DiskString="LGE Android Platform USB Composite Device Installation disk"
+LGSI.CdcBus.Desc="LGE Android Platform Composite USB Device"
+LGSI.Service.Desc="LGE Android Platform Composite USB Device"
+CustomerDataPath="LGE USB Android Platform "
+DriverSet="LGE USB Android Platform Mobile Software"
+

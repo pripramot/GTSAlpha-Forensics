@@ -1,0 +1,88 @@
+; Windows Smart Card Reader Setup File
+; Copyright (c) 1993-1999 Microsoft Corporation
+; Manufacturer: Sony Ericsson
+
+[Version]
+CatalogFile=GCXXSC.cat
+Signature="$Windows NT$"
+Class=SmartCardReader
+ClassGuid={50DD5230-BA8A-11D1-BF5D-0000F805F530}
+Provider=%SCProvider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=05/18/2004,3.0.0.1202 
+DriverVer=04/21/2009,3.0.0.1202 
+
+[DestinationDirs]
+DefaultDestDirs			= 11
+Drv.Copy=12
+
+[Manufacturer]
+%SCProvider%=SC_Readers
+
+[SC_Readers]
+%FullProductName% = SC.Reader, GCXX\SIM_SC
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SC_Device_Service_Inst]
+DisplayName    = %FullProductName%
+ServiceType    = 1
+StartType      = 3   
+ErrorControl   = 1
+ServiceBinary  = %12%\GCXXSC.sys
+AddReg		   = Reg.DevName
+
+[Strings]
+TCPWindowSizeDesc	= "TCP Window Size"
+MTUDesc				= "MTU Size"
+LegacyDeviceName			="GC75"
+GC85.Modem="Sony Ericsson GC85 EGPRS Modem"
+GC85MaxLinkSpeed="2144"
+GC83.Modem="Sony Ericsson GC83 EGPRS Modem"
+GC83MaxLinkSpeed="2144"
+GC82.Modem="Sony Ericsson GC82 EGPRS Modem"
+GC82MaxLinkSpeed="2144"
+GC79.Modem="Sony Ericsson GC79 Wireless Modem"
+GC75.Modem="Sony Ericsson GC75 Wireless Modem"
+Version				="3.0.0.1202"
+Disk1Name			="Sony Ericsson WWAN Installation Disk "
+DeviceName			="GCXX"
+NicDeviceID			="GCXX\GPRS_NIC"
+SCDeviceID			="GCXX\SIM_SC"
+SCProvider="Sony Ericsson"
+FullProductName="Sony Ericsson SIM Card Reader"
+ShortProductName="WWSC"
+
+[Drv.Copy]
+GCXXSC.sys
+
+[Reg.DevName]
+HKR,Parameters,LegacyDeviceName,,%LegacyDeviceName%
+HKR,Parameters,DeviceName,,%DeviceName%
+HKR,Parameters,NicDeviceID,,%NicDeviceID%
+HKR,Parameters,SCDeviceID,,%SCDeviceID%
+
+[SourceDisksNames]
+1=%Disk1Name%,,
+
+[SourceDisksFiles]
+GCXXSC.sys = 1
+
+; Hardware Specific Settings and Configuration
+[SC.Reader.AddReg]
+HKLM,System\CurrentControlSet\Services\SCardSvr,Start,0x00010001,2
+
+[SC.EventLog.AddReg]
+HKR,, EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\drivers\GCXXSC.sys"
+HKR,, TypesSupported,   0x00010001, 7
+
+[SC.Reader.NT]
+CopyFiles=Drv.Copy
+AddReg=SC.Reader.AddReg 
+
+[SC.Reader.NT.Services]
+AddService = Sony_EricssonWWSC, 2, SC_Device_Service_Inst, SC.Reader.EventLog
+
+[SC.Reader.EventLog]
+AddReg = SC.EventLog.AddReg

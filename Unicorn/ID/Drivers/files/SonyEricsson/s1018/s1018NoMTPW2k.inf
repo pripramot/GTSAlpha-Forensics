@@ -1,0 +1,107 @@
+;*****************************************************************************
+;
+; Name:  s1018NoMTPW2k.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 1018 USB WMC NoMTP Interface on Win2000
+;   and WinXP with Media Player 9.
+;
+; Copyright (c) 2007 Sony Ericsson
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Image
+ClassGuid={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=03/25/2009,1.0.1018.7
+DriverVer=04/21/2009,1.0.1018.7
+CatalogFile=s1018NoMTPW2k.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed1018
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+
+[sed1018]
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_20ef&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_20f1&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2105&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2108&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2109&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_210b&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_210c&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2112&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2113&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_211a&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_211d&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_211e&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2120&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2121&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2123&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_2126&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_212d&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0ef&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0f1&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d105&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d108&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d109&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d10b&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d10c&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d112&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d113&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d11a&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d11d&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d11e&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d120&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d121&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d123&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d126&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1018.Comm.Desc% = NODRV, USB\VID_0fce&PID_d12d&Class_06&SubClass_01&Prot_01&OS_NT
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[NODRV.NT]
+
+[NODRV.NT.Services]
+AddService = , 0x00000002   ; null service install
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 1018 USB WMC NoMTP Interface installation disk"
+
+sed1018.Comm.Desc = "Sony Ericsson Device 1018 USB WMC NoMTP Interface"
+sed1018.Service.Name = "Sony Ericsson Device 1018 USB WMC NoMTP Interface"
+sed1018.Service.Desc = "Sony Ericsson Device 1018 USB WMC NoMTP Interface"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

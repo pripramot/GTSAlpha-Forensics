@@ -1,0 +1,214 @@
+;*****************************************************************************
+; Name:  lgandnetndis.inf 
+; LG Wireless USB NDIS Device
+; Copyright (c) 2010-2011 LG Electronics Inc
+; Manufacturer: LG Electronics Inc
+;*****************************************************************************
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %Msft%
+DriverVer   = 05/12/2015,4.0.0.0
+CatalogFile = lgandnet64.cat
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%Msft% = Msft,NTamd64
+
+; For Win2K
+[Msft]
+%LgNdis.DeviceDesc01%    = LgNdis.ndi, USB\VID_1004&PID_61A1&MI_01
+%LgNdis.DeviceDesc02%    = LgNdis.ndi, USB\VID_1004&PID_61A2&MI_01
+%LgNdis.DeviceDesc03%    = LgNdis.ndi, USB\VID_1004&PID_61F5&MI_03
+%LgNdis.DeviceDesc04%    = LgNdis.ndi, USB\VID_1004&PID_61F6&MI_03
+%LgNdis.DeviceDesc05%    = LgNdis.ndi, USB\VID_1004&PID_61F7&MI_03
+%LgNdis.DeviceDesc06%    = LgNdis.ndi, USB\VID_1004&PID_61F8&MI_03
+%LgNdis.DeviceDesc07%    = LgNdis.ndi, USB\VID_1004&PID_61FC&MI_03
+%LgNdis.DeviceDesc08%    = LgNdis.ndi, USB\VID_1004&PID_61FD&MI_03
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_61FE&MI_03
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6310&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6311&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6312&MI_00
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6313&MI_00
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6314&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6315&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6316&MI_05
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6317&MI_05
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6318&MI_06
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6319&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_633B
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_633C&MI_00
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_633D&MI_05
+%LgNdis.DeviceDesc10%    = LgNdis.ndi, USB\VID_1004&PID_6342&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6200&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6204&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6208&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_620C&MI_06
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_620F&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6214&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6218&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6226&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_622E&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6238&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6240&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_624A&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6246&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6252&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6258&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_625E&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6264&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_626D&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6271&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6278&MI_03
+%Verizon.LgNdis.Desc2% = LgNdis.ndi, USB\VID_1004&PID_6286&MI_03
+%Verizon.LgNdis.Desc2% = LgNdis.ndi, USB\VID_1004&PID_628F&MI_03
+; Verizon Common PID
+%Verizon.LgNdis.Desc2% = LgNdis.ndi, USB\VID_1004&PID_62C7&MI_03
+%Verizon.LgNdis.Desc2% = LgNdis.ndi, USB\VID_1004&PID_62C8&MI_04
+
+; For XP and later
+[Msft.NTamd64]
+%LgNdis.DeviceDesc01%    = LgNdis.ndi, USB\VID_1004&PID_61A1&MI_01
+%LgNdis.DeviceDesc02%    = LgNdis.ndi, USB\VID_1004&PID_61A2&MI_01
+%LgNdis.DeviceDesc03%    = LgNdis.ndi, USB\VID_1004&PID_61F5&MI_03
+%LgNdis.DeviceDesc04%    = LgNdis.ndi, USB\VID_1004&PID_61F6&MI_03
+%LgNdis.DeviceDesc05%    = LgNdis.ndi, USB\VID_1004&PID_61F7&MI_03
+%LgNdis.DeviceDesc06%    = LgNdis.ndi, USB\VID_1004&PID_61F8&MI_03
+%LgNdis.DeviceDesc07%    = LgNdis.ndi, USB\VID_1004&PID_61FC&MI_03
+%LgNdis.DeviceDesc08%    = LgNdis.ndi, USB\VID_1004&PID_61FD&MI_03
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_61FE&MI_03
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6310&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6311&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6312&MI_00
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6313&MI_00
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6314&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6315&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6316&MI_05
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6317&MI_05
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6318&MI_06
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_6319&MI_04
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_633B
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_633C&MI_00
+%LgNdis.DeviceDesc09%    = LgNdis.ndi, USB\VID_1004&PID_633D&MI_05
+%LgNdis.DeviceDesc10%    = LgNdis.ndi, USB\VID_1004&PID_6342&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6200&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6204&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6208&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_620C&MI_06
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_620F&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6214&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6218&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6226&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_622E&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6238&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6240&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_624A&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6246&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6252&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6258&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_625E&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6264&MI_04
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_626D&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6271&MI_03
+%Verizon.LgNdis.Desc% = LgNdis.ndi, USB\VID_1004&PID_6278&MI_03
+%Verizon.LgNdis.Desc2% = LgNdis.ndi, USB\VID_1004&PID_6286&MI_03
+%Verizon.LgNdis.Desc2% = LgNdis.ndi, USB\VID_1004&PID_628F&MI_03
+; Verizon Common PID
+%Verizon.LgNdis.Desc2% = LgNdis.ndi, USB\VID_1004&PID_62C7&MI_03
+%Verizon.LgNdis.Desc2% = LgNdis.ndi, USB\VID_1004&PID_62C8&MI_04
+
+;-------------------------------------------------------------------------------
+;LG NDIS Miniport Ethernet Adapter
+;
+[LgNdis.ndi]
+Characteristics = 0x84 ; NCF_HAS_UI | NCF_PHYSICAL
+BusType		= 15 ; if you specify NCF_PHYSICAL, you must specify bustype
+AddReg          = LgNdis.Reg, ParamsPromiscuous
+CopyFiles       = LgNdis.CopyFiles
+
+[LgNdis.ndi.Services]
+AddService      = andnetndis, 2, LgNdis.Service, LgNdis.EventLog
+
+;-----------------------------------------------------------------------------
+; LG NDIS Miniport Common
+;
+[LgNdis.Reg]
+HKR,    ,                         BusNumber,           0, "0" 
+HKR, Ndi,                         Service,             0, "andnetndis"
+HKR, Ndi\Interfaces,              UpperRange,          0, "ndis5"
+HKR, Ndi\Interfaces,              LowerRange,          0, "ethernet"
+
+[ParamsPromiscuous]
+;
+;    Should the physical NIC be set to Promiscuous mode 
+;
+HKR, Ndi\Params\Promiscuous,     ParamDesc, , %Promiscuous%
+HKR, Ndi\Params\Promiscuous,     Default,  ,"0"
+HKR, Ndi\Params\Promiscuous,     type, ,      enum
+HKR, Ndi\Params\Promiscuous\enum,"1",  ,     %Promiscuous_Enable%
+HKR, Ndi\Params\Promiscuous\enum,"0",  ,     %Promiscuous_Disable%
+
+;-----------------------------------------------------------------------------
+; Driver and Service Section
+;
+[LgNdis.CopyFiles]
+lgandnetndis64.sys,,,2
+
+[LgNdis.Service]
+DisplayName     = %LgNdis.Service.DispName%
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\lgandnetndis64.sys
+LoadOrderGroup  = NDIS
+AddReg          = TextModeFlags.Reg
+
+[LgNdis.EventLog]
+AddReg = LgNdis.AddEventLog.Reg
+
+[LgNdis.AddEventLog.Reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[TextModeFlags.Reg]
+HKR, , TextModeFlags,    0x00010001, 0x0001
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+lgandnetndis64.sys  = 1,,
+
+;-----------------------------------------------------------------------------
+; DestinationDirs
+;
+[DestinationDirs]
+LgNdis.CopyFiles = 12
+
+;-----------------------------------------------------------------------------
+; Localizable Strings
+;
+[Strings]
+Msft                       = "LG Electronics, Inc."                      
+LgNdis.DeviceDesc01        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc02        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc03        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc04        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc05        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc06        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc07        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc08        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc09        = "LGE AndroidNet NDIS Ethernet Adapter"
+LgNdis.DeviceDesc10        = "LGE Mobile NDIS Ethernet Adapter"
+Verizon.LgNdis.Desc = "LGE AndroidNet for VZW NDIS Ethernet Adapter"
+Verizon.LgNdis.Desc2 = "LGE Mobile for VZW NDIS Ethernet Adapter"
+LgNdis.Service.DispName    = "LGE AndroidNet NDIS Ethernet Adapter"
+DiskId1 		         = "LGE AndroidNet Ethernet Adapter Device Installation Disk #1"
+Promiscuous                = "Set the physical NIC to promiscuous mode"
+Promiscuous_Disable        = "Disable"
+Promiscuous_Enable         = "Enable"
+

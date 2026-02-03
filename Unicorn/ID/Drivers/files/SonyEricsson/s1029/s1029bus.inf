@@ -1,0 +1,180 @@
+;*****************************************************************************
+;
+; s1029bus.inf   -- Install the Sony Ericsson Device 1029 drivers
+;
+; Copyright (c) 1997-2009 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=05/20/2009,4.50.7.1
+CatalogFile=s1029bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+sed1029Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s1029bus.sys",,\i386
+
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s1029bus.sys",,\amd64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+s1029bus.sys = 1
+s1029wh95.sys = 1
+s1029whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SonyEricsson%=sed1029, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[sed1029]
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_2129
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_212a
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_212c
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_d129
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_d12a
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_d12c
+
+[sed1029.NTamd64]
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_2129
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_212a
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_212c
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_d129
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_d12a
+%sed1029.CdcBus.Desc% = sed1029Wdm.Install, USB\VID_0fce&PID_d12c
+
+;-----------------------------------------------------------------------------
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[sed1029.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[sed1029Wdm.Install.NT]
+CopyFiles       = sed1029Wdm.NT.CopyFiles
+AddReg          = sed1029Wdm.AddReg, sed1029Wdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[sed1029Wdm.Install.NT.Services]
+AddService      = s1029bus, 2, sed1029Wdm.AddService, sed1029Wdm.Install.EventLog
+
+[sed1029Wdm.AddService]
+DisplayName             = %sed1029.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s1029bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       Setup event logging, if driver supports it
+;-----------------------------------------------------------------------------
+
+[sed1029Wdm.Install.EventLog]
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[sed1029Wdm.AddReg]
+
+HKR,,MCCI_TCPWindowSizeFix_MinValue,0x10001,f0,fa,00,00
+HKR,,MCCI_MCECIDFix,0x10001,07,00,00,00
+HKR,,Configuration,0x10001, 03,00,00,00
+HKR,Scenarios,Scenario,0x10001, 00,00,00,00
+HKR,Scenarios\Scenario_0\ifc_0A\Description, default,, "Sony Ericsson Device 1029"
+HKR,Scenarios\Scenario_0\ifc_0A,HardwareId,, "USB\Vid_$VID&Pid_$PID&Mi_$IFC$,"
+HKR,Scenarios\Scenario_0\ifc_0A,HardwareIdList,, "USB\MS_COMP_MTP$,USB\Vid_$VID&Pid_$PID&Class_$CLASS&SubClass_$SUBCLASS&Prot_$PROT&Os_$OS$,USB\Vid_$VID&Pid_$PID&Class_$CLASS&SubClass_$SUBCLASS&Prot_$PROT$,USB\Vid_$VID&Pid_$PID&Mi_$IFC&Os_$OS$,USB\Vid_$VID&Pid_$PID&MI_$IFC$,$,"
+HKR,Scenarios\Scenario_0\ifc_0A,CompatibleIdList,, "USB\MS_COMP_MTP$,USB\Vid_$VID&Pid_$PID&Mi_$IFC&Os_$OS$,USB\Vid_$VID&Pid_$PID&Mi_$IFC$,$,"
+
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[sed1029Wdm.NT.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[sed1029Wdm.NT.CopyFiles]
+s1029bus.sys
+s1029wh.sys,s1029whnt.sys
+s1029whnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+SonyEricsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 1029 Installation disk"
+
+sed1029.CdcBus.Desc = "Sony Ericsson Device 1029"
+sed1029.Service.Desc = "Sony Ericsson Device 1029 driver (WDM)"
+
+CustomerDataPath = "Sony Ericsson Device 1029"
+DriverSet = "Sony Ericsson Device 1029 Software"
+UninstallFile = "S1029Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

@@ -1,0 +1,133 @@
+;                     
+; Remote NDIS template device setup file
+; Copyright (c) Microsoft Corporation
+;
+; This is the template for the INF installation script 
+; for the RNDIS-over-USB host driver.
+; This INF works for Windows XP SP2, Windows XP x64, 
+; Windows Server 2003 SP1 x86, x64, and ia64, and 
+ ; Windows Vista x86 and x64.
+; This INF will work with Windows XP, Windows XP SP1, 
+; and Windows 2003 after applying specific hotfixes.
+
+[Version]
+Signature           = "$Windows NT$"
+Class               = Net
+ClassGUID           = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider            = Alcatel
+DriverVer           = 01/06/2011,6.0.6000.16384
+CatalogFile        = AndroidDevices.cat
+CatalogFile.NT.5.1  = linux_cdc_rndis_NT.5.1.cat
+CatalogFile.NTamd64 = linux_cdc_rndis_NTamd64.cat
+; RTL Mods - remove references to NTia64 since cat files not present
+;CatalogFile.NTia64 = linux_cdc_rndis_NTia64.cat
+
+[Manufacturer]
+;Alcatel         = AndroidDevices,NT.5.1, NTamd64,NTia64
+Alcatel         = AndroidDevices,NTx86,NTamd64
+
+; Decoration for x86 architecture
+[AndroidDevices.NTx86]
+; Broadcom Rhea without adb
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_4E12
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_4E12&MI_00
+;%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E640
+;%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E640&MI_00
+; Broadcom Island without adb
+;%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E740
+;%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E740&MI_00
+; Broadcom Rhea without adb
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_0FFE
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_0FFE&MI_00
+; Broadcom Rhea with adb
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_0FFC
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_0FFC&MI_00
+
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E610
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E610&MI_00
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E690
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E690&MI_00
+
+;;;;;;;;;;;;;;;;; Broadcom VID ;;;;;;;;;;;;;;;;;;;;;;;;
+; Rhea ;
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_ABCD
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E610
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E610&MI_00
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E690
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E690&MI_00
+; Island/Capri ;
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E710
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E710&MI_00
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E790
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E790&MI_00
+
+; Decoration for x64 architecture
+[AndroidDevices.NTamd64]
+; Broadcom Rhea without adb
+;%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E640
+;%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E640&MI_00
+; Broadcom Island without adb
+;%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E740
+;%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E740&MI_00
+; Broadcom Island without adb
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_0FFE
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_0FFE&MI_00
+; Broadcom Island with adb
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_0FFC
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_0FFC&MI_00
+
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E610
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E610&MI_00
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E690
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_18D1&PID_E690&MI_00
+
+;;;;;;;;;;;;;;;;;; Broadcom VID ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Rhea ;
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E610
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E610&MI_00
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E690
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E690&MI_00
+; Island/Capri ;
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E710
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E710&MI_00
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E790
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_E790&MI_00
+
+;Thunderbird
+%AndroidDevice%    = RNDIS.NT.5.1, USB\VID_0A5C&PID_ABCD
+
+;@@@ This is the common setting for setup
+[ControlFlags]
+ExcludeFromSelect=*
+
+; DDInstall section
+; References the in-build Netrndis.inf
+[RNDIS.NT.5.1]
+Characteristics = 0x84   ; NCF_PHYSICAL + NCF_HAS_UI
+BusType         = 15
+; NEVER REMOVE THE FOLLOWING REFERENCE FOR NETRNDIS.INF
+include         = netrndis.inf
+needs           = Usb_Rndis.ndi
+AddReg          = Rndis_AddReg_Vista
+
+; DDInstal.Services section
+[RNDIS.NT.5.1.Services]
+include     = netrndis.inf
+needs       = Usb_Rndis.ndi.Services
+
+; Optional registry settings. You can modify as needed.
+[RNDIS_AddReg_Vista] 
+HKR, NDI\params\VistaProperty, ParamDesc,  0, %Vista_Property%
+HKR, NDI\params\VistaProperty, type,       0, "edit"
+HKR, NDI\params\VistaProperty, LimitText,  0, "12"
+HKR, NDI\params\VistaProperty, UpperCase,  0, "1"
+HKR, NDI\params\VistaProperty, default,    0, " "
+HKR, NDI\params\VistaProperty, optional,   0, "1"
+
+; No sys copyfiles - the sys files are already in-build 
+; (part of the operating system).
+
+; Modify these strings for your device as needed.
+[Strings]
+AndroidDevice           = "Vodafone Smart II Network Adapter"
+Vista_Property        = "Optional Vista Property"

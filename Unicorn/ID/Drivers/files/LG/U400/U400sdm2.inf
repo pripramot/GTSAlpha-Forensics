@@ -1,0 +1,148 @@
+;*****************************************************************************
+;
+; Name:  U400sdm2.inf
+;
+; Function:
+;	Install LGE U400 USB WMC Device Management Drivers on Win2000/XP
+;
+; Copyright (c) 1997-2005 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc.
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/05/2006, 4.34.0.2705
+DriverVer=04/21/2009, 4.34.0.2705
+CatalogFile=U400mgmt.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"U400mgmt.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+U400mgmt.sys = 1
+U400cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGE%=LGEU400
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGEU400]
+%LGEU400.Comm.Desc% = LGEU400.Install, USB\VID_1004&PID_6024&Class_02&SubClass_09&Prot_01&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[LGEU400.Install.nt]
+AddReg		= LGEU400.AddReg,LGEU400.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[LGEU400.AddReg]
+HKR,,NTMPDriver,,U400mgmt.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for NT...
+[LGEU400.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,AllowSuspendWhileOpen, 0x10001, 01,00,00,00
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+U400mgmt.sys
+U400cm.sys,U400cmnt.sys
+U400cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[LGEU400.Install.NT.Services]
+AddService = U400mgmt, 0x00000002, LGEU400.Install.AddService
+
+
+[LGEU400.Install.AddService]
+DisplayName	= %LGEU400.Service.Name%
+Description	= %LGEU400.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\U400mgmt.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "LG Electronics"
+LGE = "LG Electronics"
+DiskString = "LGE U400 USB WMC Device Management installation disk"
+
+LGEU400.Comm.Desc = "LGE U400 USB WMC Device Management"
+LGEU400.Service.Name = "LGE U400 USB WMC Device Management Drivers (WDM)"
+LGEU400.Service.Desc = "LGE U400 USB WMC Device Management Drivers (WDM)"
+
+
+CustomerDataPath = "LG Electronics U400"
+DriverSet = "LG Electronics U400 Software"
+UninstallFile = "U400Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

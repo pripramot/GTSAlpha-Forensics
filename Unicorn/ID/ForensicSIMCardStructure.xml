@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<simfiledefinition hashKey="A832996D8E59E00005B79AF308B63F0D" hashtype="MD5">
+	<files>
+		<!-- Root MF for GSM and USIM -->
+		<directory id="3F00" path="GSM/3F00" name="MF" mandatory="true" fullname="Master File">
+			<file id="2FE2" path="GSM/3F00/2FE2" name="ICCID" type="TRANSPARENT" mandatory="true" size="10" fullname="ICC Identifier"/>
+			<file id="2F05" path="GSM/3F00/2F05" name="ELP" type="TRANSPARENT" mandatory="false" minsize="2" fullname="Extended Language Preference"/>
+			<file id="2FE2" path="USIM/3F00/2FE2" name="ICCID" type="TRANSPARENT" mandatory="true" size="10" fullname="ICC Identifier"/>
+			<file id="2F05" path="USIM/3F00/2F05" name="ELP" type="TRANSPARENT" mandatory="false" minsize="2" fullname="Extended Language Preference"/>
+			<file id="2F00" path="USIM/3F00/2F00" name="DIR" type="LINEARFIXED" mandatory="true" fullname="Application Information"/>
+			<!-- GSM Telecom files -->
+			<directory id="7F10" path="GSM/3F00/7F10" name="TELECOM" mandatory="true" fullname="Telecom directory">
+				<file id="6F3A" path="GSM/3F00/7F10/6F3A" name="ADN" type="LINEARFIXED" mandatory="false" minrecordlength="14" maxrecordlength="256" fullname="Abbreviated Dialling Numbers"/>
+				<file id="6F3B" path="GSM/3F00/7F10/6F3B" name="FDN" type="LINEARFIXED" mandatory="false" minrecordlength="14" maxrecordlength="256" fullname="Fixed Dialling Numbers"/>
+				<file id="6F3C" path="GSM/3F00/7F10/6F3C" name="SMS" type="LINEARFIXED" mandatory="false" recordlength="176" fullname="Short Messages"/>
+				<file id="6F3D" path="GSM/3F00/7F10/6F3D" name="CCP" type="LINEARFIXED" mandatory="false" recordlength="14" fullname="Capability Configuration Parameters"/>
+				<file id="6F4F" path="GSM/3F00/7F10/6F4F" name="ECCP" type="LINEARFIXED" mandatory="false" fullname="Extended Capability Configuration Parameters"/>
+				<file id="6F40" path="GSM/3F00/7F10/6F40" name="MSISDN" type="LINEARFIXED" mandatory="false" minrecordlength="14" maxrecordlength="256" fullname="MSISDN Storage"/>
+				<file id="6F42" path="GSM/3F00/7F10/6F42" name="SMSP" type="LINEARFIXED" mandatory="false" minrecordlength="28" maxrecordlength="256" fullname="SMS Parameters"/>
+				<file id="6F43" path="GSM/3F00/7F10/6F43" name="SMSS" type="TRANSPARENT" mandatory="false" minsize="2" fullname="SMS Status"/>
+				<file id="6F44" path="GSM/3F00/7F10/6F44" name="LND" type="CYCLIC" mandatory="false" minrecordlength="14" maxrecordlength="256" fullname="Last Numbers Dialled"/>
+				<file id="6F49" path="GSM/3F00/7F10/6F49" name="SDN" type="LINEARFIXED" mandatory="false" minrecordlength="14" maxrecordlength="256" fullname="Service Dailling Numbers"/>
+				<file id="6F4A" path="GSM/3F00/7F10/6F4A" name="EXT1" type="LINEARFIXED" mandatory="false" recordlength="13" fullname="Extension 1"/>
+				<file id="6F4B" path="GSM/3F00/7F10/6F4B" name="EXT2" type="LINEARFIXED" mandatory="false" recordlength="13" fullname="Extension 2"/>
+				<file id="6F4C" path="GSM/3F00/7F10/6F4C" name="EXT3" type="LINEARFIXED" mandatory="false" recordlength="13" fullname="Extension 3"/>
+				<file id="6F4D" path="GSM/3F00/7F10/6F4D" name="BDN" type="LINEARFIXED" mandatory="false" minrecordlength="15" fullname="Barred Dialling Numnbers"/>
+				<file id="6F4E" path="GSM/3F00/7F10/6F4E" name="EXT4" type="LINEARFIXED" mandatory="false" recordlength="13" fullname="Extension 4"/>
+				<file id="6F47" path="GSM/3F00/7F10/6F47" name="SMSR" type="LINEARFIXED" mandatory="false" recordlength="30" fullname="SMS Status Reports"/>
+				<file id="6F58" path="GSM/3F00/7F10/6F58" name="CMI" type="LINEARFIXED" mandatory="false" fullname="Comparison Method Information"/>
+				<directory id="5F50" path="GSM/3F00/7F10/5F50" name="GRAPHICS" mandatory="false" fullname="Graphics directory">
+					<file id="4F20" path="GSM/3F00/7F10/5F50/4F20" name="IMG" type="LINEARFIXED" mandatory="false" minrecordlength="10" fullname="Image"/>
+				</directory>
+			</directory>
+			<!-- USIM Telecom files -->
+			<directory id="7F10" path="USIM/3F00/7F10" name="TELECOM" mandatory="true" fullname="Telecom directory">
+				<file id="6F54" path="USIM/3F00/7F10/6F54" name="SUME" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Setup Menu Elements"/>
+				<file id="6F06" path="USIM/3F00/7F10/6F06" name="ARRTELECOM" type="LINEARFIXED" mandatory="true" minsize="1" fullname="Access Reference Rules"/>
+				<directory id="5F50" path="USIM/3F00/7F10/5F50" name="GRAPHICS" mandatory="false" fullname="Graphics directory">
+					<file id="4F20" path="USIM/3F00/7F10/5F50/4F20" name="IMG" type="LINEARFIXED" mandatory="false" minrecordlength="10" fullname="Image"/>
+				</directory>
+				<!-- USIM Phonebook directory -->
+				<directory id="5F3A" path="USIM/3F00/7F10/5F3A" name="PHONEBOOK" mandatory="false" fullname="Phone book directory">
+					<file id="4F22" path="USIM/3F00/7F10/5F3A/4F22" name="PSC" type="TRANSPARENT" mandatory="false"/>
+					<file id="4F23" path="USIM/3F00/7F10/5F3A/4F23" name="CC" type="TRANSPARENT" mandatory="false"/>
+					<file id="4F24" path="USIM/3F00/7F10/5F3A/4F24" name="PUID" type="TRANSPARENT" mandatory="false"/>
+					<file id="4F30" path="USIM/3F00/7F10/5F3A/4F30" name="PBR" type="LINEARFIXED" mandatory="false" fullname="Phone book reference file"/>
+				</directory>
+			</directory>
+			<!-- GSM directory as copied to Storage Card -->
+			<directory id="7F15" path="FORENSIC/3F00/7F15" name="GSM" mandatory="false" fullname="Forensic GSM directory">
+				<file id="6F38" path="FORENSIC/3F00/7F15/6F38" name="SST" type="TRANSPARENT" mandatory="true" minsize="2" fullname="SIM Service Table"/>
+				<file id="6F05" path="FORENSIC/3F00/7F15/6F05" name="LP" type="TRANSPARENT" mandatory="true" minsize="1" fullname="Language Preference"/>
+				<file id="6F07" path="FORENSIC/3F00/7F15/6F07" name="IMSI" type="TRANSPARENT" mandatory="true" size="9" fullname="IMSI"/>
+				<file id="6F20" path="FORENSIC/3F00/7F15/6F20" name="KC" type="TRANSPARENT" mandatory="true" size="9" fullname="Ciphering Key Kc"/>
+				<file id="6F30" path="FORENSIC/3F00/7F15/6F30" name="PLMNSEL" type="TRANSPARENT" mandatory="false" minsize="24" fullname="PLMN Selector"/>
+				<file id="6F31" path="FORENSIC/3F00/7F15/6F31" name="HPLMN" type="TRANSPARENT" mandatory="true" size="1" fullname="HPLMN Search Period"/>
+				<file id="6F37" path="FORENSIC/3F00/7F15/6F37" name="ACMMAX" type="TRANSPARENT" mandatory="false" size="3" fullname="ACM Maximum Value"/>
+				<file id="6F39" path="FORENSIC/3F00/7F15/6F39" name="ACM" type="CYCLIC" mandatory="false" recordlength="3" fullname="Accumulated Call Meter"/>
+				<file id="6F3E" path="FORENSIC/3F00/7F15/6F3E" name="GID1" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Group Identifier Level 1"/>
+				<file id="6F3F" path="FORENSIC/3F00/7F15/6F3F" name="GID2" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Group Identifier Level 2"/>
+				<file id="6F46" path="FORENSIC/3F00/7F15/6F46" name="SPN" type="TRANSPARENT" mandatory="false" size="17" fullname="Service Provider Name"/>
+				<file id="6F41" path="FORENSIC/3F00/7F15/6F41" name="PUCT" type="TRANSPARENT" mandatory="false" size="5" fullname="PUCT"/>
+				<file id="6F45" path="FORENSIC/3F00/7F15/6F45" name="CBMI" type="TRANSPARENT" mandatory="false" minsize="0" fullname="CBMI"/>
+				<file id="6F74" path="FORENSIC/3F00/7F15/6F74" name="BCCH" type="TRANSPARENT" mandatory="true" size="16" fullname="BCCH"/>
+				<file id="6F78" path="FORENSIC/3F00/7F15/6F78" name="ACC" type="TRANSPARENT" mandatory="true" size="2" fullname="Access Control Class"/>
+				<file id="6F7B" path="FORENSIC/3F00/7F15/6F7B" name="FPLMN" type="TRANSPARENT" mandatory="true" size="12" fullname="Forbidden PLMNs"/>
+				<file id="6F7E" path="FORENSIC/3F00/7F15/6F7E" name="LOCI" type="TRANSPARENT" mandatory="true" size="11" fullname="Location Information"/>
+				<file id="6FAD" path="FORENSIC/3F00/7F15/6FAD" name="AD" type="TRANSPARENT" mandatory="true" minsize="3" fullname="Administrative Data"/>
+				<file id="6FAE" path="FORENSIC/3F00/7F15/6FAE" name="PHASE" type="TRANSPARENT" mandatory="true" size="1" fullname="Phase Identification"/>
+				<file id="6FB1" path="FORENSIC/3F00/7F15/6FB1" name="VGCS" type="TRANSPARENT" mandatory="false" minsize="4" maxsize="200" fullname="Voice Group Call Service"/>
+				<file id="6FB2" path="FORENSIC/3F00/7F15/6FB2" name="VGCSS" type="TRANSPARENT" mandatory="false" size="7" fullname="Voice Group Call Service Status"/>
+				<file id="6FB3" path="FORENSIC/3F00/7F15/6FB3" name="VBS" type="TRANSPARENT" mandatory="false" minsize="4" maxsize="200" fullname="Voice Broadcast Service"/>
+				<file id="6FB4" path="FORENSIC/3F00/7F15/6FB4" name="VBSS" type="TRANSPARENT" mandatory="false" size="7" fullname="Voice Broadcast Service Status"/>
+				<file id="6FB5" path="FORENSIC/3F00/7F15/6FB5" name="EMLPP" type="TRANSPARENT" mandatory="false" size="2" fullname="Enhanced Multi Level Pre-emption and Priority"/>
+				<file id="6FB6" path="FORENSIC/3F00/7F15/6FB6" name="AAEM" type="TRANSPARENT" mandatory="false" size="1" fullname="Automatic Answer for eMLPP service"/>
+				<file id="6F48" path="FORENSIC/3F00/7F15/6F48" name="CBMID" type="TRANSPARENT" mandatory="false" minsize="0" fullname="CBMID"/>
+				<file id="6FB7" path="FORENSIC/3F00/7F15/6FB7" name="ECC" type="TRANSPARENT" mandatory="false" minsize="0" maxsize="15" fullname="Emergency Call Codes"/>
+				<file id="6F50" path="FORENSIC/3F00/7F15/6F50" name="CBMIR" type="TRANSPARENT" mandatory="false" minsize="0" fullname="CBMIR"/>
+				<file id="6F2C" path="FORENSIC/3F00/7F15/6F2C" name="DCK" type="TRANSPARENT" mandatory="false" size="16" fullname="De-personalization Control Keys"/>
+				<file id="6F32" path="FORENSIC/3F00/7F15/6F32" name="CNL" type="TRANSPARENT" mandatory="false" minsize="0" fullname="Co-operative Network List"/>
+				<file id="6F51" path="FORENSIC/3F00/7F15/6F51" name="NIA" type="LINEARFIXED" mandatory="false" minrecordlength="2" fullname="Network's indication of alerting"/>
+				<file id="6F52" path="FORENSIC/3F00/7F15/6F52" name="KCGPRS" type="TRANSPARENT" mandatory="false" size="9" fullname="GPRS Ciphering Key KcGRS"/>
+				<file id="6F53" path="FORENSIC/3F00/7F15/6F53" name="LOCIGPRS" type="TRANSPARENT" mandatory="false" size="14" fullname="GPRS Location Information"/>
+				<file id="6F54" path="FORENSIC/3F00/7F15/6F54" name="SUME" type="TRANSPARENT" mandatory="false" minsize="0" fullname="Setup Menu Elements"/>
+				<file id="6F11" path="FORENSIC/3F00/7F15/6F11" name="VMWF" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Voice Mail Waiting Flag"/>
+				<file id="6F12" path="FORENSIC/3F00/7F15/6F12" name="SSTRT" type="TRANSPARENT" mandatory="false" minsize="21" fullname="Service String Table"/>
+				<file id="6F13" path="FORENSIC/3F00/7F15/6F13" name="CFF" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Call Forward Flags"/>
+				<file id="6F14" path="FORENSIC/3F00/7F15/6F14" name="ONS" type="TRANSPARENT" mandatory="false" minsize="0" fullname="Operator Name String"/>
+				<file id="6F15" path="FORENSIC/3F00/7F15/6F15" name="CSP" type="TRANSPARENT" mandatory="false" minsize="18" fullname="Customer Service Profile"/>
+				<file id="6F16" path="FORENSIC/3F00/7F15/6F16" name="INFO" type="TRANSPARENT" mandatory="false" minsize="3" fullname="CPHS Info"/>
+				<file id="6F17" path="FORENSIC/3F00/7F15/6F17" name="MBNO" type="LINEARFIXED" mandatory="false" minrecordlength="14" fullname="Mailbox Numbers"/>
+				<file id="6F18" path="FORENSIC/3F00/7F15/6F18" name="ONSF" type="TRANSPARENT" mandatory="false" size="10" fullname="Operator Name Shortform"/>
+				<file id="6F19" path="FORENSIC/3F00/7F15/6F19" name="INF" type="LINEARFIXED" mandatory="false" minrecordlength="5" fullname="Info Numbers"/>
+				<file id="6F60" path="FORENSIC/3F00/7F15/6F60" name="PLMNwAcT" type="TRANSPARENT" mandatory="false" fullname="User controlled PLMN Selector with Access Technology"/>
+				<file id="6F61" path="FORENSIC/3F00/7F15/6F61" name="OPLMNwAcT" type="TRANSPARENT" mandatory="false" fullname="Operator controlled PLMN Selector with Access Technology"/>
+				<file id="6F62" path="FORENSIC/3F00/7F15/6F62" name="HPLMNwAcT" type="TRANSPARENT" mandatory="false" fullname="HPLMN Selector with Access Technology"/>
+				<file id="6F63" path="FORENSIC/3F00/7F15/6F63" name="CPBCCH" type="TRANSPARENT" mandatory="false" fullname="CPBCCH Information"/>
+				<file id="6F64" path="FORENSIC/3F00/7F15/6F64" name="InvScan" type="TRANSPARENT" mandatory="false" fullname="Investigation Scan"/>
+				<file id="6FC5" path="FORENSIC/3F00/7F15/6FC5" name="PNN" type="LINEARFIXED" mandatory="false" fullname="PLMN Network Name"/>
+				<file id="6FC6" path="FORENSIC/3F00/7F15/6FC6" name="OPL" type="LINEARFIXED" mandatory="false" fullname="Operator PLMN List"/>
+				<file id="6FC7" path="FORENSIC/3F00/7F15/6FC7" name="MBDN" type="LINEARFIXED" mandatory="false" fullname="Mailbox Dialling Numbers"/>
+				<file id="6FC9" path="FORENSIC/3F00/7F15/6FC9" name="MBI" type="LINEARFIXED" mandatory="false" fullname="Mailbox Identifier"/>
+				<file id="6FCA" path="FORENSIC/3F00/7F15/6FCA" name="MWIS" type="LINEARFIXED" mandatory="false" fullname="Message Waiting Indication Status"/>
+				<file id="6FCB" path="FORENSIC/3F00/7F15/6FCB" name="CFIS" type="LINEARFIXED" mandatory="false" fullname="Call Forwarding Indication Status"/>
+				<file id="6FC8" path="FORENSIC/3F00/7F15/6FC8" name="EXT6" type="LINEARFIXED" mandatory="false" fullname="Extension 6"/>
+				<file id="6FCC" path="FORENSIC/3F00/7F15/6FCC" name="EXT7" type="LINEARFIXED" mandatory="false" fullname="Extension 7"/>
+				<file id="6FCD" path="FORENSIC/3F00/7F15/6FCD" name="SPDI" type="TRANSPARENT" mandatory="false" fullname="Service Provider Display Information"/>
+				<file id="6FCE" path="FORENSIC/3F00/7F15/6FCE" name="MMSN" type="LINEARFIXED" mandatory="false" fullname="MMS Notification"/>
+				<file id="6FCF" path="FORENSIC/3F00/7F15/6FCF" name="EXT8" type="LINEARFIXED" mandatory="false" fullname="Extension 8"/>
+				<file id="6FD0" path="FORENSIC/3F00/7F15/6FD0" name="MMSICP" type="TRANSPARENT" mandatory="false" fullname="MMS Issuer Connectivity Parameters"/>
+				<file id="6FD1" path="FORENSIC/3F00/7F15/6FD1" name="MMSUP" type="LINEARFIXED" mandatory="false" fullname="MMS User Preferences"/>
+				<file id="6FD2" path="FORENSIC/3F00/7F15/6FD2" name="MMSUCP" type="TRANSPARENT" mandatory="false" fullname="MMS User Connectivity Parameters"/>
+				<directory id="5F70" path="FORENSIC/3F00/7F15/5F70" name="SOLSA" mandatory="false" fullname="SoLSA Directory">
+					<file id="4F30" path="FORENSIC/3F00/7F15/5F70/4F30" name="SAI" type="TRANSPARENT" mandatory="false" minsize="2" fullname="SoLSA Access Indicator"/>
+					<file id="4F31" path="FORENSIC/3F00/7F15/5F70/4F31" name="SLL" type="TRANSPARENT" mandatory="false" minsize="10" fullname="SoLSA LSA List"/>
+				</directory>
+				<directory id="5F3C" path="FORENSIC/3F00/7F15/5F3C" name="MExE" mandatory="false" fullname="MExE Directory">
+					<file id="4F40" path="FORENSIC/3F00/7F15/5F3C/4F40" name="MEXE_ST" type="TRANSPARENT" mandatory="false" fullname="MExE Service Table"/>
+					<file id="4F41" path="FORENSIC/3F00/7F15/5F3C/4F41" name="ORPK" type="LINEARFIXED" mandatory="false" fullname="Operator Root Public Key"/>
+					<file id="4F42" path="FORENSIC/3F00/7F15/5F3C/4F42" name="ARPK" type="LINEARFIXED" mandatory="false" fullname="Administrator Root Public Key"/>
+					<file id="4F43" path="FORENSIC/3F00/7F15/5F3C/4F43" name="TPRPK" type="LINEARFIXED" mandatory="false" fullname="Third Party Root Public Key"/>
+				</directory>
+				<directory id="5F60" path="FORENSIC/3F00/7F15/5F60" name="CTS" mandatory="false" fullname="CTS Directory">
+					<file id="4F01" path="FORENSIC/3F00/7F15/5F60/4F01" name="CTS_FPRIP" type="LINEARFIXED" mandatory="false" fullname="Fixed Part Radio and Identity Parameters"/>
+				</directory>
+				<directory id="5F40" path="FORENSIC/3F00/7F15/5F40" name="EIA_TIA" mandatory="false" fullname="EIA/TIA Directory">
+					<file id="4F88" path="FORENSIC/3F00/7F15/5F40/4F88" name="MIN" type="TRANSPARENT" mandatory="false" fullname="Mobile Identification Number"/>
+					<file id="4F89" path="FORENSIC/3F00/7F15/5F40/4F89" name="ACCOLC" type="TRANSPARENT" mandatory="false" fullname="Access Overload Class"/>
+					<file id="4F80" path="FORENSIC/3F00/7F15/5F40/4F80" name="SID" type="TRANSPARENT" mandatory="false" fullname="System ID of Home System"/>
+					<file id="4F82" path="FORENSIC/3F00/7F15/5F40/4F82" name="IPC" type="TRANSPARENT" mandatory="false" fullname="Initial Paging Channel"/>
+					<file id="4F81" path="FORENSIC/3F00/7F15/5F40/4F81" name="GPI" type="TRANSPARENT" mandatory="false" fullname="Group ID"/>
+					<file id="4F8B" path="FORENSIC/3F00/7F15/5F40/4F8B" name="S_ESN" type="TRANSPARENT" mandatory="false" fullname="SIM Electronic Serial Number"/>
+					<file id="4F83" path="FORENSIC/3F00/7F15/5F40/4F83" name="COUNT" type="CYCLIC" mandatory="false" fullname="Call Count"/>
+					<file id="4F85" path="FORENSIC/3F00/7F15/5F40/4F85" name="PSID" type="TRANSPARENT" mandatory="false" fullname="Positive/Favoured SID List"/>
+					<file id="4F84" path="FORENSIC/3F00/7F15/5F40/4F84" name="NSID" type="TRANSPARENT" mandatory="false" fullname="Negative/Forbidden SID List"/>
+					<file id="4F87" path="FORENSIC/3F00/7F15/5F40/4F87" name="SPL" type="TRANSPARENT" mandatory="false" fullname="Scanning Priority List"/>
+					<file id="4F86" path="FORENSIC/3F00/7F15/5F40/4F86" name="NETSEL" type="TRANSPARENT" mandatory="false" fullname="Network Selection Activation Flag"/>
+					<file id="4F8C" path="FORENSIC/3F00/7F15/5F40/4F8C" name="CSID" type="TRANSPARENT" mandatory="false" fullname="Current/Last Registered SID"/>
+					<file id="4F8D" path="FORENSIC/3F00/7F15/5F40/4F8D" name="REG_THRESH" type="TRANSPARENT" mandatory="false" fullname="Registration Threshold"/>
+					<file id="4F8E" path="FORENSIC/3F00/7F15/5F40/4F8E" name="CCCH" type="TRANSPARENT" mandatory="false" fullname="Current Control Channel"/>
+					<file id="4F8F" path="FORENSIC/3F00/7F15/5F40/4F8F" name="LDCC" type="TRANSPARENT" mandatory="false" fullname="Latest DCC"/>
+					<file id="4F90" path="FORENSIC/3F00/7F15/5F40/4F90" name="GSM_RECON" type="TRANSPARENT" mandatory="false" fullname="GSM Reconnect Timer"/>
+					<file id="4F91" path="FORENSIC/3F00/7F15/5F40/4F91" name="AMPS_2_GSM" type="TRANSPARENT" mandatory="false" fullname="AMPS to GSM Rescan Timing Table"/>
+					<file id="4F8A" path="FORENSIC/3F00/7F15/5F40/4F8A" name="FC1" type="TRANSPARENT" mandatory="false" fullname="Feature Activation Codes"/>
+					<file id="4F93" path="FORENSIC/3F00/7F15/5F40/4F93" name="AMPS_UI" type="TRANSPARENT" mandatory="false" fullname="AMPS Usage Indicators"/>
+				</directory>
+			</directory>
+			<!-- True GSM directory as found on active Phase 2 SIM -->
+			<directory id="7F20" path="GSM/3F00/7F20" name="GSM" mandatory="false" fullname="GSM directory">
+				<file id="6F38" path="GSM/3F00/7F20/6F38" name="SST" type="TRANSPARENT" mandatory="true" minsize="2" fullname="SIM Service Table"/>
+				<file id="6F05" path="GSM/3F00/7F20/6F05" name="LP" type="TRANSPARENT" mandatory="true" minsize="1" fullname="Language Preference"/>
+				<file id="6F07" path="GSM/3F00/7F20/6F07" name="IMSI" type="TRANSPARENT" mandatory="true" size="9" fullname="IMSI"/>
+				<file id="6F20" path="GSM/3F00/7F20/6F20" name="KC" type="TRANSPARENT" mandatory="true" size="9" fullname="Ciphering Key Kc"/>
+				<file id="6F30" path="GSM/3F00/7F20/6F30" name="PLMNSEL" type="TRANSPARENT" mandatory="false" minsize="24" fullname="PLMN Selector"/>
+				<file id="6F31" path="GSM/3F00/7F20/6F31" name="HPLMN" type="TRANSPARENT" mandatory="true" size="1" fullname="HPLMN Search Period"/>
+				<file id="6F37" path="GSM/3F00/7F20/6F37" name="ACMMAX" type="TRANSPARENT" mandatory="false" size="3" fullname="ACM Maximum Value"/>
+				<file id="6F39" path="GSM/3F00/7F20/6F39" name="ACM" type="CYCLIC" mandatory="false" recordlength="3" fullname="Accumulated Call Meter"/>
+				<file id="6F3E" path="GSM/3F00/7F20/6F3E" name="GID1" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Group Identifier Level 1"/>
+				<file id="6F3F" path="GSM/3F00/7F20/6F3F" name="GID2" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Group Identifier Level 2"/>
+				<file id="6F46" path="GSM/3F00/7F20/6F46" name="SPN" type="TRANSPARENT" mandatory="false" size="17" fullname="Service Provider Name"/>
+				<file id="6F41" path="GSM/3F00/7F20/6F41" name="PUCT" type="TRANSPARENT" mandatory="false" size="5" fullname="PUCT"/>
+				<file id="6F45" path="GSM/3F00/7F20/6F45" name="CBMI" type="TRANSPARENT" mandatory="false" minsize="0" fullname="CBMI"/>
+				<file id="6F74" path="GSM/3F00/7F20/6F74" name="BCCH" type="TRANSPARENT" mandatory="true" size="16" fullname="BCCH"/>
+				<file id="6F78" path="GSM/3F00/7F20/6F78" name="ACC" type="TRANSPARENT" mandatory="true" size="2" fullname="Access Control Class"/>
+				<file id="6F7B" path="GSM/3F00/7F20/6F7B" name="FPLMN" type="TRANSPARENT" mandatory="true" size="12" fullname="Forbidden PLMNs"/>
+				<file id="6F7E" path="GSM/3F00/7F20/6F7E" name="LOCI" type="TRANSPARENT" mandatory="true" size="11" fullname="Location Information"/>
+				<file id="6FAD" path="GSM/3F00/7F20/6FAD" name="AD" type="TRANSPARENT" mandatory="true" minsize="3" fullname="Administrative Data"/>
+				<file id="6FAE" path="GSM/3F00/7F20/6FAE" name="PHASE" type="TRANSPARENT" mandatory="true" size="1" fullname="Phase Identification"/>
+				<file id="6FB1" path="GSM/3F00/7F20/6FB1" name="VGCS" type="TRANSPARENT" mandatory="false" minsize="4" maxsize="200" fullname="Voice Group Call Service"/>
+				<file id="6FB2" path="GSM/3F00/7F20/6FB2" name="VGCSS" type="TRANSPARENT" mandatory="false" size="7" fullname="Voice Group Call Service Status"/>
+				<file id="6FB3" path="GSM/3F00/7F20/6FB3" name="VBS" type="TRANSPARENT" mandatory="false" minsize="4" maxsize="200" fullname="Voice Broadcast Service"/>
+				<file id="6FB4" path="GSM/3F00/7F20/6FB4" name="VBSS" type="TRANSPARENT" mandatory="false" size="7" fullname="Voice Broadcast Service Status"/>
+				<file id="6FB5" path="GSM/3F00/7F20/6FB5" name="EMLPP" type="TRANSPARENT" mandatory="false" size="2" fullname="Enhanced Multi Level Pre-emption and Priority"/>
+				<file id="6FB6" path="GSM/3F00/7F20/6FB6" name="AAEM" type="TRANSPARENT" mandatory="false" size="1" fullname="Automatic Answer for eMLPP service"/>
+				<file id="6F48" path="GSM/3F00/7F20/6F48" name="CBMID" type="TRANSPARENT" mandatory="false" minsize="0" fullname="CBMID"/>
+				<file id="6FB7" path="GSM/3F00/7F20/6FB7" name="ECC" type="TRANSPARENT" mandatory="false" minsize="0" maxsize="15" fullname="Emergency Call Codes"/>
+				<file id="6F50" path="GSM/3F00/7F20/6F50" name="CBMIR" type="TRANSPARENT" mandatory="false" minsize="0" fullname="CBMIR"/>
+				<file id="6F2C" path="GSM/3F00/7F20/6F2C" name="DCK" type="TRANSPARENT" mandatory="false" size="16" fullname="De-personalization Control Keys"/>
+				<file id="6F32" path="GSM/3F00/7F20/6F32" name="CNL" type="TRANSPARENT" mandatory="false" minsize="0" fullname="Co-operative Network List"/>
+				<file id="6F51" path="GSM/3F00/7F20/6F51" name="NIA" type="LINEARFIXED" mandatory="false" minrecordlength="2" fullname="Network's indication of alerting"/>
+				<file id="6F52" path="GSM/3F00/7F20/6F52" name="KCGPRS" type="TRANSPARENT" mandatory="false" size="9" fullname="GPRS Ciphering Key KcGRS"/>
+				<file id="6F53" path="GSM/3F00/7F20/6F53" name="LOCIGPRS" type="TRANSPARENT" mandatory="false" size="14" fullname="GPRS Location Information"/>
+				<file id="6F54" path="GSM/3F00/7F20/6F54" name="SUME" type="TRANSPARENT" mandatory="false" minsize="0" fullname="Setup Menu Elements"/>
+				<file id="6F11" path="GSM/3F00/7F20/6F11" name="VMWF" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Voice Mail Waiting Flag"/>
+				<file id="6F12" path="GSM/3F00/7F20/6F12" name="SSTRT" type="TRANSPARENT" mandatory="false" minsize="21" fullname="Service String Table"/>
+				<file id="6F13" path="GSM/3F00/7F20/6F13" name="CFF" type="TRANSPARENT" mandatory="false" minsize="1" fullname="Call Forward Flags"/>
+				<file id="6F14" path="GSM/3F00/7F20/6F14" name="ONS" type="TRANSPARENT" mandatory="false" minsize="0" fullname="Operator Name String"/>
+				<file id="6F15" path="GSM/3F00/7F20/6F15" name="CSP" type="TRANSPARENT" mandatory="false" minsize="18" fullname="Customer Service Profile"/>
+				<file id="6F16" path="GSM/3F00/7F20/6F16" name="INFO" type="TRANSPARENT" mandatory="false" minsize="3" fullname="CPHS Info"/>
+				<file id="6F17" path="GSM/3F00/7F20/6F17" name="MBNO" type="LINEARFIXED" mandatory="false" minrecordlength="14" fullname="Mailbox Numbers"/>
+				<file id="6F18" path="GSM/3F00/7F20/6F18" name="ONSF" type="TRANSPARENT" mandatory="false" size="10" fullname="Operator Name Shortform"/>
+				<file id="6F19" path="GSM/3F00/7F20/6F19" name="INF" type="LINEARFIXED" mandatory="false" minrecordlength="5" fullname="Info Numbers"/>
+				<file id="6F60" path="GSM/3F00/7F20/6F60" name="PLMNwAcT" type="TRANSPARENT" mandatory="false" fullname="User controlled PLMN Selector with Access Technology"/>
+				<file id="6F61" path="GSM/3F00/7F20/6F61" name="OPLMNwAcT" type="TRANSPARENT" mandatory="false" fullname="Operator controlled PLMN Selector with Access Technology"/>
+				<file id="6F62" path="GSM/3F00/7F20/6F62" name="HPLMNwAcT" type="TRANSPARENT" mandatory="false" fullname="HPLMN Selector with Access Technology"/>
+				<file id="6F63" path="GSM/3F00/7F20/6F63" name="CPBCCH" type="TRANSPARENT" mandatory="false" fullname="CPBCCH Information"/>
+				<file id="6F64" path="GSM/3F00/7F20/6F64" name="InvScan" type="TRANSPARENT" mandatory="false" fullname="Investigation Scan"/>
+				<file id="6FC5" path="GSM/3F00/7F20/6FC5" name="PNN" type="LINEARFIXED" mandatory="false" fullname="PLMN Network Name"/>
+				<file id="6FC6" path="GSM/3F00/7F20/6FC6" name="OPL" type="LINEARFIXED" mandatory="false" fullname="Operator PLMN List"/>
+				<file id="6FC7" path="GSM/3F00/7F20/6FC7" name="MBDN" type="LINEARFIXED" mandatory="false" fullname="Mailbox Dialling Numbers"/>
+				<file id="6FC9" path="GSM/3F00/7F20/6FC9" name="MBI" type="LINEARFIXED" mandatory="false" fullname="Mailbox Identifier"/>
+				<file id="6FCA" path="GSM/3F00/7F20/6FCA" name="MWIS" type="LINEARFIXED" mandatory="false" fullname="Message Waiting Indication Status"/>
+				<file id="6FCB" path="GSM/3F00/7F20/6FCB" name="CFIS" type="LINEARFIXED" mandatory="false" fullname="Call Forwarding Indication Status"/>
+				<file id="6FC8" path="GSM/3F00/7F20/6FC8" name="EXT6" type="LINEARFIXED" mandatory="false" fullname="Extension 6"/>
+				<file id="6FCC" path="GSM/3F00/7F20/6FCC" name="EXT7" type="LINEARFIXED" mandatory="false" fullname="Extension 7"/>
+				<file id="6FCD" path="GSM/3F00/7F20/6FCD" name="SPDI" type="TRANSPARENT" mandatory="false" fullname="Service Provider Display Information"/>
+				<file id="6FCE" path="GSM/3F00/7F20/6FCE" name="MMSN" type="LINEARFIXED" mandatory="false" fullname="MMS Notification"/>
+				<file id="6FCF" path="GSM/3F00/7F20/6FCF" name="EXT8" type="LINEARFIXED" mandatory="false" fullname="Extension 8"/>
+				<file id="6FD0" path="GSM/3F00/7F20/6FD0" name="MMSICP" type="TRANSPARENT" mandatory="false" fullname="MMS Issuer Connectivity Parameters"/>
+				<file id="6FD1" path="GSM/3F00/7F20/6FD1" name="MMSUP" type="LINEARFIXED" mandatory="false" fullname="MMS User Preferences"/>
+				<file id="6FD2" path="GSM/3F00/7F20/6FD2" name="MMSUCP" type="TRANSPARENT" mandatory="false" fullname="MMS User Connectivity Parameters"/>
+				<directory id="5F70" path="GSM/3F00/7F20/5F70" name="SOLSA" mandatory="false" fullname="SoLSA Directory">
+					<file id="4F30" path="GSM/3F00/7F20/5F70/4F30" name="SAI" type="TRANSPARENT" mandatory="false" minsize="2" fullname="SoLSA Access Indicator"/>
+					<file id="4F31" path="GSM/3F00/7F20/5F70/4F31" name="SLL" type="TRANSPARENT" mandatory="false" minsize="10" fullname="SoLSA LSA List"/>
+				</directory>
+				<directory id="5F3C" path="GSM/3F00/7F15/5F3C" name="MExE" mandatory="false" fullname="MExE Directory">
+					<file id="4F40" path="GSM/3F00/7F15/5F3C/4F40" name="MEXE_ST" type="TRANSPARENT" mandatory="false" fullname="MExE Service Table"/>
+					<file id="4F41" path="GSM/3F00/7F15/5F3C/4F41" name="ORPK" type="LINEARFIXED" mandatory="false" fullname="Operator Root Public Key"/>
+					<file id="4F42" path="GSM/3F00/7F15/5F3C/4F42" name="ARPK" type="LINEARFIXED" mandatory="false" fullname="Administrator Root Public Key"/>
+					<file id="4F43" path="GSM/3F00/7F15/5F3C/4F43" name="TPRPK" type="LINEARFIXED" mandatory="false" fullname="Third Party Root Public Key"/>
+				</directory>
+				<directory id="5F60" path="GSM/3F00/7F15/5F60" name="CTS" mandatory="false" fullname="CTS Directory">
+					<file id="4F01" path="GSM/3F00/7F15/5F60/4F01" name="CTS_FPRIP" type="LINEARFIXED" mandatory="false" fullname="Fixed Part Radio and Identity Parameters"/>
+				</directory>
+				<directory id="5F40" path="GSM/3F00/7F15/5F40" name="EIA_TIA" mandatory="false" fullname="EIA/TIA Directory">
+					<file id="4F88" path="GSM/3F00/7F15/5F40/4F88" name="MIN" type="TRANSPARENT" mandatory="false" fullname="Mobile Identification Number"/>
+					<file id="4F89" path="GSM/3F00/7F15/5F40/4F89" name="ACCOLC" type="TRANSPARENT" mandatory="false" fullname="Access Overload Class"/>
+					<file id="4F80" path="GSM/3F00/7F15/5F40/4F80" name="SID" type="TRANSPARENT" mandatory="false" fullname="System ID of Home System"/>
+					<file id="4F82" path="GSM/3F00/7F15/5F40/4F82" name="IPC" type="TRANSPARENT" mandatory="false" fullname="Initial Paging Channel"/>
+					<file id="4F81" path="GSM/3F00/7F15/5F40/4F81" name="GPI" type="TRANSPARENT" mandatory="false" fullname="Group ID"/>
+					<file id="4F8B" path="GSM/3F00/7F15/5F40/4F8B" name="S_ESN" type="TRANSPARENT" mandatory="false" fullname="SIM Electronic Serial Number"/>
+					<file id="4F83" path="GSM/3F00/7F15/5F40/4F83" name="COUNT" type="CYCLIC" mandatory="false" fullname="Call Count"/>
+					<file id="4F85" path="GSM/3F00/7F15/5F40/4F85" name="PSID" type="TRANSPARENT" mandatory="false" fullname="Positive/Favoured SID List"/>
+					<file id="4F84" path="GSM/3F00/7F15/5F40/4F84" name="NSID" type="TRANSPARENT" mandatory="false" fullname="Negative/Forbidden SID List"/>
+					<file id="4F87" path="GSM/3F00/7F15/5F40/4F87" name="SPL" type="TRANSPARENT" mandatory="false" fullname="Scanning Priority List"/>
+					<file id="4F86" path="GSM/3F00/7F15/5F40/4F86" name="NETSEL" type="TRANSPARENT" mandatory="false" fullname="Network Selection Activation Flag"/>
+					<file id="4F8C" path="GSM/3F00/7F15/5F40/4F8C" name="CSID" type="TRANSPARENT" mandatory="false" fullname="Current/Last Registered SID"/>
+					<file id="4F8D" path="GSM/3F00/7F15/5F40/4F8D" name="REG_THRESH" type="TRANSPARENT" mandatory="false" fullname="Registration Threshold"/>
+					<file id="4F8E" path="GSM/3F00/7F15/5F40/4F8E" name="CCCH" type="TRANSPARENT" mandatory="false" fullname="Current Control Channel"/>
+					<file id="4F8F" path="GSM/3F00/7F15/5F40/4F8F" name="LDCC" type="TRANSPARENT" mandatory="false" fullname="Latest DCC"/>
+					<file id="4F90" path="GSM/3F00/7F15/5F40/4F90" name="GSM_RECON" type="TRANSPARENT" mandatory="false" fullname="GSM Reconnect Timer"/>
+					<file id="4F91" path="GSM/3F00/7F15/5F40/4F91" name="AMPS_2_GSM" type="TRANSPARENT" mandatory="false" fullname="AMPS to GSM Rescan Timing Table"/>
+					<file id="4F8A" path="GSM/3F00/7F15/5F40/4F8A" name="FC1" type="TRANSPARENT" mandatory="false" fullname="Feature Activation Codes"/>
+					<file id="4F93" path="GSM/3F00/7F15/5F40/4F93" name="AMPS_UI" type="TRANSPARENT" mandatory="false" fullname="AMPS Usage Indicators"/>
+				</directory>
+			</directory>
+			<!-- FP-CTS directory -->
+			<directory id="7F23" path="GSM/3F00/7F23" name="FP-CTS" mandatory="false" fullname="FP-CTS Directory">
+				<file id="6F07" path="GSM/3F00/7F23/6F07" name="IFPSI" type="TRANSPARENT" mandatory="false" fullname="International Fixed Part Subscriber Identity"/>
+				<file id="6F38" path="GSM/3F00/7F23/6F38" name="CTS_INFO" type="TRANSPARENT" mandatory="false" fullname="CTS Information"/>
+				<file id="6F41" path="GSM/3F00/7F23/6F41" name="CTS_SNDN" type="LINEARFIXED" mandatory="false" fullname="Service Node Dialling Number"/>
+				<file id="6F3D" path="GSM/3F00/7F23/6F3D" name="CTS_CCP" type="LINEARFIXED" mandatory="false" fullname="Capability Configuration Parameters"/>
+				<file id="6F4A" path="GSM/3F00/7F23/6F4A" name="CTS_EXT" type="LINEARFIXED" mandatory="false" fullname="CTS Extension"/>
+				<file id="6F7B" path="GSM/3F00/7F23/6F7B" name="PPLMN" type="TRANSPARENT" mandatory="false" fullname="Permitted PLMNs"/>
+				<file id="6FAD" path="GSM/3F00/7F23/6FAD" name="CTS_AD" type="TRANSPARENT" mandatory="false" fullname="Administrative Data"/>
+			</directory>
+			<directory id="7F43" path="GSM/3F00/7F43" name="7F43_DIR" mandatory="false" fullname="7F43 Directory">
+				<file id="6FE2" path="GSM/3F00/7F43/6FE2" name="IMEI_HIST" type="CYCLIC" mandatory="false" fullname="IMEI History"/>
+			</directory>
+			<!-- iDEN directory -->
+			<directory id="7F31" path="GSM/3F00/7F31" name="IDEN_DIR" mandatory="false" fullname="IDEN Directory">
+				<file id="6F01" path="GSM/3F00/7F31/6F01" name="IDEN_EF_6F01" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F01"/>
+				<file id="6F02" path="GSM/3F00/7F31/6F02" name="IDEN_EF_6F02" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F02"/>
+				<file id="6F03" path="GSM/3F00/7F31/6F03" name="IDEN_EF_6F03" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F03"/>
+				<file id="6F04" path="GSM/3F00/7F31/6F04" name="IDEN_EF_6F04" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F04"/>
+				<file id="6F05" path="GSM/3F00/7F31/6F05" name="IDEN_EF_6F05" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F05"/>
+				<file id="6F06" path="GSM/3F00/7F31/6F06" name="IDEN_EF_6F06" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F06"/>
+				<file id="6F08" path="GSM/3F00/7F31/6F08" name="IDEN_EF_6F08" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F08"/>
+				<file id="6F09" path="GSM/3F00/7F31/6F09" name="IDEN_EF_6F09" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F09"/>
+				<file id="6F0E" path="GSM/3F00/7F31/6F0E" name="IDEN_EF_6F0E" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F0E"/>
+				<file id="6F11" path="GSM/3F00/7F31/6F11" name="IDEN_EF_6F11" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F11"/>
+				<file id="6F14" path="GSM/3F00/7F31/6F14" name="IDEN_EF_6F14" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F14"/>
+				<file id="6F15" path="GSM/3F00/7F31/6F15" name="IDEN_EF_6F15" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F15"/>
+				<file id="6F16" path="GSM/3F00/7F31/6F16" name="IDEN_EF_6F16" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F16"/>
+				<file id="6F1D" path="GSM/3F00/7F31/6F1D" name="IDEN_EF_6F1D" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F1D"/>
+				<file id="6F1E" path="GSM/3F00/7F31/6F1E" name="IDEN_EF_6F1E" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F1E"/>
+				<file id="6F21" path="GSM/3F00/7F31/6F21" name="IDEN_EF_6F21" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F21"/>
+				<file id="6F22" path="GSM/3F00/7F31/6F22" name="IDEN_EF_6F22" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F22"/>
+				<file id="6F23" path="GSM/3F00/7F31/6F23" name="IDEN_EF_6F23" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F23"/>
+				<file id="6F24" path="GSM/3F00/7F31/6F24" name="IDEN_EF_6F24" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F24"/>
+				<file id="6F25" path="GSM/3F00/7F31/6F25" name="IDEN_EF_6F25" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F25"/>
+				<file id="6F26" path="GSM/3F00/7F31/6F26" name="IDEN_EF_6F26" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F26"/>
+				<file id="6F27" path="GSM/3F00/7F31/6F27" name="IDEN_EF_6F27" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F27"/>
+				<file id="6F28" path="GSM/3F00/7F31/6F28" name="IDEN_EF_6F28" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F28"/>
+				<file id="6F29" path="GSM/3F00/7F31/6F29" name="IDEN_EF_6F29" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F29"/>
+				<file id="6F2A" path="GSM/3F00/7F31/6F2A" name="IDEN_EF_6F2A" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F2A"/>
+				<file id="6F2B" path="GSM/3F00/7F31/6F2B" name="IDEN_EF_6F2B" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F2B"/>
+				<file id="6F2C" path="GSM/3F00/7F31/6F2C" name="IDEN_EF_6F2C" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F2C"/>
+				<file id="6F2D" path="GSM/3F00/7F31/6F2D" name="IDEN_EF_6F2D" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F2D"/>
+				<file id="6F2E" path="GSM/3F00/7F31/6F2E" name="IDEN_EF_6F2E" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F2E"/>
+				<file id="6F2F" path="GSM/3F00/7F31/6F2F" name="IDEN_EF_6F2F" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F2F"/>
+				<file id="6F30" path="GSM/3F00/7F31/6F30" name="IDEN_EF_6F30" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F30"/>
+				<file id="6F31" path="GSM/3F00/7F31/6F31" name="IDEN_EF_6F31" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F31"/>
+				<file id="6F32" path="GSM/3F00/7F31/6F32" name="IDEN_EF_6F32" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F32"/>
+				<file id="6F33" path="GSM/3F00/7F31/6F33" name="IDEN_EF_6F33" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F33"/>
+				<file id="6F34" path="GSM/3F00/7F31/6F34" name="IDEN_EF_6F34" type="TRANSPARENT" mandatory="false" fullname="IDEN_EF_6F34"/>
+				<file id="6F35" path="GSM/3F00/7F31/6F35" name="IDEN_EF_6F35" type="LINEARFIXED" mandatory="false" fullname="IDEN_EF_6F35"/>
+			</directory>
+			<!-- iDEN additional directory -->
+			<directory id="7F41" path="GSM/3F00/7F41" name="7F41_DIR" mandatory="false" fullname="7F41 Directory">
+				<file id="6C01" path="GSM/3F00/7F41/6C01" name="7F41_EF_6C01" type="LINEARFIXED" mandatory="false" fullname="7F41_EF_6C01"/>
+			</directory>
+			<!-- RUIM directory -->
+			<directory id="7F25" path="GSM/3F00/7F25" mandatory="false" name="RUIM_DIR" fullname="RUIM Directory">
+				<file id="6F21" path="GSM/3F00/7F25/6F21" mandatory="false" name="COUNT" type="CYCLIC" fullname="COUNT"/>
+				<file id="6F22" path="GSM/3F00/7F25/6F22" mandatory="false" name="IMSI_M" type="TRANSPARENT" fullname="IMSI_M"/>
+				<file id="6F23" path="GSM/3F00/7F25/6F23" mandatory="false" name="IMSI_T" type="TRANSPARENT" fullname="IMSI_T"/>
+				<file id="6F24" path="GSM/3F00/7F25/6F24" mandatory="false" name="TMSI" type="TRANSPARENT" fullname="TMSI"/>
+				<file id="6F25" path="GSM/3F00/7F25/6F25" mandatory="false" name="AH" type="TRANSPARENT" fullname="AH"/>
+				<file id="6F26" path="GSM/3F00/7F25/6F26" mandatory="false" name="AOP" type="TRANSPARENT" fullname="AOP"/>
+				<file id="6F27" path="GSM/3F00/7F25/6F27" mandatory="false" name="ALOC" type="TRANSPARENT" fullname="ALOC"/>
+				<file id="6F28" path="GSM/3F00/7F25/6F28" mandatory="false" name="CDMAHOME" type="LINEARFIXED" fullname="CDMAHOME"/>
+				<file id="6F29" path="GSM/3F00/7F25/6F29" mandatory="false" name="ZNREGI" type="LINEARFIXED" fullname="ZNREGI"/>
+				<file id="6F2A" path="GSM/3F00/7F25/6F2A" mandatory="false" name="SNREGI" type="TRANSPARENT" fullname="SNREGI"/>
+				<file id="6F2B" path="GSM/3F00/7F25/6F2B" mandatory="false" name="DISTREGI" type="TRANSPARENT" fullname="DISTREGI"/>
+				<file id="6F2C" path="GSM/3F00/7F25/6F2C" mandatory="false" name="ACCOLC" type="TRANSPARENT" fullname="ACCOLC"/>
+				<file id="6F2D" path="GSM/3F00/7F25/6F2D" mandatory="false" name="TERM" type="TRANSPARENT" fullname="TERM"/>
+				<file id="6F2E" path="GSM/3F00/7F25/6F2E" mandatory="false" name="SSCI" type="TRANSPARENT" fullname="SSCI"/>
+				<file id="6F2F" path="GSM/3F00/7F25/6F2F" mandatory="false" name="ACP" type="TRANSPARENT" fullname="ACP"/>
+				<file id="6F30" path="GSM/3F00/7F25/6F30" mandatory="false" name="PRL" type="TRANSPARENT" fullname="PRL"/>
+				<file id="6F31" path="GSM/3F00/7F25/6F31" mandatory="false" name="RUIMID" type="TRANSPARENT" fullname="RUIMID"/>
+				<file id="6F32" path="GSM/3F00/7F25/6F32" mandatory="false" name="CST" type="TRANSPARENT" fullname="CST"/>
+				<file id="6F33" path="GSM/3F00/7F25/6F33" mandatory="false" name="SPC" type="TRANSPARENT" fullname="SPC"/>
+				<file id="6F34" path="GSM/3F00/7F25/6F34" mandatory="false" name="OTAPASPC" type="TRANSPARENT" fullname="OTAPASPC"/>
+				<file id="6F35" path="GSM/3F00/7F25/6F35" mandatory="false" name="NAMLOCK" type="TRANSPARENT" fullname="NAMLOCK"/>
+				<file id="6F36" path="GSM/3F00/7F25/6F36" mandatory="false" name="OTA" type="TRANSPARENT" fullname="OTA"/>
+				<file id="6F37" path="GSM/3F00/7F25/6F37" mandatory="false" name="SP" type="TRANSPARENT" fullname="SP"/>
+				<file id="6F38" path="GSM/3F00/7F25/6F38" mandatory="false" name="ESNME" type="TRANSPARENT" fullname="ESNME"/>
+				<file id="6F39" path="GSM/3F00/7F25/6F39" mandatory="false" name="Revision" type="TRANSPARENT" fullname="Revision"/>
+				<file id="6F3A" path="GSM/3F00/7F25/6F3A" mandatory="false" name="PL" type="TRANSPARENT" fullname="PL"/>
+				<file id="6F3C" path="GSM/3F00/7F25/6F3C" mandatory="false" name="RUIM_SMS" type="LINEARFIXED" fullname="SMS"/>
+				<file id="6F3D" path="GSM/3F00/7F25/6F3D" mandatory="false" name="SMSP" type="LINEARFIXED" fullname="SMSP"/>
+				<file id="6F3E" path="GSM/3F00/7F25/6F3E" mandatory="false" name="SMSS" type="TRANSPARENT" fullname="SMSS"/>
+				<file id="6F3F" path="GSM/3F00/7F25/6F3F" mandatory="false" name="SSFC" type="TRANSPARENT" fullname="SSFC"/>
+				<file id="6F41" path="GSM/3F00/7F25/6F41" mandatory="false" name="RUIM_SPN" type="TRANSPARENT" fullname="SPN"/>
+				<file id="6F42" path="GSM/3F00/7F25/6F42" mandatory="false" name="USGIND" type="TRANSPARENT" fullname="USGIND"/>
+				<file id="6F43" path="GSM/3F00/7F25/6F43" mandatory="false" name="AD" type="TRANSPARENT" fullname="AD"/>
+				<file id="6F44" path="GSM/3F00/7F25/6F44" mandatory="false" name="MDN" type="LINEARFIXED" fullname="MDN"/>
+				<file id="6F45" path="GSM/3F00/7F25/6F45" mandatory="false" name="MAXPRL" type="TRANSPARENT" fullname="MAXPRL"/>
+				<file id="6F46" path="GSM/3F00/7F25/6F46" mandatory="false" name="SPCS" type="TRANSPARENT" fullname="SPCS"/>
+				<file id="6F47" path="GSM/3F00/7F25/6F47" mandatory="false" name="ECC" type="TRANSPARENT" fullname="ECC"/>
+				<file id="6F48" path="GSM/3F00/7F25/6F48" mandatory="false" name="ME3GPDOPC" type="TRANSPARENT" fullname="ME3GPDOPC"/>
+				<file id="6F49" path="GSM/3F00/7F25/6F49" mandatory="false" name="3GPDOPM" type="TRANSPARENT" fullname="3GPDOPM"/>
+				<file id="6F4A" path="GSM/3F00/7F25/6F4A" mandatory="false" name="SIPCAP" type="TRANSPARENT" fullname="SIPCAP"/>
+				<file id="6F4B" path="GSM/3F00/7F25/6F4B" mandatory="false" name="MIPCAP" type="TRANSPARENT" fullname="MIPCAP"/>
+				<file id="6F4C" path="GSM/3F00/7F25/6F4C" mandatory="false" name="SIPUPP" type="TRANSPARENT" fullname="SIPUPP"/>
+				<file id="6F4D" path="GSM/3F00/7F25/6F4D" mandatory="false" name="MIPUPP" type="TRANSPARENT" fullname="MIPUPP"/>
+				<file id="6F4E" path="GSM/3F00/7F25/6F4E" mandatory="false" name="SIPSP" type="TRANSPARENT" fullname="SIPSP"/>
+				<file id="6F4F" path="GSM/3F00/7F25/6F4F" mandatory="false" name="MIPSP" type="TRANSPARENT" fullname="MIPSP"/>
+				<file id="6F50" path="GSM/3F00/7F25/6F50" mandatory="false" name="SIPPAPSS" type="TRANSPARENT" fullname="SIPPAPSS"/>
+				<file id="6F53" path="GSM/3F00/7F25/6F53" mandatory="false" name="PUZL" type="TRANSPARENT" fullname="PUZL"/>
+				<file id="6F54" path="GSM/3F00/7F25/6F54" mandatory="false" name="MAXPUZL" type="TRANSPARENT" fullname="MAXPUZL"/>
+				<file id="6F55" path="GSM/3F00/7F25/6F55" mandatory="false" name="MECRP" type="TRANSPARENT" fullname="MECRP"/>
+				<file id="6F56" path="GSM/3F00/7F25/6F56" mandatory="false" name="HRPDCAP" type="TRANSPARENT" fullname="HRPDCAP"/>
+				<file id="6F57" path="GSM/3F00/7F25/6F57" mandatory="false" name="HRPDUPP" type="TRANSPARENT" fullname="HRPDUPP"/>
+				<file id="6F58" path="GSM/3F00/7F25/6F58" mandatory="false" name="CSSPR" type="TRANSPARENT" fullname="CSSPR"/>
+				<file id="6F59" path="GSM/3F00/7F25/6F59" mandatory="false" name="ATC" type="TRANSPARENT" fullname="ATC"/>
+				<file id="6F5A" path="GSM/3F00/7F25/6F5A" mandatory="false" name="EPRL" type="TRANSPARENT" fullname="EPRL"/>
+				<file id="6F5B" path="GSM/3F00/7F25/6F5B" mandatory="false" name="BCSMScfg" type="TRANSPARENT" fullname="BCSMScfg"/>
+				<file id="6F5C" path="GSM/3F00/7F25/6F5C" mandatory="false" name="BCSMSpref" type="TRANSPARENT" fullname="BCSMSpref"/>
+				<file id="6F5D" path="GSM/3F00/7F25/6F5D" mandatory="false" name="BCSMStable" type="LINEARFIXED" fullname="BCSMStable"/>
+				<file id="6F5E" path="GSM/3F00/7F25/6F5E" mandatory="false" name="BCSMSp" type="LINEARFIXED" fullname="BCSMSp"/>
+				<file id="6F5F" path="GSM/3F00/7F25/6F5F" mandatory="false" name="IMPI" type="TRANSPARENT" fullname="IMPI"/>
+				<file id="6F60" path="GSM/3F00/7F25/6F60" mandatory="false" name="DOMAIN" type="TRANSPARENT" fullname="DOMAIN"/>
+				<file id="6F61" path="GSM/3F00/7F25/6F61" mandatory="false" name="IMPU" type="LINEARFIXED" fullname="IMPU"/>
+				<file id="6F62" path="GSM/3F00/7F25/6F62" mandatory="false" name="PCSCF" type="LINEARFIXED" fullname="PCSCF"/>
+				<file id="6F63" path="GSM/3F00/7F25/6F63" mandatory="false" name="BAKPARA" type="LINEARFIXED" fullname="BAKPARA"/>
+				<file id="6F64" path="GSM/3F00/7F25/6F64" mandatory="false" name="UpBAKPARA" type="CYCLIC" fullname="UpBAKPARA"/>
+				<file id="6F65" path="GSM/3F00/7F25/6F65" mandatory="false" name="MMSN" type="LINEARFIXED" fullname="MMSN"/>
+				<file id="6F66" path="GSM/3F00/7F25/6F66" mandatory="false" name="EXT8" type="LINEARFIXED" fullname="EXT8"/>
+				<file id="6F67" path="GSM/3F00/7F25/6F67" mandatory="false" name="MMSICP" type="TRANSPARENT" fullname="MMSICP"/>
+				<file id="6F68" path="GSM/3F00/7F25/6F68" mandatory="false" name="MMSUP" type="LINEARFIXED" fullname="MMSUP"/>
+				<file id="6F69" path="GSM/3F00/7F25/6F69" mandatory="false" name="MMSUCP" type="TRANSPARENT" fullname="MMSUCP"/>
+				<file id="6F6A" path="GSM/3F00/7F25/6F6A" mandatory="false" name="AuthCapability" type="LINEARFIXED" fullname="AuthCapability"/>
+				<file id="6F6B" path="GSM/3F00/7F25/6F6B" mandatory="false" name="3GCIK" type="TRANSPARENT" fullname="3GCIK"/>
+				<file id="6F6C" path="GSM/3F00/7F25/6F6C" mandatory="false" name="DCK" type="TRANSPARENT" fullname="DCK"/>
+				<file id="6F6D" path="GSM/3F00/7F25/6F6D" mandatory="false" name="GID1" type="TRANSPARENT" fullname="GID1"/>
+				<file id="6F6E" path="GSM/3F00/7F25/6F6E" mandatory="false" name="GID2" type="TRANSPARENT" fullname="GID2"/>
+				<file id="6F6F" path="GSM/3F00/7F25/6F6F" mandatory="false" name="CDMACNL" type="TRANSPARENT" fullname="CDMACNL"/>
+				<file id="6F74" path="GSM/3F00/7F25/6F74" mandatory="false" name="SF_EUIMID" type="TRANSPARENT" fullname="SF_EUIMID"/>
+			</directory>
+			<!-- Forensic directory for Audit Info on Storage/Access Card -->
+			<directory id="7F30" path="FORENSIC/3F00/7F30" name="FORENSIC" mandatory="true" fullname="Forensic Directory">
+				<file id="0006" path="FORENSIC/3F00/7F30/0006" name="ID" type="TRANSPARENT" mandatory="true" size="10"/>
+				<file id="0007" path="FORENSIC/3F00/7F30/0007" name="STARTTIME" type="TRANSPARENT" mandatory="true" size="12"/>
+				<file id="0008" path="FORENSIC/3F00/7F30/0008" name="ENDTIME" type="TRANSPARENT" mandatory="true" size="12"/>
+				<file id="0009" path="FORENSIC/3F00/7F30/0009" name="KEYOFFSET" type="TRANSPARENT" mandatory="true" minsize="2"/>
+				<file id="000A" path="FORENSIC/3F00/7F30/000A" name="EADM2" type="TRANSPARENT" mandatory="true" size="9"/>
+				<file id="000B" path="FORENSIC/3F00/7F30/000B" name="CHECKSUM" type="TRANSPARENT" mandatory="true" size="20"/>
+				<file id="000C" path="FORENSIC/3F00/7F30/000C" name="CARDTYPE" type="TRANSPARENT" mandatory="true" size="10"/>
+				<file id="0106" path="FORENSIC/3F00/7F30/0106" name="R_CCID" type="TRANSPARENT" mandatory="true" size="20" fullname="Control Card ID"/>
+				<file id="0107" path="FORENSIC/3F00/7F30/0107" name="R_STARTTIME" type="TRANSPARENT" mandatory="true" size="12" fullname="Start time"/>
+				<file id="0108" path="FORENSIC/3F00/7F30/0108" name="R_ENDTIME" type="TRANSPARENT" mandatory="true" size="12" fullname="End time"/>
+				<file id="010B" path="FORENSIC/3F00/7F30/010B" name="R_HASH" type="LINEARFIXED" mandatory="true" size="20" fullname="Hash code"/>
+				<file id="010C" path="FORENSIC/3F00/7F30/010C" name="R_CARDTYPE" type="TRANSPARENT" mandatory="true" size="10" fullname="Card type"/>
+				<file id="010D" path="FORENSIC/3F00/7F30/010D" name="R_BYTESCOPIED" type="TRANSPARENT" mandatory="true" size="4" fullname="Bytes copied"/>
+				<file id="010E" path="FORENSIC/3F00/7F30/010E" name="R_USERID" type="TRANSPARENT" mandatory="true" size="8" fullname="User ID"/>
+				<file id="010F" path="FORENSIC/3F00/7F30/010F" name="R_HWVERSIONINFO" type="TRANSPARENT" mandatory="true" size="8" fullname="Hardware Version"/>
+				<file id="0110" path="FORENSIC/3F00/7F30/0110" name="R_SWVERSIONINFO" type="TRANSPARENT" mandatory="true" size="8" fullname="Software Version"/>
+				<file id="0111" path="FORENSIC/3F00/7F30/0111" name="R_MASTER_CARDTYPE" type="TRANSPARENT" mandatory="false" size="10" fullname="Master card type"/>
+				<file id="0112" path="FORENSIC/3F00/7F30/0112" name="R_BYTESREAD" type="TRANSPARENT" mandatory="true" size="4" fullname="Bytes read"/>
+				<file id="0113" path="FORENSIC/3F00/7F30/0113" name="R_ACCESSCARDTYPE" type="TRANSPARENT" mandatory="true" size="1" fullname="Access Card Type"/>
+				<file id="0114" path="FORENSIC/3F00/7F30/0114" name="R_TARGETCARDTYPE" type="TRANSPARENT" mandatory="false" size="2" fullname="Target Card Type"/>
+				<file id="0115" path="FORENSIC/3F00/7F30/0115" name="R_LOGINTYPE" type="TRANSPARENT" mandatory="false" size="1" fullname="Login Type"/>
+				<file id="0116" path="FORENSIC/3F00/7F30/0116" name="R_INVALIDATED_FILE_LIST" type="LINEARFIXED" mandatory="false" fullname="Invalidated File List"/>
+				<file id="0117" path="FORENSIC/3F00/7F30/0117" name="R_LASTCALTIME" type="TRANSPARENT" mandatory="true" size="14" fullname="Last Calibration time"/>
+			</directory>
+			<!-- USIM Application files as stored on Storage Cards by 1.2.x.x and later Acquisition Software -->
+			<directory id="7FFE" path="USIM/3F00/7FFE" name="USIM" mandatory="false" fullname="USIM Directory">
+				<file id="6F05" path="USIM/3F00/7FFE/6F05" name="LI" type="TRANSPARENT" mandatory="true" fullname="Language Indication"/>
+				<file id="6F07" path="USIM/3F00/7FFE/6F07" name="IMSI" type="TRANSPARENT" mandatory="true" size="9" fullname="IMSI"/>
+				<file id="6F08" path="USIM/3F00/7FFE/6F08" name="KEYS" type="TRANSPARENT" mandatory="true" fullname="Ciphering Keys"/>
+				<file id="6F09" path="USIM/3F00/7FFE/6F09" name="KEYSPS" type="TRANSPARENT" mandatory="true" fullname="Keys for Packet Switched"/>
+				<file id="6F60" path="USIM/3F00/7FFE/6F60" name="PLMNWACT" type="TRANSPARENT" mandatory="true" fullname="PLMN with Access Technology"/>
+				<file id="6F31" path="USIM/3F00/7FFE/6F31" name="HPPLMN" type="TRANSPARENT" mandatory="true" fullname="Higher Priority PLMN"/>
+				<file id="6F37" path="USIM/3F00/7FFE/6F37" name="ACMMAX" type="TRANSPARENT" mandatory="true" fullname="ACM Max"/>
+				<file id="6F38" path="USIM/3F00/7FFE/6F38" name="UST" type="TRANSPARENT" mandatory="true" fullname="USIM Service Table"/>
+				<file id="6F39" path="USIM/3F00/7FFE/6F39" name="ACM" type="TRANSPARENT" mandatory="true" fullname="Accumulated Charge Meter"/>
+				<file id="6F3E" path="USIM/3F00/7FFE/6F3E" name="GID1" type="TRANSPARENT" mandatory="true" fullname="Group Id 1"/>
+				<file id="6F3F" path="USIM/3F00/7FFE/6F3F" name="GID2" type="TRANSPARENT" mandatory="true" fullname="Group Id 2"/>
+				<file id="6F46" path="USIM/3F00/7FFE/6F46" name="SPN" type="TRANSPARENT" mandatory="true" fullname="Service Provider Name"/>
+				<file id="6F41" path="USIM/3F00/7FFE/6F41" name="PUCT" type="TRANSPARENT" mandatory="true" fullname="Price Per Unit Charge"/>
+				<file id="6F45" path="USIM/3F00/7FFE/6F45" name="CBMI" type="TRANSPARENT" mandatory="true" fullname="Cell Broadcast Message Identifier"/>
+				<file id="6F78" path="USIM/3F00/7FFE/6F78" name="ACC" type="TRANSPARENT" mandatory="true" fullname="Accumulated Call Charge"/>
+				<file id="6F7B" path="USIM/3F00/7FFE/6F7B" name="FPLMN" type="TRANSPARENT" mandatory="true" fullname="Forbidden PLMNs"/>
+				<file id="6F7E" path="USIM/3F00/7FFE/6F7E" name="LOCI" type="TRANSPARENT" mandatory="true" fullname="Location Information"/>
+				<file id="6FAD" path="USIM/3F00/7FFE/6FAD" name="AD" type="TRANSPARENT" mandatory="true" fullname="Administrative Data"/>
+				<file id="6F48" path="USIM/3F00/7FFE/6F48" name="CBMID" type="TRANSPARENT" mandatory="true" fullname="Cell Broadcast Message Id"/>
+				<file id="6FB7" path="USIM/3F00/7FFE/6FB7" name="ECC-USIM" type="LINEARFIXED" mandatory="true" fullname="Emergency Call Codes"/>
+				<file id="6F50" path="USIM/3F00/7FFE/6F50" name="CBMIR" type="TRANSPARENT" mandatory="true" fullname="CBM Id Range"/>
+				<file id="6F73" path="USIM/3F00/7FFE/6F73" name="PSLOCI" type="TRANSPARENT" mandatory="true" fullname="Packet Switch Location Information"/>
+				<file id="6F3B" path="USIM/3F00/7FFE/6F3B" name="FDN" type="LINEARFIXED" mandatory="false" minrecordlength="14" maxrecordlength="256" fullname="Fixed Dialling Numbers"/>
+				<file id="6F3C" path="USIM/3F00/7FFE/6F3C" name="SMS" type="LINEARFIXED" mandatory="false" recordlength="176" fullname="Short Messages"/>
+				<file id="6F40" path="USIM/3F00/7FFE/6F40" name="MSISDN" type="TRANSPARENT" mandatory="true" fullname="MS ISDN"/>
+				<file id="6F42" path="USIM/3F00/7FFE/6F42" name="SMSP" type="TRANSPARENT" mandatory="true" fullname="SMS Parameters"/>
+				<file id="6F43" path="USIM/3F00/7FFE/6F43" name="SMSS" type="TRANSPARENT" mandatory="true" fullname="SMS Status"/>
+				<file id="6F49" path="USIM/3F00/7FFE/6F49" name="SDN" type="TRANSPARENT" mandatory="true" fullname="Service Dialling Numbers"/>
+				<file id="6F4B" path="USIM/3F00/7FFE/6F4B" name="EXT2" type="LINEARFIXED" mandatory="false" recordlength="13" fullname="Extension 2"/>
+				<file id="6F4C" path="USIM/3F00/7FFE/6F4C" name="EXT3" type="LINEARFIXED" mandatory="false" fullname="Extension 3"/>
+				<file id="6F47" path="USIM/3F00/7FFE/6F47" name="SMSR" type="LINEARFIXED" mandatory="false" fullname="SMS Reports"/>
+				<file id="6F80" path="USIM/3F00/7FFE/6F80" name="ICI" type="CYCLIC" mandatory="true" fullname="Incoming Call Information"/>
+				<file id="6F81" path="USIM/3F00/7FFE/6F81" name="OCI" type="CYCLIC" mandatory="true" fullname="Outgoing Call Information"/>
+				<file id="6F82" path="USIM/3F00/7FFE/6F82" name="ICT" type="CYCLIC" mandatory="true" fullname="Incoming Call Timers"/>
+				<file id="6F83" path="USIM/3F00/7FFE/6F83" name="OCT" type="CYCLIC" mandatory="true" fullname="Outgoing Call Timers"/>
+				<file id="6F4E" path="USIM/3F00/7FFE/6F4E" name="EXT5" type="LINEARFIXED" mandatory="true" fullname="Extension 5"/>
+				<file id="6F4F" path="USIM/3F00/7FFE/6F4F" name="CCP2" type="LINEARFIXED" mandatory="true" fullname="Capability Configuration Parameters 2"/>
+				<file id="6FB5" path="USIM/3F00/7FFE/6FB5" name="EMLPP" type="TRANSPARENT" mandatory="true" fullname="Enhanced MLPP"/>
+				<file id="6FB6" path="USIM/3F00/7FFE/6FB6" name="AAEM" type="TRANSPARENT" mandatory="true" fullname="Auto Answer for eMLPP"/>
+				<file id="6FC3" path="USIM/3F00/7FFE/6FC3" name="HIDDENKEY" type="TRANSPARENT" mandatory="true" fullname="Key for Hidden Phonebook Entries"/>
+				<file id="6F4D" path="USIM/3F00/7FFE/6F4D" name="BDN" type="LINEARFIXED" mandatory="true" fullname="Barred Dialling Numbers"/>
+				<file id="6F55" path="USIM/3F00/7FFE/6F55" name="EXT4" type="LINEARFIXED" mandatory="true" fullname="Extension 4"/>
+				<file id="6F58" path="USIM/3F00/7FFE/6F58" name="CMI" type="LINEARFIXED" mandatory="true" fullname="Comparison Method Indication"/>
+				<file id="6F56" path="USIM/3F00/7FFE/6F56" name="EST" type="TRANSPARENT" mandatory="true" fullname="Enabled Services Table"/>
+				<file id="6F57" path="USIM/3F00/7FFE/6F57" name="ACL" type="TRANSPARENT" mandatory="true" fullname="Access Point Control List"/>
+				<file id="6F2C" path="USIM/3F00/7FFE/6F2C" name="DCK" type="TRANSPARENT" mandatory="true" fullname="Depersonalisation Keys"/>
+				<file id="6F32" path="USIM/3F00/7FFE/6F32" name="CNL" type="TRANSPARENT" mandatory="true" fullname="Cooperative Network List"/>
+				<file id="6F5B" path="USIM/3F00/7FFE/6F5B" name="STARTHFN" type="TRANSPARENT" mandatory="true" fullname="Initial Hyperframe Number"/>
+				<file id="6F5C" path="USIM/3F00/7FFE/6F5C" name="THRESHOLD" type="TRANSPARENT" mandatory="true" fullname="Maximum value of start"/>
+				<file id="6F61" path="USIM/3F00/7FFE/6F61" name="OPLMNWACT" type="TRANSPARENT" mandatory="true" fullname="Operator PLMN Selector with ACT"/>
+				<file id="6F62" path="USIM/3F00/7FFE/6F62" name="HPLNMWACT" type="TRANSPARENT" mandatory="true" fullname="HPLMN Selector with ACT"/>
+				<file id="6F06" path="USIM/3F00/7FFE/6F06" name="ARR" type="LINEARFIXED" mandatory="true" fullname="Access Reference Rules"/>
+				<file id="6FC4" path="USIM/3F00/7FFE/6FC4" name="NETPAR" type="TRANSPARENT" mandatory="true" fullname="Network Parameters"/>
+				<file id="6FC5" path="USIM/3F00/7FFE/6FC5" name="PNN" type="LINEARFIXED" mandatory="true" fullname="PLMN Network Name"/>
+				<file id="6FC6" path="USIM/3F00/7FFE/6FC6" name="OPL" type="LINEARFIXED" mandatory="true" fullname="Operator PLMN List"/>
+				<file id="6FC7" path="USIM/3F00/7FFE/6FC7" name="MBDN" type="LINEARFIXED" mandatory="true" fullname="Mailbox Dialling Numbers"/>
+				<file id="6FC8" path="USIM/3F00/7FFE/6FC8" name="EXT6" type="LINEARFIXED" mandatory="true" fullname="Extension 6"/>
+				<file id="6FC9" path="USIM/3F00/7FFE/6FC9" name="MBI" type="LINEARFIXED" mandatory="true" fullname="Mailbox Identifier"/>
+				<file id="6FCA" path="USIM/3F00/7FFE/6FCA" name="MWIS" type="LINEARFIXED" mandatory="true" fullname="Message Waiting Indication Status"/>
+				<file id="6FCB" path="USIM/3F00/7FFE/6FCB" name="CFIS" type="LINEARFIXED" mandatory="true" fullname="Call Forwarding Indication Status"/>
+				<file id="6FCC" path="USIM/3F00/7FFE/6FCC" name="EXT7" type="LINEARFIXED" mandatory="true" fullname="Extension 7"/>
+				<file id="6FCD" path="USIM/3F00/7FFE/6FCD" name="SPDI" type="TRANSPARENT" mandatory="true" fullname="Service Provider Display Information"/>
+				<file id="6FCE" path="USIM/3F00/7FFE/6FCE" name="MMSN" type="LINEARFIXED" mandatory="true" fullname="MMS Notification"/>
+				<file id="6FCF" path="USIM/3F00/7FFE/6FCF" name="EXT8" type="LINEARFIXED" mandatory="true" fullname="Extension 8"/>
+				<file id="6FDO" path="USIM/3F00/7FFE/6FD0" name="MMSICP" type="TRANSPARENT" mandatory="true" fullname="MMS Issuer Connectivity Parameters"/>
+				<file id="6FD1" path="USIM/3F00/7FFE/6FD1" name="MMSUP" type="LINEARFIXED" mandatory="true" fullname="MMS User Preferences"/>
+				<file id="6FD2" path="USIM/3F00/7FFE/6FD2" name="MMSUCP" type="TRANSPARENT" mandatory="true" fullname="MMS User Connectivity Parameters"/>
+				<file id="6FD3" path="USIM/3F00/7FFE/6FD3" name="NIA" type="LINEARFIXED" mandatory="true" fullname="Networks Indication of Alerting"/>
+				<file id="6FB1" path="USIM/3F00/7FFE/6FB1" name="VGCS" type="TRANSPARENT" mandatory="true" fullname="Voice Group Call Service"/>
+				<file id="6FB2" path="USIM/3F00/7FFE/6FB2" name="VGCSS" type="TRANSPARENT" mandatory="true" fullname="VGCS STatus"/>
+				<file id="6FB3" path="USIM/3F00/7FFE/6FB3" name="VBS" type="TRANSPARENT" mandatory="true" fullname="Voice Broadcast Service"/>
+				<file id="6FB4" path="USIM/3F00/7FFE/6FB4" name="VBSS" type="TRANSPARENT" mandatory="true" fullname="VBS Status"/>
+				<directory id="5F3B" path="USIM/3F00/7FFE/5F3B" name="GSM-ACCESS" mandatory="false" fullname="GSM Access Directory">
+					<file id="4F20" path="USIM/3F00/7FFE/5F3B/4F20" name="KC" type="TRANSPARENT" mandatory="true" fullname="Cipher Key"/>
+					<file id="4F52" path="USIM/3F00/7FFE/5F3B/4F52" name="KCGPRS" type="TRANSPARENT" mandatory="true" fullname="GPRS Cipher Key"/>
+					<file id="4F63" path="USIM/3F00/7FFE/5F3B/4F63" name="CPBCCH" type="TRANSPARENT" mandatory="true" fullname="CPBBCH Information"/>
+					<file id="4F64" path="USIM/3F00/7FFE/5F3B/4F64" name="INVSCAN" type="TRANSPARENT" mandatory="true" fullname="Investigation Scan"/>
+				</directory>
+				<directory id="5F3C" path="USIM/3F00/7FFE/5F3C" name="MEXE" mandatory="false" fullname="MEXE Directory">
+					<file id="4F40" path="USIM/3F00/7FFE/5F3C/4F40" name="MEXEST" type="TRANSPARENT" mandatory="true" fullname="MEXE Service Table"/>
+					<file id="4F41" path="USIM/3F00/7FFE/5F3C/4F41" name="OPRK" type="LINEARFIXED" mandatory="true" fullname="Operator Root Public Key"/>
+					<file id="4F42" path="USIM/3F00/7FFE/5F3C/4F42" name="APRK" type="LINEARFIXED" mandatory="true" fullname="Adminstrator Root Public Key"/>
+					<file id="4F43" path="USIM/3F00/7FFE/5F3C/4F43" name="TPPRK" type="LINEARFIXED" mandatory="true" fullname="Third Party Root Public Key"/>
+				</directory>
+				<directory id="5F70" path="USIM/3F00/7FFE/5F70" name="SOLSA" mandatory="false" fullname="SOLSA Directory">
+					<file id="4F30" path="USIM/3F00/7FFE/5F70/4F30" name="SAI" type="TRANSPARENT" mandatory="true" fullname="SOLSA Access Indication"/>
+					<file id="4F31" path="USIM/3F00/7FFE/5F70/4F31" name="SLL" type="LINEARFIXED" mandatory="true" fullname="SOLSA LSA List"/>
+				</directory>
+			</directory>
+			<!-- true USIM Application files  -->
+			<directory id="7FFF" path="USIM/3F00/7FFF" name="USIM" mandatory="false" fullname="USIM Directory">
+				<file id="6F05" path="USIM/3F00/7FFF/6F05" name="LI" type="TRANSPARENT" mandatory="true" fullname="Language Indication"/>
+				<file id="6F07" path="USIM/3F00/7FFF/6F07" name="IMSI" type="TRANSPARENT" mandatory="true" size="9" fullname="IMSI"/>
+				<file id="6F08" path="USIM/3F00/7FFF/6F08" name="KEYS" type="TRANSPARENT" mandatory="true" fullname="Ciphering Keys"/>
+				<file id="6F09" path="USIM/3F00/7FFF/6F09" name="KEYSPS" type="TRANSPARENT" mandatory="true" fullname="Keys for Packet Switched"/>
+				<file id="6F60" path="USIM/3F00/7FFF/6F60" name="PLMNWACT" type="TRANSPARENT" mandatory="true" fullname="PLMN with Access Technology"/>
+				<file id="6F31" path="USIM/3F00/7FFF/6F31" name="HPPLMN" type="TRANSPARENT" mandatory="true" fullname="Higher Priority PLMN"/>
+				<file id="6F37" path="USIM/3F00/7FFF/6F37" name="ACMMAX" type="TRANSPARENT" mandatory="true" fullname="ACM Max"/>
+				<file id="6F38" path="USIM/3F00/7FFF/6F38" name="UST" type="TRANSPARENT" mandatory="true" fullname="USIM Service Table"/>
+				<file id="6F39" path="USIM/3F00/7FFF/6F39" name="ACM" type="TRANSPARENT" mandatory="true" fullname="Accumulated Charge Meter"/>
+				<file id="6F3E" path="USIM/3F00/7FFF/6F3E" name="GID1" type="TRANSPARENT" mandatory="true" fullname="Group Id 1"/>
+				<file id="6F3F" path="USIM/3F00/7FFF/6F3F" name="GID2" type="TRANSPARENT" mandatory="true" fullname="Group Id 2"/>
+				<file id="6F46" path="USIM/3F00/7FFF/6F46" name="SPN" type="TRANSPARENT" mandatory="true" fullname="Service Provider Name"/>
+				<file id="6F41" path="USIM/3F00/7FFF/6F41" name="PUCT" type="TRANSPARENT" mandatory="true" fullname="Price Per Unit Charge"/>
+				<file id="6F45" path="USIM/3F00/7FFF/6F45" name="CBMI" type="TRANSPARENT" mandatory="true" fullname="Cell Broadcast Message Identifier"/>
+				<file id="6F78" path="USIM/3F00/7FFF/6F78" name="ACC" type="TRANSPARENT" mandatory="true" fullname="Accumulated Call Charge"/>
+				<file id="6F7B" path="USIM/3F00/7FFF/6F7B" name="FPLMN" type="TRANSPARENT" mandatory="true" fullname="Forbidden PLMNs"/>
+				<file id="6F7E" path="USIM/3F00/7FFF/6F7E" name="LOCI" type="TRANSPARENT" mandatory="true" fullname="Location Information"/>
+				<file id="6FAD" path="USIM/3F00/7FFF/6FAD" name="AD" type="TRANSPARENT" mandatory="true" fullname="Administrative Data"/>
+				<file id="6F48" path="USIM/3F00/7FFF/6F48" name="CBMID" type="TRANSPARENT" mandatory="true" fullname="Cell Broadcast Message Id"/>
+				<file id="6FB7" path="USIM/3F00/7FFF/6FB7" name="ECC-USIM" type="LINEARFIXED" mandatory="true" fullname="Emergency Call Codes"/>
+				<file id="6F50" path="USIM/3F00/7FFF/6F50" name="CBMIR" type="TRANSPARENT" mandatory="true" fullname="CBM Id Range"/>
+				<file id="6F73" path="USIM/3F00/7FFF/6F73" name="PSLOCI" type="TRANSPARENT" mandatory="true" fullname="Packet Switch Location Information"/>
+				<file id="6F3B" path="USIM/3F00/7FFF/6F3B" name="FDN" type="LINEARFIXED" mandatory="false" minrecordlength="14" maxrecordlength="256" fullname="Fixed Dialling Numbers"/>
+				<file id="6F3C" path="USIM/3F00/7FFF/6F3C" name="SMS" type="LINEARFIXED" mandatory="false" recordlength="176" fullname="Short Messages"/>
+				<file id="6F40" path="USIM/3F00/7FFF/6F40" name="MSISDN" type="TRANSPARENT" mandatory="true" fullname="MS ISDN"/>
+				<file id="6F42" path="USIM/3F00/7FFF/6F42" name="SMSP" type="TRANSPARENT" mandatory="true" fullname="SMS Parameters"/>
+				<file id="6F43" path="USIM/3F00/7FFF/6F43" name="SMSS" type="TRANSPARENT" mandatory="true" fullname="SMS Status"/>
+				<file id="6F49" path="USIM/3F00/7FFF/6F49" name="SDN" type="TRANSPARENT" mandatory="true" fullname="Service Dialling Numbers"/>
+				<file id="6F4B" path="USIM/3F00/7FFF/6F4B" name="EXT2" type="LINEARFIXED" mandatory="false" recordlength="13" fullname="Extension 2"/>
+				<file id="6F4C" path="USIM/3F00/7FFF/6F4C" name="EXT3" type="LINEARFIXED" mandatory="false" fullname="Extension 3"/>
+				<file id="6F47" path="USIM/3F00/7FFF/6F47" name="SMSR" type="LINEARFIXED" mandatory="false" fullname="SMS Reports"/>
+				<file id="6F80" path="USIM/3F00/7FFF/6F80" name="ICI" type="CYCLIC" mandatory="true" fullname="Incoming Call Information"/>
+				<file id="6F81" path="USIM/3F00/7FFF/6F81" name="OCI" type="CYCLIC" mandatory="true" fullname="Outgoing Call Information"/>
+				<file id="6F82" path="USIM/3F00/7FFF/6F82" name="ICT" type="CYCLIC" mandatory="true" fullname="Incoming Call Timers"/>
+				<file id="6F83" path="USIM/3F00/7FFF/6F83" name="OCT" type="CYCLIC" mandatory="true" fullname="Outgoing Call Timers"/>
+				<file id="6F4E" path="USIM/3F00/7FFF/6F4E" name="EXT5" type="LINEARFIXED" mandatory="true" fullname="Extension 5"/>
+				<file id="6F4F" path="USIM/3F00/7FFF/6F4F" name="CCP2" type="LINEARFIXED" mandatory="true" fullname="Capability Configuration Parameters 2"/>
+				<file id="6FB5" path="USIM/3F00/7FFF/6FB5" name="EMLPP" type="TRANSPARENT" mandatory="true" fullname="Enhanced MLPP"/>
+				<file id="6FB6" path="USIM/3F00/7FFF/6FB6" name="AAEM" type="TRANSPARENT" mandatory="true" fullname="Auto Answer for eMLPP"/>
+				<file id="6FC3" path="USIM/3F00/7FFF/6FC3" name="HIDDENKEY" type="TRANSPARENT" mandatory="true" fullname="Key for Hidden Phonebook Entries"/>
+				<file id="6F4D" path="USIM/3F00/7FFF/6F4D" name="BDN" type="LINEARFIXED" mandatory="true" fullname="Barred Dialling Numbers"/>
+				<file id="6F55" path="USIM/3F00/7FFF/6F55" name="EXT4" type="LINEARFIXED" mandatory="true" fullname="Extension 4"/>
+				<file id="6F58" path="USIM/3F00/7FFF/6F58" name="CMI" type="LINEARFIXED" mandatory="true" fullname="Comparison Method Indication"/>
+				<file id="6F56" path="USIM/3F00/7FFF/6F56" name="EST" type="TRANSPARENT" mandatory="true" fullname="Enabled Services Table"/>
+				<file id="6F57" path="USIM/3F00/7FFF/6F57" name="ACL" type="TRANSPARENT" mandatory="true" fullname="Access Point Control List"/>
+				<file id="6F2C" path="USIM/3F00/7FFF/6F2C" name="DCK" type="TRANSPARENT" mandatory="true" fullname="Depersonalisation Keys"/>
+				<file id="6F32" path="USIM/3F00/7FFF/6F32" name="CNL" type="TRANSPARENT" mandatory="true" fullname="Cooperative Network List"/>
+				<file id="6F5B" path="USIM/3F00/7FFF/6F5B" name="STARTHFN" type="TRANSPARENT" mandatory="true" fullname="Initial Hyperframe Number"/>
+				<file id="6F5C" path="USIM/3F00/7FFF/6F5C" name="THRESHOLD" type="TRANSPARENT" mandatory="true" fullname="Maximum value of start"/>
+				<file id="6F61" path="USIM/3F00/7FFF/6F61" name="OPLMNWACT" type="TRANSPARENT" mandatory="true" fullname="Operator PLMN Selector with ACT"/>
+				<file id="6F62" path="USIM/3F00/7FFF/6F62" name="HPLNMWACT" type="TRANSPARENT" mandatory="true" fullname="HPLMN Selector with ACT"/>
+				<file id="6F06" path="USIM/3F00/7FFF/6F06" name="ARR" type="LINEARFIXED" mandatory="true" fullname="Access Reference Rules"/>
+				<file id="6FC4" path="USIM/3F00/7FFF/6FC4" name="NETPAR" type="TRANSPARENT" mandatory="true" fullname="Network Parameters"/>
+				<file id="6FC5" path="USIM/3F00/7FFF/6FC5" name="PNN" type="LINEARFIXED" mandatory="true" fullname="PLMN Network Name"/>
+				<file id="6FC6" path="USIM/3F00/7FFF/6FC6" name="OPL" type="LINEARFIXED" mandatory="true" fullname="Operator PLMN List"/>
+				<file id="6FC7" path="USIM/3F00/7FFF/6FC7" name="MBDN" type="LINEARFIXED" mandatory="true" fullname="Mailbox Dialling Numbers"/>
+				<file id="6FC8" path="USIM/3F00/7FFF/6FC8" name="EXT6" type="LINEARFIXED" mandatory="true" fullname="Extension 6"/>
+				<file id="6FC9" path="USIM/3F00/7FFF/6FC9" name="MBI" type="LINEARFIXED" mandatory="true" fullname="Mailbox Identifier"/>
+				<file id="6FCA" path="USIM/3F00/7FFF/6FCA" name="MWIS" type="LINEARFIXED" mandatory="true" fullname="Message Waiting Indication Status"/>
+				<file id="6FCB" path="USIM/3F00/7FFF/6FCB" name="CFIS" type="LINEARFIXED" mandatory="true" fullname="Call Forwarding Indication Status"/>
+				<file id="6FCC" path="USIM/3F00/7FFF/6FCC" name="EXT7" type="LINEARFIXED" mandatory="true" fullname="Extension 7"/>
+				<file id="6FCD" path="USIM/3F00/7FFF/6FCD" name="SPDI" type="TRANSPARENT" mandatory="true" fullname="Service Provider Display Information"/>
+				<file id="6FCE" path="USIM/3F00/7FFF/6FCE" name="MMSN" type="LINEARFIXED" mandatory="true" fullname="MMS Notification"/>
+				<file id="6FCF" path="USIM/3F00/7FFF/6FCF" name="EXT8" type="LINEARFIXED" mandatory="true" fullname="Extension 8"/>
+				<file id="6FDO" path="USIM/3F00/7FFF/6FD0" name="MMSICP" type="TRANSPARENT" mandatory="true" fullname="MMS Issuer Connectivity Parameters"/>
+				<file id="6FD1" path="USIM/3F00/7FFF/6FD1" name="MMSUP" type="LINEARFIXED" mandatory="true" fullname="MMS User Preferences"/>
+				<file id="6FD2" path="USIM/3F00/7FFF/6FD2" name="MMSUCP" type="TRANSPARENT" mandatory="true" fullname="MMS User Connectivity Parameters"/>
+				<file id="6FD3" path="USIM/3F00/7FFF/6FD3" name="NIA" type="LINEARFIXED" mandatory="true" fullname="Networks Indication of Alerting"/>
+				<file id="6FB1" path="USIM/3F00/7FFF/6FB1" name="VGCS" type="TRANSPARENT" mandatory="true" fullname="Voice Group Call Service"/>
+				<file id="6FB2" path="USIM/3F00/7FFF/6FB2" name="VGCSS" type="TRANSPARENT" mandatory="true" fullname="VGCS STatus"/>
+				<file id="6FB3" path="USIM/3F00/7FFF/6FB3" name="VBS" type="TRANSPARENT" mandatory="true" fullname="Voice Broadcast Service"/>
+				<file id="6FB4" path="USIM/3F00/7FFF/6FB4" name="VBSS" type="TRANSPARENT" mandatory="true" fullname="VBS Status"/>
+				<directory id="5F3B" path="USIM/3F00/7FFF/5F3B" name="GSM-ACCESS" mandatory="false" fullname="GSM Access Directory">
+					<file id="4F20" path="USIM/3F00/7FFF/5F3B/4F20" name="KC" type="TRANSPARENT" mandatory="true" fullname="Cipher Key"/>
+					<file id="4F52" path="USIM/3F00/7FFF/5F3B/4F52" name="KCGPRS" type="TRANSPARENT" mandatory="true" fullname="GPRS Cipher Key"/>
+					<file id="4F63" path="USIM/3F00/7FFF/5F3B/4F63" name="CPBCCH" type="TRANSPARENT" mandatory="true" fullname="CPBBCH Information"/>
+					<file id="4F64" path="USIM/3F00/7FFF/5F3B/4F64" name="INVSCAN" type="TRANSPARENT" mandatory="true" fullname="Investigation Scan"/>
+				</directory>
+				<directory id="5F3C" path="USIM/3F00/7FFF/5F3C" name="MEXE" mandatory="false" fullname="MEXE Directory">
+					<file id="4F40" path="USIM/3F00/7FFF/5F3C/4F40" name="MEXEST" type="TRANSPARENT" mandatory="true" fullname="MEXE Service Table"/>
+					<file id="4F41" path="USIM/3F00/7FFF/5F3C/4F41" name="OPRK" type="LINEARFIXED" mandatory="true" fullname="Operator Root Public Key"/>
+					<file id="4F42" path="USIM/3F00/7FFF/5F3C/4F42" name="APRK" type="LINEARFIXED" mandatory="true" fullname="Adminstrator Root Public Key"/>
+					<file id="4F43" path="USIM/3F00/7FFF/5F3C/4F43" name="TPPRK" type="LINEARFIXED" mandatory="true" fullname="Third Party Root Public Key"/>
+				</directory>
+				<directory id="5F70" path="USIM/3F00/7FFF/5F70" name="SOLSA" mandatory="false" fullname="SOLSA Directory">
+					<file id="4F30" path="USIM/3F00/7FFF/5F70/4F30" name="SAI" type="TRANSPARENT" mandatory="true" fullname="SOLSA Access Indication"/>
+					<file id="4F31" path="USIM/3F00/7FFF/5F70/4F31" name="SLL" type="LINEARFIXED" mandatory="true" fullname="SOLSA LSA List"/>
+				</directory>
+			</directory>
+		</directory>
+	</files>
+</simfiledefinition>

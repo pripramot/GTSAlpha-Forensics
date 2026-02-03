@@ -1,0 +1,8 @@
+[
+  { "id": "file-parser", "title": "File Parser", "description": "Analyze file system contents and extract relevant data.", "icon": "📄" },
+  { "id": "memory-analyzer", "title": "Memory Analyzer", "description": "Analyze memory dumps and extract artifacts.", "icon": "🧠" },
+  { "id": "log-decoder", "title": "Log Decoder", "description": "Decode and analyze system and app logs.", "icon": "📋" },
+  { "id": "timeline-builder", "title": "Timeline Builder", "description": "Build and analyze event timelines.", "icon": "📅" },
+  { "id": "hash-validator", "title": "Hash Validator", "description": "Validate file hashes and integrity.", "icon": "✓" },
+  { "id": "file-extractor", "title": "File Extractor", "description": "Extract and recover files from evidence.", "icon": "📦" }
+]

@@ -1,0 +1,7 @@
+[
+  { "id": "manual", "title": "Unicorn GtsAlpha Manual", "description": "คู่มือระบบ Section 6–7 (ความสามารถ iOS/Android, การเข้าถึงเมื่อไม่มีรหัส)", "file": "Unicorn_GtsAlpha_Manual.md" },
+  { "id": "capabilities-ui", "title": "คุณสมบัติ Unicorn สำหรับออกแบบหน้าจอ", "description": "คุณสมบัติแพลตฟอร์ม, ฟีเจอร์ UI, ความสามารถตามอุปกรณ์", "file": "คุณสมบัติ_Unicorn_สำหรับออกแบบหน้าจอ.md" },
+  { "id": "memory-ref", "title": "MEMORY_REFERENCE", "description": "บันทึกความทรงจำ — อีเมล, โซเชียล, Line, Messages, รูปภาพ", "file": "MEMORY_REFERENCE.md" },
+  { "id": "usb-example", "title": "การเข้าถึงอุปกรณ์ที่เสียบ_ตัวอย่างจริง", "description": "ตัวอย่างผลตรวจ USB, ไดรฟ์, ข้อจำกัด ADB/มือถือ", "file": "การเข้าถึงอุปกรณ์ที่เสียบ_ตัวอย่างจริง.md" },
+  { "id": "exec-summary", "title": "ACESO/Unicorn สรุปคุณสมบัติ (สรุปผู้บริหาร)", "description": "ตารางความสามารถ Android/iOS สำหรับนำเสนอผู้บริหาร", "file": "สรุปผู้บริหาร/ACESO_Unicorn_คุณสมบัติ_สรุปผู้บริหาร.md" }
+]

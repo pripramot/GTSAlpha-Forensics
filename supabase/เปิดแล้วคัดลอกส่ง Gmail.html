@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>อีเมลส่ง Supabase — คัดลอกแล้วไปส่งใน Gmail</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; max-width: 640px; margin: 24px auto; padding: 0 16px; }
+    h1 { font-size: 1.1rem; }
+    .box { background: #f5f5f5; padding: 12px; border-radius: 8px; margin: 12px 0; }
+    .label { font-weight: bold; color: #333; margin-bottom: 4px; }
+    textarea { width: 100%; min-height: 120px; box-sizing: border-box; padding: 8px; }
+    button { background: #1a73e8; color: #fff; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; margin: 4px 4px 4px 0; }
+    button:hover { background: #1557b0; }
+    .link { margin-top: 16px; }
+    .link a { color: #1a73e8; }
+    p.note { font-size: 0.9rem; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>อีเมลส่งให้ Supabase — คัดลอกแล้วไปส่งใน Gmail</h1>
+  <p class="note">กดปุ่มคัดลอก แล้วไปที่ Gmail → สร้างอีเมลใหม่ → วาง (Ctrl+V) แล้วส่งถึง Supabase Support/Billing</p>
+
+  <div class="box">
+    <div class="label">เรื่อง (Subject)</div>
+    <input type="text" id="subject" readonly value="Account setup request: Pro plan, 1 paid project + 2 free projects (gittisakwannakeeree@gmail.com)" style="width:100%; padding:8px; box-sizing:border-box;">
+    <button onclick="copySubject()">คัดลอก Subject</button>
+  </div>
+
+  <div class="box">
+    <div class="label">เนื้อความ (Body)</div>
+    <textarea id="body" readonly>Dear Supabase Team,
+
+We would like to request the following account setup (approved and ready to proceed):
+
+ACCOUNT
+- Email: gittisakwannakeeree@gmail.com
+- Plan: Pro (Paid)
+
+PROJECTS
+- Paid projects: 1
+- Free projects: 2
+
+PROJECT REFERENCE
+- Folder/Project name: GTSAlpha-Forensics
+- App name: Unicorn (mobile forensics / ACESO toolset)
+- Use case: Backend (Auth, Database, RLS) for GTSAlpha-Forensics (Unicorn)
+
+Please configure the account and projects as above. We are ready to upload project files and proceed.
+
+Thank you.</textarea>
+    <button onclick="copyBody()">คัดลอก Body</button>
+  </div>
+
+  <div class="link">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1" target="_blank" rel="noopener">เปิด Gmail (เขียนอีเมลใหม่)</a>
+  </div>
+
+  <script>
+    function copySubject() {
+      var s = document.getElementById('subject');
+      s.select();
+      document.execCommand('copy');
+      alert('คัดลอก Subject แล้ว — ไปวางในช่อง \"เรื่อง\" ใน Gmail ได้เลย');
+    }
+    function copyBody() {
+      var b = document.getElementById('body');
+      b.select();
+      document.execCommand('copy');
+      alert('คัดลอก Body แล้ว — ไปวางในเนื้อความใน Gmail ได้เลย');
+    }
+  </script>
+</body>
+</html>

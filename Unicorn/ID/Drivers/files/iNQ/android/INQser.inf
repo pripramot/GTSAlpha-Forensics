@@ -1,0 +1,82 @@
+; Windows  Virtual Serial Port Setup File
+; Copyright (c) 2010-2011 	INQ
+; Manufacturer: INQ
+;
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %INQ%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer  = 07/08/2009,1.0.0.1
+Catalogfile = INQusbser.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+  1000 = %INQSrcDisk%,"",,
+
+[SourceDisksFiles]
+  INQusbser.sys = 1000
+
+
+[Manufacturer]
+%INQ% = INQSerialPort, NTia64, NTamd64
+
+[INQSerialPort]
+%INQ00011%  = INQportInstall00, USB\VID_2314&PID_0001&MI_01
+%INQ00013%  = INQportInstall00, USB\VID_2314&PID_0001&MI_03
+%INQ00022%  = INQportInstall00, USB\VID_2314&PID_0002&MI_02
+%INQ00024%  = INQportInstall00, USB\VID_2314&PID_0002&MI_04
+
+
+[INQSerialPort.NTia64]
+%INQ00011%  = INQportInstall00, USB\VID_2314&PID_0001&MI_01
+%INQ00013%  = INQportInstall00, USB\VID_2314&PID_0001&MI_03
+%INQ00022%  = INQportInstall00, USB\VID_2314&PID_0002&MI_02
+%INQ00024%  = INQportInstall00, USB\VID_2314&PID_0002&MI_04
+
+
+[INQSerialPort.NTamd64]
+%INQ00011%  = INQportInstall00, USB\VID_2314&PID_0001&MI_01
+%INQ00013%  = INQportInstall00, USB\VID_2314&PID_0001&MI_03
+%INQ00022%  = INQportInstall00, USB\VID_2314&PID_0002&MI_02
+%INQ00024%  = INQportInstall00, USB\VID_2314&PID_0002&MI_04
+
+[INQportInstall00.NT]
+CopyFiles= INQCUsbDriverFiles
+AddReg = All00, AddReg
+
+
+[INQCUsbDriverFiles]
+INQusbser.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[INQportInstall00.NT.Services]
+AddService=INQusbser,  0x00000002, INQ_USBSerialService
+
+[INQ_USBSerialService]
+DisplayName   = %INQCUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\INQusbser.sys
+
+[All00]
+HKR,,NTMPDriver,,INQusbser.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+INQ   = "INQ"
+INQSrcDisk = "INQ USB Driver Disk"
+INQCUSBSER = "INQ USB Device"
+INQ00011 = "INQ Cloud Touch HS-USB DIAG"
+INQ00013 = "INQ Cloud Touch HS-USB GPS"
+INQ00022 = "INQ Cloud Touch HS-USB DIAG"
+INQ00024 = "INQ Cloud Touch HS-USB GPS"

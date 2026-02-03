@@ -1,0 +1,160 @@
+;*****************************************************************************
+;
+; Name:  lgmdobx2.inf
+;
+; Function:
+;	Install the LG Mobile USB WMC OBEX Interface on Win2000/XP
+;
+; Copyright (c) 1997-2008 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=07/08/2008,4.46.1.0
+DriverVer=04/21/2009,4.46.1.0
+CatalogFile=lgmdobex.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lgmdobex.sys",,\i386
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+;[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;1=%DiskString%,"lgmdobex.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+lgmdobex.sys = 1
+lgmdcmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+;%lge%=lgmobile, NTamd64
+%lge%=lgmobile
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[lgmobile]
+%lgmobile.Comm.Desc% = lgmobile.Install, USB\VID_1004&PID_6091&Class_02&SubClass_0b&Prot_00&OS_NT
+
+;[lgmobile.NTamd64]
+;%lgmobile.Comm.Desc% = lgmobile.Install, USB\VID_1004&PID_6091&Class_02&SubClass_0b&Prot_00&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[lgmobile.Install.nt]
+AddReg		= lgmobile.AddReg,lgmobile.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[lgmobile.AddReg]
+HKR,,NTMPDriver,,lgmdobex.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[lgmobile.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+lgmdobex.sys
+lgmdcm.sys,lgmdcmnt.sys
+lgmdcmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+
+
+[lgmobile.Install.NT.Services]
+AddService = lgmdobex, 0x00000002, lgmobile.Install.AddService
+
+
+
+
+[lgmobile.Install.AddService]
+DisplayName	= %lgmobile.Service.Name%
+Description	= %lgmobile.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\lgmdobex.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "LG Electronics"
+lge = "LG Electronics"
+DiskString = "LG Mobile USB WMC OBEX Interface installation disk"
+
+lgmobile.Comm.Desc = "LG Mobile USB WMC OBEX Interface"
+lgmobile.Service.Name = "LG Mobile USB WMC OBEX Interface"
+lgmobile.Service.Desc = "LG Mobile USB WMC OBEX Interface"
+
+
+CustomerDataPath = "LG Electronics Mobile"
+DriverSet = "LG Electronics Mobile Software"
+UninstallFile = "LGMDUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

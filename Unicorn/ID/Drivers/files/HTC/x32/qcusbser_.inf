@@ -1,0 +1,75 @@
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2009 HTC Corp.
+; Manufacturer: HTC Corp.
+;
+; This INF file installs a virtual COM port on Win2K and WinXP system.
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %OEM%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer  = 04/21/2009,2.0.5.3
+Catalogfile.nt=qcusbser_.cat
+
+[SourceDisksNames]
+1000 = %OEMSRCDISK%,"",,
+1001 = %OEMSRCDISK%,"",,
+
+[SourceDisksFiles]
+qcmdmxp.sys = 1001
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+
+[Manufacturer]
+%OEM% = Models, NT.5.1
+
+; For WinXP
+[Models.NT.5.1]
+
+%OEMDevice02% = OEMPortXP, USB\VID_0BB4&PID_0E02&MI_00
+
+
+[OEMPortXP.NT]
+CopyFiles = PortCopyFileSectionXP
+AddReg = All00XP, AddReg.NT
+
+
+[OEMPortXP.NT.Services]
+AddService = qcserxp,  0x00000002, OEMPort_Service_InstXP
+
+[OEMPort_Service_InstXP]
+DisplayName   = %OEMSerialPortName00%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qcserxp.sys
+
+[PortCopyFileSectionXP]
+qcserxp.sys, qcmdmxp.sys,,0x20
+
+
+[All002K]
+HKR,,NTMPDriver,,qcser2k.sys
+
+[All00XP]
+HKR,,NTMPDriver,,qcserxp.sys
+
+
+[AddReg.NT]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+OEM                 = "HTC Corporation"
+OEMSRCDISK          = "HTC USB Driver Disk"
+OEMDevice00         = "HTC Diagnostic Interface"
+OEMDevice01         = "HTC Diagnostic Interface"
+OEMDevice02         = "HTC Diagnostic Interface"
+OEMSerialPortName00 = "HTC Diagnostic Port"
+

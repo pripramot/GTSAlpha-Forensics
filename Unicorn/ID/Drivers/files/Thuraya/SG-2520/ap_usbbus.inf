@@ -1,0 +1,59 @@
+; Installation inf for ASIA_PACIFIC
+;
+; (c) Copyright 2007 ASIA_PACIFIC
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+provider=ASIA_PACIFIC
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/15/2006,1.0.3.3
+DriverVer=04/21/2009,1.0.3.3
+CatalogFile=ap_bus.cat
+
+[SourceDisksNames]
+1=%InstallDisk1%,DISK1
+
+[SourceDisksFiles]
+ap_bus.sys = 1                    ; system32\drivers
+
+[Manufacturer]
+ASIA_PACIFIC=ASIA_PACIFIC
+
+[ASIA_PACIFIC]
+%DeviceDesc%=ASIA_PACIFIC.Dev, USB\Vid_1A26&Pid_9D81	; GSM Modem
+%DeviceDesc%=ASIA_PACIFIC.Dev, USB\Vid_1A26&Pid_9D82	; GPS Modem
+%DeviceDesc%=ASIA_PACIFIC.Dev, USB\Vid_1A26&Pid_9D83    ; Serial Only
+%DeviceDesc%=ASIA_PACIFIC.Dev, USB\Vid_1A26&Pid_9D84	; ActiveSync Mode
+
+[DestinationDirs]
+ASIA_PACIFIC.Files.Ext=10,System32\Drivers
+
+[ASIA_PACIFIC.Dev.NT]
+CopyFiles=ASIA_PACIFIC.Files.Ext
+
+[ASIA_PACIFIC.Dev.NT.Services]
+Addservice=ap_bus, 0x00000002, ASIA_PACIFIC.AddService
+
+[ASIA_PACIFIC.AddService]
+DisplayName=%ASIA_PACIFIC.SvcDesc%
+ServiceType=1                  ; SERVICE_KERNEL_DRIVER
+StartType=3                  	; SERVICE_AUTO_START
+ErrorControl=1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary=%10%\System32\Drivers\ap_bus.sys
+LoadOrderGroup = Base
+
+[ASIA_PACIFIC.Files.Ext]
+ap_bus.sys
+
+;---------------------------------------------------------------;
+
+[Strings]
+InstallDisk1="Installation Disk"
+ASIA_PACIFIC.Provider="Thuraya"
+MFG="Thuraya"
+DeviceDesc="Thuraya SG-2520 USB Composite Device"
+ASIA_PACIFIC.SvcDesc="Thuraya SG-2520 USB Composite Device"
+DISK="Thuraya USB Installation Disk"

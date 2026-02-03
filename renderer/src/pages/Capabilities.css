@@ -1,0 +1,67 @@
+.capabilities-page {
+  padding: 0;
+  min-height: 400px;
+}
+
+.capabilities-page h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.capabilities-intro {
+  margin: 0 0 24px 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.cap-section {
+  margin-bottom: 32px;
+}
+
+.cap-section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.cap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.cap-table th,
+.cap-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.cap-table th {
+  background: rgba(255,255,255,0.06);
+  font-weight: 600;
+}
+
+.cap-table td {
+  opacity: 0.9;
+}
+
+.cap-table .tick {
+  color: #22c55e;
+}
+
+.cap-table .dash {
+  color: #6b7280;
+}
+
+.cap-ranges {
+  font-size: 13px;
+  opacity: 0.85;
+  margin: 0;
+}

@@ -1,0 +1,57 @@
+; Installation inf for ASIA_PACIFIC
+;
+; (c) Copyright 2005 ASIA_PACIFIC
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+provider=ASIA_PACIFIC
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=06/29/2006,1.0.3.1
+DriverVer=04/21/2009,1.0.3.1
+CatalogFile=ap_gvbus.cat
+
+[SourceDisksNames]
+1=%InstallDisk1%,DISK1
+
+[SourceDisksFiles]
+ap_gvbus.sys = 1                    ; system32\drivers
+
+[Manufacturer]
+ASIA_PACIFIC=ASIA_PACIFIC
+
+[ASIA_PACIFIC]
+%DeviceDesc%=ASIA_PACIFIC.Dev, USB\VID_1A26&PID_09CE
+
+
+[DestinationDirs]
+ASIA_PACIFIC.Files.Ext=10,System32\Drivers
+
+[ASIA_PACIFIC.Dev.NT]
+CopyFiles=ASIA_PACIFIC.Files.Ext
+
+[ASIA_PACIFIC.Dev.NT.Services]
+Addservice=ap_gvbus, 0x00000002, ASIA_PACIFIC.AddService
+
+[ASIA_PACIFIC.AddService]
+DisplayName=%ASIA_PACIFIC.SvcDesc%
+ServiceType=1                  ; SERVICE_KERNEL_DRIVER
+StartType=3                  	; SERVICE_AUTO_START
+ErrorControl=1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary=%10%\System32\Drivers\ap_gvbus.sys
+LoadOrderGroup = Base
+
+[ASIA_PACIFIC.Files.Ext]
+ap_gvbus.sys
+
+;---------------------------------------------------------------;
+
+[Strings]
+InstallDisk1="Installation Disk"
+ASIA_PACIFIC.Provider="ASIA_PACIFIC"
+MFG="ASIA_PACIFIC"
+DeviceDesc="APsi SO_2510 USB Composite Device"
+ASIA_PACIFIC.SvcDesc="APsi SO_2510 USB Composite Driver"
+DISK="APsi SO_2510 USB Installation Disk"

@@ -1,0 +1,75 @@
+; Windows Vista Virtual Serial Port Setup File
+; Copyright (c) 2007 Acer Incorporated
+; Manufacturer: Acer Incorporated
+;
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %ACER%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer=10/12/2009,2.0.6.6
+Catalogfile= qcusbsera.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%ACER% = QcomSerialPort, NTamd64
+
+[SourceDisksNames]
+  1000 = %ACERSrcDisk%,"",,
+
+[SourceDisksFiles]
+  qcusbser.sys = 1000
+
+[QcomSerialPort]
+%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3202&MI_00	;A1 - 				ACER HS-USB Android DIAG
+%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3202&MI_03	;A1 - 				ACER Android Communications Port
+%ACERDevice32030%  = QportInstall00, USB\VID_0502&PID_3203&MI_00	;A1 - 				ACER HS-USB Android DIAG
+%ACERDevice32032%  = QportInstall00, USB\VID_0502&PID_3203&MI_02	;A1 - 				ACER Android Communications Port
+%ACERDevice90020%  = QportInstall00, USB\VID_0502&PID_9002			;A1/F1/C1/E1/L1 - 	ACER HS-USB Diagnostics
+
+[QcomSerialPort.NTamd64]
+%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3202&MI_00	;A1 - 				ACER HS-USB Android DIAG
+%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3202&MI_03	;A1 - 				ACER Android Communications Port
+%ACERDevice32030%  = QportInstall00, USB\VID_0502&PID_3203&MI_00	;A1 - 				ACER HS-USB Android DIAG
+%ACERDevice32032%  = QportInstall00, USB\VID_0502&PID_3203&MI_02	;A1 - 				ACER Android Communications Port
+%ACERDevice90020%  = QportInstall00, USB\VID_0502&PID_9002			;A1/F1/C1/E1/L1 - 	ACER HS-USB Diagnostics
+
+[QportInstall00.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg
+
+[QCUsbDriverFiles]
+qcusbser.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[QportInstall00.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService
+
+[QC_USBSerialService]
+DisplayName   = %ACERUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qcusbser.sys
+
+[All00]
+HKR,,NTMPDriver,,qcusbser.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+ACERUSBSER = "ACER Android USB Device for Legacy Serial Communication"
+ACER   = "ACER Incorporated"
+ACERSrcDisk = "Acer USB Driver Disk"
+ACERDevice32020 = "ACER HS-USB Android DIAG"
+ACERDevice32023 = "ACER Android Communications Port"
+ACERDevice32030 = "ACER HS-USB Android DIAG"
+ACERDevice32032 = "ACER Android Communications Port"
+ACERDevice90020 = "ACER HS-USB Diagnostics"

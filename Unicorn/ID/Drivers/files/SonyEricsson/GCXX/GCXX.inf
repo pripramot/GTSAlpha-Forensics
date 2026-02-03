@@ -1,0 +1,247 @@
+; Windows Modem Setup File
+; Copyright (c) 1993-1999 Microsoft Corporation
+; Manufacturer: Sony Ericsson
+
+[Version]
+CatalogFile=GCXX.cat
+Signature="$Windows NT$"
+Class=Modem
+ClassGUID={4D36E96D-E325-11CE-BFC1-08002BE10318}
+Provider=%ModemProvider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/15/2004,3.0.0.1510
+DriverVer=04/21/2009,3.0.0.1510
+
+[DestinationDirs]
+DefaultDestDirs			= 11
+Drv.Copy=12
+
+[Manufacturer]
+%ModemProvider%=GPRS_Modems
+
+[GPRS_Modems]
+%USB2132.Modem% = EDGE.Modem, USB\VID_0FCE&PID_D019
+%GC89.Modem% = EDGE.Modem, PCI\VEN_14E4&DEV_4344&SUBSYS_000318DE
+%GC85.Modem% = EDGE.Modem, PCMCIA\Sony_Ericsson-GC85_PC_Card-A3EA
+%GC85.Modem% = EDGE.Modem, UNIMODEM1F71DB07
+%GC83.Modem% = EDGE.Modem, PCMCIA\Sony_Ericsson-GC83_PC_Card-EF0C
+%GC83.Modem% = EDGE.Modem, UNIMODEM1F71DB06
+%GC82.Modem% = EDGE.Modem, PCMCIA\Sony_Ericsson-GC82_PC_Card-1467
+%GC82.Modem% = EDGE.Modem, PCMCIA\Sony_Ericsson-GC82_PC_Card-2951
+%GC82.Modem% = EDGE.Modem, UNIMODEM1F71DB05
+%GC79.Modem% = GPRS.Modem, PCI\VEN_14E4&DEV_4322&SUBSYS_000218DE
+%GC75.Modem% = GPRS.Modem, PCMCIA\Sony_Ericsson-GC75_PC_Card-7FFD
+%GC75.Modem% = GPRS.Modem, UNIMODEMFBC52FBB
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[WM_Device_LowerFilter]
+HKR,,LowerFilters,0x00010000,SEMWModem
+
+[WM_Device_Service_Inst]
+DisplayName    = %ModemProvider% SEMWModem
+ServiceType    = 1
+StartType      = 3   
+ErrorControl   = 1
+ServiceBinary  = %12%\GCXX.sys
+AddReg		   = Reg.DevName
+
+[Strings]
+TCPWindowSizeDesc	= "TCP Window Size"
+MTUDesc				= "MTU Size"
+LegacyDeviceName			="GC75"
+USB2132.Modem="Sony Ericsson VDC EGPRS Modem"
+USB2132MaxLinkSpeed="2144"
+GC89.Modem="Sony Ericsson GC89 EGPRS Modem"
+GC89MaxLinkSpeed="2144"
+GC85.Modem="Sony Ericsson GC85 EGPRS Modem"
+GC85MaxLinkSpeed="2144"
+GC83.Modem="Sony Ericsson GC83 EGPRS Modem"
+GC83MaxLinkSpeed="2144"
+GC82.Modem="Sony Ericsson GC82 EGPRS Modem"
+GC82MaxLinkSpeed="2144"
+GC79.Modem="Sony Ericsson GC79 Wireless Modem"
+GC75.Modem="Sony Ericsson GC75 Wireless Modem"
+Version				="3.0.0.1510"
+Disk1Name			="Sony Ericsson WWAN Installation Disk "
+DeviceName			="GCXX"
+NicDeviceID			="GCXX\GPRS_NIC_REV01"
+SCDeviceID			="GCXX\SIM_SC"
+ModemProvider="Sony Ericsson"
+FullProductName="Sony Ericsson Wireless Modem"
+ShortProductName="WModem"
+
+[Drv.Copy]
+GCXX.sys
+
+; Driver Settings and Configuration
+[Reg.MdmCommon]
+HKR,%USB2132.Modem%,xKeepStateOnStop,1,04
+HKR,%USB2132.Modem%,USBV24Emulation,1,00
+HKR,%USB2132.Modem%,MaxLinkSpeed,,%USB2132MaxLinkSpeed%
+HKR,%USB2132.Modem%,xMuxFrameSize,1,7F
+HKR,%USB2132.Modem%,xStartHoldTime,1,E8,03,00,00
+HKR,%USB2132.Modem%,xFuncRetryCount,1,02
+HKR,%USB2132.Modem%,xMuxRetryCount,1,01
+HKR,%USB2132.Modem%,xIdleInterval,1,E8,03,00,00
+HKR,%GC89.Modem%,MaxLinkSpeed,,%GC89MaxLinkSpeed%
+HKR,%GC89.Modem%,ReducedLoadMode,1,01
+HKR,%GC89.Modem%,xMuxFrameSize,1,7F
+HKR,%GC89.Modem%,AFCSupport,1,01
+HKR,%GC89.Modem%,BaudRateDiv,1,02,00
+HKR,%GC89.Modem%,UartType,1,02
+HKR,%GC85.Modem%,MaxLinkSpeed,,%GC85MaxLinkSpeed%
+HKR,%GC85.Modem%,ReducedLoadMode,1,01
+HKR,%GC85.Modem%,ReCheckIntId,1,01
+HKR,%GC85.Modem%,xMuxFrameSize,1,7F
+HKR,%GC85.Modem%,PCCardPowerDownEnable,1,01
+HKR,%GC85.Modem%,UartType,1,01
+HKR,%GC83.Modem%,MaxLinkSpeed,,%GC83MaxLinkSpeed%
+HKR,%GC83.Modem%,ReducedLoadMode,1,01
+HKR,%GC83.Modem%,ReCheckIntId,1,01
+HKR,%GC83.Modem%,xMuxFrameSize,1,7F
+HKR,%GC83.Modem%,PCCardPowerDownEnable,1,01
+HKR,%GC83.Modem%,UartType,1,01
+HKR,%GC82.Modem%,MaxLinkSpeed,,%GC82MaxLinkSpeed%
+HKR,%GC82.Modem%,ReducedLoadMode,1,01
+HKR,%GC82.Modem%,ReCheckIntId,1,01
+HKR,%GC82.Modem%,xMuxFrameSize,1,7F
+HKR,%GC82.Modem%,PCCardPowerDownEnable,1,01
+HKR,%GC82.Modem%,UartType,1,01
+HKR,%GC79.Modem%,xMuxFrameSize,1,7F
+HKR,%GC79.Modem%,UartType,1,02
+HKR,%GC79.Modem%,ReducedLoadMode,1,01
+HKR,%GC79.Modem%,RxTriggerLevel,1,00
+HKR,%GC75.Modem%,xMuxFrameSize,1,7F
+HKR,%GC75.Modem%,UartType,1,00
+HKR,%GC75.Modem%,ReducedLoadMode,1,01
+HKR,%GC75.Modem%,RxTriggerLevel,1,00
+
+[Reg.MdmPort]
+HKR,%GC89.Modem%,DisableSCInterface,1,00
+HKR,%GC79.Modem%,DisableSCInterface,1,00
+HKR,,DevLoader,,*vcomm
+HKR,,ConfigDialog,,modemui.dll
+HKR,,PortSubClass,1,02
+HKR,,EnumPropPages,,"modemui.dll,EnumPropPages"
+HKR, Init, 1,, "AT<cr>"
+HKR,, DeviceType, 1, 03
+
+[Reg.DevName]
+HKR,Parameters,LegacyDeviceName,,%LegacyDeviceName%
+HKR,Parameters,DeviceName,,%DeviceName%
+HKR,Parameters,NicDeviceID,,%NicDeviceID%
+HKR,Parameters,SCDeviceID,,%SCDeviceID%
+
+; Modem Commands and Responses
+[Reg.MdmRsp]
+HKR, Fax, HardwareFlowControl,, "1"
+HKR, Fax, FixModemClass,,"2.0"
+HKR, Init, 1,, "AT<cr>"
+HKR, Init, 2,, "AT&F&D2&C1E0V1S0=0<cr>"
+HKR, Monitor, 1,, "ATS0=0<cr>"
+HKR, Monitor, 2,, "None"
+HKR, Answer, 1,, "ATA<cr>"
+HKR, Hangup, 1,, "ATH<cr>"
+HKR,, Reset,, "ATZ<cr>"
+HKR, Settings, Prefix,, "AT"
+HKR, Settings, Terminator,, "<cr>"
+HKR, Settings, DialPrefix,, "D"
+HKR, Settings, DialSuffix,, ""
+HKR, Settings, Pulse,, "P"
+HKR, Settings, Tone,, "T"
+HKR, Settings, FlowControl_Off,,"+IFC=0,0"
+HKR, Settings, FlowControl_Hard,,"+IFC=2,2"
+HKR, Settings, FlowControl_Soft,,"+IFC=1,1"
+HKR, Settings, ErrorControl_Forced,,"+ER=3;+ES=4,2,6"
+HKR, Settings, ErrorControl_Off,,"+ER=0;+ES=1,0,1"
+HKR, Settings, ErrorControl_On,,"+ER=3;+ES=4,0,2"
+HKR, Settings, Compression_Off,,"+DR=0;+DS=0"
+HKR, Settings, Compression_On,,"+DR=1;+DS=3,0,2048,32"
+;HKR,Settings,CallSetupFailTimer,,"S7=<#>"
+;HKR,Settings,InactivityTimeout,,"S10=<#>"
+HKR, Responses, "<cr><lf>OK<cr><lf>",          1, 00, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>ERROR<cr><lf>",       1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>NO CARRIER<cr><lf>",  1, 04, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>NO DIALTONE<cr><lf>", 1, 05, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>BUSY<cr><lf>",        1, 06, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>NO ANSWER<cr><lf>",   1, 07, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>RING<cr><lf>",        1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>FAX<cr><lf>",         1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>DATA<cr><lf>",        1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>VOICE<cr><lf>",       1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "0<cr>",       1, 00, 00, 00,00,00,00, 00,00,00,00 
+HKR, Responses, "1<cr>",       1, 02, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "2<cr>",       1, 08, 00, 00,00,00,00, 00,00,00,00 
+HKR, Responses, "3<cr>",       1, 04, 00, 00,00,00,00, 00,00,00,00 
+HKR, Responses, "4<cr>",       1, 03, 00, 00,00,00,00, 00,00,00,00 
+HKR, Responses, "6<cr>",       1, 05, 00, 00,00,00,00, 00,00,00,00 
+HKR, Responses, "7<cr>",       1, 06, 00, 00,00,00,00, 00,00,00,00 
+HKR, Responses, "8<cr>",       1, 07, 00, 00,00,00,00, 00,00,00,00 
+HKR, Responses, "<cr><lf>+DR: NONE<cr><lf>",                1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+DR: V42B<cr><lf>",                1, 01, 01, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+DR: V42B RD<cr><lf>",             1, 01, 01, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+DR: V42B TD<cr><lf>",             1, 01, 01, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+ER: NONE<cr><lf>",                1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+ER: LAPM<cr><lf>",                1, 01, 02, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+ER: ALT<cr><lf>",                 1, 01, 02, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 9600<cr><lf>",            1, 02, 00, 80,25,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 9600/REL<cr><lf>",        1, 02, 02, 80,25,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 9600/MNP<cr><lf>",        1, 02, 02, 80,25,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 14400<cr><lf>",           1, 02, 00, 40,38,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 14400/REL<cr><lf>",       1, 02, 02, 40,38,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 14400/MNP<cr><lf>",       1, 02, 02, 40,38,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 19200<cr><lf>",           1, 02, 00, 00,4B,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 19200/REL<cr><lf>",       1, 02, 02, 00,4B,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 19200/MNP<cr><lf>",       1, 02, 02, 00,4B,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 28800<cr><lf>",           1, 02, 00, 80,70,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 28800/REL<cr><lf>",       1, 02, 02, 80,70,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 28800/MNP<cr><lf>",       1, 02, 02, 80,70,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 38400<cr><lf>",           1, 02, 00, 00,96,00,00, 00,00,00,00 
+HKR, Responses, "<cr><lf>CONNECT 38400/REL<cr><lf>",       1, 02, 02, 00,96,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 38400/MNP<cr><lf>",       1, 02, 02, 00,96,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 43200<cr><lf>",           1, 02, 00, C0,A8,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 43200/REL<cr><lf>",       1, 02, 02, C0,A8,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 43200/MNP<cr><lf>",       1, 02, 02, C0,A8,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 57600<cr><lf>",           1, 02, 00, 00,E1,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 57600/REL<cr><lf>",       1, 02, 02, 00,E1,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 57600/MNP<cr><lf>",       1, 02, 02, 00,E1,00,00, 00,00,00,00
+
+[Reg.LegRsp]
+HKR,, Properties, 1, 00,00,00,00, 00,00,00,00, 00,00,00,00, 00,00,00,00, 00,00,00,00, 30,00,00,00, 00,C2,01,00, 60,D1,00,00
+HKR, Responses, "<cr><lf>CONNECT<cr><lf>",                 1, 02, 00, 60,D1,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT/REL<cr><lf>",             1, 02, 02, 60,D1,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT/MNP<cr><lf>",             1, 02, 02, 60,D1,00,00, 00,00,00,00
+
+[Reg.EdgRsp]
+HKR,, Properties, 1, 00,00,00,00, 00,00,00,00, 00,00,00,00, 00,00,00,00, 00,00,00,00, 30,00,00,00, 00,10,0E,00, 80,45,03,00
+HKR, Responses, "<cr><lf>CONNECT<cr><lf>",                 1, 02, 00, 80,45,03,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT/REL<cr><lf>",             1, 02, 02, 80,45,03,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT/MNP<cr><lf>",             1, 02, 02, 80,45,03,00, 00,00,00,00
+
+[SourceDisksNames]
+1=%Disk1Name%,,
+
+[SourceDisksFiles]
+GCXX.sys = 1
+
+[GPRS.Modem.NT]
+CopyFiles=Drv.Copy
+AddReg=Reg.MdmCommon, Reg.MdmPort, Reg.MdmRsp, Reg.LegRsp
+
+[GPRS.Modem.NT.Services]
+AddService = SEMWModem, 0x00000000, WM_Device_Service_Inst
+
+[GPRS.Modem.NT.HW]
+AddReg=WM_Device_LowerFilter
+
+[EDGE.Modem.NT]
+CopyFiles=Drv.Copy
+AddReg=Reg.MdmCommon, Reg.MdmPort, Reg.MdmRsp, Reg.EdgRsp
+
+[EDGE.Modem.NT.Services]
+AddService = SEMWModem, 0x00000000, WM_Device_Service_Inst
+
+[EDGE.Modem.NT.HW]
+AddReg=WM_Device_LowerFilter

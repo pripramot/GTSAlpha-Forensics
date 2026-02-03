@@ -1,0 +1,82 @@
+; Copyright (c) 2003 NEC Corporation
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%ProviderName%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=06/23/2003,1.00.00
+DriverVer=04/21/2009,1.00.01
+CatalogFile=ulusbc.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[DestinationDirs]
+DefaultDestDir  = 10,system32\drivers
+WNUSCTL.NT.Copy = 10,system32\drivers
+
+[SourceDisksNames]
+1=%DISK1%,,,
+
+[SourceDisksFiles]
+ulusbc.sys = 1
+ulusbe.sys = 1
+
+[Manufacturer]
+%MfgName%=DCM
+
+[DCM]
+%DCM_WNUSCTL.DeviceDesc% = WNUSCTL, USB\VID_0409&PID_010C
+
+[WNUSCTL.NT]
+CopyFiles=WNUSCTL.NT.Copy
+
+[WNUSCTL.NT.Copy]
+ulusbc.sys;,,0x20	;Suppress version conflict dialog and don't overwrite newer files.
+ulusbe.sys,,,0x20	;Suppress version conflict dialog and don't overwrite newer files.
+
+[WNUSCTL.NT.HW]
+AddReg=WNUSCTL.NT.HW.AddReg
+
+[WNUSCTL.NT.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"ulusbe"
+
+[WNUSCTL.NT.Services]
+AddService = ulusbc, 0x00000002, WNUSCTL_Service
+AddService = ulusbe, 0x00000000, WNUSENU_Service
+
+[WNUSCTL_Service]
+DisplayName    = %DCM_SRV_WNUSCTL.DeviceDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\ulusbc.sys
+AddReg         = WNUSCTL_Service_Addreg
+
+[WNUSENU_Service]
+DisplayName    = %DCM_SRV_WNUSENU.DeviceDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\ulusbe.sys
+LoadOrderGroup = PNP Filter
+AddReg         = WNUSENU_Service_Addreg
+
+[WNUSCTL_Service_Addreg]
+HKR,,BULKOUTBUFF,0x00010001,1024               ; Transfer size
+
+[WNUSENU_Service_Addreg]
+HKR,,HWIDNUM,0x00010001,0x03
+HKR,,HWID_NAME0,,"WDM_MODEM\ULUSBM"
+HKR,,HWID_NAME1,,"WDM_MODEM\ULUSBO"
+HKR,,HWID_NAME2,,"WDM_MODEM\ULUSBA"
+
+[Strings]
+ProviderName = "NEC Corporation"
+MfgName = "NEC Corporation"
+DCM_WNUSCTL.DeviceDesc = "NEC 616 USB Controller"
+DCM_SRV_WNUSCTL.DeviceDesc = "NEC 616 CONTROL Driver"
+DCM_SRV_WNUSENU.DeviceDesc = "NEC 616 ENUMERATION Driver"
+DISK1="NEC 616 CD-ROM"

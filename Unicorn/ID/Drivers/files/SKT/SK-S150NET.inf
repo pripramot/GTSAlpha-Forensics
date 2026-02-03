@@ -1,0 +1,149 @@
+;*************************************************************************************
+;
+; Name      :  SK-S150Net.inf
+;
+; Function  :  Install  Miniport Ethernet Adapter device driver on Windows 2000/XP/VISTA/7
+;
+; Copyright (c) DEVGURU Co., LTD. (www.devguru.co.kr)
+;
+;*************************************************************************************
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %Msft%
+DriverVer   =03/02/2011,1.0.1801.0302
+CatalogFile = SK-S150Net.cat
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%Msft% = Msft,NTx86, NTamd64
+
+; For WinXP and later
+[Msft.NTx86]
+%USB\VID_1F53&PID_A014&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc%    = SK-S150.Install, USB\VID_1F53&PID_A014&CLASS_02&SUBCLASS_0C&PROT_07
+%USB\VID_1F53&PID_A013&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc%    = SK-S150.Install, USB\VID_1F53&PID_A013&CLASS_02&SUBCLASS_0C&PROT_07
+
+; For WinXP and later
+[Msft.NTamd64]
+%USB\VID_1F53&PID_A014&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc%    = SK-S150.Install, USB\VID_1F53&PID_A014&CLASS_02&SUBCLASS_0C&PROT_07
+%USB\VID_1F53&PID_A013&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc%    = SK-S150.Install, USB\VID_1F53&PID_A013&CLASS_02&SUBCLASS_0C&PROT_07
+
+;-------------------------------------------------------------------------------
+; Virtual Ethernet Adapter
+;
+[SK-S150.Install.NT]
+Characteristics = 0x84 ; NCF_PHYSICAL,NCF_HAS_UI 
+BusType         = 15 ; if you specify NCF_PHYSICAL, you must specify bustype
+AddReg          = SK-S150.Reg, ParamsPromiscuous
+CopyFiles       = SK-S150.CopyFiles
+
+
+[SK-S150.Install.NT.Services]
+AddService      = SK-S150Net, 2, SK-S150.Service, SK-S150.EventLog
+
+;-----------------------------------------------------------------------------
+; Virtual Miniport Common
+;
+[SK-S150.Reg]
+HKR,    ,                         BusNumber,           0, "0"
+HKR, Ndi,                         Service,             0, "SK-S150Net"
+HKR, Ndi\Interfaces,              UpperRange,          0, "ndis5"
+HKR, Ndi\Interfaces,              LowerRange,          0, "ethernet"
+
+[ParamsPromiscuous]
+;
+;    Should the physical NIC be set to Promiscuous mode
+;
+HKR, Ndi\Params\Promiscuous,     ParamDesc, , %Promiscuous%
+HKR, Ndi\Params\Promiscuous,     Default,  ,"0"
+HKR, Ndi\Params\Promiscuous,     type, ,      enum
+HKR, Ndi\Params\Promiscuous\enum,"1",  ,     %Promiscuous_Enable%
+HKR, Ndi\Params\Promiscuous\enum,"0",  ,     %Promiscuous_Disable%
+
+
+;-----------------------------------------------------------------------------
+; DestinationDirs
+;
+[SK-S150.CopyFiles]
+SK-S150NET.sys,,,2
+
+;-----------------------------------------------------------------------------
+; Driver and Service Section
+;
+
+[SK-S150.Service]
+DisplayName     = %SK-S150.Service.DispName%
+Description	= %SK-S150.Service.Desc%
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\SK-S150NET.sys
+LoadOrderGroup  = NDIS
+AddReg          = TextModeFlags.Reg
+
+[SK-S150.EventLog]
+AddReg = SK-S150.AddEventLog.Reg
+
+[SK-S150.AddEventLog.Reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[TextModeFlags.Reg]
+HKR, , TextModeFlags,    0x00010001, 0x0001
+
+[SourceDisksNames]
+1 = %DiskId1%,,,\i386
+2 = %DiskId1%,,,\amd64
+
+[SourceDisksFiles.x86]
+SK-S150NET.sys  = 1,,
+WdfCoInstaller01009.dll = 1 ; make sure the number matches with SourceDisksNames
+
+[SourceDisksFiles.amd64]
+SK-S150NET.sys  = 2,,
+WdfCoInstaller01009.dll = 2 ; make sure the number matches with SourceDisksNames
+
+;
+;--- SK-S150.Install WDF Coinstaller installation ------
+;
+[DestinationDirs]
+SK-S150_CoInstaller_CopyFiles = 11
+SK-S150.CopyFiles = 12
+
+[SK-S150.Install.NT.CoInstallers]
+AddReg=SK-S150_CoInstaller_AddReg
+CopyFiles=SK-S150_CoInstaller_CopyFiles
+
+[SK-S150_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01009.dll,WdfCoInstaller"
+
+[SK-S150_CoInstaller_CopyFiles]
+WdfCoInstaller01009.dll
+
+[SK-S150.Install.NT.Wdf]
+KmdfService = SK-S150Net, SK-S150_wdfsect
+
+[SK-S150_wdfsect]
+KmdfLibraryVersion = 1.9
+
+
+
+;-----------------------------------------------------------------------------
+; Localizable Strings
+;
+[Strings]
+Msft                       = "SK telesys"
+USB\VID_1F53&PID_A013&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc        = "SK telesys USB Ethernet Device"
+USB\VID_1F53&PID_A014&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc        = "SK telesys USB Ethernet Device"
+SK-S150.Service.DispName    = "SK-S150 Network Adapter"
+SK-S150.Service.Desc = "SK-S150 Network Adapter device driver"
+
+DiskId1 = "SK telesys USB Ethernet Device Installation Disk"
+Promiscuous        = "Set the physical NIC to promiscuous mode"
+Promiscuous_Disable = "Disable"
+Promiscuous_Enable  = "Enable"
+

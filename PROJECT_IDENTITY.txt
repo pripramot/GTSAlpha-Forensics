@@ -1,0 +1,8 @@
+GTSAlpha-Forensics — ข้อมูลโครงการสำหรับอ้างอิง/ส่งขึ้น Supabase
+===============================================================
+
+ชื่อโฟลเดอร์ (Folder):  GTSAlpha-Forensics
+ชื่อโปรแกรม (App):      Unicorn
+
+Unicorn = ACESO / ชุดเครื่องมือจาก AcesoSetup.exe (นิติวิทยาศาสตร์มือถือ)
+การเชื่อมต่อ: Supabase + Docker (Local)

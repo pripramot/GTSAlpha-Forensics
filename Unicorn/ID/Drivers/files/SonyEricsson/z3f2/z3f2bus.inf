@@ -1,0 +1,174 @@
+;*****************************************************************************
+;
+; z3f2bus.inf   -- Install the Sony Ericsson drivers
+;
+; Copyright (c) 1997-2003 MCCI
+;
+; $Id: cdcbus.inf,v 1.9 2002/04/11 14:35:39 greg Exp $
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=10/24/2003, 3.48.0.2701
+DriverVer=04/21/2009, 3.48.0.2701
+;Missing CAT file entry added by RTGL
+CatalogFile=z3f2bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+SEMC_Z1010Wdm.W95.CopyFiles       = 11                    ; LDID_SYS
+SEMC_Z1010Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"z3f2bus.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+z3f2bus.sys = 1
+;z3f2wh95.sys = 1; RTGL: remove unused files from legacy OS versions
+z3f2whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC_Z1010%=SEMC_Z1010
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[SEMC_Z1010]
+%SEMC_Z1010.CdcBus.Desc% = SEMC_Z1010Wdm.Install, USB\VID_0FCE&PID_1010
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[SEMC_Z1010.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[SEMC_Z1010Wdm.Install]
+DriverVer=10/24/2003, 3.48.0.2701
+CopyFiles       = SEMC_Z1010Wdm.W95.CopyFiles, SEMC_Z1010.CopyFiles, PropPages.CopyFiles
+AddReg          = SEMC_Z1010Wdm.AddReg, SEMC_Z1010Wdm.W95.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SEMC_Z1010Wdm.Install.NT]
+DriverVer=10/24/2003, 3.48.0.2701
+CopyFiles       = SEMC_Z1010Wdm.NT.CopyFiles
+AddReg          = SEMC_Z1010Wdm.AddReg, SEMC_Z1010Wdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SEMC_Z1010Wdm.Install.NT.Services]
+AddService      = z3f2bus, 2, SEMC_Z1010Wdm.AddService
+
+[SEMC_Z1010Wdm.AddService]
+DisplayName             = %SEMC_Z1010.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\z3f2bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SEMC_Z1010Wdm.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[SEMC_Z1010Wdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,z3f2bus.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SEMC_Z1010Wdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[SEMC_Z1010Wdm.W95.CopyFiles]
+z3f2bus.sys
+;z3f2wh.sys,z3f2wh95.sys; RTGL: remove unused files from legacy OS versions
+;z3f2wh95.sys; RTGL: remove unused files from legacy OS versions
+z3f2whnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SEMC_Z1010Wdm.NT.CopyFiles]
+z3f2bus.sys
+z3f2wh.sys,z3f2whnt.sys
+z3f2whnt.sys
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+SEMC_Z1010 = "Sony Ericsson"
+DiskString = "Sony Ericsson Installation disk"
+
+SEMC_Z1010.CdcBus.Desc = "Sony Ericsson"
+SEMC_Z1010.Service.Desc = "Sony Ericsson driver (WDM)"
+
+CustomerDataPath = "Z1010 series Kit"
+DriverSet = "Z1010 series Software"
+UninstallFile = "Z3F2Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

@@ -1,0 +1,71 @@
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2006-2007 Huawei Incorporated
+; Manufacturer: Huawei Incorporated
+;
+; This INF file installs a virtual COM port on Windows 64bit system.
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %HUAWEI%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer=01/24/2011,1.0.300
+Catalogfile= hwser.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%HUAWEI% = QcomSerialPort, NTia64, NTamd64
+
+[SourceDisksNames]
+  1000 = %HuaweiSrcDisk%,"",,
+
+[SourceDisksFiles]
+  hwusbser02.sys = 1000
+
+[QcomSerialPort]
+%HwDevice36de0%  = QportInstall00, USB\VID_12D1&PID_36de&MI_00
+%HwDevice36de1%  = QportInstall00, USB\VID_12D1&PID_36de&MI_01
+
+[QcomSerialPort.NTia64]
+%HwDevice36de0%  = QportInstall00, USB\VID_12D1&PID_36de&MI_00
+%HwDevice36de1%  = QportInstall00, USB\VID_12D1&PID_36de&MI_01
+
+[QcomSerialPort.NTamd64]
+%HwDevice36de0%  = QportInstall00, USB\VID_12D1&PID_36de&MI_00
+%HwDevice36de1%  = QportInstall00, USB\VID_12D1&PID_36de&MI_01
+
+[QportInstall00.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg
+
+[QCUsbDriverFiles]
+hwusbser02.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[QportInstall00.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService
+
+[QC_USBSerialService]
+DisplayName   = %HWUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\hwusbser02.sys
+
+[All00]
+HKR,,NTMPDriver,,hwusbser02.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+HWUSBSER = "Huawei USB Device for Legacy Serial Communication"
+HuaweiSrcDisk = "Huawei USB Driver Disk"
+HUAWEI	      = "Huawei Incorporated"
+HwDevice36de0 = "Ideos Tablet PCUI"
+HwDevice36de1 = "DBAdapter Reserved Interface"

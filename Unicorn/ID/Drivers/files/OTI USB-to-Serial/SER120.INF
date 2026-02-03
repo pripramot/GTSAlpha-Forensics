@@ -1,0 +1,71 @@
+[version]
+signature="$CHICAGO$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Pro%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=01/01/2004,1.0.0.0
+DriverVer=04/21/2009,1.0.0.0
+CatalogFile=ser120.cat
+
+[SourceDisksNames]
+1=%Pro.Disk%,,,
+
+[SourceDisksFiles]
+ser120.sys=1
+
+[DestinationDirs]
+DefaultDestDir=12
+ComPort.NT.Copy=12
+
+[Manufacturer]
+%Pro%=Pro
+
+[Pro]
+%DeviceDesc% = ComPort, USB\VID_0EA0&PID_6858
+
+[ComPort.NT]
+CopyFiles=ComPort.NT.Copy
+AddReg=ComPort.NT.AddReg
+
+[ComPort.NT.HW]
+AddReg=ComPort.NT.HW.AddReg
+
+[ComPort.NT.Copy]
+ser120.sys
+
+[ComPort.NT.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,SER120.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[ComPort.NT.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"serenum"
+
+[ComPort.NT.Services]
+AddService = SER120, 0x00000002, Serial_Service_Inst
+AddService = Serenum,,Serenum_Service_Inst
+
+[Serial_Service_Inst]
+DisplayName    = %Serial.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_SYSTEM_START (this driver may do detection)
+ErrorControl   = 1               ; SERVICE_ERROR_IGNORE
+ServiceBinary  = %12%\SER120.sys
+LoadOrderGroup = Base
+
+[Serenum_Service_Inst]
+DisplayName    = %Serenum.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\serenum.sys
+LoadOrderGroup = PNP Filter
+
+[Strings]
+Pro = "OTI"
+Pro.Disk="OTI Comm Port"
+DeviceDesc = "OTI USB-to-Serial Comm Port"
+Serial.SVCDESC   = "OTI Serial port driver"
+Serenum.SVCDESC = "Serenum Filter Driver"
+

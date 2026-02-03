@@ -1,0 +1,144 @@
+;*****************************************************************************
+;
+; Name:  zebrmsc.inf
+;
+; Function:
+;	Install MCCI Mass Storage drivers (WDM)
+;
+; Copyright (c) 1997-2007 MCCI Corporation
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+CatalogFile=zebrmsc.cat
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"memorystick.ico",,
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"memorystick.ico",,
+
+[SourceDisksFiles]
+memorystick.ico = 1
+
+[McciDev.CopyFiles]
+memorystick.ico
+
+[DestinationDirs]
+McciDev.CopyFiles = 12
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%MCCI%=MCCI, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[MCCI]
+%VID_0FCE_PID_D030% = McciDev.Install, USB\VID_0FCE&PID_D030&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_D030% = McciDev.Install, USB\VID_0FCE&PID_D031&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E030% = McciDev.Install, USB\VID_0FCE&PID_E030&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E030% = McciDev.Install, USB\VID_0FCE&PID_E031&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_D058% = McciDev.Install, USB\VID_0FCE&PID_D058&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_D058% = McciDev.Install, USB\VID_0FCE&PID_D037&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E092% = McciDev.Install, USB\VID_0FCE&PID_E092&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E065% = McciDev.Install, USB\VID_0FCE&PID_E065&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E0CD% = McciDev.Install, USB\VID_0FCE&PID_E0CD&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E0CB% = McciDev.Install, USB\VID_0FCE&PID_E0CB&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E0CE% = McciDev.Install, USB\VID_0FCE&PID_E0CE&Class_08&Subclass_06&Prot_50&OS_NT
+
+[MCCI.NTamd64]
+%VID_0FCE_PID_D030% = McciDev.Install, USB\VID_0FCE&PID_D030&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_D030% = McciDev.Install, USB\VID_0FCE&PID_D031&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E030% = McciDev.Install, USB\VID_0FCE&PID_E030&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E030% = McciDev.Install, USB\VID_0FCE&PID_E031&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_D058% = McciDev.Install, USB\VID_0FCE&PID_D058&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_D058% = McciDev.Install, USB\VID_0FCE&PID_D037&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E092% = McciDev.Install, USB\VID_0FCE&PID_E092&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E065% = McciDev.Install, USB\VID_0FCE&PID_E065&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E0CD% = McciDev.Install, USB\VID_0FCE&PID_E0CD&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E0CB% = McciDev.Install, USB\VID_0FCE&PID_E0CB&Class_08&Subclass_06&Prot_50&OS_NT
+%VID_0FCE_PID_E0CE% = McciDev.Install, USB\VID_0FCE&PID_E0CE&Class_08&Subclass_06&Prot_50&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[McciDev.Install.NT]
+Include=usbstor.inf
+Needs=USBSTOR_BULK.NT
+CopyFiles=McciDev.CopyFiles
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+
+[McciDev.Install.NT.Services]
+Include=usbstor.inf
+Needs=USBSTOR_BULK.NT.Services
+
+[McciDev.Install.NT.HW]
+AddReg=McciDev.Customize
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+[McciDev.Customize]
+HKR,, Label, 0x10000, "Sony Ericsson Mass Storage Device"
+HKR,, Icons, 0x10000, "memorystick.ico"
+HKR,, NoMediaIcons, 0x10000, "memorystick.ico"
+;-----------------------------------------------------------------------------
+; Strings
+;-----------------------------------------------------------------------------
+
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson Mobile Communications AB"
+MCCI = "Sony Ericsson Mobile Communications AB"
+DiskString = "Sony Ericsson MSC Driver installation disk"
+
+VID_0FCE_PID_D030 = "Sony Ericsson Mass Storage Device"
+VID_0FCE_PID_E030 = "Sony Ericsson Mass Storage Device"
+VID_0FCE_PID_D058 = "Sony Ericsson Mass Storage Device"
+VID_0FCE_PID_E092 = "Sony Ericsson Mass Storage Device"
+VID_0FCE_PID_E065 = "Sony Ericsson Mass Storage Device"
+VID_0FCE_PID_E0CD = "Sony Ericsson Mass Storage Device"
+VID_0FCE_PID_E0CB = "Sony Ericsson Mass Storage Device"
+VID_0FCE_PID_E0CE = "Sony Ericsson Mass Storage Device"
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;--strings for InstallRight Pro (tm)--
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+McciOptions = "Uninstallable"
+;-------------------------------------
+
+
+;*** end of file ***

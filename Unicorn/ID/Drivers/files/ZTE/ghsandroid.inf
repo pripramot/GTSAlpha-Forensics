@@ -1,0 +1,176 @@
+;
+; Android WinUsb driver installation.
+;
+[Version]
+Signature           = "$Windows NT$"
+Class               = AndroidUsbDeviceClass
+ClassGuid           = {3F966BD9-FA04-4ec5-991C-D326973B5128}
+Provider            = %ProviderName%
+DriverVer           = 12/20/2012,2.0.0010.00002
+CatalogFile         = ghsandroid.cat
+
+;
+; This section seems to be required for WinUsb driver installation.
+; If this section is removed the installer will report an error
+; "Required section not found in INF file".
+;
+[ClassInstall32]
+Addreg = AndroidWinUsbClassReg
+
+[AndroidWinUsbClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-1
+
+[Manufacturer]
+%ProviderName% = Google, NTx86, NTamd64
+
+[Google]
+;P726G
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0211&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0212&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0213&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0214&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0216&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0217&MI_03
+;N910
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0268&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0269&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0270&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0275&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0276&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0278&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0279&MI_08
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0281&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0282&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0285
+;ICS
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0321&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0323&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0359&MI_01
+;P825F01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0455&MI_03
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0456&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0457&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0458&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0459&MI_05
+
+[Google.NTx86]
+;P726G
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0211&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0212&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0213&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0214&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0216&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0217&MI_03
+;N910
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0268&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0269&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0270&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0275&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0276&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0278&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0279&MI_08
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0281&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0282&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0285
+;ICS
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0321&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0323&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0359&MI_01
+;P825F01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0455&MI_03
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0456&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0457&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0458&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0459&MI_05
+
+[Google.NTamd64]
+;P726G
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0211&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0212&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0213&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0214&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0216&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0217&MI_03
+;N910
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0268&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0269&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0270&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0275&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0276&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0278&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0279&MI_08
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0281&MI_00
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0282&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0285
+;ICS
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0321&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0323&MI_01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0359&MI_01
+;P825F01
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0455&MI_03
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0456&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0457&MI_02
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0458&MI_04
+%HSADBDevice%  = USB_Install, USB\VID_19D2&PID_0459&MI_05
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include     = winusb.inf
+AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall
+
+[WinUSB_ServiceInstall]
+DisplayName     = %WinUSB_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+[USB_Install.Wdf]
+KmdfService = WINUSB, WinUSB_Install
+
+[WinUSB_Install]
+KmdfLibraryVersion  = 1.9
+
+[USB_Install.HW]
+AddReg  = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{F72FE0D4-CBCB-407d-8814-9ED673D0DD6B}"
+
+[USB_Install.CoInstallers]
+AddReg    = CoInstallers_AddReg
+CopyFiles = CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01009.dll,WdfCoInstaller","WinUSBCoInstaller2.dll"
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+WdfCoInstaller01009.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles=11
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,,\i386
+2 = %DISK_NAME%,,,\amd64
+
+[SourceDisksFiles.x86]
+WinUSBCoInstaller2.dll  = 1
+WdfCoInstaller01009.dll = 1
+
+[SourceDisksFiles.amd64]
+WinUSBCoInstaller2.dll  = 2
+WdfCoInstaller01009.dll = 2
+
+[Strings]
+ProviderName                = "HS Coporation"
+WinUSB_SvcDesc              = "Android USB Driver"
+DISK_NAME                   = "Android WinUsb installation disk"
+ClassName                   = "Android Phone"
+
+HSADBDevice                 = "Handset ADB Interface"

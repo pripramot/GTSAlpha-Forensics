@@ -1,0 +1,168 @@
+;*****************************************************************************
+;
+; Name:  s1029obx2.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 1029 USB WMC OBEX Interface on Win2000/XP
+;
+; Copyright (c) 1997-2009 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=05/20/2009,4.50.7.1
+CatalogFile=s1029obex.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s1029obex.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s1029obex.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+s1029obex.sys = 1
+s1029cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SonyEricsson%=sed1029, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed1029]
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_2129&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_212a&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_212c&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_d129&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_d12a&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_d12c&Class_02&SubClass_0b&Prot_00&OS_NT
+
+
+[sed1029.NTamd64]
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_2129&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_212a&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_212c&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_d129&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_d12a&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1029.Comm.Desc% = sed1029.Install, USB\VID_0fce&PID_d12c&Class_02&SubClass_0b&Prot_00&OS_NT
+
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[sed1029.Install.nt]
+AddReg		= sed1029.AddReg,sed1029.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[sed1029.AddReg]
+HKR,,NTMPDriver,,s1029obex.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[sed1029.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+s1029obex.sys
+s1029cm.sys,s1029cmnt.sys
+s1029cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+
+
+[sed1029.Install.NT.Services]
+AddService = s1029obex, 0x00000002, sed1029.Install.AddService
+
+
+
+
+[sed1029.Install.AddService]
+DisplayName	= %sed1029.Service.Name%
+Description	= %sed1029.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\s1029obex.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+SonyEricsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 1029 USB WMC OBEX Interface installation disk"
+
+sed1029.Comm.Desc = "Sony Ericsson Device 1029 USB WMC OBEX Interface"
+sed1029.Service.Name = "Sony Ericsson Device 1029 USB WMC OBEX Interface"
+sed1029.Service.Desc = "Sony Ericsson Device 1029 USB WMC OBEX Interface"
+
+
+CustomerDataPath = "Sony Ericsson Device 1029"
+DriverSet = "Sony Ericsson Device 1029 Software"
+UninstallFile = "S1029Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

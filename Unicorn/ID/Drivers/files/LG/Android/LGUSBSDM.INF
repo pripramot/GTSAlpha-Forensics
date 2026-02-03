@@ -1,0 +1,106 @@
+;*****************************************************************************
+; Name:  lgusbsdm.inf
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=11/11/2008,4.9.4
+DriverVer=04/21/2009,4.9.4
+;Missing CAT file entry added by RTGL
+CatalogFile=LGUSBSDM.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"lgusbsdm.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+lgusbsdm.sys = 1
+lgsisdmv.inf = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+CopyFiles               = 11                    ; system
+;CopyFiles.W95		= 11			; system (for VXDs)
+CopyFiles.sys           = 11                    ; where .sys files go.
+;CopyFiles.W95.sys       = 11                    ; where .sys files go.
+;CopyFiles.W95.inf       = 17                    ; INF Directory\other.
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGSI%=LGSI
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGSI]
+%LGSI.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6000_DIAGInterface_OS9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[LGSI.Install]
+AddReg=LGSI.AddReg
+;CopyFiles=CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+CopyFiles=CopyFiles, CopyFiles.sys
+;DriverVer=DriverVersion
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[LGSI.AddReg]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,,"lgusbsdm.sys,ccport.sys"
+HKR,,CRUpperDescription,,%UpperDescription%
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;
+[CopyFiles.sys]
+lgusbsdm.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;
+;[Copyfiles.W95.inf]
+;lgsisdmv.inf
+
+[LGSI.Install.HW]
+AddReg=LGSIAddReg.HW
+
+[LGSIAddReg.HW]
+HKR,,ChildID,2,"USB\LGDIAG"
+
+[Strings]
+Provider="LG Electronics Inc."
+LGSI="LG Electronics Inc."
+
+DiskString="LGE Mobile USB Diagnostic Serial Port Drivers installation disk"
+LGSI.Comm.Desc="LGE Mobile USB Modem Diagnostic Serial Port"
+UpperDescription="LGE Mobile USB Modem Diagnostic Serial Port (VCOMM)"
+CustomerDataPath="LGE Mobile USB Virtual Serial Port"
+DriverSet = "LGE Mobile USB Modem Software"
+

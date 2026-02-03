@@ -1,0 +1,94 @@
+
+;*****************************************************************************
+; Name:  lgandgps.inf (_MOON_)
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+CatalogFile = lganddriver32.cat
+DriverVer=11/30/2010,2.2.0.0
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1=%DiskString%," lgandgps.sys",,
+
+[SourceDisksFiles]
+lgandgps.sys = 1
+
+[DestinationDirs]
+DefaultDestDir  = 12             	; system32\drivers
+CopyFiles       = 12                    ; system32\drivers
+CopyFiles.Win2K = 12                    ;
+
+[Manufacturer]
+%LGSI%=LGSI
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGSI]
+; For individual driver
+%Lgsi.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_618E_GPSInterface
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Lgsi.Install.nt]
+AddReg		= Lgsi.AddReg,Lgsi.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Lgsi.AddReg]
+HKR,,NTMPDriver,,lgandgps.sys
+
+; only for NT...
+[Lgsi.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+lgandgps.sys
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+[Lgsi.Install.NT.Services]
+AddService = AndGps, 0x00000002, Lgsi.Install.AddService
+
+[Lgsi.Install.AddService]
+DisplayName	= %Lgsi.Service.Name%
+Description	= %Lgsi.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\lgandgps.sys
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+Provider = "LG Electronics Inc."
+Lgsi = "LG Electronics Inc."
+
+DiskString = "LGE USB GPS NMEA Port Drivers installation disk"
+Lgsi.Comm.Desc = "LGE Android Platform USB GPS NMEA Port"
+Lgsi.Service.Name = "LGE Android Platform USB GPS NMEA Port"
+Lgsi.Service.Desc = "LGE Android Platform USB GPS NMEA Port" 
+CustomerDataPath = "LGE Android Platform Android Platform Diagnostic Kit"
+DriverSet = "LGE USB Android Platform Mobile Software"

@@ -1,0 +1,30 @@
+{
+  "evidenceTypes": [
+    { "category": "โซเชียล", "item": "Facebook", "android": true, "ios": true, "note": "ใช้ Token จากอุปกรณ์ (Cloud Services)" },
+    { "category": "โซเชียล", "item": "Instagram", "android": true, "ios": true, "note": "ใช้ Token จากอุปกรณ์" },
+    { "category": "โซเชียล", "item": "Line", "android": true, "ios": true, "note": "Android: App Downgrade; หลังเข้าเครื่องได้ดึงได้ทั้งสองแพลตฟอร์ม" },
+    { "category": "โซเชียล", "item": "WhatsApp", "android": true, "ios": false, "note": "Android: App Downgrade (ไม่ต้อง Root)" },
+    { "category": "ข้อความ", "item": "Messages / แชท", "android": true, "ios": true, "note": "Full File System / Logical Extraction, App Downgrade" },
+    { "category": "รูปภาพ", "item": "รูปภาพในอุปกรณ์", "android": true, "ios": true, "note": "Full File System, Logical Extraction, iCloud Backup (iOS)" },
+    { "category": "รูปภาพ/สื่อ", "item": "ภาพในอดีต / Photo Library", "android": true, "ios": true, "note": "จากอุปกรณ์และ Backup" },
+    { "category": "ติดต่อ", "item": "เบอร์ติดต่อ (Contacts)", "android": true, "ios": true, "note": "Full File System / Logical, Keychain (iOS)" },
+    { "category": "อีเมล", "item": "อีเมล", "android": true, "ios": true, "note": "หลังเข้าเครื่องได้ตามความสามารถของระบบ" },
+    { "category": "Cloud", "item": "Google Drive, iCloud, OneDrive, Dropbox", "android": true, "ios": true, "note": "ใช้ Token ที่ดึงจากอุปกรณ์" }
+  ],
+  "platformCapabilities": [
+    { "name": "Full File System Extraction", "android": false, "ios": true, "detail": "ดึงข้อมูลทั้งหมดรวมไฟล์ระบบ" },
+    { "name": "Logical Extraction", "android": true, "ios": true, "detail": "ดึงข้อมูลระดับ logical" },
+    { "name": "Physical Extraction (Bit-by-Bit)", "android": true, "ios": false, "detail": "Samsung Exynos/Qualcomm" },
+    { "name": "Keychain Decryption", "android": false, "ios": true, "detail": "Password/Token ในเครื่อง" },
+    { "name": "iCloud Backup Extraction", "android": false, "ios": true, "detail": "ต้องมี iCloud Token หรือ Apple ID/Pass" },
+    { "name": "iTunes Wi‑Fi Sync", "android": false, "ios": true, "detail": "เมื่อเคย Sync over Wi‑Fi กับเครื่องนี้" },
+    { "name": "OTA Forensics", "android": false, "ios": true, "detail": "ดักจับเครือข่ายใน LAN" },
+    { "name": "App Downgrade (Line/WhatsApp)", "android": true, "ios": false, "detail": "ถอดรหัสแชทโดยไม่ต้อง Root" },
+    { "name": "Secure Folder Bypass", "android": true, "ios": false, "detail": "เจาะ Secure Folder (Samsung)" },
+    { "name": "Cloud Token Access", "android": false, "ios": true, "detail": "ดึง Token สำหรับ iCloud Backup" }
+  ],
+  "supportedRanges": {
+    "ios": "iPhone 5s–15 Pro Max, iOS 7.0–17.4+",
+    "android": "Samsung, Huawei, Oppo, Vivo, Xiaomi, Motorola, Sony, Pixel — Android 4.4–15"
+  }
+}

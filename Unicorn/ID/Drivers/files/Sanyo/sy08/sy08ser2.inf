@@ -1,0 +1,185 @@
+;*****************************************************************************
+;
+; Name:  sy08sdm2.inf
+;
+; Function:
+;	Install the SANYO USB Modem SY08 Diagnostic Serial Port Drivers (WDM) on Win2000
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=05/11/2009,4.40.7.0
+CatalogFile=sy08serd.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"sy08serd.sys",,\i386
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+;[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;1=%DiskString%,"sy08serd.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+sy08serd.sys = 1
+sy08cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+;%SANYO%=SANYO, NTamd64
+%SANYO%=SANYO
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SANYO]
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0743&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0744&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0745&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0748&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_074B&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0750&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0751&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0752&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0753&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0754&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0755&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_024F&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_0250&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_0253&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_025F&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_0266&MI_02&OS_NT
+%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_0269&MI_02&OS_NT
+
+;[SANYO.NTamd64]
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0743&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0744&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0745&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0748&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_074B&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0750&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0751&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0752&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0753&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0754&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0474&PID_0755&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_024F&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_0250&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_0253&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_025F&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_0266&MI_02&OS_NT
+;%Sanyo.Comm.Desc% = Sanyo.Install, USB\VID_0482&PID_0269&MI_02&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Sanyo.Install.nt]
+AddReg		= Sanyo.AddReg,Sanyo.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Sanyo.AddReg]
+HKR,,NTMPDriver,,sy08serd.sys
+HKR,,EnableCR1146,0x00010001,1
+HKR,,EnableSurpriseRemovalHeuristics, 0x10001, 02,00,00,00
+
+; only for NT...
+[Sanyo.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+sy08serd.sys
+sy08cm.sys,sy08cmnt.sys
+sy08cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[Sanyo.Install.NT.Services]
+AddService = sy08serd, 0x00000002, Sanyo.Install.AddService
+
+
+[Sanyo.Install.AddService]
+DisplayName	= %Sanyo.Service.Name%
+Description	= %Sanyo.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\sy08serd.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "KYOCERA Corporation"
+SANYO = "KYOCERA Corporation"
+DiskString = "SANYO USB Modem SY08 Diagnostic Serial Port Drivers installation disk"
+
+Sanyo.Comm.Desc = "SANYO USB Modem SY08 Diagnostic Serial Port (WDM)"
+Sanyo.Service.Name = "SANYO USB Modem SY08 Diagnostic Serial Port (WDM)"
+Sanyo.Service.Desc = "SANYO USB Modem SY08 Diagnostic Serial Port (WDM)"
+
+
+CustomerDataPath = "SANYO USB Modem SY08"
+DriverSet = "SANYO USB Modem SY08 Software"
+UninstallFile = "SY08Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

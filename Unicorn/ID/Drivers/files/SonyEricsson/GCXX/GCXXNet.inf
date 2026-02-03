@@ -1,0 +1,149 @@
+; Windows Network Setup File
+; Copyright (c) 1993-1999 Microsoft Corporation
+; Manufacturer: Sony Ericsson
+
+[version]
+Signature   = "$Chicago$"
+CatalogFile	= GCXXNet.cat
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider	= %NetProvider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer	= 12/15/2004,3.0.0.1510
+DriverVer	= 04/21/2009,3.0.0.1510
+Compatible	= 1
+
+[Manufacturer]
+%NetProvider%=GPRS_Adapters
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[GPRS_Adapters]
+%GPRS.Adapter% = GPRS.Adapter, GCXX\GPRS_NIC_REV01
+
+[Reg.NetCommon]
+;
+HKR,	Ndi\params\TCPWindowSize,ParamDesc,,	%TCPWindowSizeDesc%
+HKR,	Ndi\params\TCPWindowSize,type,,			"dword"
+HKR,	Ndi\params\TCPWindowSize,min,,			"0"
+HKR,	Ndi\params\TCPWindowSize,max,,			"65535"
+HKR,	Ndi\params\TCPWindowSize,default,,		%TCPWindowDefault%
+;
+HKR,	Ndi\params\MTU,ParamDesc,,				%MTUDesc%
+HKR,	Ndi\params\MTU,type,,					"dword"
+HKR,	Ndi\params\MTU,min,,					"68"
+HKR,	Ndi\params\MTU,max,,					"1500"
+HKR,	Ndi\params\MTU,default,,				%MTUDefault%
+;
+HKR,,TCPWindowSize,	0, %TCPWindowDefault%
+HKR,,MTU,			0, %MTUDefault%
+
+[Reg.DevName]
+HKR,Parameters,LegacyDeviceName,,%LegacyDeviceName%
+HKR,Parameters,DeviceName,,%DeviceName%
+HKR,Parameters,NicDeviceID,,%NicDeviceID%
+HKR,Parameters,SCDeviceID,,%SCDeviceID%
+
+
+; Windows 9X specific 
+
+[GPRS.Adapter]
+AddReg    = GPRS.Adapter.Reg.9X,Reg.NetCommon, Reg.DevName
+CopyFiles = GPRS.Adapter.CopyFiles.9X
+DeviceID  = "%NicDeviceID%"
+
+[GPRS.Adapter.Reg.9X]
+HKR, Ndi, DeviceID, 0, "%NicDeviceID%"
+
+HKR,,DevLoader,          0, "*ndis"
+HKR,,DeviceVxDs,         0, "GCXXNet.sys"
+HKR,,EnumPropPages,      0, "netdi.dll,EnumPropPages"
+
+HKR, Ndi\Interfaces,DefUpper,    0, "ndis3,ndis4,ndis5"
+HKR, Ndi\Interfaces,UpperRange,  0, "ndis3,ndis4,ndis5"
+HKR, Ndi\Interfaces,Upper,		 0, "ndis3,ndis4,ndis5"
+HKR, Ndi\Interfaces,DefLower,    0, "ethernet"
+HKR, Ndi\Interfaces,LowerRange,  0, "ethernet"
+HKR, Ndi\Interfaces,Lower,       0, "ethernet"
+
+HKR, NDIS,          LogDriverName,      0, "GCXXNet"
+HKR, NDIS,          MajorNdisVersion,   1, 05
+HKR, NDIS,          MinorNdisVersion,   1, 00
+
+ 
+;HKR, Ndi\Install,   ndis3,              0, "GPRS.Adapter.Install.9X"
+;[GPRS.Adapter.Install.9X]
+;CopyFiles = GPRS.Adapter.CopyFiles.9X
+
+[GPRS.Adapter.CopyFiles.9X]
+GCXXNet.sys,,,2
+
+; Windows NT specific 
+
+[GPRS.Adapter.NT]
+Characteristics = 0x84	; NCF_PHYSICAL, NCF_HAS_UI
+BusType         = 1
+AddReg          = GPRS.Adapter.Reg.NT,Reg.NetCommon
+CopyFiles       = GPRS.Adapter.CopyFiles
+
+[GPRS.Adapter.NT.Services]
+AddService = SEMWWNIC, 2, GPRS_Device_Service_Inst
+
+[GPRS.Adapter.Reg.NT]
+HKR, Ndi,                       Service,    0, "SEMWWNIC"
+HKR, Ndi\Interfaces,            UpperRange, 0, "ndis5"
+HKR, Ndi\Interfaces,            LowerRange, 0, "ethernet"
+
+[GPRS_Device_Service_Inst]
+DisplayName     = %NetProvider% SEMWWNIC
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\GCXXNet.sys
+LoadOrderGroup  = NDIS
+AddReg			= Reg.DevName
+
+[GPRS.Adapter.CopyFiles]
+GCXXNet.sys,,,2
+
+[SourceDisksNames]
+1=%Disk1Name%,,
+
+[SourceDisksFiles]
+GCXXNet.sys = 1
+
+[DestinationDirs]
+DefaultDestDirs			= 11
+GPRS.Adapter.CopyFiles		= 12
+GPRS.Adapter.CopyFiles.9X	= 11
+
+[Strings]
+TCPWindowSizeDesc	= "TCP Window Size"
+MTUDesc				= "MTU Size"
+LegacyDeviceName			="GC75"
+USB2132.Modem="Sony Ericsson VDC EGPRS Modem"
+USB2132MaxLinkSpeed="2144"
+GC89.Modem="Sony Ericsson GC89 EGPRS Modem"
+GC89MaxLinkSpeed="2144"
+GC85.Modem="Sony Ericsson GC85 EGPRS Modem"
+GC85MaxLinkSpeed="2144"
+GC83.Modem="Sony Ericsson GC83 EGPRS Modem"
+GC83MaxLinkSpeed="2144"
+GC82.Modem="Sony Ericsson GC82 EGPRS Modem"
+GC82MaxLinkSpeed="2144"
+GC79.Modem="Sony Ericsson GC79 Wireless Modem"
+GC75.Modem="Sony Ericsson GC75 Wireless Modem"
+Version				="3.0.0.1510"
+Disk1Name			="Sony Ericsson WWAN Installation Disk "
+DeviceName			="GCXX"
+NicDeviceID			="GCXX\GPRS_NIC_REV01"
+SCDeviceID			="GCXX\SIM_SC"
+NetProvider			="Sony Ericsson"
+FullProductName		="Sony Ericsson Wireless WAN Adapter"
+ShortProductName	="WWNIC"
+GPRS.Adapter		="Sony Ericsson Wireless WAN Adapter"
+TCPWindowDefault	= "42300"
+MTUDefault			= "1450"
+
+

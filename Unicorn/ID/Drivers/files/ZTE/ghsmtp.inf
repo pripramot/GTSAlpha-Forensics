@@ -1,0 +1,71 @@
+;
+; If you want to surpport MTP device, you must install Windows Media 11 or later.
+; Media Transfer Protocol (MTP) template device setup file
+;
+; This is the template for the INF installation script
+; for the MTP-over-USB host driver.
+; This INF works for Windows XP x32, XP x64.
+;
+;
+
+[Version]
+Signature           = "$Windows NT$"
+Class               = WPD
+ClassGUID           = {EEC5AD98-8080-425f-922A-DABF3DE3F69A}
+Provider            = %HS%
+DriverVer           = 09/04/2012,1.0.0.4
+CatalogFile         = ghsmtp.cat
+
+[Manufacturer]
+%HS%               = MTPDevices, NTx86.5.1, NTamd64.5.1
+
+; Decoration for x86 architecture
+[MTPDevices.NTx86.5.1]
+%MTPDevice%        = MTPDDInstall, USB\VID_19D2&PID_0321&MI_00
+%MTPDevice%        = MTPDDInstall, USB\VID_19D2&PID_0322
+%MTPDevice%        = MTPDDInstall, USB\VID_19D2&PID_0216&MI_00
+%MTPDevice%        = MTPDDInstall, USB\VID_19D2&PID_0279&MI_00
+
+; Decoration for x64 architecture
+[MTPDevices.NTamd64.5.1]
+%MTPDevice%        = MTPDDInstall, USB\VID_19D2&PID_0321&MI_00
+%MTPDevice%        = MTPDDInstall, USB\VID_19D2&PID_0322
+%MTPDevice%        = MTPDDInstall, USB\VID_19D2&PID_0216&MI_00
+%MTPDevice%        = MTPDDInstall, USB\VID_19D2&PID_0279&MI_00
+
+
+;@@@ This is the common setting for setup
+[ControlFlags]
+ExcludeFromSelect = *
+
+; DDInstall section
+; References the in-build wpdmtp.inf
+[MTPDDInstall]
+Include            = wpdmtp.inf, WINUSB.INF
+Needs              = WPD.MTP, WINUSB.NT
+
+[MTPDDInstall.hw]
+Include            = wpdmtp.inf
+Needs              = WPD.MTP.Registration
+
+; DDInstal.Services section
+[MTPDDInstall.Services]
+Include            = wpdmtp.inf
+Needs              = WPD.MTP.Services
+
+; DDInstal.CoInstallers section
+[MTPDDInstall.CoInstallers]
+Include            = wpdmtp.inf
+Needs              = WPD.MTP.CoInstallers
+
+[MTPDDInstall.Wdf]
+Include            = wpdmtp.inf
+Needs              = WPD.MTP.Wdf
+UmdfServiceOrder   = WpdMtpDriver
+
+; Modify these strings for your device as needed.
+[Strings]
+HS                 = "HS Coporation"
+MTPDevice          = "MTP Device"
+
+

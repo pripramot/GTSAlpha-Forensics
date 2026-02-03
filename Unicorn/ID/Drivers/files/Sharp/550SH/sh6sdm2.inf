@@ -1,0 +1,146 @@
+;*****************************************************************************
+;
+; Name:  sh6sdm2.inf
+;
+; Function:
+;	Install SHARP 3G GSM USB AT Command Drivers on Win2000/XPhome/XPpro
+;
+; Copyright (c) 1997-2005 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc.
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=10/31/2005, 4.36.0.2700
+DriverVer=04/21/2009, 4.36.0.2700
+CatalogFile=sh6mgmt.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"sh6mgmt.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+sh6mgmt.sys = 1
+sh6cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SHARP%=SHARP
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SHARP]
+%Sharp.Comm.Desc% = Sharp.Install, USB\VID_04DD&PID_90F2&Class_02&SubClass_09&Prot_01&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Sharp.Install.nt]
+AddReg		= Sharp.AddReg,Sharp.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Sharp.AddReg]
+HKR,,NTMPDriver,,sh6mgmt.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for NT...
+[Sharp.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+sh6mgmt.sys
+sh6cm.sys,sh6cmnt.sys
+sh6cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[Sharp.Install.NT.Services]
+AddService = sh6mgmt, 0x00000002, Sharp.Install.AddService
+
+
+[Sharp.Install.AddService]
+DisplayName	= %Sharp.Service.Name%
+Description	= %Sharp.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\sh6mgmt.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "SHARP"
+SHARP = "SHARP"
+DiskString = "SHARP 3G GSM USB AT Command installation disk"
+
+Sharp.Comm.Desc = "SHARP 3G GSM USB AT Command Port"
+Sharp.Service.Name = "SHARP 3G GSM USB AT Command Drivers Ver6.0.0"
+Sharp.Service.Desc = "SHARP 3G GSM USB AT Command Drivers Ver6.0.0"
+
+
+CustomerDataPath = "SHARP 3G GSM USB Driver"
+DriverSet = "SHARP 3G GSM USB Driver Ver6.0.0"
+UninstallFile = "SH6Uninstall.exe"
+McciOptions = "Uninstallable"
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

@@ -1,0 +1,60 @@
+; Installation inf for ASIA_PACIFIC
+;
+; (c) Copyright 2007 ASIA_PACIFIC
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=Ports
+ClassGUID={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%ASIA_PACIFIC.Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/20/2007,1.0.1.23
+DriverVer=04/21/2009,1.0.1.23
+CatalogFile=ap_m2k.cat
+
+[Manufacturer]
+%ASIA_PACIFIC.Manufacturer%=ASIA_PACIFIC
+      
+[ASIA_PACIFIC]
+%ASIA_PACIFIC.DeviceDesc%=ASIA_PACIFIC.INSTALL, USB\Vid_1A26&Pid_9D83&MI_00
+
+;[ControlFlags]
+;ExcludeFromSelect=ASIA_PACIFIC
+
+[SourceDisksNames]
+1=%ASIA_PACIFIC.DriverDiskName%,"",,
+
+[SourceDisksFiles]
+ap_m2k.sys=1                    ; system32\drivers
+      
+[DestinationDirs]
+DefaultDestDir = 10,system32\drivers 	 ; WINDOWS\SYSTEM32\DRIVERS
+ASIA_PACIFIC.CopyFiles = 10,system32\drivers ; WINDOWS\SYSTEM32\DRIVERS
+      
+[ASIA_PACIFIC.INSTALL.NT]
+CopyFiles=ASIA_PACIFIC.CopyFiles
+AddReg=ASIA_PACIFIC.AddReg
+
+[ASIA_PACIFIC.AddReg]
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[ASIA_PACIFIC.INSTALL.NT.Services]
+AddService = ap_m2k,0x00000002,ASIA_PACIFIC_Service_Inst
+
+[ASIA_PACIFIC_Service_Inst]
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\ap_m2k.sys
+DisplayName     = %ASIA_PACIFIC.DeviceDesc%
+
+[ASIA_PACIFIC.CopyFiles]
+ap_m2k.sys
+
+;---------------------------------------------------------------;
+[Strings]
+ASIA_PACIFIC.Provider="Thuraya"
+ASIA_PACIFIC.Manufacturer="Thuraya SG-2520 USB GPS Serial"
+ASIA_PACIFIC.DeviceDesc="Thuraya SG-2520 USB GPS Serial"
+ASIA_PACIFIC.DriverDiskName="Serial Port Device Install Disk" 

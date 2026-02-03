@@ -1,0 +1,108 @@
+;-------------------------------------------------------------------------------
+; lgandRmNet64.inf
+; Rmnet Driver Installation File
+; Copyright (c) LG Electronics Inc.  All rights reserved.
+
+
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %LGE%
+DriverVer   = 05/12/2015,4.0.0.0
+CatalogFile = lgandRmNetdrv64.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1=%LGESrcDisk%,"lgandRmNet64.sys",,
+1 = %DiskId1%,,,"" ; Moved from duplicate [SourceDisksNames] section
+
+[SourceDisksFiles]
+lgandRmNet64.sys = 1
+lgandRmNet64.sys  = 1,, ; Moved from duplicate [SourceDisksFiles] section
+
+[Manufacturer]
+%LGE% = LGE,NTamd64
+
+
+[LGE.NTamd64]
+%lgewwan.DeviceDesc7001%     = lgewwan.ndi, USB\VID_1004&PID_6334&MI_04
+
+;-------------------------------------------------------------------------------
+; Virtual Ethernet Adapter
+;
+[lgewwan.ndi]
+Characteristics = 0x4 ; NCF_PHYSICAL
+BusType         = 15  ; PNPBus
+AddReg          = lgewwan.Reg
+CopyFiles       = lgewwan.CopyFiles
+
+[lgewwan.ndi.Services]
+AddService      = lgandRmNetndis, 2, lgewwan.Service, lgewwan.EventLog
+
+;-----------------------------------------------------------------------------
+; Virtual Miniport Common
+;
+[lgewwan.Reg]
+HKR,    ,                         BusNumber,           0, "0" 
+HKR, Ndi,                         Service,             0, "lgandRmNetndis"
+HKR, Ndi\Interfaces,              UpperRange,          0, "ndis5"
+HKR, Ndi\Interfaces,              LowerRange,          0, "ethernet"
+; HKR, Ndi\params\VlanID,     ParamDesc,       0, %VlanID%
+; HKR, Ndi\params\VlanID,     default,         0, "777"
+; HKR, Ndi\params\VlanID,     type,            0, "long"
+; HKR, Ndi\params\VlanID,     min,             0, "0"
+; HKR, Ndi\params\VlanID,     max,             0, "4095"
+; HKR, Ndi\params\VlanID,     step,            0, "1"
+; HKR, Ndi\params\VlanID,     base,            0, "10"
+
+;-----------------------------------------------------------------------------
+; Driver and Service Section
+;
+[lgewwan.CopyFiles]
+lgandRmNet64.sys,,,2
+
+[lgewwan.Service]
+DisplayName     = %lgewwan.Service.DispName%
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\lgandRmNet64.sys
+LoadOrderGroup  = NDIS
+AddReg          = TextModeFlags.Reg
+
+[lgewwan.EventLog]
+AddReg = lgewwan.AddEventLog.Reg
+
+[lgewwan.AddEventLog.Reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[TextModeFlags.Reg]
+HKR, , TextModeFlags,    0x00010001, 0x0001
+
+;[SourceDisksNames] ; Resolve ERROR(1209): duplicate section
+;1 = %DiskId1%,,,""
+
+;[SourceDisksFiles] ; Resolve ERROR(1209): duplicate section
+;lgandRmNet64.sys  = 1,,
+
+;-----------------------------------------------------------------------------
+; DestinationDirs
+;
+[DestinationDirs]
+lgewwan.CopyFiles = 12
+
+;-----------------------------------------------------------------------------
+; Localizable Strings
+;
+[Strings]
+LGESrcDisk 		     ="LGE AndroidRmNet Ethernet Adapter"
+LGE                          ="LGE Electronics Inc."
+lgewwan.DeviceDesc           ="LGE AndroidRmNet Ethernet Adapter"
+lgewwan.DeviceDesc7001       ="LGE AndroidRmNet Ethernet Adapter"
+lgewwan.Service.DispName     ="LGE AndroidRmNet Miniport"
+DiskId1                      ="LGE AndroidRmNet Miniport Device Installation Disk #1"

@@ -1,0 +1,129 @@
+;***************************************************************************************
+;
+; Name: PSKTBUS.inf  
+;
+; Function : Install SK Telecom USB Composite Device Drivers on Win2000/XP/VISTA
+;
+; Copyright (c) DEVGURU
+;
+;***************************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=04/27/2010,3.4.2.0426
+CatalogFile=PSKTBUS.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+PANTECHWdm.NT.CopyFiles        = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+PSKTBUS.sys = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify phone manufacturer, devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%PANTECH%=PANTECH, NTx86, NTamd64
+
+
+;-----------------------------------------------------------------------------
+; The phone devices
+;-----------------------------------------------------------------------------
+; For Win2K
+[PANTECH]
+%PANTECH.VID_10A9&PID_1102.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1102 ;KT, LGT 
+%PANTECH.VID_10A9&PID_1103.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1103 ;SKT 
+%PANTECH.VID_10A9&PID_1104.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1104 ;Android 
+
+; For XP and later
+[PANTECH.NTx86]
+%PANTECH.VID_10A9&PID_1102.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1102 ;KT, LGT 
+%PANTECH.VID_10A9&PID_1103.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1103 ;SKT 
+%PANTECH.VID_10A9&PID_1104.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1104 ;Android 
+
+[PANTECH.NTamd64]
+%PANTECH.VID_10A9&PID_1102.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1102 ;KT, LGT
+%PANTECH.VID_10A9&PID_1103.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1103 ;SKT 
+%PANTECH.VID_10A9&PID_1104.Desc% = PANTECHWdm.Install, USB\VID_10A9&PID_1104 ;Android
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[PANTECHWdm.Install.NT]
+CopyFiles       = PANTECHWdm.NT.CopyFiles
+AddReg          = PANTECHWdm.AddReg, PANTECHWdm.NT.AddReg
+
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[PANTECHWdm.Install.NT.Services]
+AddService      = PSKTBUS, 2, PANTECHWdm.AddService
+
+[PANTECHWdm.AddService]
+DisplayName             = %PANTECH.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\PSKTBUS.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[PANTECHWdm.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[PANTECHWdm.NT.AddReg]
+
+
+;----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[PANTECHWdm.NT.CopyFiles]
+PSKTBUS.sys
+
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+Provider    = "PANTECH Co., Ltd. "
+PANTECH     = "PANTECH"
+
+
+DiskString = "SK Telecom USB Composite Device Driver installation disk"
+PANTECH.Service.Desc = "SK Telecom USB Composite Device Driver (SKY)"
+
+PANTECH.VID_10A9&PID_1102.Desc  = "SKY USB Composite Device"
+PANTECH.VID_10A9&PID_1103.Desc  = "SK Telecom USB Composite Device (SKY)"
+PANTECH.VID_10A9&PID_1104.Desc  = "SKY USB Composite Device"

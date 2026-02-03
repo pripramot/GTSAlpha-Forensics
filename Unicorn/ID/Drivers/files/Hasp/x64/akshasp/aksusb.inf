@@ -1,0 +1,135 @@
+;
+; INF File for Sentinel HASP USB Minidriver
+;---------------------------
+;
+; Copyright (c) SafeNet Inc.
+;
+
+
+[Version]
+signature="$Windows NT$"
+Provider=%Fast%
+Class=USB
+ClassGuid={36fc9e60-c465-11cf-8056-444553540000}
+DriverVer=02/06/2018,7.65
+CatalogFile=aksusb.cat
+
+; Table of Contents
+[Manufacturer]
+%FastMfg%=Gemalto,NTamd64
+
+[Gemalto.NTamd64]
+%USB\VID_0529&PID_0001.DeviceDesc%=aksusb, USB\Vid_0529&Pid_0001 ;USB 
+;*****************************************
+; Coinstaller section
+;*****************************************
+[aksusb.nt.CoInstallers]
+AddReg=aksusb.CoInstallers.reg
+CopyFiles=GemaltoCoInstCopyFiles
+
+[aksusb.CoInstallers.reg]
+HKR,,CoInstallers32,0x00010000,"aksusb5.dll,AksUsbCoInstallEntryPoint"
+
+[GemaltoCoInstCopyFiles]
+aksusb5.dll
+
+;===============================================
+;    AKSUSB NT Installation Parameters 
+; ==============================================
+[aksusb.NT]
+CopyFiles=aksusb.CopyList.NT,aksusb.CopyListDll.NT
+CopyInf=akshasp.inf,akshhl.inf
+AddReg=aksusb.AddReg.NT
+
+[aksusb.AddReg.NT]
+;BUGBUG: PropPageProvider stuff not enabled for setupapi yet!
+;HKR,,EnumPropPages32,,"sysclass.dll,USBEnumPropPages"
+
+[aksusb.CopyList.NT]
+aksusb.sys
+aksclass.sys
+akshhl.sys
+hardlock.sys
+akshasp.sys
+aksfridge.sys
+aksdf.sys
+
+
+[aksusb.CopyListDll.NT]
+akshhl32.dll
+akshsp53.dll
+aksllmtp.exe,hasplms.exe
+hasplmv.exe
+
+[aksusb.NT.Services]
+AddService=aksusb,0x02,aksusb.addservices
+
+; ====================================================
+;  service instalation 
+; ===================================================
+[aksusb.addservices]
+DisplayName    = %svcdesc%
+ServiceType    = 1		;SERVICE_KERNEL_DRIVER
+StartType      = 3		;SERVICE_AUTO_START
+ErrorControl   = 1		;SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\aksusb.sys
+LoadOrderGroup = Base
+
+
+; ====================================================
+;   destination directories
+; ====================================================
+[DestinationDirs]
+DefaultDestDir = 12
+GemaltoCoInstCopyFiles = 11
+aksusb.CopyListDll.NT = 11
+
+;;****************************************************************************
+;; Source Files
+;;****************************************************************************
+[sourcedisksnames]
+1=%INSTDISK%,,,""
+
+[SourceDisksFiles]
+aksusb.sys=1
+aksclass.sys=1
+aksdf.sys=1
+aksusb5.dll=1
+akshhl.sys=1
+hardlock.sys=1
+akshasp.sys=1
+aksfridge.sys=1
+akshhl32.dll=1
+akshsp53.dll=1
+hasplms.exe=1
+hasplmv.exe=1
+akshhl.inf=1
+akshasp.inf=1
+
+
+
+[Strings]
+Fast="Gemalto"
+FastMfg="Gemalto"
+svcdesc="Sentinel USB Key"
+INSTDISK="Sentinel Install Disk"
+USB\VID_0529&PID_0001.DeviceDesc="Sentinel USB Key"
+
+Aks                 = "Gemalto"
+AksdfServiceDesc    = "Sentinel Data Mini-Filter Driver"
+AksdfServiceName    = "aksdf"
+AksdfRegistry       = "system\currentcontrolset\services\aksdf"
+AksdfDebugFlags     = "DebugFlags"
+AksdfFltMgrName     = "FltMgr"
+RegInstancesSubkeyName    = "Instances"
+RegDefaultInstanceValueName  = "DefaultInstance"
+RegAltitudeValueName      = "Altitude"
+RegFlagsValueName         = "Flags"
+Disk1              = "Filter Source Media"
+
+;Instances specific information.
+DefaultInstance      = "aksdf Instance"
+Instance1.Name       = "aksdf Instance"
+Instance1.Altitude   = "145900"
+Instance1.Flags      = 0x0              ; Allow all attachments
+

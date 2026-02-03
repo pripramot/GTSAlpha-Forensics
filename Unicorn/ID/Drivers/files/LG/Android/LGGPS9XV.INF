@@ -1,0 +1,95 @@
+
+;*****************************************************************************
+; Name:  LGGPS9XV.inf 
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=11/11/2008,4.9.4
+DriverVer=04/21/2009,4.9.4
+;Missing CAT file entry added by RTGL
+CatalogFile=LGGPS9XV.cat
+
+[Manufacturer]
+%LGSI%=LGSI
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGSI]
+%PortDesc% = LGSI.Install, USB\LGGPS
+
+;-----------------------------------------------------------------------------
+; The exclude-from-select stuff
+;-----------------------------------------------------------------------------
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+[LGSI.Install]
+AddReg=LGSI.W95AddReg, LGSI.W95Overrides
+;AddReg=LGSI.W95AddReg
+
+[LGSI.Install.Nt]
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+[LGSI.W95AddReg]
+HKR,,DevLoader,,*vcomm
+HKR,,PortDriver,,wdmmdmld.vxd
+HKR,,Contention,0,
+HKR,,DCB,3,1C,00,00,00, 00,C2,01,00, 11,33,00,00, 00,00, 0a,00, 0a,00, 08, 00, 00, 11, 13, 00, 00, 00
+HKR,,PortSubClass,1,01
+HKR,,ConfigDialog,,serialui.dll
+HKR,,EnumPropPages,,"serialui.dll,EnumPropPages"
+
+[LGSI.W95Overrides]
+;--- Config for anywhere- COMx IRQ Any
+HKR,Override,0008,1, \
+00,04,00,00,00,00,00,00, \
+;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+00,01,FF,03, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+FF,FF,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for anywhere- COMx IRQ None
+HKR,Override,0009,1, \
+00,04,00,00,00,00,00,00, \
+;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+00,01,FF,03, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+;*** TERMINATOR ***
+00,00,00,00
+
+[Strings]
+Provider="LG Electronics Inc."
+LGSI="LG Electronics Inc."
+PortDesc="LGE Mobile USB Modem GPS NMEA Port (VCOMM)"
+CustomerDataPath="LGE Mobile USB GPS NMEA Port"
+DriverSet="LGE Mobile USB Modem Software"
+

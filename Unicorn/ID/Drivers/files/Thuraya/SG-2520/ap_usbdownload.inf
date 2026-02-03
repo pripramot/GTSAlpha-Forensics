@@ -1,0 +1,73 @@
+; Installation inf for the APSI Multi-Downloader
+;
+; (c) Copyright 2007 APSI Corporation
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+provider=%HSFT%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=03/08/2006,3.3.0.1
+DriverVer=04/21/2009,3.3.0.1
+CatalogFile=ap_usbdownload.cat
+
+[SourceDisksNames]
+1="APSI Installation Disk",,,
+
+[SourceDisksFiles]
+APDriver.sys = 1                    ; system32\drivers
+
+[Manufacturer]
+%MfgName%=APSICorporation
+
+[APSICorporation]
+%DeviceDesc%=APDRIVER.Dev, USB\Vid_1A26&Pid_9D85	;
+
+[DestinationDirs]
+APDRIVER.Files.Ext = 10,System32\Drivers
+APDRIVER.Files.Inf = 10,INF
+
+[APDRIVER.Dev]
+CopyFiles=APDRIVER.Files.Ext, APDRIVER.Files.Inf
+AddReg=APDRIVER.AddReg
+
+[APDRIVER.Dev.NT]
+CopyFiles=APDRIVER.Files.Ext, APDRIVER.Files.Inf
+AddReg=APDRIVER.AddReg
+
+[APDRIVER.Dev.NT.Services]
+Addservice = APDRIVER, 0x00000002, APDRIVER.AddService
+
+[APDRIVER.AddService]
+DisplayName    = %APDRIVER.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\APDriver.sys
+LoadOrderGroup = Base
+
+[APDRIVER.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,APDriver.sys
+HKLM,"System\Currentcontrolset\Services\APDRIVER\Parameters","MaximumTransferSize",0x10001,4096
+HKLM,"System\Currentcontrolset\Services\APDRIVER\Parameters","DebugLevel",0x10001,2
+HKLM,"SOFTWARE\APCorporation\APDriver","Check attached Device",0x10001,00
+
+[APDRIVER.Files.Ext]
+APDriver.sys
+
+[APDRIVER.Files.Inf]
+;APDRIVER.Inf
+
+
+;---------------------------------------------------------------;
+
+[Strings]
+HSFT="Thuraya"
+MfgName="Thuraya"
+DeviceDesc="Thuraya SG-2520 USB Download"
+USB\Vid_114F&Pid_2810.DeviceDesc="Thuraya SG-2520 USB Download"
+APDRIVER.SvcDesc="Thuraya SG-2520 USB Download"
+

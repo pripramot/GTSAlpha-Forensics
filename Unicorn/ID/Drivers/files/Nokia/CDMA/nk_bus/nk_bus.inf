@@ -1,0 +1,84 @@
+;*-----------------------------------------------------*
+;| Installation inf for NOKIA                          |
+;|-----------------------------------------------------|
+;| Copyright (c) 1998 - 2008 by Hajesoft Corporation.  |
+;|                                                     |
+;| This inf file is lisenced. Any Modification is not  |
+;| permitted unless authorized by Hajesoft corporation.|
+;| For more information contact to www.hajesoft.com    |
+;*-----------------------------------------------------*
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = USB
+Provider    = %Provider%
+ClassGuid   = {36FC9E60-C465-11CF-8056-444553540000}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer   = 05/19/2008, 1.0.1.128
+DriverVer   = 04/21/2009, 1.0.1.128
+CatalogFile = nk_bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1 = %DiskString%, "nk_bus.sys",,
+
+[SourceDisksFiles]
+nk_bus.sys = 1
+
+[DestinationDirs]
+NOKIA.Files.Ext = 12
+
+[Manufacturer]
+%Provider% = NOKIA, ntamd64
+
+[NOKIA]
+%Nokia6205.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00A3
+%Nokia2605.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00B5
+%Nokia7205.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00B6    
+%Nokia6405.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_01A5
+%Nokia2705.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_01A6    
+%Nokia7705.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_023E
+
+[NOKIA.ntamd64]
+%Nokia6205.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00A3  
+%Nokia2605.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00B5
+%Nokia7205.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00B6    
+%Nokia6405.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_01A5
+%Nokia2705.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_01A6
+%Nokia7705.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_023E
+
+[NOKIA.Install.nt]
+CopyFiles = NOKIA.Files.Ext
+AddReg    = NOKIA.AddReg
+
+[NOKIA.Install.NT.Services]
+Addservice = nkbus, 0x00000002, NOKIA.Install.AddService
+
+[NOKIA.Install.AddService]
+DisplayName    = %Nokia.Bus.ServiceDesc%
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %12%\nk_bus.sys
+LoadOrderGroup = Base
+
+[NOKIA.AddReg]
+HKR,,LocationInformationOverride,,"NOKIA Mobile Technologies"
+
+[NOKIA.Files.Ext]
+nk_bus.sys
+
+[Strings]
+Provider              = "Nokia"
+DiskString            = "Nokia Mobile USB Device Install Disk"
+Nokia6205.DeviceDesc="Nokia 6205 USB Phone Device"
+Nokia8200.DeviceDesc="Nokia 8200 USB Phone Device"
+Nokia2605.DeviceDesc="Nokia 2605 USB Phone Device"
+Nokia7205.DeviceDesc="Nokia 7205 USB Phone Device"
+Nokia6405.DeviceDesc="Nokia 6405 USB Phone Device"
+Nokia2705.DeviceDesc="Nokia 2705 USB Phone Device"
+Nokia7705.DeviceDesc="Nokia 7705 USB Phone Device"
+
+Nokia.Bus.ServiceDesc = "Nokia USB Bus Services"

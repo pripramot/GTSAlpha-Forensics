@@ -1,0 +1,82 @@
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2002,2003 Huawei Incorporated
+; Manufacturer: Huawei Incorporated
+;
+; This INF file installs usb mass storage on Win2K system.
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=MEDIA
+ClassGuid={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%HUAWEI%
+DriverVer=01/24/2011,1.0.300
+;Missing CAT file entry added by RTGL
+CatalogFile=hwmsc.cat
+;Catalogfile = qcusbser.cat
+
+[Manufacturer]
+%HUAWEI% = QcomMsc, NTamd64
+
+[SourceDisksNames]
+  1000 = %HuaweiSrcDisk%,"",,
+
+[SourceDisksFiles]
+  hwusbser02.sys = 1000
+
+[QcomMsc]
+%HUAWEIMSC%  = QportInstall00, USB\VID_12D1&PID_3613&MI_04
+%HUAWEIMSC_PID360E%  = QportInstall00, USB\VID_12D1&PID_360E&MI_00
+%HUAWEIMSC_PID361E%  = QportInstall00, USB\VID_12D1&PID_361E
+%HUAWEIMSC_PID3623%  = QportInstall00, USB\VID_12D1&PID_3623&MI_03
+%HUAWEIMSC%  = QportInstall00, USB\VID_12D1&PID_3610&MI_02
+%HUAWEIMSC%  = QportInstall00, USB\VID_12D1&PID_3620&MI_01
+%HUAWEIMSC_PID3616%  = QportInstall00, USB\VID_12D1&PID_3616&MI_03
+%HUAWEIMSC_PID3626%  = QportInstall00, USB\VID_12D1&PID_3626&MI_02
+
+[QcomMsc.NTamd64]
+%HUAWEIMSC%  = QportInstall00, USB\VID_12D1&PID_3613&MI_04
+%HUAWEIMSC_PID360E%  = QportInstall00, USB\VID_12D1&PID_360E&MI_00
+%HUAWEIMSC_PID361E%  = QportInstall00, USB\VID_12D1&PID_361E
+%HUAWEIMSC_PID3623%  = QportInstall00, USB\VID_12D1&PID_3623&MI_03
+%HUAWEIMSC%  = QportInstall00, USB\VID_12D1&PID_3610&MI_02
+%HUAWEIMSC%  = QportInstall00, USB\VID_12D1&PID_3620&MI_01
+%HUAWEIMSC_PID3616%  = QportInstall00, USB\VID_12D1&PID_3616&MI_03
+%HUAWEIMSC_PID3626%  = QportInstall00, USB\VID_12D1&PID_3626&MI_02
+
+[QportInstall00.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg
+
+[QCUsbDriverFiles]
+hwusbser02.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[QportInstall00.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService
+
+[QC_USBSerialService]
+DisplayName   = %ACERUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\hwusbser02.sys
+
+[All00]
+HKR,,NTMPDriver,,hwusbser02.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+ACERUSBSER = "ACER Android USB Device for Legacy Serial Communication"
+HuaweiSrcDisk = "Huawei USB Driver Disk"
+HUAWEI	      = "Huawei Incorporated"
+HUAWEIMSC     = "Ideos Tablet Mass Storage"
+HUAWEIMSC_PID360E = "Ideos Tablet Mass Storage"
+HUAWEIMSC_PID361E = "Ideos Tablet Mass Storage"
+HUAWEIMSC_PID3623 = "Ideos Tablet Mass Storage"
+HUAWEIMSC_PID3616  = "Ideos Tablet Mass Storage"
+HUAWEIMSC_PID3626  = "Ideos Tablet Mass Storage"

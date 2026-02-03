@@ -1,0 +1,11 @@
+# GTSAlpha-Forensics / Unicorn
+.env
+*.local
+node_modules/
+postgres_data/
+.DS_Store
+Thumbs.db
+*.log
+dist/
+.idea/
+.vscode/

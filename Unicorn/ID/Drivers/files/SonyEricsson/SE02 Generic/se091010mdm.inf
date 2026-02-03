@@ -1,0 +1,79 @@
+;************************************************************************
+;FILENAME: se091010mdm.inf
+;Copyright Sony Ericsson Mobile Communications AB/LTD/INC 2009. All rights reserved.
+;
+;The program(s) may be used and/or copied only with the written permission
+;from Sony Ericsson Mobile Communications AB or in accordance with the terms
+;and conditions stipulated in the agreement/contract under which the
+;program(s) have been supplied.
+;************************************************************************ 
+
+[Version]
+Signature = "$Windows NT$"
+Class = Modem
+ClassGuid = {4d36e96d-e325-11ce-bfc1-08002be10318}
+Provider = %SEMC%
+DriverVer = 10/28/2009,1.0.5.1  ; Date format: MM/DD/YYYY
+CatalogFile=se091010mdm.cat
+
+[Manufacturer]
+%SEMC% = Models, NTia64, NTamd64
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Models]
+%INTERFACE% = Install, %MODEL_HARDWARE_ID%
+%INTERFACE% = Install, %MODEL2_HARDWARE_ID%
+%INTERFACE% = Install, %MODEL3_HARDWARE_ID%
+
+[Models.NTia64]
+%INTERFACE% = Install, %MODEL_HARDWARE_ID%
+%INTERFACE% = Install, %MODEL2_HARDWARE_ID%
+%INTERFACE% = Install, %MODEL3_HARDWARE_ID%
+
+[Models.NTamd64]
+%INTERFACE% = Install, %MODEL_HARDWARE_ID%
+%INTERFACE% = Install, %MODEL2_HARDWARE_ID%
+%INTERFACE% = Install, %MODEL3_HARDWARE_ID%
+
+[Install.NT]
+CopyINF = se091010mgmt.inf, se091010mtp.inf
+Include = mdmgen.inf
+Needs = Gen
+Include = mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+
+[FakeModemCopyFileSection]
+
+[Install.NT.Services]
+Include=mdmcpq.inf
+AddService=usbser, 0x00000000, LowerFilter_Service_Inst
+
+[LowerFilter_Service_Inst]
+DisplayName="Sony Ericsson Modem"
+ServiceType= 1
+StartType  = 3
+ErrorControl = 0
+ServiceBinary = %12%\usbser.sys
+
+[Install.NT.HW]
+Include=mdmcpq.inf
+AddReg=LowerFilterAddReg
+
+[LowerFilterAddReg]
+HKR,,"LowerFilters",0x00010000,"usbser"
+
+[Strings]
+SEMC="Sony Ericsson Mobile Communications AB"
+INTERFACE = "Sony Ericsson Device 091010 USB Modem"
+MODEM = "Sony Ericsson USB Modem"
+MODEL_HARDWARE_ID = "USB\VID_0FCE&PID_D10E&MI_03"
+MODEL2_HARDWARE_ID = "USB\VID_0FCE&PID_D133&MI_03"
+MODEL3_HARDWARE_ID = "USB\VID_0FCE&PID_D13A&MI_03"
+
+[SourceDisksNames]
+; none
+
+[SourceDisksFiles]
+; none

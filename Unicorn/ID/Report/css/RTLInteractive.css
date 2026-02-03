@@ -1,0 +1,13 @@
+/* This file is used by Preview and RV to dynamically update styles via JS. It's not used for PDF exports. */
+table.fmt_chat table.subreportmenu > tr:hover, tr:focus { background-color: #CCCCCC; }
+table.fmt_chat.selected table.subreportmenu tr td:hover, td:focus { background-color: #CCCCCC; }
+table.subreportmenu tr:hover, tr:focus { background-color: #CCCCCC; }
+div.section table.fmt_chat:hover { outline: 2px solid #494948; } 
+table tr.analysis_selectable:hover { outline: 2px solid #494948;}
+table.imagegrid tr td:hover { outline: 2px solid #494948; padding: 0px 0px 0px 0px;}
+.dropbutton:hover, .dropbutton:focus {
+    background-color: #CCCCCC;
+}
+.dropdown a:hover {background-color: #f1f1f1}
+table.searchResults td.searchResultHeaderRow:hover { outline: 2px solid #494948; }
+table.searchResults td.advancedSearchResultHeaderRow:hover { outline: 2px solid #494948; }

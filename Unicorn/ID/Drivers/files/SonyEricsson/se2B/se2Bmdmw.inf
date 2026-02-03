@@ -1,0 +1,155 @@
+;*****************************************************************************
+;
+; Name:  SE2Bmdmw.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 043 USB WMC Modem Port Drivers on Win98/SE/ME
+;
+; Copyright (c) 1997-2005 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=05/01/2006, 4.34.0.2705
+DriverVer=04/21/2009, 4.34.0.2705
+;Missing CAT file entry added by RTGL
+CatalogFile=se2Bmdmw.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"SE2Bmdm.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+SE2Bmdm.sys = 1
+SE2Bcr.sys = 1
+;SE2Bvcr.vxd = 1; RTGL: remove unused files from legacy OS versions
+;SE2Bcm95.sys = 1; RTGL: remove unused files from legacy OS versions
+SE2Bcmnt.sys = 1
+;SE2Bcomm.vxd = 1; RTGL: remove unused files from legacy OS versions
+;SE2Bvcd.vxd = 1; RTGL: remove unused files from legacy OS versions
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=Sony_Ericsson_Dev43
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[Sony_Ericsson_Dev43]
+%Sony_Ericsson_Dev43.Modem.Desc% = Sony_Ericsson_Dev43.Install, USB\VID_0FCE&PID_D043&MI_01&OS_9X
+%Sony_Ericsson_Dev43.Modem.Desc.2% = Sony_Ericsson_Dev43.Install, USB\VID_0FCE&PID_D043&MI_03&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Sony_Ericsson_Dev43.Install]
+;AddReg		= Sony_Ericsson_Dev43.AddReg,Sony_Ericsson_Dev43.W95.AddReg,Sony_Ericsson_Dev43.W95.AddReg.CRGuid
+AddReg		= Sony_Ericsson_Dev43.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+;DriverVer=05/01/2006, 4.34.0.2705
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Sony_Ericsson_Dev43.AddReg]
+HKR,,NTMPDriver,,SE2Bmdm.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for Win95....
+;[Sony_Ericsson_Dev43.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+
+;[Sony_Ericsson_Dev43.W95.Addreg.CRGuid]
+;HKR,,CRGuid,,{0E08CAF6-5B24-4D61-875E-38D9CF9F380C}
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;SE2Bvcr.vxd
+;SE2Bcomm.vxd
+;SE2Bvcd.vxd
+;
+[CopyFiles.sys]
+SE2Bmdm.sys
+SE2Bcr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;SE2Bcm.sys,SE2Bcm95.sys
+;SE2Bcm95.sys
+;SE2Bcmnt.sys
+;
+;[Copyfiles.W95.inf]
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 043 USB WMC Modem installation disk"
+
+Sony_Ericsson_Dev43.Modem.Desc = "Sony Ericsson Device 043 USB WMC Data Modem"
+UpperDescription = "Sony Ericsson Device 043 USB WMC Modem"
+
+Sony_Ericsson_Dev43.Modem.Desc.2 = "Sony Ericsson Device 043 USB WMC Modem"
+
+CustomerDataPath = "Sony Ericsson Device 043"
+DriverSet = "Sony Ericsson Device 043 Software"
+UninstallFile = "SE2BUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

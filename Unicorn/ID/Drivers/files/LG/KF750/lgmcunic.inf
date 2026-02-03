@@ -1,0 +1,198 @@
+
+;*****************************************************************************
+;
+; lgmcunic.inf   -- Install the LGE Mobile USB WMC Ethernet (WDM)
+;
+; Copyright (c) 1997-2007 MCCI Corporation
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=01/09/2008,4.42.0.0
+DriverVer=04/21/2009,4.42.0.0
+CatalogFile=lgmcunic.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+LGEMobileWdm.W95.CopyFiles       = 11                    ; LDID_SYS
+LGEMobileWdm.W95.CopyFiles.sys   = 11                    ; LDID_SYS
+LGEMobileWdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lgmcunic.sys",,\i386
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+;[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;1=%DiskString%,"lgmcunic.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+lgmcunic.sys = 1
+lgmccr95.sys = 1
+lgmccrnt.sys = 1
+lgmcvcr.vxd = 1
+lgmcwh95.sys = 1
+lgmcwhnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+;%LGEMobile%=LGEMobile, NTamd64
+%LGEMobile%=LGEMobile
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[LGEMobile]
+%LGEMobile.Ndis.Desc% = LGEMobileWdm.Install, USB\VID_1004&PID_6073&Class_02&SubClass_06&Prot_00
+
+;[LGEMobile.NTamd64]
+;%LGEMobile.Ndis.Desc% = LGEMobileWdm.Install, USB\VID_1004&PID_6073&Class_02&SubClass_06&Prot_00
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[LGEMobile.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[LGEMobileWdm.Install]
+DriverVer=01/09/2008,4.42.0.0
+AddReg          = LGEMobileWdm.AddReg, LGEMobileWdm.W95.AddReg
+CopyFiles       = LGEMobileWdm.W95.CopyFiles, LGEMobileWdm.W95.CopyFiles.sys, LGEMobile.CopyFiles, PropPages.CopyFiles
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[LGEMobileWdm.Install.NT]
+DriverVer=01/09/2008,4.42.0.0
+AddReg          = LGEMobileWdm.AddReg, LGEMobileWdm.NT.AddReg
+CopyFiles       = LGEMobileWdm.NT.CopyFiles
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[LGEMobileWdm.Install.NT.Services]
+AddService      = lgmcunic, 2, LGEMobileWdm.AddService
+
+[LGEMobileWdm.AddService]
+DisplayName             = %LGEMobile.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\lgmcunic.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[LGEMobileWdm.AddReg]
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,CREnum,,LGMCCR
+; configuration variables for CDC Ethernet Control Model.
+; These have no effect for MDLM devices.
+HKR,,UseTxCrc, 0x10001, 00,00,00,00
+HKR,,CdcEthernetSetAddressMethod, 0x10001, 00,00,00,00
+HKR,,EnableRxBulkStream, 0x10001, 01,00,00,00
+HKR,,nRxBulkStreamObjects, 0x10001,08,00,00,00
+HKR,,DataAltSetting,1,  01,00,00,00
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[LGEMobileWdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,lgmcunic.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[LGEMobileWdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[LGEMobileWdm.W95.CopyFiles]
+lgmcvcr.vxd
+
+[LGEMobileWdm.W95.CopyFiles.sys]
+lgmcunic.sys
+lgmccr.sys,lgmccr95.sys
+lgmcwh.sys,lgmcwh95.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[LGEMobileWdm.NT.CopyFiles]
+lgmcunic.sys
+lgmcwh.sys,lgmcwhnt.sys
+lgmccr.sys,lgmccrnt.sys
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "LG Electronics"
+LGEMobile = "LG Electronics"
+DiskString = "LGE Mobile USB WMC Ethernet Installation Disk"
+
+LGEMobile.Ndis.Desc = "LGE Mobile USB WMC Ethernet (WDM)"
+LGEMobile.Service.Desc = "LGE Mobile USB WMC Ethernet ELDA (WDM)"
+
+UpperDescription = "LGE Mobile USB WMC Ethernet (for Networking Device)"
+
+CustomerDataPath = "LGE Mobile USB WMC"
+DriverSet = "LGE Mobile USB WMC Software"
+UninstallFile = "LGMCUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

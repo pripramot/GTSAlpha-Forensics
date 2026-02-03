@@ -1,0 +1,165 @@
+;***************************************************************
+;
+; Windows Modem Setup File
+; Copyright (c) 2008, Sony Ericsson Mobile Communications
+; Manufacturer: Sony Ericsson
+;
+;***************************************************************
+
+[Version]
+Signature= "$CHICAGO$"
+Class=Modem
+Provider=%SEMC%
+CLASSGUID={4D36E96D-E325-11CE-BFC1-08002BE10318}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=01/22/2008,3.5.3.0
+DriverVer=04/21/2009,3.5.3.0
+CatalogFile=SS1018mdm.cat
+
+[SourceDisksNames]
+1=%SEMCINST%,,,
+
+[SourceDisksFiles]
+SS1018mdm.sys=1
+
+[DestinationDirs]
+FakeModemCopyFileSection=12
+DefaultDestDir = 12
+
+[Manufacturer]
+%SEMC%=Models
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Models]
+%SEMCMobileCDC_00% = SS1018mdm, USB\VID_0FCE&PID_D0C8&REV_0000
+%SEMCMobilePseudoCDC_00%		= SS1018mdm, USB\VID_0FCE&PID_00C8&REV_0000&MI_00
+%SEMCMobilePseudoCDC_01%		= SS1018mdm, USB\VID_0FCE&PID_00C8&REV_0000&MI_01
+%SEMCMobilePseudoCDC_02%		= SS1018mdm, USB\VID_0FCE&PID_00C8&REV_0000&MI_02
+%SEMCMobileMassStoragePseudoCDC_01%	= SS1018mdm, USB\VID_0FCE&PID_E0C8&REV_0000&MI_01
+%SEMCMobileMassStoragePseudoCDC_02%	= SS1018mdm, USB\VID_0FCE&PID_E0C8&REV_0000&MI_02
+%SEMCMobileVideoPseudoCDC_02%		= SS1018mdm, USB\VID_0FCE&PID_10C8&REV_0000&MI_02
+
+
+[SS1018mdm.NT]
+include=mdmgl007.inf,mdmgl004.inf,mdmgl001.inf
+CopyFiles=FakeModemCopyFileSection
+AddReg=All, MfgAddReg, SS1018mdm.AddReg, EXTERNAL
+
+[SS1018mdm.NT.Services]
+AddService = SS1018mdm, 0x00000000, SS1018mdm_Service_Inst, SS1018mdm_EventLog
+
+[SS1018mdm.NT.HW]
+AddReg=LowerFilterAddReg
+
+[LowerFilterAddReg]
+HKR,,"LowerFilters",0x00010000,SS1018mdm
+
+[SS1018mdm_Service_Inst]
+DisplayName	= %SS1018mdm.SvcDesc%
+ServiceType	= 1               ; SERVICE_KERNEL_DRIVER
+StartType	= 3               ; SERVICE_SYSTEM_START (this driver may do detection)
+ErrorControl	= 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary	= %12%\SS1018mdm.sys
+
+[SS1018mdm_EventLog]
+AddReg=SS1018mdm_EventLog.AddReg
+
+[SS1018mdm_EventLog.AddReg]
+HKR,,EventMessageFile, %REG_EXPAND_SZ%, "%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\SS1018mdm.sys"
+HKR,,TypesSupported, %REG_DWORD%, 7
+
+[FakeModemCopyFileSection]
+SS1018mdm.sys
+
+[All]
+HKR,,FriendlyDriver,0,Unimodem.vxd
+HKR,,DevLoader,0,*vcomm
+HKR,,ConfigDialog,0,modemui.dll
+HKR,,EnumPropPages,0,modemui.dll,EnumPropPages
+HKR,,PortSubClass,1,02
+
+[EXTERNAL]
+HKR,, DeviceType, 1, 01
+
+[SS1018mdm.AddReg]
+HKR,, Properties, 1, 00,00,00,00, 00,00,00,00, 00,00,00,00, 00,00,00,00, 00,00,00,00, 10,01,00,00, 00,C2,01,00, 00,E1,00,00
+;                    Dial Options CallStFTout   InactTout    SpeakerVol   SpeakerMode  MdmOptions   MaxDTE       MaxDCE
+; DCB's - dwords and words are byte reversed
+;                                                                           ByteSize (Number of bits/byte, 4-8)
+;                                                                               Parity (0-4=None,Odd,Even,Mark,Space)
+;                                                                                   StopBits (0,1,2 = 1, 1.5, 2)
+;              |DCBLength   |BaudRate    |Bit Mask    |Rsvd  |XonLim|XofLim|   |   |   |Xon|Xof|Err|Eof|Evt
+HKR,, DCB, 1, 1C,00,00,00, 00,C2,01,00, 15,20,00,00, 00,00, 0a,00, 0a,00, 08, 00, 00, 11, 13, 00, 00, 00
+
+[MfgAddReg]
+HKR, Init, 1,, "AT<cr>"
+HKR, Init, 2,, "AT&FE0V1&D2&C1S0=0<cr>"
+HKR, Monitor, 1,, "ATS0=0<cr>"
+HKR, Monitor, 2,, "None"
+HKR, Answer, 1,, "ATA<cr>"
+HKR, Hangup, 1,, "ATH<cr>"
+HKR,, Reset,, "ATZ<cr>"
+HKR, Settings, Prefix,, "AT"
+HKR, Settings, Terminator,,"<cr>"
+HKR, Settings, DialPrefix,, "D"
+HKR, Settings, Pulse,, "P"
+HKR, Settings, Tone,, "T"
+HKR, Settings, DialSuffix,, ""
+HKR, Settings, FlowControl_Off,, "&K0"
+HKR, Settings, FlowControl_Soft,, "&K4"
+HKR, Settings, FlowControl_Hard,, "&K3"
+; DTE/DCE speeds will not be exact for generic modems because we will
+; treat CONNECT ### as a DCE speed when some modems will report it as DTE.
+HKR, Responses, "<cr><lf>OK<cr><lf>", 1, 00, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>ERROR<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>RING<cr><lf>",1,08,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>NO CARRIER<cr><lf>",1,04,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>NO NETWORK<cr><lf>",1, 03, 00, 00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>NETWORK OUT OF ORDER<cr><lf>",1,03,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>SWITCH CONGESTION<cr><lf>",1,03,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>TCH NOT AVAILABLE<cr><lf>",1,03,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>NO DIALTONE<cr><lf>",1,05,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>BUSY<cr><lf>",1,06,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>NO ANSWER<cr><lf>",1,07,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>+FCERROR<cr><lf>",1,03,00,00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT VOICE<cr><lf>", 1,03,00,00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT<cr><lf>", 1, 02,00,00,00,00,00,00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 300<cr><lf>",   1, 02, 00, 2C,01,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 1200<cr><lf>",  1, 02, 00, B0,04,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 2400<cr><lf>",  1, 02, 00, 60,09,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 4800<cr><lf>",  1, 02, 00, C0,12,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 7200<cr><lf>",  1, 02, 00, 20,1C,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 9600<cr><lf>",  1, 02, 00, 80,25,00,00, 00,00,00,00
+HKR, Responses, "0<cr>",       1, 00, 00, 00,00,00,00, 00,00,00,00 ; OK
+HKR, Responses, "2<cr>",       1, 08, 00, 00,00,00,00, 00,00,00,00 ; RING
+HKR, Responses, "3<cr>",       1, 04, 00, 00,00,00,00, 00,00,00,00 ; NO CARRIER
+HKR, Responses, "4<cr>",       1, 03, 00, 00,00,00,00, 00,00,00,00 ; ERROR
+HKR, Responses, "6<cr>",       1, 05, 00, 00,00,00,00, 00,00,00,00 ; NO DIALTONE
+HKR, Responses, "7<cr>",       1, 06, 00, 00,00,00,00, 00,00,00,00 ; BUSY
+HKR, Responses, "8<cr>",       1, 07, 00, 00,00,00,00, 00,00,00,00 ; NO ANSWER
+
+[Strings]
+;
+; Non-Localizable Strings
+;
+REG_SZ    = 0x00000000
+REG_MULTI_SZ  = 0x00010000
+REG_EXPAND_SZ = 0x00020000
+REG_BINARY  = 0x00000001
+REG_DWORD = 0x00010001
+
+;
+; Localizable Strings
+;
+SEMC                                = "Sony Ericsson"
+SEMCINST                            = "Sony Ericsson Mobile Device Installation Disk"
+SS1018mdm.SvcDesc		    = "Sony Ericsson Mobile Device Full USB Driver"
+SEMCMobileCDC_00                    = "Sony Ericsson Mobile Device"
+SEMCMobilePseudoCDC_00              = "Sony Ericsson USB Mobile Pseudo CDC Modem"
+SEMCMobilePseudoCDC_01              = "Sony Ericsson USB Mobile Pseudo CDC Trace"
+SEMCMobilePseudoCDC_02              = "Sony Ericsson USB Mobile Pseudo CDC Console"
+SEMCMobileMassStoragePseudoCDC_01   = "Sony Ericsson USB Mobile Mass Storage Pseudo CDC Trace"
+SEMCMobileMassStoragePseudoCDC_02   = "Sony Ericsson USB Mobile Mass Storage Pseudo CDC Console"
+SEMCMobileVideoPseudoCDC_02         = "Sony Ericsson USB Mobile Video Pseudo CDC Trace"

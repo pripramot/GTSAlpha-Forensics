@@ -1,0 +1,158 @@
+;*****************************************************************************
+;
+; Name:  s916sdm2.inf
+;
+; Function:
+;	Install Sony Ericsson Device 916 USB WMC Device Management Drivers on Win2000/XP
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=09/05/2007,4.40.8.1
+DriverVer=04/21/2009,4.40.8.1
+CatalogFile=s916mgmt.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s916mgmt.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s916mgmt.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+s916mgmt.sys = 1
+s916cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericcson%=sed916, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed916]
+%sed916.Comm.Desc% = sed916.Install, USB\VID_0fce&PID_d0b5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed916.Comm.Desc% = sed916.Install, USB\VID_0fce&PID_d0c7&Class_02&SubClass_09&Prot_01&OS_NT
+
+[sed916.NTamd64]
+%sed916.Comm.Desc% = sed916.Install, USB\VID_0fce&PID_d0b5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed916.Comm.Desc% = sed916.Install, USB\VID_0fce&PID_d0c7&Class_02&SubClass_09&Prot_01&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[sed916.Install.nt]
+AddReg		= sed916.AddReg,sed916.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[sed916.AddReg]
+HKR,,NTMPDriver,,s916mgmt.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for NT...
+[sed916.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,AllowSuspendWhileOpen, 0x10001, 01,00,00,00
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+s916mgmt.sys
+s916cm.sys,s916cmnt.sys
+s916cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[sed916.Install.NT.Services]
+AddService = s916mgmt, 0x00000002, sed916.Install.AddService
+
+
+[sed916.Install.AddService]
+DisplayName	= %sed916.Service.Name%
+Description	= %sed916.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\s916mgmt.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericcson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 916 USB WMC Device Management installation disk"
+
+sed916.Comm.Desc = "Sony Ericsson Device 916 USB WMC Device Management"
+sed916.Service.Name = "Sony Ericsson Device 916 USB WMC Device Management Drivers (WDM)"
+sed916.Service.Desc = "Sony Ericsson Device 916 USB WMC Device Management Drivers (WDM)"
+
+
+CustomerDataPath = "Sony Ericsson Device 916"
+DriverSet = "Sony Ericsson Device 916 Software"
+UninstallFile = "S916Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

@@ -1,0 +1,78 @@
+; Copyright (c) 2002 NEC Corporation
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%ProviderName%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/18/2002,1.06.00
+DriverVer=04/21/2009,1.06.00
+CatalogFile=ctlne00h.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[DestinationDirs]
+DefaultDestDir  = 10,system32\drivers
+WNUSCTL.NT.Copy = 10,system32\drivers
+
+[SourceDisksNames]
+1=%DISK1%,,,
+
+[SourceDisksFiles]
+CTL_W2KH.SYS = 1
+ENU_W2KH.SYS = 1
+
+[Manufacturer]
+%MfgName%=DCM
+
+[DCM]
+%DCM_WNUSCTL.DeviceDesc% = WNUSCTL, USB\VID_0409&PID_00E1
+
+[WNUSCTL.NT]
+CopyFiles=WNUSCTL.NT.Copy
+
+[WNUSCTL.NT.Copy]
+WNUSCTLH.SYS,CTL_W2KH.SYS;,,0x20	;Suppress version conflict dialog and don't overwrite newer files.
+WNUSENUH.SYS,ENU_W2KH.SYS,,0x20	;Suppress version conflict dialog and don't overwrite newer files.
+
+[WNUSCTL.NT.HW]
+AddReg=WNUSCTL.NT.HW.AddReg
+
+[WNUSCTL.NT.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"WNUSENUH"
+
+[WNUSCTL.NT.Services]
+AddService = WNUSCTLH, 0x00000002, WNUSCTL_Service
+AddService = WNUSENUH, 0x00000000, WNUSENU_Service
+
+[WNUSCTL_Service]
+DisplayName    = %DCM_SRV_WNUSCTL.DeviceDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\WNUSCTLH.SYS
+
+[WNUSENU_Service]
+DisplayName    = %DCM_SRV_WNUSENU.DeviceDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\WNUSENUH.SYS
+LoadOrderGroup = PNP Filter
+AddReg         = WNUSENU_Service_Addreg
+
+[WNUSENU_Service_Addreg]
+HKR,,HWIDNUM,0x00010001,0x03
+HKR,,HWID_NAME0,,"WDM_MODEM\NMODEMH"
+HKR,,HWID_NAME1,,"WDM_MODEM\NOBEXH"
+HKR,,HWID_NAME2,,"WDM_MODEM\NATH"
+
+[Strings]
+ProviderName = "NEC Corporation"
+MfgName = "NEC Corporation"
+DCM_WNUSCTL.DeviceDesc = "NEC 606 USB Controller"
+DCM_SRV_WNUSCTL.DeviceDesc = "NEC 606 CONTROL Driver"
+DCM_SRV_WNUSENU.DeviceDesc = "NEC 606 ENUMERATION Driver"
+DISK1="NEC 606 CD-ROM"

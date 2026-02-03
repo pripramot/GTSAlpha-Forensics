@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" href="../../../Common/AcquisitionDataTransformer/css/report1.css" type="text/css"/>
+		<style type="text/css">
+
+::-webkit-scrollbar { 
+width: 40px; 
+height: 54px; 
+} 
+
+::-webkit-scrollbar-button { 
+background-size: 100%; 
+height: 47px; 
+width: 40px; 
+} 
+ 
+::-webkit-scrollbar-track { 
+-webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.3); 
+border-radius: 8px; 
+} 
+ 
+::-webkit-scrollbar-thumb { 
+border-radius: 8px; 
+background-color: rgb(0,131,203); 
+-webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.5); 
+height: 30px; 
+} 
+ 
+::-webkit-scrollbar-button:vertical:decrement { 
+background-image: url("file:/C:/PROGRA~1/RADIOT~1/FORENS~1/ReportImages/up2u.png"); 
+background-repeat: no-repeat, no-repeat; 
+background-position: 0 0, 0 0; 
+} 
+ 
+::-webkit-scrollbar-button:vertical:increment { 
+background-image: url("file:/C:/PROGRA~1/RADIOT~1/FORENS~1/ReportImages/down2u.png"); 
+background-repeat: no-repeat, no-repeat; 
+background-position: 0 10px, 0 0; 
+} 
+ 
+body { 
+-webkit-user-select: none; 
+}
+
+#heading {
+    padding-top: 10px;
+	padding-left: 5px;
+	margin: 0px;
+	display: block;
+	font-weight: bold;
+}
+
+#desc {
+    padding-top: 10px;
+    padding-left: 5px;
+	margin: 0px;
+	display: block;
+}
+
+.collapsible {
+  background-color: #999;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  width: 25%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+button.collapsible {
+  margin-top: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+		</style>
+	</head>
+	<body style="margin-bottom: 0px;">
+		<table>
+			<tr>
+				<td colspan=2><img src="file:C:/PROGRA~1/RADIOT~1/FORENS~1/resource/RTLLogo.png" style='display: block; margin: 0 auto;' width="auto" height="auto"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 height='1px'/>
+		</tr>
+		<tr>
+			<td colspan=2><h1 style='text-align: center; font-size: 20px; margin-bottom: 0px'>Main Page Heading</h1>
+		</td>
+		<tr>
+			<td colspan=2 height='1px'/>
+		</tr>
+		<tr>
+			<td colspan=2 width='100%' style='vertical-align: top; padding: 1px;'>
+				<div class='details-box' style='overflow-y: auto; height:195px; padding-left: 10px;padding-right: 10px;padding-bottom: 10px; text-align: center;'>
+					<ul>Main Warning Text</ul>
+					<ul>
+						<h1 style='text-align: center; font-size: 16px; margin-bottom: 0px;' id='warning'>Bold Warning Text</h1>
+					</ul>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2><div style='text-align: center; margin:0 auto;'>
+				<span style="font-weight: bold; color: red; font-size: 16px;">Red Warning Text</span>
+			</div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

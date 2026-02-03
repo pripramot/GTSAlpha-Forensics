@@ -1,0 +1,246 @@
+;*****************************************************************************
+;
+; Name:  zebrmdmw.inf
+;
+; Function:
+;	Install the Sony Ericsson Modem Port Drivers (WDM) on Win9x/Me
+;
+; Copyright (c) 2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+;Missing CAT file entry added by RTGL
+CatalogFile=zebrmdmw.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"zebrmdm.sys",,\i386
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+zebrmdm.sys = 1
+zebrcr.sys = 1
+zebrvcr.vxd = 1
+zebrcm95.sys = 1
+zebrcmnt.sys = 1
+zebrcomm.vxd = 1
+zebrvcd.vxd = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%Device1%=Install.1,USB\VID_0FCE&PID_D030&MI_03&OS_9X
+%Device2%=Install.2,USB\VID_0FCE&PID_D031&MI_03&OS_9X
+%Device3%=Install.3,USB\VID_0FCE&PID_D058&MI_03&OS_9X
+%Device5%=Install.5,USB\VID_0FCE&PID_D092&MI_03&OS_9X
+%Device6%=Install.6,USB\VID_0FCE&PID_D065&MI_03&OS_9X
+%Device7%=Install.7,USB\VID_0FCE&PID_D0CD&MI_03&OS_9X
+%Device8%=Install.8,USB\VID_0FCE&PID_D0CB&MI_03&OS_9X
+%Device9%=Install.9,USB\VID_0FCE&PID_D0CE&MI_03&OS_9X
+
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Install.1]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.1
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.1]
+;HKR,,CrGuid,,{9EA1FA66-11B2-4a44-B0AB-7957AE09F326}
+
+[Install.2]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.2
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.2]
+;HKR,,CrGuid,,{9EA1FA65-11B2-4a44-B0AB-7957AE09F326}
+
+[Install.3]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.3
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.3]
+;HKR,,CrGuid,,{9EA1FA64-11B2-4a44-B0AB-7957AE09F326}
+
+[Install.4]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.4
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.4]
+;HKR,,CrGuid,,{9EA1FA63-11B2-4a44-B0AB-7957AE09F326}
+
+[Install.5]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.5
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.5]
+;HKR,,CrGuid,,{9EA1FA62-11B2-4a44-B0AB-7957AE09F326}
+
+[Install.6]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.6
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.6]
+;HKR,,CrGuid,,{9EA1FA61-11B2-4a44-B0AB-7957AE09F326}
+
+[Install.7]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.7
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.7]
+;HKR,,CrGuid,,{9EA1FA67-11B2-4a44-B0AB-7957AE09F326}
+
+[Install.8]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.8
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.8]
+;HKR,,CrGuid,,{9EA1FA68-11B2-4a44-B0AB-7957AE09F326}
+
+[Install.9]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.9
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.9]
+;HKR,,CrGuid,,{9EA1FA69-11B2-4a44-B0AB-7957AE09F326}
+
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC.AddReg]
+HKR,,NTMPDriver,,zebrmdm.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for Win95....
+;[SEMC.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;zebrvcr.vxd
+;zebrcomm.vxd
+;zebrvcd.vxd
+;
+[CopyFiles.sys]
+zebrmdm.sys
+zebrcr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;zebrcm.sys,zebrcm95.sys
+;zebrcm95.sys
+;zebrcmnt.sys
+;
+[Copyfiles.W95.inf]
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson Mobile Communications AB"
+SEMC = "Sony Ericsson Mobile Communications AB"
+DiskString = "Sony Ericsson Modem Driver"
+
+UpperDescription = "Sony Ericsson Modem Driver (VCOMM)"
+
+SEMC.Modem.Desc = "Sony Ericsson Modem"
+
+SEMC.Filter.Name = "Sony Ericsson Modem Filter"
+SEMC.Filter.Desc = "Sony Ericsson Modem Filter"
+
+Device1 = "Sony Ericsson P990 USB Modem"
+Device2 = "Sony Ericsson M600 USB Modem"
+Device3 = "Sony Ericsson W950 USB Modem"
+Device5 = "Sony Ericsson P1 USB Modem"
+Device6 = "Sony Ericsson W960 USB Modem"
+Device7 = "Sony Ericsson G700 USB Modem"
+Device8 = "Sony Ericsson G900 USB Modem"
+Device9 = "Sony Ericsson G700c USB Modem"
+
+
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

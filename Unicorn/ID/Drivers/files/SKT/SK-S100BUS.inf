@@ -1,0 +1,138 @@
+;***************************************************************************************
+;
+; Name: SK-S100BUS.inf  
+;
+; Function : Install USB Composite Device Drivers on Win2000/XP/VISTA/7
+;
+; Copyright (c) DEVGURU Co., LTD. (www.devguru.co.kr)
+;
+;***************************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=09/16/2010,1.0.1700.0916
+CatalogFile=SK-S100BUS.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+SK-S100.NT.CopyFiles        = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+SK-S100BUS.sys = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify phone manufacturer, devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SK-S100%=SK-S100, NTx86, NTamd64
+
+
+;-----------------------------------------------------------------------------
+; The phone devices
+;-----------------------------------------------------------------------------
+; For Win2K
+[SK-S100]
+%USB\VID_1F53&PID_A000.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A000
+%USB\VID_1F53&PID_A001.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A001
+%USB\VID_1F53&PID_A002.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A002
+%USB\VID_1F53&PID_A003.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A003
+%USB\VID_1F53&PID_A004.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A004
+
+; For XP and later
+[SK-S100.NTx86]
+%USB\VID_1F53&PID_A000.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A000
+%USB\VID_1F53&PID_A001.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A001
+%USB\VID_1F53&PID_A002.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A002
+%USB\VID_1F53&PID_A003.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A003
+%USB\VID_1F53&PID_A004.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A004
+
+[SK-S100.NTamd64]
+%USB\VID_1F53&PID_A000.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A000
+%USB\VID_1F53&PID_A001.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A001
+%USB\VID_1F53&PID_A002.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A002
+%USB\VID_1F53&PID_A003.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A003
+%USB\VID_1F53&PID_A004.DeviceDesc% = SK-S100.Install, USB\VID_1F53&PID_A004
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SK-S100.Install.NT]
+CopyFiles       = SK-S100.NT.CopyFiles
+AddReg          = SK-S100.AddReg, SK-S100.NT.AddReg
+
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SK-S100.Install.NT.Services]
+AddService      = SK-S100BUS, 2, SK-S100.AddService
+
+[SK-S100.AddService]
+DisplayName             = %SK-S100.Service.DeviceDesc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\SK-S100BUS.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SK-S100.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SK-S100.NT.AddReg]
+
+
+;----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SK-S100.NT.CopyFiles]
+SK-S100BUS.sys
+
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+Provider    = "SK telesys"
+SK-S100     = "SK telesys"
+
+DiskString = "SK telesys Composite Device Driver installation disk"
+
+USB\VID_1F53&PID_A000.DeviceDesc  = "SK telesys Composite Device"
+USB\VID_1F53&PID_A001.DeviceDesc  = "SK telesys Composite Device"
+USB\VID_1F53&PID_A002.DeviceDesc  = "SK telesys Composite Device"
+USB\VID_1F53&PID_A003.DeviceDesc  = "SK telesys Composite Device"
+USB\VID_1F53&PID_A004.DeviceDesc  = "SK telesys Composite Device"
+
+SK-S100.Service.DeviceDesc = "SK-S100 Composite Device Driver"
+

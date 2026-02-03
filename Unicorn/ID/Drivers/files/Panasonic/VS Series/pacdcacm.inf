@@ -1,0 +1,128 @@
+;$$$DICoInst$$$  ;This tag is needed to trigger the device class co-installer.
+; pacdcacm.inf
+;
+; Installation file (.inf) for the USB Serial device driver.
+;
+; Copyright © 2004,2005 Panasonic
+;
+
+[Version]
+Signature="$Windows NT$"
+Provider=%S_Povider%
+ClassGUID={4d36e978-e325-11ce-bfc1-08002be10318}
+Class=Ports
+CatalogFile=pacdcacm.cat
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=06/13/2005,1.4.0.0
+DriverVer=04/21/2009,1.4.0.0
+
+;
+; Driver information
+;
+
+[Manufacturer]
+%S_Mfg%=_Devices
+
+[_Devices]
+%S_Device1%=Install,USB\VID_04DA&PID_2120
+%S_Device1%=Install,USB\VID_1519&PID_0001
+%S_Device1%=Install,USB\VID_1519&PID_0002
+%S_Device1%=Install,USB\VID_1519&PID_0003
+%S_Device1%=Install,USB\VID_1519&PID_0004
+%S_Device1%=Install,USB\VID_1519&PID_0005
+%S_Device1%=Install,USB\VID_0cc4&PID_0001
+;
+; General installation section
+;
+
+
+
+[Install.NT]
+CopyFiles=_CopyFiles_sys
+AddReg=Common_AddReg
+
+[Install.NT.HW]
+AddReg=_AddReg_Param
+
+;
+; Service Installation
+;
+
+[Install.NT.Services]
+AddService = pacdcacm, 0x00000002 , Install_Service_Inst, Install_EventLog_Inst
+AddReg = _AddRegService
+
+[Install_Service_Inst]
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\pacdcacm.sys
+
+
+[Install_EventLog_Inst]
+AddReg = Install_EventLog_AddReg
+
+[Install_EventLog_AddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\IoLogMsg.dll;%%SystemRoot%%\drivers\pacdcacm.sys"
+HKR,,TypesSupported,0x00010001,7
+
+
+[_AddRegService]
+HKR,,Parameters,,,
+
+
+[_AddReg_Param]
+HKR,,RequestTimeout,0x00010001, 2500
+HKR,,TimerInterval,0x00010001, 10
+
+; the following comment is important for uninstalling/updating the driver
+; !!! don't change this line !!!
+; an additional key to identify our modem "{C77344AA-B675-4ce9-9604-850EB61B6D39}"
+HKR,, PanasonicPrivateModemGuid,1, AA, 44, 73, C7, 75, B6, e9, 4c, 96, 04, 85, 0E, B6, 1B, 6D, 39
+
+
+[Common_AddReg]
+; is a serial port
+HKR,,PortSubClass,1,01
+; property page, system default
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[DestinationDirs]
+DefaultDestDir   = 12
+_CopyFiles_sys = 10,System32\Drivers
+
+;
+; Source file information
+;
+
+[SourceDisksNames.x86]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+pacdcacm.sys = 1,,
+
+[_CopyFiles_sys]
+pacdcacm.sys
+
+[Strings]
+
+;
+; Non-Localizable Strings
+;
+
+REG_SZ         = 0x00000000
+REG_MULTI_SZ   = 0x00010000
+REG_EXPAND_SZ  = 0x00020000
+REG_BINARY     = 0x00000001
+REG_DWORD      = 0x00010001
+SERVICEROOT    = "System\CurrentControlSet\Services"
+
+;
+; Localizable Strings
+;
+
+S_Device1 = "Panasonic Mobilephone Connectivity Device 1.0"
+S_Device2 = "Panasonic Mobilephone Connectivity Device 1.0 (Debug)"
+DiskId1 = "Panasonic Mobilephone Connectivity Device 1.0 Driver CD"
+S_Mfg = "Panasonic"
+S_Povider = "Panasonic"

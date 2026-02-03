@@ -1,0 +1,149 @@
+;*****************************************************************************
+;
+; Name:  zebrobxw.inf
+;
+; Function:
+;	Install the Sony Ericsson OBEX Driver (WDM) on Win9x/ME
+;
+; Copyright (c) 2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+;Missing CAT file entry added by RTGL
+CatalogFile=zebrobxw.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"zebrobex.sys",,\i386
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+zebrobex.sys = 1
+zebrcr.sys = 1
+zebrvcr.vxd = 1
+zebrcm95.sys = 1
+zebrcmnt.sys = 1
+zebrcomm.vxd = 1
+zebrvcd.vxd = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%SEMC.Comm.Desc% = SEMC.Install, USB\VID_0FCE&PID_D030&Class_02&SubClass_0B&Prot_00&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SEMC.Install]
+;AddReg		= SEMC.AddReg,SEMC.W95.AddReg,SEMC.W95.AddReg.CRGuid
+AddReg		= SEMC.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC.AddReg]
+HKR,,NTMPDriver,,zebrobex.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for Win95....
+;[SEMC.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+
+;[SEMC.W95.Addreg.CRGuid]
+;HKR,,CRGuid,,{F809E146-145A-41dc-80A2-491B6632E7B5}
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;zebrvcr.vxd
+;zebrcomm.vxd
+;zebrvcd.vxd
+;
+[CopyFiles.sys]
+zebrobex.sys
+zebrcr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;zebrcm.sys,zebrcm95.sys
+;zebrcm95.sys
+;zebrcmnt.sys
+;
+;[Copyfiles.W95.inf]
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson Mobile Communications AB"
+SEMC = "Sony Ericsson Mobile Communications AB"
+DiskString = "Sony Ericsson OBEX Driver installation disk"
+
+SEMC.Comm.Desc = "Sony Ericsson OBEX Driver (WDM)"
+UpperDescription = "Sony Ericsson OBEX Driver (VCOMM)"
+
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

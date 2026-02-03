@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <servicing>
+        <package action="configure" permanence="permanent">
+            <assemblyIdentity name="Microsoft-Windows-Foundation-Package" version="6.1.7601.17514" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="" />
+            <selection name="OEMHelpCustomization" state="false" />
+            <selection name="CorporationHelpCustomization" state="false" />
+            <selection name="SimpleTCP" state="false" />
+            <selection name="SNMP" state="false" />
+            <selection name="WMISnmpProvider" state="false" />
+            <selection name="TelnetServer" state="false" />
+            <selection name="TelnetClient" state="false" />
+            <selection name="WindowsGadgetPlatform" state="false" />
+            <selection name="InboxGames" state="false" />
+            <selection name="More Games" state="false" />
+            <selection name="Solitaire" state="false" />
+            <selection name="SpiderSolitaire" state="false" />
+            <selection name="Hearts" state="false" />
+            <selection name="FreeCell" state="false" />
+            <selection name="Minesweeper" state="false" />
+            <selection name="PurblePlace" state="false" />
+            <selection name="Chess" state="false" />
+            <selection name="Shanghai" state="false" />
+            <selection name="Internet Games" state="false" />
+            <selection name="Internet Checkers" state="false" />
+            <selection name="Internet Backgammon" state="false" />
+            <selection name="Internet Spades" state="false" />
+            <selection name="IIS-WebServerRole" state="false" />
+            <selection name="IIS-WebServer" state="false" />
+            <selection name="IIS-CommonHttpFeatures" state="false" />
+            <selection name="IIS-HttpErrors" state="false" />
+            <selection name="IIS-HttpRedirect" state="false" />
+            <selection name="IIS-ApplicationDevelopment" state="false" />
+            <selection name="IIS-Security" state="false" />
+            <selection name="IIS-URLAuthorization" state="false" />
+            <selection name="IIS-RequestFiltering" state="false" />
+            <selection name="IIS-NetFxExtensibility" state="false" />
+            <selection name="IIS-HealthAndDiagnostics" state="false" />
+            <selection name="IIS-HttpLogging" state="false" />
+            <selection name="IIS-LoggingLibraries" state="false" />
+            <selection name="IIS-RequestMonitor" state="false" />
+            <selection name="IIS-HttpTracing" state="false" />
+            <selection name="IIS-IPSecurity" state="false" />
+            <selection name="IIS-Performance" state="false" />
+            <selection name="IIS-HttpCompressionDynamic" state="false" />
+            <selection name="IIS-WebServerManagementTools" state="false" />
+            <selection name="IIS-ManagementScriptingTools" state="false" />
+            <selection name="IIS-IIS6ManagementCompatibility" state="false" />
+            <selection name="IIS-Metabase" state="false" />
+            <selection name="WAS-WindowsActivationService" state="false" />
+            <selection name="WAS-ProcessModel" state="false" />
+            <selection name="WAS-NetFxEnvironment" state="false" />
+            <selection name="WAS-ConfigurationAPI" state="false" />
+            <selection name="IIS-HostableWebCore" state="false" />
+            <selection name="IIS-ISAPIExtensions" state="false" />
+            <selection name="IIS-ISAPIFilter" state="false" />
+            <selection name="IIS-StaticContent" state="false" />
+            <selection name="IIS-DefaultDocument" state="false" />
+            <selection name="IIS-DirectoryBrowsing" state="false" />
+            <selection name="IIS-WebDAV" state="false" />
+            <selection name="IIS-ASPNET" state="false" />
+            <selection name="IIS-ASP" state="false" />
+            <selection name="IIS-CGI" state="false" />
+            <selection name="IIS-ServerSideIncludes" state="false" />
+            <selection name="IIS-CustomLogging" state="false" />
+            <selection name="IIS-BasicAuthentication" state="false" />
+            <selection name="IIS-HttpCompressionStatic" state="false" />
+            <selection name="IIS-ManagementConsole" state="false" />
+            <selection name="IIS-ManagementService" state="false" />
+            <selection name="IIS-WMICompatibility" state="false" />
+            <selection name="IIS-LegacyScripts" state="false" />
+            <selection name="IIS-LegacySnapIn" state="false" />
+            <selection name="IIS-FTPServer" state="false" />
+            <selection name="IIS-FTPSvc" state="false" />
+            <selection name="IIS-FTPExtensibility" state="false" />
+            <selection name="IIS-WindowsAuthentication" state="false" />
+            <selection name="IIS-DigestAuthentication" state="false" />
+            <selection name="IIS-ClientCertificateMappingAuthentication" state="false" />
+            <selection name="IIS-IISCertificateMappingAuthentication" state="false" />
+            <selection name="IIS-ODBCLogging" state="false" />
+            <selection name="MediaPlayback" state="false" />
+            <selection name="WindowsMediaPlayer" state="false" />
+            <selection name="MediaCenter" state="false" />
+            <selection name="OpticalMediaDisc" state="false" />
+            <selection name="NetFx3" state="false" />
+            <selection name="WCF-HTTP-Activation" state="false" />
+            <selection name="WCF-NonHTTP-Activation" state="false" />
+            <selection name="RasRip" state="false" />
+            <selection name="RasCMAK" state="false" />
+            <selection name="MSMQ-Container" state="false" />
+            <selection name="MSMQ-Server" state="false" />
+            <selection name="MSMQ-Triggers" state="false" />
+            <selection name="MSMQ-ADIntegration" state="false" />
+            <selection name="MSMQ-HTTP" state="false" />
+            <selection name="MSMQ-Multicast" state="false" />
+            <selection name="MSMQ-DCOMProxy" state="false" />
+            <selection name="TabletPCOC" state="false" />
+            <selection name="Printing-Foundation-Features" state="false" />
+            <selection name="Printing-Foundation-LPRPortMonitor" state="false" />
+            <selection name="Printing-Foundation-LPDPrintService" state="false" />
+            <selection name="Printing-Foundation-InternetPrinting-Client" state="false" />
+            <selection name="FaxServicesClientPackage" state="false" />
+            <selection name="ScanManagementConsole" state="false" />
+            <selection name="TFTP" state="false" />
+            <selection name="MSRDC-Infrastructure" state="false" />
+            <selection name="Printing-XPSServices-Features" state="false" />
+            <selection name="Indexing-Service-Package" state="false" />
+            <selection name="Internet-Explorer-Optional-x86" state="true" />
+            <selection name="Xps-Foundation-Xps-Viewer" state="false" />
+            <selection name="TIFFIFilter" state="false" />
+            <selection name="SearchEngine-Client-Package" state="false" />
+        </package>
+        <package action="remove" permanence="permanent">
+            <assemblyIdentity name="Microsoft-Windows-ProfessionalEdition" version="6.1.7601.17514" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="" />
+            <selection name="Microsoft-Hyper-V-Common-Drivers" state="false" />
+            <selection name="Microsoft-Hyper-V-Guest-Integration-Drivers" state="false" />
+            <selection name="Microsoft-Windows-Anytime-Upgrade-Package" state="false" />
+            <selection name="Microsoft-Windows-MediaPlayer-Package" state="false" />
+            <selection name="Microsoft-Windows-NetFx3-OC-Package" state="false" />
+            <selection name="Microsoft-Windows-Printing-XPSServices-Package" state="false" />
+            <selection name="OpticalMediaDisc" state="false" />
+        </package>
+    </servicing>
+    <cpi:offlineImage cpi:source="" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>

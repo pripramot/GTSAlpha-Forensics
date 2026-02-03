@@ -1,0 +1,152 @@
+;*****************************************************************************
+;
+; Name:  SE26sdmw.inf
+;
+; Function:
+;	Install Sony Ericsson Device 038 USB WMC Device Management Drivers on Win98/SE/ME
+;
+; Copyright (c) 1997-2005 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=05/01/2006, 4.34.0.2705
+DriverVer=04/21/2009, 4.34.0.2705
+;Missing CAT file entry added by RTGL
+CatalogFile=se26sdmw.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"SE26mgmt.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+SE26mgmt.sys = 1
+SE26cr.sys = 1
+;SE26vcr.vxd = 1; RTGL: remove unused files from legacy OS versions
+;SE26cm95.sys = 1; RTGL: remove unused files from legacy OS versions
+SE26cmnt.sys = 1
+;SE26comm.vxd = 1; RTGL: remove unused files from legacy OS versions
+;SE26vcd.vxd = 1; RTGL: remove unused files from legacy OS versions
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=Sony_Ericsson_Dev38
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[Sony_Ericsson_Dev38]
+%Sony_Ericsson_Dev38.Comm.Desc% = Sony_Ericsson_Dev38.Install, USB\VID_0FCE&PID_D038&Class_02&SubClass_09&Prot_01&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Sony_Ericsson_Dev38.Install]
+;AddReg		= Sony_Ericsson_Dev38.AddReg,Sony_Ericsson_Dev38.W95.AddReg,Sony_Ericsson_Dev38.W95.AddReg.CRGuid
+AddReg		= Sony_Ericsson_Dev38.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+;DriverVer=05/01/2006, 4.34.0.2705
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Sony_Ericsson_Dev38.AddReg]
+HKR,,NTMPDriver,,SE26mgmt.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for Win95....
+[Sony_Ericsson_Dev38.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+
+[Sony_Ericsson_Dev38.W95.Addreg.CRGuid]
+HKR,,CRGuid,,{CAFF3EE2-FEC8-45BD-9066-EF2823563B08}
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;SE26vcr.vxd
+;SE26comm.vxd
+;SE26vcd.vxd
+;
+[CopyFiles.sys]
+SE26mgmt.sys
+SE26cr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;SE26cm.sys,SE26cm95.sys
+;SE26cm95.sys
+;SE26cmnt.sys
+;
+;[Copyfiles.W95.inf]
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 038 USB WMC Device Management installation disk"
+
+Sony_Ericsson_Dev38.Comm.Desc = "Sony Ericsson Device 038 USB WMC Device Management"
+UpperDescription = "Sony Ericsson Device 038 USB WMC Device Management"
+
+CustomerDataPath = "Sony Ericsson Device 038"
+DriverSet = "Sony Ericsson Device 038 Software"
+UninstallFile = "SE26Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

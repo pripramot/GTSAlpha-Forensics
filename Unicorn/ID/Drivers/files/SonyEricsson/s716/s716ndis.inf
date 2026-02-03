@@ -1,0 +1,252 @@
+;*****************************************************************************
+;
+; s716ndis.inf   -- Install the Sony Ericsson Device 716 USB Ethernet Emulation (NDIS)
+;
+; Copyright (c) 1997-2007 MCCI Corporation
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=Net
+ClassGUID={4D36E972-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/04/2007,4.40.2.0
+DriverVer=04/21/2009,4.40.2.0
+Compatible = 1
+CatalogFile=s716unic.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir = 11           ; LDID_SYS
+S716.ndi3.CopyFiles = 11  ; LDID_SYS
+S716.ndi5.CopyFiles = 11  ; LDID_SYS
+S716.ndi3.nt.CopyFiles = 12
+S716.ndi5.nt.CopyFiles = 12
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s716nd5.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s716nd5.sys",,\amd64
+
+[SourceDisksFiles]
+s716nd3.sys=1
+s716nd5.sys=1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%S716%=S716,NTamd64
+
+;-----------------------------------------------------------------------------
+; The ndis devices
+;-----------------------------------------------------------------------------
+[S716]
+%Ndis5Desc% = S716.ndi5, s716CR\{94efa48d-06ca-4af6-b21d-7b3755732a8e}
+%Ndis3Desc% = S716.ndi3, s716CR\{84beb84f-69c1-49d5-a340-28355ef173ff}
+
+[S716.NTamd64]
+%Ndis5Desc% = S716.ndi5, s716CR\{94efa48d-06ca-4af6-b21d-7b3755732a8e}
+
+;*****************************************************************************
+;
+; NDIS services:
+;
+;	You would think that '\' continuation would make the following 
+;	more readable.  It only succeeds in breaking NDIS.  Keep all this
+;	on one line!
+;
+;*****************************************************************************
+
+[S716.ndi5]
+DriverVer=04/04/2007,4.40.2.0
+Characteristics = 0x4 ;NCF_PHYSICAL
+BusType = 15 ; PNPbus
+AddReg = S716.ndi.reg,S716.ndi.reg.W9x,S716.ndi5.reg,S716.ndi5.reg.W9x,S716.ndi.Gen.Resources,S716.ndi.Gen.Params,S716.ndi5.Gen.Params
+CopyFiles = S716.ndi5.CopyFiles
+
+[S716.ndi5.nt]
+Characteristics = 0x4 ;NCF_PHYSICAL
+BusType = 15 ; PNPbus
+AddReg = S716.ndi.reg,S716.ndi.reg.nt,S716.ndi5.reg,S716.ndi5.reg.nt,S716.ndi.Gen.Resources,S716.ndi.Gen.Params,S716.ndi5.Gen.Params
+CopyFiles = S716.ndi5.nt.CopyFiles
+
+[S716.ndi3]
+Characteristics = 0x4 ;NCF_PHYSICAL
+BusType = 15 ; PNPbus
+AddReg = S716.ndi.reg,S716.ndi.reg.W9x,S716.ndi3.reg,S716.ndi3.reg.W9x,S716.ndi.Gen.Resources,S716.ndi.Gen.Params,S716.ndi3.Gen.Params
+CopyFiles = S716.ndi3.CopyFiles
+
+[S716.ndi3.nt]
+Characteristics = 0x4 ;NCF_PHYSICAL
+BusType = 15 ; PNPbus
+AddReg = S716.ndi.reg,S716.ndi.reg.nt,S716.ndi3.reg,S716.ndi3.reg.nt,S716.ndi.Gen.Resources,S716.ndi.Gen.Params,S716.ndi3.Gen.Params
+CopyFiles = S716.ndi3.nt.CopyFiles
+
+;-----------------------------------------------------------------------------
+; Install all the normal things in the registry 
+;-----------------------------------------------------------------------------
+[S716.ndi3.reg]
+HKR,NDIS,LogDriverName,,"s716nd3"
+; NDIS Info
+HKR,NDIS,MajorNdisVersion,1,03
+HKR,NDIS,MinorNdisVersion,1,0A
+HKR,Ndi\Interfaces,DefUpper,,"ndis3"
+HKR,Ndi\Interfaces,UpperRange,,"ndis3"
+
+[S716.ndi5.reg]
+HKR,NDIS,LogDriverName,,"s716nd5"
+; NDIS Info
+HKR,NDIS,MajorNdisVersion,1,05
+HKR,NDIS,MinorNdisVersion,1,00
+HKR,Ndi\Interfaces,DefUpper,,"ndis3,ndis5"
+HKR,Ndi\Interfaces,UpperRange,,"ndis3,ndis5"
+
+[S716.ndi.reg]
+HKR,,EnumPropPages,,"netdi.dll,EnumPropPages"
+
+; Interfaces
+HKR,Ndi\Interfaces,DefLower,,"ethernet"
+HKR,Ndi\Interfaces,LowerRange,,"ethernet"
+
+
+;-----------------------------------------------------------------------------
+; General Resources (used to set NDI\params....)
+;-----------------------------------------------------------------------------
+[S716.ndi.Gen.Resources]
+
+;-----------------------------------------------------------------------------
+; General Params.
+;-----------------------------------------------------------------------------
+[S716.ndi.Gen.Params]
+HKR,,BoardType,,%S716.BoardType%
+HKR,,MediaType,,"Ethernet"
+
+[S716.ndi3.Gen.Params]
+HKR,,BoardName,,"%S716.ndi3.guid%"
+HKR,,DeviceName,,"%S716.ndi3.guid%"
+
+[S716.ndi5.Gen.Params]
+HKR,,BoardName,,"%S716.ndi5.guid%"
+HKR,,DeviceName,,"%S716.ndi5.guid%"
+
+;-----------------------------------------------------------------------------
+;	NDIS devload info for W95/W98
+;-----------------------------------------------------------------------------
+[S716.ndi.reg.W9x]
+HKR,,DevLoader,,*ndis
+HKR,,DriverDesc,,%S716.ndi.DriverDesc%
+
+[S716.ndi3.reg.W9x]
+HKR,,DeviceVxDs,, s716nd3.sys
+HKR,Ndi,DeviceId,,%S716.ndi3.guid%
+
+[S716.ndi5.reg.W9x]
+HKR,,DeviceVxDs,, s716nd5.sys
+HKR,Ndi,DeviceId,,%S716.ndi5.guid%
+
+;-----------------------------------------------------------------------------
+;	NDIS devload info for Win2K
+;-----------------------------------------------------------------------------
+[S716.ndi.reg.nt]
+HKR,,DriverDesc,,%S716.ndi.DriverDesc%
+
+[S716.ndi3.reg.nt]
+HKR,Ndi,DeviceId,,%S716.ndi3.guid%
+HKR,Ndi,Service,,"s716nd3"
+
+[S716.ndi5.reg.nt]
+HKR,Ndi,DeviceId,,%S716.ndi5.guid%
+HKR,Ndi,Service,,"s716nd5"
+
+
+[S716.ndi5.NT.Services]
+AddService      = s716nd5, 2, S716.ndi5.AddService
+
+[S716.ndi5.AddService]
+DisplayName             = %S716.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s716nd5.sys
+LoadOrderGroup          = NDIS
+
+[S716.ndi3.NT.Services]
+AddService      = s716nd3, 2, S716.ndi3.AddService
+
+[S716.ndi3.AddService]
+DisplayName             = %S716.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s716nd3.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+; Some copyfiles sections
+;-----------------------------------------------------------------------------
+[S716.ndi3.CopyFiles]
+s716nd3.sys
+
+[S716.ndi5.CopyFiles]
+s716nd5.sys
+
+[S716.ndi3.nt.CopyFiles]
+s716nd3.sys
+
+[S716.ndi5.nt.CopyFiles]
+s716nd5.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+S716 = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 716 USB Ethernet Emulation Installation Disk"
+
+S716.ndi.DriverDesc = "Sony Ericsson Device 716 USB Ethernet Emulation (NDIS)"
+Ndis3Desc = "Sony Ericsson Device 716 USB Ethernet Emulation (NDIS 3)"
+Ndis5Desc = "Sony Ericsson Device 716 USB Ethernet Emulation (NDIS 5)"
+S716.Service.Desc = "Sony Ericsson Device 716 USB Ethernet Emulation SEMC716 (NDIS)"
+S716.BoardType = "Sony Ericsson Device 716 USB Ethernet Emulation (for Networking Device)"
+
+CustomerDataPath = "Sony Ericsson Device 716"
+DriverSet = "Sony Ericsson Device 716 Software"
+UninstallFile = "S716Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+S716.ndi5.guid = "s716CR\{94efa48d-06ca-4af6-b21d-7b3755732a8e}"
+S716.ndi3.guid = "s716CR\{84beb84f-69c1-49d5-a340-28355ef173ff}"
+
+
+;*** end of file ***

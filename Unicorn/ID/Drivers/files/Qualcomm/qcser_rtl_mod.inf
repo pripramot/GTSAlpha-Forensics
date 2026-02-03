@@ -1,0 +1,193 @@
+; Windows Vista Virtual Serial Port Setup File
+; Copyright (c) 2014 Qualcomm Incorporated
+; Manufacturer: Qualcomm Incorporated
+;
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %QUALCOMM%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer  = 03/19/2014,2.1.1.2
+Catalogfile.NTx86=qcser_rtl_mod.cat
+CatalogFile.NTamd64=qcser_rtl_mod64.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%QUALCOMM% = QcomSerialPort, NTx86, NTamd64
+
+[SourceDisksNames]
+  1000 = %QcomSrcDisk%,"",,
+
+[SourceDisksFiles.x86]
+  qcusbser.sys = 1000,x86
+
+[SourceDisksFiles.amd64]
+  qcusbser.sys = 1000,amd64
+
+[QcomSerialPort.NTx86]
+; HUAWEI Ideos X6
+%QcomDeviceC0001%  = QportInstall00, USB\VID_0489&PID_C000&MI_01
+%QcomDeviceC0004%  = QportInstall00, USB\VID_0489&PID_C000&MI_04
+%QcomDeviceC0013%  = QportInstall00, USB\VID_0489&PID_C001&MI_03
+%QcomDeviceC0005%  = QportInstall00, USB\VID_0489&PID_C005
+
+[QcomSerialPort.NTamd64]
+; HUAWEI Ideos X6
+%QcomDeviceC0001%  = QportInstall00, USB\VID_0489&PID_C000&MI_01
+%QcomDeviceC0004%  = QportInstall00, USB\VID_0489&PID_C000&MI_04
+%QcomDeviceC0013%  = QportInstall00, USB\VID_0489&PID_C001&MI_03
+%QcomDeviceC0005%  = QportInstall00, USB\VID_0489&PID_C005
+
+[QportInstall00.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg
+
+[QportInstall01.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg, DevFunction1
+
+[QportInstall02.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg, DevFunction2
+
+[QportInstall05.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg
+
+[QCUsbDriverFiles]
+qcusbser.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[QportInstall00.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService
+
+[QportInstall01.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService
+
+[QportInstall02.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService
+
+[QportInstall05.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService05
+
+[QC_USBSerialService]
+DisplayName   = %QCUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qcusbser.sys
+
+[QC_USBSerialService05]
+DisplayName   = %QCUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qcusbser.sys
+AddReg        = RegEntries
+
+[All00]
+HKR,,NTMPDriver,,qcusbser.sys
+
+[DevFunction1]
+HKR,,QCDeviceFunction,0x00010001,1
+
+[DevFunction2]
+HKR,,QCDeviceFunction,0x00010001,2
+
+[RegEntries]
+HKR, , QCDriverSelectiveSuspendIdleTime, 0x00010001, 0x80000003
+HKR, , QCDriverPowerManagementEnabled, 0x00010001, 1
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69025,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69026,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69031,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69032,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69037,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69038,1,1
+
+[Strings]
+QcomDeviceC0001 = "Qualcomm USB Device"
+QcomDeviceC0004 = "Qualcomm USB Device"
+QcomDeviceC0013 = "Qualcomm USB Device"
+QcomDeviceC0005 = "Qualcomm USB Device"
+QCUSBSER = "Qualcomm USB Device for Legacy Serial Communication"
+QcomSrcDisk = "QUALCOMM USB Driver Disk"
+QUALCOMM   = "Qualcomm Incorporated"
+QcomDevice00 = "Qualcomm Diagnostics Interface 3197"
+QcomDevice6k = "Qualcomm Diagnostics Interface 6000"
+QcomDeviceNMEA = "Qualcomm NMEA Device"
+QcomDevice7k = "Qualcomm Diagnostics Interface 7000"
+QcomDevice7k1 = "Qualcomm RRDM 7001"
+QcomDevice7k3 = "Qualcomm Diagnostics Interface 7001"
+QcomDevice70020 = "Qualcomm RRDM 7002"
+QcomDevice70023 = "Qualcomm Diagnostics Interface 7002"
+QcomDevice70024 = "Qualcomm NMEA 7002"
+QcomDevice71010 = "Qualcomm RRDM 7101"
+QcomDevice71015 = "Qualcomm Diagnostics Interface 7101"
+QcomDevice71020 = "Qualcomm RRDM 7102"
+QcomDevice71025 = "Qualcomm Diagnostics Interface 7102"
+QcomDevice71026 = "Qualcomm NMEA 7102"
+QcomDevice80000 = "Qualcomm HS-USB Diagnostics 8000"
+QcomDevice80002 = "Qualcomm HS-USB NMEA 8000"
+QcomDevice80010 = "Qualcomm HS-USB Diagnostics 8001"
+QcomDevice80012 = "Qualcomm HS-USB NMEA 8001"
+QcomDevice80020 = "Qualcomm HS-USB Diagnostics 8002"
+QcomDevice80022 = "Qualcomm HS-USB NMEA 8002"
+QcomDevice90080 = "Qualcomm HS-USB QDLoader 9008"
+QcomDevice90000 = "Qualcomm HS-USB Diagnostics 9000"
+QcomDevice90001 = "Qualcomm HS-USB NMEA 9000"
+QcomDevice90010 = "Qualcomm HS-USB Diagnostics 9001"
+QcomDevice90011 = "Qualcomm HS-USB NMEA 9001"
+QcomDevice90020 = "Qualcomm HS-USB Diagnostics 9002"
+QcomDevice90021 = "Qualcomm HS-USB NMEA 9002"
+QcomDevice90022 = "Qualcomm HS-USB Diagnostics 9002 - JRD"
+QcomDevice90030 = "Qualcomm HS-USB Diagnostics 9003"
+QcomDevice90031 = "Qualcomm HS-USB NMEA 9003"
+QcomDevice90032 = "Qualcomm HS-USB AT Port 9003"
+QcomDevice32001 = "Qualcomm WinMobile Diagnostics 3200"
+QcomDevice32002 = "Qualcomm WinMobile NMEA 3200"
+QcomDevice90040 = "Qualcomm HS-USB Diagnostics 9004"
+QcomDevice90050 = "Qualcomm HS-USB Diagnostics 9005"
+QcomDevice90060 = "Qualcomm HS-USB Diagnostics 9006"
+QcomDevice900A0 = "Qualcomm HS-USB Diagnostics 900A"
+QcomDevice900A1 = "Qualcomm HS-USB NMEA 900A"
+QcomDevice900B0 = "Qualcomm HS-USB Diagnostics 900B"
+QcomDevice900C0 = "Qualcomm HS-USB Diagnostics 900C"
+QcomDevice900C1 = "Qualcomm HS-USB NMEA 900C"
+QcomDevice900D0 = "Qualcomm HS-USB Diagnostics 900D"
+QcomDevice900D1 = "Qualcomm HS-USB NMEA 900D"
+QcomDevice900E0 = "Qualcomm HS-USB Diagnostics 900E"
+QcomDevice90120 = "Qualcomm HS-USB Diagnostics 9012"
+QcomDevice90130 = "Qualcomm HS-USB Diagnostics 9013"
+QcomDevice90160 = "Qualcomm HS-USB Diagnostics 9016"
+QcomDevice90162 = "Qualcomm HS-USB NMEA 9016"
+QcomDevice90170 = "Qualcomm HS-USB Diagnostics 9017"
+QcomDevice90172 = "Qualcomm HS-USB NMEA 9017"
+QcomDevice90180 = "Qualcomm HS-USB Android DIAG 9018"
+QcomDevice90183 = "Qualcomm HS-USB Android GPS 9018"
+QcomDevice90191 = "Qualcomm WinMobile Diagnostics 9019"
+QcomDevice90192 = "Qualcomm WinMobile NMEA 9019"
+QcomDevice901C0 = "Qualcomm HS-USB Diagnostics 901C"
+QcomDevice91000 = "Qualcomm Symbian USB Diagnostics 9100"
+QcomDevice91001 = "Qualcomm Symbian USB Trace 9100"
+QcomDevice91010 = "Qualcomm Symbian USB Diagnostics 9101"
+QcomDevice91011 = "Qualcomm Symbian USB Trace 9101"
+QcomDevice91012 = "Qualcomm Symbian USB IP 9101"
+QcomDevice91014 = "Qualcomm Symbian USB General Purpose 9101"
+QcomDevice94020 = "Qualcomm HS-USB Diagnostics 9402"
+QcomDevice94021 = "Qualcomm HS-USB NMEA 9402"
+QcomDeviceF0051 = "Qualcomm HS-USB Diagnostics F005"
+QcomDevice31991 = "Qualcomm WinMobile Diagnostics 3199"
+QcomDevice31992 = "Qualcomm WinMobile NMEA 3199"
+QcomDevice31993 = "Qualcomm WinMobile TRACE 3199"
+QcomDevice319A1 = "Qualcomm WinMobile Diagnostics 319A"
+QcomDevice319A2 = "Qualcomm WinMobile NMEA 319A"
+QcomDevice319A3 = "Qualcomm WinMobile TRACE 319A"

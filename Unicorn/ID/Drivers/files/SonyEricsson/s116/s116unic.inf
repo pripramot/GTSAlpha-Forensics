@@ -1,0 +1,203 @@
+
+;*****************************************************************************
+;
+; s116unic.inf   -- Install the Sony Ericsson Device 116 USB Ethernet Emulation (WDM)
+;
+; Copyright (c) 1997-2007 MCCI Corporation
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=04/21/2009,4.40.2.0
+CatalogFile=s116unic.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+S116Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s116unic.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s116unic.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+s116unic.sys = 1
+s116crnt.sys = 1
+s116vcr.vxd = 1
+s116whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%S116%=S116, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[S116.NTx86]
+%S116.Ndis.Desc% = S116Wdm.Install, USB\VID_0FCE&PID_D038&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D039&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D043&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D044&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D045&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D046&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D047&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D048&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D049&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D067&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D068&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D069&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D070&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D073&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D079&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D086&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D087&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0a1&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D088&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D089&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D094&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0A1&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0A3&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0A7&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0B7&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0B8&Class_02&SubClass_06&Prot_00
+
+[S116.NTamd64]
+%S116.Ndis.Desc% = S116Wdm.Install, USB\VID_0FCE&PID_D038&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D039&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D043&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D044&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D045&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D046&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D047&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D048&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D049&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D067&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D068&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D069&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D070&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D073&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D079&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D086&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D087&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0a1&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D088&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D089&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D094&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0A1&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0A3&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0A7&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0B7&Class_02&SubClass_06&Prot_00
+%s116.Ndis.Desc% = s116Wdm.Install, USB\VID_0FCE&PID_D0B8&Class_02&SubClass_06&Prot_00
+
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[S116Wdm.Install.NT]
+DriverVer=04/03/2007,4.40.2.0
+AddReg          = S116Wdm.AddReg, S116Wdm.NT.AddReg
+CopyFiles       = S116Wdm.NT.CopyFiles
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[S116Wdm.Install.NT.Services]
+AddService      = s116unic, 2, S116Wdm.AddService
+
+[S116Wdm.AddService]
+DisplayName             = %S116.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s116unic.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[S116Wdm.AddReg]
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,CREnum,,s116CR
+; configuration variables for CDC Ethernet Control Model.
+; These have no effect for MDLM devices.
+HKR,,UseTxCrc, 0x10001, 00,00,00,00
+HKR,,CdcEthernetSetAddressMethod, 0x10001, 00,00,00,00
+HKR,,EnableRxBulkStream, 0x10001, 01,00,00,00
+HKR,,nRxBulkStreamObjects, 0x10001,08,00,00,00
+HKR,,DataAltSetting,1,  01,00,00,00
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[S116Wdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[S116Wdm.NT.CopyFiles]
+s116unic.sys
+s116wh.sys,s116whnt.sys
+s116cr.sys,s116crnt.sys
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+S116 = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 116 USB Ethernet Emulation Installation Disk"
+
+S116.Ndis.Desc = "Sony Ericsson Device 116 USB Ethernet Emulation (WDM)"
+S116.Service.Desc = "Sony Ericsson Device 116 USB Ethernet Emulation SEMC116 (WDM)"
+
+UpperDescription = "Sony Ericsson Device 116 USB Ethernet Emulation (for Networking Device)"
+
+CustomerDataPath = "Sony Ericsson Device 116"
+DriverSet = "Sony Ericsson Device 116 Software"
+UninstallFile = "S116Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

@@ -1,0 +1,172 @@
+;*****************************************************************************
+;
+; Name:  s1039obx2.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 1039 USB WMC OBEX Interface on Win2000/XP
+;
+; Copyright (c) 1997-2010 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=03/05/2010,5.02.0.2
+CatalogFile=s1039obex.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s1039obex.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s1039obex.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+s1039obex.sys = 1
+s1039cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SonyEricsson%=sed1039, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed1039]
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_2144&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_2145&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_214E&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_213E&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_D13E&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_D144&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_D145&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_D14E&Class_02&SubClass_0b&Prot_00&OS_NT
+
+
+[sed1039.NTamd64]
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_2144&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_2145&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_214E&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_213E&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_D13E&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_D144&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_D145&Class_02&SubClass_0b&Prot_00&OS_NT
+%sed1039.Comm.Desc% = sed1039.Install, USB\VID_0fce&PID_D14E&Class_02&SubClass_0b&Prot_00&OS_NT
+
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[sed1039.Install.nt]
+AddReg		= sed1039.AddReg,sed1039.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[sed1039.AddReg]
+HKR,,NTMPDriver,,s1039obex.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[sed1039.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+s1039obex.sys
+s1039cm.sys,s1039cmnt.sys
+s1039cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+
+
+[sed1039.Install.NT.Services]
+AddService = s1039obex, 0x00000002, sed1039.Install.AddService
+
+
+
+
+[sed1039.Install.AddService]
+DisplayName	= %sed1039.Service.Name%
+Description	= %sed1039.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\s1039obex.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+SonyEricsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 1039 USB WMC OBEX Interface installation disk"
+
+sed1039.Comm.Desc = "Sony Ericsson Device 1039 USB WMC OBEX Interface"
+sed1039.Service.Name = "Sony Ericsson Device 1039 USB WMC OBEX Interface"
+sed1039.Service.Desc = "Sony Ericsson Device 1039 USB WMC OBEX Interface"
+
+
+CustomerDataPath = "Sony Ericsson Device 1039"
+DriverSet = "Sony Ericsson Device 1039 Software"
+UninstallFile = "S1039Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

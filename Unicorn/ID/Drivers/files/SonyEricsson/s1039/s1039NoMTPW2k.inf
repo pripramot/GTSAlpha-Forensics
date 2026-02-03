@@ -1,0 +1,77 @@
+;*****************************************************************************
+;
+; Name:  s1039NoMTPW2k.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 1039 USB WMC NoMTP Interface on Win2000
+;   and WinXP with Media Player 9.
+;
+; Copyright (c) 2007 Sony Ericsson
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Image
+ClassGuid={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider=%Provider%
+DriverVer=03/15/2010,1.0.1039.4
+CatalogFile=s1039NoMTPW2k.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed1039
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed1039]
+%sed1039.Comm.Desc% = NODRV, USB\VID_0fce&PID_2144&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1039.Comm.Desc% = NODRV, USB\VID_0fce&PID_2145&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1039.Comm.Desc% = NODRV, USB\VID_0fce&PID_214e&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1039.Comm.Desc% = NODRV, USB\VID_0fce&PID_213e&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1039.Comm.Desc% = NODRV, USB\VID_0fce&PID_d144&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1039.Comm.Desc% = NODRV, USB\VID_0fce&PID_d145&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1039.Comm.Desc% = NODRV, USB\VID_0fce&PID_d14e&Class_06&SubClass_01&Prot_01&OS_NT
+%sed1039.Comm.Desc% = NODRV, USB\VID_0fce&PID_d13e&Class_06&SubClass_01&Prot_01&OS_NT
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[NODRV.NT]
+
+[NODRV.NT.Services]
+AddService = , 0x00000002   ; null service install
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 1039 USB WMC NoMTP Interface installation disk"
+
+sed1039.Comm.Desc = "Sony Ericsson Device 1039 USB WMC NoMTP Interface"
+sed1039.Service.Name = "Sony Ericsson Device 1039 USB WMC NoMTP Interface"
+sed1039.Service.Desc = "Sony Ericsson Device 1039 USB WMC NoMTP Interface"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

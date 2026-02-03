@@ -1,0 +1,96 @@
+;*****************************************************************************
+;
+; Name:  s0017NoMTPW2k.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 0017 USB WMC NoMTP Interface on Win2000
+;   and WinXP with Media Player 9.
+;
+; Copyright (c) 2007 Sony Ericsson
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Image
+ClassGuid={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=05/05/2008,1.0.0.0017
+DriverVer=04/21/2009,1.0.0.0017
+CatalogFile=s0017NoMTPW2k.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed0017
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed0017]
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d075&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d076&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0a5&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0ab&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0ac&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0af&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0b3&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0b9&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0bb&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0c5&Class_06&SubClass_01&Prot_01&OS_NT
+;%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0c6&Class_06&SubClass_01&Prot_01&OS_NT ; Duplicated in SonyEricsson\Generic\s3017NoMTPW2k.inf
+;%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0d4&Class_06&SubClass_01&Prot_01&OS_NT ; Duplicated in SonyEricsson\Generic\s3017NoMTPW2k.inf
+;%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0d5&Class_06&SubClass_01&Prot_01&OS_NT ; Duplicated in SonyEricsson\Generic\s3017NoMTPW2k.inf
+;%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0d6&Class_06&SubClass_01&Prot_01&OS_NT ; Duplicated in SonyEricsson\Generic\s3017NoMTPW2k.inf
+;%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0d8&Class_06&SubClass_01&Prot_01&OS_NT ; Duplicated in SonyEricsson\Generic\s3017NoMTPW2k.inf
+;%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0d9&Class_06&SubClass_01&Prot_01&OS_NT ; Duplicated in SonyEricsson\Generic\s3017NoMTPW2k.inf
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0da&Class_06&SubClass_01&Prot_01&OS_NT
+;%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0de&Class_06&SubClass_01&Prot_01&OS_NT ; Duplicated in SonyEricsson\Generic\s3017NoMTPW2k.inf
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0e3&Class_06&SubClass_01&Prot_01&OS_NT
+;%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0ec&Class_06&SubClass_01&Prot_01&OS_NT ; Duplicated in SonyEricsson\Generic\s3017NoMTPW2k.inf
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0f3&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0f5&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d0fb&Class_06&SubClass_01&Prot_01&OS_NT
+%sed0017.Comm.Desc% = NODRV, USB\VID_0fce&PID_d100&Class_06&SubClass_01&Prot_01&OS_NT
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[NODRV.NT]
+
+[NODRV.NT.Services]
+AddService = , 0x00000002   ; null service install
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 0017 USB WMC NoMTP Interface installation disk"
+
+sed0017.Comm.Desc = "Sony Ericsson Device 0017 USB WMC NoMTP Interface"
+sed0017.Service.Name = "Sony Ericsson Device 0017 USB WMC NoMTP Interface"
+sed0017.Service.Desc = "Sony Ericsson Device 0017 USB WMC NoMTP Interface"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

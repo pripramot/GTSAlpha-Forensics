@@ -1,0 +1,145 @@
+;*****************************************************************************
+;
+; Name:  U81xobx2.inf
+;
+; Function:
+;	Install the LG Electronics U8110 USB WMC OBEX Interface on Win2000/XP
+;
+; Copyright (c) 1997-2004 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc.
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=03/29/2004, 4.20.0.2700
+DriverVer=04/21/2009, 4.20.0.2700
+CatalogFile=U81xobex.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"U81xobex.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+U81xobex.sys = 1
+U81xcmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGEU8110%=LGEU8110
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGEU8110]
+%LGEU8110.Comm.Desc% = LGEU8110.Install, USB\VID_1004&PID_1FAE&Class_02&SubClass_0B&Prot_00&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[LGEU8110.Install.nt]
+AddReg		= LGEU8110.AddReg,LGEU8110.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[LGEU8110.AddReg]
+HKR,,NTMPDriver,,U81xobex.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[LGEU8110.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+U81xobex.sys
+U81xcm.sys,U81xcmnt.sys
+U81xcmnt.sys
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[LGEU8110.Install.NT.Services]
+AddService = U81xobex, 0x00000002, LGEU8110.Install.AddService
+
+
+[LGEU8110.Install.AddService]
+DisplayName	= %LGEU8110.Service.Name%
+Description	= %LGEU8110.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\U81xobex.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "LG Electronics"
+LGEU8110 = "LG Electronics"
+DiskString = "LGE U8110 USB WMC OBEX Interface installation disk"
+
+LGEU8110.Comm.Desc = "LGE U8110 USB WMC OBEX Interface"
+LGEU8110.Service.Name = "LGE U8110 USB WMC OBEX Interface"
+LGEU8110.Service.Desc = "LGE U8110 USB WMC OBEX Interface"
+
+
+CustomerDataPath = "LGE U8110 Kit"
+DriverSet = "LGE U8110 Software"
+UninstallFile = "U81XUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

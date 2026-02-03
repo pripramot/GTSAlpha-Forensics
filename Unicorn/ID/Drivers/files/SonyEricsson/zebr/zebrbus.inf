@@ -1,0 +1,261 @@
+;*****************************************************************************
+;
+; zebrbus.inf   -- Install the Sony Ericsson Composite Device drivers
+;
+; Copyright (c) 2007 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+CatalogFile=zebrbus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+SEMCWdm.W95.CopyFiles       = 11                    ; LDID_SYS
+SEMCWdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"zebrbus.sys",,\i386
+
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"zebrbus.sys",,\amd64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+zebrbus.sys = 1
+zebrwh95.sys = 1
+zebrwhnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[SEMC]
+%SEMC.CdcBus.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D030
+%SEMC.CdcBus.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E030
+%SEMC.CdcBus1.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D031
+%SEMC.CdcBus1.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E031
+%SEMC.CdcBus3.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D058
+%SEMC.CdcBus3.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D037
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_E010
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_E011
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_E012
+%SEMC.CdcBus5.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D092
+%SEMC.CdcBus5.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E092
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F092
+%SEMC.CdcBus6.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D065
+%SEMC.CdcBus6.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E065
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F065
+%SEMC.CdcBus7.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D0CD
+%SEMC.CdcBus7.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E0CD
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F0CD
+%SEMC.CdcBus8.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D0CB
+%SEMC.CdcBus8.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E0CB
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F0CB
+%SEMC.CdcBus9.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D0CE
+%SEMC.CdcBus9.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E0CE
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F0CE
+
+[SEMCWdm1.Install]
+DriverVer=12/25/2007,4.40.6.0
+CopyFiles       = SEMCWdm.W95.CopyFiles, SEMC.CopyFiles, PropPages.CopyFiles
+AddReg          = SEMCWdm1.AddReg, SEMCWdm.W95.AddReg
+
+[SEMCWdm1.Install.NT]
+DriverVer=12/25/2007,4.40.6.0
+CopyFiles       = SEMCWdm.NT.CopyFiles
+AddReg          = SEMCWdm1.AddReg, SEMCWdm.NT.AddReg
+
+[SEMCWdm1.Install.NT.Services]
+AddService      = zebrbus, 2, SEMCWdm.AddService
+
+[SEMC.NTamd64]
+%SEMC.CdcBus.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D030
+%SEMC.CdcBus.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E030
+%SEMC.CdcBus1.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D031
+%SEMC.CdcBus1.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E031
+%SEMC.CdcBus3.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D058
+%SEMC.CdcBus3.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D037
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_E010
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_E011
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_E012
+%SEMC.CdcBus5.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D092
+%SEMC.CdcBus5.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E092
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F092
+%SEMC.CdcBus6.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D065
+%SEMC.CdcBus6.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E065
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F065
+%SEMC.CdcBus7.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D0CD
+%SEMC.CdcBus7.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E0CD
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F0CD
+%SEMC.CdcBus8.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D0CB
+%SEMC.CdcBus8.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E0CB
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F0CB
+%SEMC.CdcBus9.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D0CE
+%SEMC.CdcBus9.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_E0CE
+%SEMC.CdcBus2.Desc% = SEMCWdm1.Install, USB\VID_0FCE&PID_F0CE
+
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[SEMC.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install]
+CopyFiles       = SEMCWdm.W95.CopyFiles, SEMC.CopyFiles, PropPages.CopyFiles
+AddReg          = SEMCWdm.AddReg, SEMCWdm.W95.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install.NT]
+CopyFiles       = SEMCWdm.NT.CopyFiles
+AddReg          = SEMCWdm.AddReg, SEMCWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install.NT.Services]
+AddService      = zebrbus, 2, SEMCWdm.AddService
+
+[SEMCWdm.AddService]
+DisplayName             = %SEMC.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\zebrbus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SEMCWdm.AddReg]
+HKR,Scenarios,Scenario,0x10001, 01,00,00,00
+HKR,Scenarios\Scenario_0\Guids, GUID_SCENARIO_SPARROW_DIRECT,, "{311F0C13-CD90-462b-AD6E-459FCBDCBADD}"
+HKR,Scenarios\Scenario_0\ifc_01\Description, default,, "Sony Ericsson Direct mRouter Port Interface"
+
+HKR,Scenarios\Scenario_1\Guids, GUID_SCENARIO_SPARROW_SERCABLE,, "{3A922B02-3CBF-4113-B34C-323F3235FEE7}"
+HKR,Scenarios\Scenario_1\ifc_01\Description, default,, "Sony Ericsson USB mRouter VSC Port Interface"
+HKR,Scenarios\Scenario_1\ifc_01,HardwareId,, "USB\Vid_$VID&Pid_$PID&Mi_$IFC&SCE&Os_$OS$,"
+HKR,Scenarios\Scenario_1\ifc_01,HardwareIdList,, "USB\Vid_$VID&Pid_$PID&Rev_$REV&Mi_$IFC&SCE&Os_$OS$,USB\Vid_$VID&Pid_$PID&Rev_$REV&Mi_$IFC&SCE$,USB\Vid_$VID&Pid_$PID&Mi_$IFC&SCE&Os_$OS$,USB\Vid_$VID&Pid_$PID&MI_$IFC&SCE$,USB\Vid_$VID&Pid_$PID&SCE&Os_$OS$,USB\Vid_$VID&Pid_$PID&SCE$,$,"
+HKR,Scenarios\Scenario_1\ifc_01,CompatibleIdList,, "USB\Vid_$VID&Pid_$PID&SCE&Os_$OS$,USB\Vid_$VID&Pid_$PID&SCE$,$,"
+
+[SEMCWdm1.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[SEMCWdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,zebrbus.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SEMCWdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[SEMCWdm.W95.CopyFiles]
+zebrbus.sys
+zebrwh.sys,zebrwh95.sys
+zebrwh95.sys
+zebrwhnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SEMCWdm.NT.CopyFiles]
+zebrbus.sys
+zebrwh.sys,zebrwhnt.sys
+zebrwhnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson Mobile Communications AB"
+SEMC = "Sony Ericsson Mobile Communications AB"
+DiskString = "Sony Ericsson Composite Device Installation disk"
+
+SEMC.CdcBus.Desc = "Sony Ericsson P990 Composite Device"
+SEMC.Service.Desc = "Sony Ericsson Composite Device driver"
+
+SEMC.CdcBus1.Desc = "Sony Ericsson M600 Composite Device"
+SEMC.CdcBus3.Desc = "Sony Ericsson W950 Composite Device"
+SEMC.CdcBus2.Desc = "Sony Ericsson Composite Device"
+SEMC.CdcBus5.Desc = "Sony Ericsson P1 Composite Device"
+SEMC.CdcBus6.Desc = "Sony Ericsson W960 Composite Device"
+SEMC.CdcBus7.Desc = "Sony Ericsson G700 Composite Device"
+SEMC.CdcBus8.Desc = "Sony Ericsson G900 Composite Device"
+SEMC.CdcBus9.Desc = "Sony Ericsson G700c Composite Device"
+
+
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

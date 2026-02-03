@@ -1,0 +1,55 @@
+[Version]
+Signature="$Windows NT$"
+Provider=MobileAction
+ClassGUID={4D36E978-E325-11CE-BFC1-08002BE10318}
+Class=Ports
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=11/03/2005, 1.31.1.1
+DriverVer=04/21/2009, 1.31.1.1
+CatalogFile=mavs7u.cat
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[SourceDisksNames]
+1="MobileAction Usb Installation Disk",,,
+
+[SourceDisksFiles]
+mavs7u.sys=1
+
+[DestinationDirs]
+DefaultDestDir=10, System32\Drivers
+
+[Manufacturer]
+"Mobile Action Technology Inc."=MAT
+
+[MAT]
+%device%=MADEVICE, USB\VID_04DA&PID_2121
+
+[MADEVICE.NT]
+CopyFiles=_CopyFiles_NT
+AddReg=_AddReg_NT_Common, _AddReg_Custom
+
+[_AddReg_Custom] ; Fix ERROR(1203) Section [_AddReg_Custom] not found.
+
+[MADEVICE.NT.Services]
+AddService=mavs7u, 0x00000002, _AddService_NT_Common
+
+[_CopyFiles_NT]
+mavs7u.sys
+
+[_AddReg_NT_Common]
+HKR,, ConfigDialog,, serialui.dll
+HKR,, EnumPropPages,, "serialui.dll,EnumPropPages"
+
+HKR,, DeviceType, 1, 01
+HKR,, PortSubClass, 1, 01
+
+[_AddService_NT_Common]
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %10%\System32\Drivers\mavs7u.sys
+
+[Strings]
+device="Panasonic Usb Com Port"

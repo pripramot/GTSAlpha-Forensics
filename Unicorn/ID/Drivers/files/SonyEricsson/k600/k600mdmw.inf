@@ -1,0 +1,162 @@
+;*****************************************************************************
+;
+; Name:  k600mdmw.inf
+;
+; Function:
+;	Install the Sony Ericsson 600i USB WMC Modem Port Drivers on Win9x/Me
+;
+; Copyright (c) 1997-2004 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=03/04/2005, 4.28.0.2703
+DriverVer=04/21/2009, 4.28.0.2703
+CatalogFile=k600mdm.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"k600mdm.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+k600mdm.sys = 1
+k600cr.sys = 1
+;k600vcr.vxd = 1; RTGL: remove unused files from legacy OS versions
+;k600cm95.sys = 1; RTGL: remove unused files from legacy OS versions
+k600cmnt.sys = 1
+;k600comm.vxd = 1; RTGL: remove unused files from legacy OS versions
+;k600vcd.vxd = 1; RTGL: remove unused files from legacy OS versions
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%SEMC.Modem.Desc% = SEMC.Install, USB\VID_0FCE&PID_D017&MI_01&OS_9X
+%SEMC.Modem.Desc2% = SEMC.Install2, USB\VID_0FCE&PID_D017&MI_03&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SEMC.Install]
+;AddReg		= SEMC.AddReg,SEMC.W95.AddReg,SEMC.W95.AddReg.CRGuid
+AddReg		= SEMC.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+;DriverVer=03/04/2005, 4.28.0.2703
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC.AddReg]
+HKR,,NTMPDriver,,k600mdm.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for Win95....
+[SEMC.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+
+[SEMC.W95.Addreg.CRGuid]
+HKR,,CRGuid,,{D2FBDB1D-298B-4e1b-A6B2-B8CE540475DC}
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;k600vcr.vxd
+;k600comm.vxd
+;k600vcd.vxd
+;
+[CopyFiles.sys]
+k600mdm.sys
+k600cr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;k600cm.sys,k600cm95.sys
+;k600cm95.sys
+;k600cmnt.sys
+;
+;[Copyfiles.W95.inf]
+;k600mdmv.inf
+
+[SEMC.Install2]
+;AddReg		= SEMC.AddReg,SEMC.W95.AddReg,SEMC.W95.AddReg.CRGuid2
+AddReg		= SEMC.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+;DriverVer=03/04/2005, 4.28.0.2703
+
+[SEMC.W95.Addreg.CRGuid2]
+HKR,,CRGuid,,{AE5797E3-B830-48d0-81F6-990A91AFC014}
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson 600i USB WMC Modem installation disk"
+
+SEMC.Modem.Desc = "Sony Ericsson 600i USB WMC Data Modem (WDM)"
+UpperDescription = "Sony Ericsson 600i USB WMC Modem Drivers"
+
+CustomerDataPath = "Sony Ericsson 600i"
+DriverSet = "Sony Ericsson 600i Software"
+UninstallFile = "K600Uninstall.exe"
+McciOptions = "Uninstallable"
+
+SEMC.Modem.Desc2 = "Sony Ericsson 600i USB WMC Modem (WDM)"
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

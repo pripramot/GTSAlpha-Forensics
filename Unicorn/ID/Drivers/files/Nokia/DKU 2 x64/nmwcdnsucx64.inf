@@ -1,0 +1,96 @@
+; Nokia USB Host Driver for Windows XP/Vista/W7 x64
+; Copyright (c) 2002-2010 by Nokia Corporation. All rights reserved.
+; INF for Generic USB Bulk Transfer Driver for flashing
+; Date: 08/12/2013, Version: 7.1.32.117
+
+[Version]
+Signature = "$Windows NT$"
+Class = "Wireless Communication Devices"
+ClassGuid = {4F919108-4ADF-11d5-882D-00B0D02FE381}
+Provider = %Manufacturer%
+DriverVer = 08/12/2013, 7.1.32.117
+CatalogFile = ccdcmbx64.cat
+
+; ================= Class section =====================
+
+[ClassInstall32]
+CopyFiles=WMCClassInstallerCopyFiles
+AddReg=WMCClassReg
+
+[WMCClassReg]
+HKR,,,0,%CLS%
+HKR,,Icon,,100
+HKR,,Installer32,,"nmwcdclsx64.dll,WMCClassInstaller"
+
+[WMCClassInstallerCopyFiles]
+nmwcdclsx64.dll
+
+
+[Manufacturer]
+%Manufacturer% = DeviceList, NTamd64
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[DeviceList.NTamd64]
+%GenericAVALON% = OtherX, NMWCD\VID_0421&PID_0103&IF_OTH
+%LCIFAVALON% = OtherX, NMWCD\VID_0421&PID_0103&IF_LC
+
+%GenericADL% = OtherX, NMWCD\VID_0421&PID_0104&IF_OTH
+
+%GenericBB5ADLLoader% = OtherX, NMWCD\VID_0421&PID_0105&IF_OTH
+%LCIFBB5ADLLoader% = OtherX, NMWCD\VID_0421&PID_0105&IF_LC
+
+%GenericROM% = OtherX, NMWCD\VID_0421&PID_0106&IF_OTH
+%LCIFROM% = OtherX, NMWCD\VID_0421&PID_0106&IF_LC
+
+
+
+[OtherX.NTamd64]
+CopyFiles = CopyFileSection
+
+[OtherX.NTamd64.Services]
+AddService = %ServiceName%, 0x00000002, NMWCDC_Service_Inst_OTH
+
+
+
+[NMWCDC_Service_Inst_OTH]
+DisplayName = %ServiceDisplayName%
+ServiceType = 1
+StartType = 3
+ErrorControl = 0
+ServiceBinary = %10%\system32\drivers\nmwcdnsucx64.sys
+
+[SourceDisksNames]
+1=%DISKNAME%,,,
+
+[SourceDisksFiles]
+nmwcdnsucx64.sys = 1
+nmwcdclsx64.dll = 1
+
+[CopyFileSection]
+nmwcdnsucx64.sys
+
+[DestinationDirs]
+DefaultDestDir=10,System32\Drivers
+CopyFileSection=10,System32\Drivers
+WMCClassInstallerCopyFiles=10,System32
+
+[Strings]
+Manufacturer = "Nokia"
+CLS = "Wireless Communication Devices"
+
+GenericAVALON = "ADL Flashing Engine AVALON Generic"
+LCIFAVALON = "ADL Flashing Engine AVALON LCIF"
+GenericADL = "Nokia ADL USB Re-Flashing Engine Generic"
+GenericBB5ADLLoader = "Nokia BB5 ADL Loader USB Generic"
+LCIFBB5ADLLoader = "Nokia BB5 ADL Loader USB LCIF"
+
+GenericROM = "Nokia USB Flashing Generic"
+LCIFROM = "Nokia USB Flashing LCIF"
+
+
+ServiceName = "nmwcdnsucx64"
+ServiceDisplayName = "Nokia USB Flashing Generic"
+DISKNAME = "Nokia USB Flashing Installation Disk"
+	

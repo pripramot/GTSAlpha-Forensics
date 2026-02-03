@@ -1,0 +1,189 @@
+;*****************************************************************************
+;
+; Name:  zebrser2.inf
+;
+; Function:
+;	Install the Sony Ericsson Port (WDM)
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+CatalogFile=zebrmdm.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"zebrmdm.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"zebrmdm.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+zebrmdm.sys = 1
+zebrcmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_E012&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_E012&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_E011&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_E011&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_E010&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_E010&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F092&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F092&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F065&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F065&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F0CD&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F0CD&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F0CB&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F0CB&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F0CE&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F0CE&MI_03&OS_NT
+
+
+[SEMC.NTamd64]
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_E012&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_E012&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_E011&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_E011&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_E010&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_E010&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F092&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F092&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F065&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F065&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F0CD&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F0CD&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F0CB&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F0CB&MI_03&OS_NT
+%SerialA1%=SEMC.Install,USB\VID_0FCE&PID_F0CE&MI_01&OS_NT
+%SerialB1%=SEMC.Install,USB\VID_0FCE&PID_F0CE&MI_03&OS_NT
+
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SEMC.Install.nt]
+AddReg = SEMC.AddReg, SEMC.NT.AddReg
+CopyFiles = CopyFiles, CopyFiles.Win2K
+
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC.AddReg]
+HKR,,NTMPDriver,,zebrmdm.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[SEMC.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+zebrmdm.sys
+zebrcm.sys,zebrcmnt.sys
+zebrcmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[SEMC.Install.NT.Services]
+AddService = zebrmdm, 0x00000002, SEMC.Install.AddService
+
+
+[SEMC.Install.AddService]
+DisplayName	= %SEMC.Service.Name%
+Description	= %SEMC.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\zebrmdm.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson Mobile Communications AB"
+SEMC = "Sony Ericsson Mobile Communications AB"
+DiskString = "Sony Ericsson Port Installation Disk"
+
+SEMC.Service.Name = "Sony Ericsson Port (WDM)"
+SEMC.Service.Desc = "Sony Ericsson Port (WDM)"
+
+
+SerialA1 = "Sony Ericsson Master Port"
+SerialB1 = "Sony Ericsson Slave Port"
+
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+
+McciOptions = "Uninstallable"
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

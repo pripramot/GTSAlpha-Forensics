@@ -1,0 +1,100 @@
+;************************************************************************
+;FILENAME: se091010mgmt.inf
+;Copyright Sony Ericsson Mobile Communications AB/LTD/INC 2009. All rights reserved.
+;
+;The program(s) may be used and/or copied only with the written permission
+;from Sony Ericsson Mobile Communications AB or in accordance with the terms
+;and conditions stipulated in the agreement/contract under which the
+;program(s) have been supplied.
+;************************************************************************ 
+
+[Version]
+Signature="$Windows NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%SEMC%
+DriverVer=10/28/2009,1.0.5.1  ; Date format: MM/DD/YYYY
+CatalogFile=se091010mgmt.cat
+
+[Manufacturer]
+%SEMC% = Models, NTia64, NTamd64
+
+[Models]
+%INTERFACE1% = Install, %MODEL_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL_HARDWARE_ID3%
+%INTERFACE1% = Install, %MODEL2_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL2_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL2_HARDWARE_ID3%
+%INTERFACE1% = Install, %MODEL3_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL3_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL3_HARDWARE_ID3%
+
+[Models.NTia64]
+%INTERFACE1% = Install, %MODEL_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL_HARDWARE_ID3%
+%INTERFACE1% = Install, %MODEL2_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL2_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL2_HARDWARE_ID3%
+%INTERFACE1% = Install, %MODEL3_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL3_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL3_HARDWARE_ID3%
+
+[Models.NTamd64]
+%INTERFACE1% = Install, %MODEL_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL_HARDWARE_ID3%
+%INTERFACE1% = Install, %MODEL2_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL2_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL2_HARDWARE_ID3%
+%INTERFACE1% = Install, %MODEL3_HARDWARE_ID1%
+%INTERFACE2% = Install, %MODEL3_HARDWARE_ID2%
+%INTERFACE3% = Install, %MODEL3_HARDWARE_ID3%
+
+[Install.NT]
+CopyINF=se091010mdm.inf, se091010mtp.inf
+AddReg=Install.NT.AddReg
+Include = mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+
+[FakeModemCopyFileSection]
+
+[Install.NT.Services]
+AddService = usbser, 0x00000002, Services
+
+[Install.NT.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Services]
+DisplayName = %SERIAL%
+Description	= %SERIAL%
+ServiceType = 1
+StartType = 3
+ErrorControl = 0
+ServiceBinary = %12%\usbser.sys
+LoadOrderGroup = Base
+
+[Strings]
+SEMC = "Sony Ericsson Mobile Communications AB"
+INTERFACE1 = "Sony Ericsson Device 091010 USB Serial Port"
+INTERFACE2 = "Sony Ericsson Device 091010 USB OBEX Port"
+INTERFACE3 = "Sony Ericsson Device 091010 USB Application Port"
+SERIAL = "Sony Ericsson USB Serial Port"
+MODEL_HARDWARE_ID1 = "USB\VID_0FCE&PID_D10E&MI_01" ; SP1 - SERIAL
+MODEL_HARDWARE_ID2 = "USB\VID_0FCE&PID_D10E&MI_05" ; SP2 - OBEX
+MODEL_HARDWARE_ID3 = "USB\VID_0FCE&PID_D10E&MI_07" ; SP3 - APPLICATION
+MODEL2_HARDWARE_ID1 = "USB\VID_0FCE&PID_D133&MI_01" ; SP1 - SERIAL
+MODEL2_HARDWARE_ID2 = "USB\VID_0FCE&PID_D133&MI_05" ; SP2 - OBEX
+MODEL2_HARDWARE_ID3 = "USB\VID_0FCE&PID_D133&MI_07" ; SP3 - APPLICATION
+MODEL3_HARDWARE_ID1 = "USB\VID_0FCE&PID_D13A&MI_01" ; SP1 - SERIAL
+MODEL3_HARDWARE_ID2 = "USB\VID_0FCE&PID_D13A&MI_05" ; SP2 - OBEX
+MODEL3_HARDWARE_ID3 = "USB\VID_0FCE&PID_D13A&MI_07" ; SP3 - APPLICATION
+
+[SourceDisksNames]
+; none
+
+[SourceDisksFiles]
+; none

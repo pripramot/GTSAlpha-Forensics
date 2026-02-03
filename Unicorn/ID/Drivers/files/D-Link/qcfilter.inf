@@ -1,0 +1,113 @@
+;-------------------------------------------------------------------------------
+; qcfilter.INF
+;
+; D-Link Wireless Composite Device
+;
+; Copyright (C) 2018 D-Link Inc.  All rights reserved.
+;-------------------------------------------------------------------------------
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = USB
+Provider    = %PROVIDER%
+ClassGUID   = {36FC9E60-C465-11CF-8056-444553540000}
+DriverVer   = 05/04/2018,1.1.1.1
+CatalogFile = qcfilter.cat
+
+[Manufacturer]
+%PROVIDER%  = DLKFilter, NTamd64
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+1000 = %BMTSrcDisk%,"",,\filter\i386
+
+[SourceDisksNames.amd64]
+1000 = %BMTSrcDisk%,"",,\filter\amd64
+
+[SourceDisksFiles]
+qcusbfilter.sys  = 1000
+
+[DLKFilter]
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E19
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E35
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E37
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E38
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E39
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3B
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3C
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3D
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3E
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3F
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E40
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E41
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E42
+
+[DLKFilter.NTamd64]
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E19
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E35
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E37
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E38
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E39
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3B
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3C
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3D
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3E
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E3F
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E40
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E41
+%bmfilter.DeviceDesc2001%     = bmfilter, USB\VID_2001&PID_7E42
+
+[bmfilter.NT]  
+;-----------------------------------------------------------------
+; Get the standard stuff from USB.inf
+;-----------------------------------------------------------------
+Include   = USB.inf
+Needs     = Composite.Dev.NT
+CopyFiles = bmfilter.NT.Copy
+
+[bmfilter.NT.Copy]
+qcusbfilter.sys
+
+[DestinationDirs]
+bmfilter.NT.Copy = 12
+
+[bmfilter.NT.HW]
+AddReg = LowerFilterAddReg
+
+[LowerFilterAddReg]
+HKR,,"LowerFilters",0x00010000,"bmfilter"
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E19,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E35,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E37,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E38,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E39,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E3B,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E3C,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E3D,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E3E,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E3F,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E40,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E41,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum20017E42,1,1
+;-----------------------------------------------------------------
+; Filter Device Filter Service Section
+;-----------------------------------------------------------------
+[bmfilter.NT.Services]
+Include    = USB.inf
+Needs      = Composite.Dev.NT.Services
+AddService = bmfilter,, filter_Service_Inst 
+
+[filter_Service_Inst]
+DisplayName    = %bmfilter.SvcDesc%                            
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %12%\qcusbfilter.sys                            
+
+[Strings]
+PROVIDER                     = "D-Link"
+BMTSrcDisk                   = "D-Link USB Driver Disk"
+bmfilter.DeviceDesc2001      = "D-Link USB Composite Device 2001"
+bmfilter.SvcDesc             = "D-Link USB Composite Device Filter Driver"

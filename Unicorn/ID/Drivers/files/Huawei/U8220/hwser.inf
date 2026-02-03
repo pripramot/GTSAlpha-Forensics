@@ -1,0 +1,75 @@
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2006-2007 Huawei Incorporated
+; Manufacturer: Huawei Incorporated
+;
+; This INF file installs a virtual COM port on Windows XP system.
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %HUAWEI%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer=04/28/2009,2.0.6.4
+Catalogfile= hwser.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%HUAWEI% = QcomSerialPort, NTia64, NTamd64
+
+[SourceDisksNames]
+  1000 = %HuaweiSrcDisk%,"",,
+
+[SourceDisksFiles]
+  hwusbser.sys = 1000
+
+[QcomSerialPort]
+%HwDevice15011%  = QportInstall00, USB\VID_12D1&PID_1501&MI_01
+%HwDevice15014%  = QportInstall00, USB\VID_12D1&PID_1501&MI_04
+%HwDevice15015%  = QportInstall00, USB\VID_12D1&PID_1501&MI_05
+
+[QcomSerialPort.NTia64]
+%HwDevice15011%  = QportInstall00, USB\VID_12D1&PID_1501&MI_01
+%HwDevice15014%  = QportInstall00, USB\VID_12D1&PID_1501&MI_04
+%HwDevice15015%  = QportInstall00, USB\VID_12D1&PID_1501&MI_05
+
+[QcomSerialPort.NTamd64]
+%HwDevice15011%  = QportInstall00, USB\VID_12D1&PID_1501&MI_01
+%HwDevice15014%  = QportInstall00, USB\VID_12D1&PID_1501&MI_04
+%HwDevice15015%  = QportInstall00, USB\VID_12D1&PID_1501&MI_05
+
+[QportInstall00.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg
+
+[QCUsbDriverFiles]
+hwusbser.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[QportInstall00.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService
+
+[QC_USBSerialService]
+DisplayName   = %HWUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\hwusbser.sys
+
+[All00]
+HKR,,NTMPDriver,,hwusbser.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+HWUSBSER = "Huawei USB Device for Legacy Serial Communication"
+HuaweiSrcDisk = "Huawei USB Driver Disk"
+HUAWEI	      = "Huawei Incorporated"
+HwDevice15011 = "T-Mobile 3G Phone PCUI"
+HwDevice15014 = "DBAdapter Reserved Interface"
+HwDevice15015 = "DBConsole Reserved Interface"

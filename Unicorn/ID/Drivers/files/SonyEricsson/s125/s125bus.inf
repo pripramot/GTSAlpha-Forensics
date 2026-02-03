@@ -1,0 +1,208 @@
+;*****************************************************************************
+;
+; s125bus.inf   -- Install the Sony Ericsson Device 125 drivers
+;
+; Copyright (c) 1997-2007 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/24/2007,4.40.2.0
+DriverVer=04/21/2009,4.40.2.0
+CatalogFile=s125bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+sed125Wdm.W95.CopyFiles       = 11                    ; LDID_SYS
+sed125Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s125bus.sys",,\i386
+
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s125bus.sys",,\amd64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+s125bus.sys = 1
+s125wh95.sys = 1
+s125whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed125, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[sed125]
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D026
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D026
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D029
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D032
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D040
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D041
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D042
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D053
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D057
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D059
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D071
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D072
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D090
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D091
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D0a2
+
+[sed125.NTamd64]
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D026
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D026
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D029
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D032
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D040
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D041
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D042
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D053
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D057
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D059
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D071
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D072
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D090
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D091
+%sed125.CdcBus.Desc% = sed125Wdm.Install, USB\VID_0FCE&PID_D0a2
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[sed125.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[sed125Wdm.Install]
+CopyFiles       = sed125Wdm.W95.CopyFiles, sed125.CopyFiles, PropPages.CopyFiles
+AddReg          = sed125Wdm.AddReg, sed125Wdm.W95.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[sed125Wdm.Install.NT]
+CopyFiles       = sed125Wdm.NT.CopyFiles
+AddReg          = sed125Wdm.AddReg, sed125Wdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[sed125Wdm.Install.NT.Services]
+AddService      = s125bus, 2, sed125Wdm.AddService
+
+[sed125Wdm.AddService]
+DisplayName             = %sed125.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s125bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[sed125Wdm.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[sed125Wdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,s125bus.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[sed125Wdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[sed125Wdm.W95.CopyFiles]
+s125bus.sys
+s125wh.sys,s125wh95.sys
+s125wh95.sys
+s125whnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[sed125Wdm.NT.CopyFiles]
+s125bus.sys
+s125wh.sys,s125whnt.sys
+s125whnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 125 Installation disk"
+
+sed125.CdcBus.Desc = "Sony Ericsson Device 125"
+sed125.Service.Desc = "Sony Ericsson Device 125 driver (WDM)"
+
+CustomerDataPath = "Sony Ericsson Device 125"
+DriverSet = "Sony Ericsson Device 125 Software"
+UninstallFile = "S125Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

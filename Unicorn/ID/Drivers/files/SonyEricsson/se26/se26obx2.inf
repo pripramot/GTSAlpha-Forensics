@@ -1,0 +1,148 @@
+;*****************************************************************************
+;
+; Name:  SE26obx2.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 038 USB WMC OBEX Interface on Win2000/XP
+;
+; Copyright (c) 1997-2005 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc.
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=05/01/2006, 4.34.0.2705
+DriverVer=04/21/2009, 4.34.0.2705
+;Missing CAT file entry added by RTGL
+CatalogFile=se26obx2.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"SE26obex.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+SE26obex.sys = 1
+SE26cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=Sony_Ericsson_Dev38
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[Sony_Ericsson_Dev38]
+;%Sony_Ericsson_Dev38.Comm.Desc% = Sony_Ericsson_Dev38.Install, USB\VID_0FCE&PID_D038&Class_02&SubClass_0B&Prot_00&OS_NT ; Duplicated in SonyEricsson\Generic\s0016obx2.inf
+%Sony_Ericsson_Dev38.Comm.Desc% = Sony_Ericsson_Dev38.Install, USB\VID_0x0FCE&PID_0xD038&Class_02&SubClass_0B&Prot_00&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Sony_Ericsson_Dev38.Install.nt]
+AddReg		= Sony_Ericsson_Dev38.AddReg,Sony_Ericsson_Dev38.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Sony_Ericsson_Dev38.AddReg]
+HKR,,NTMPDriver,,SE26obex.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[Sony_Ericsson_Dev38.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+SE26obex.sys
+SE26cm.sys,SE26cmnt.sys
+SE26cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[Sony_Ericsson_Dev38.Install.NT.Services]
+AddService = SE26obex, 0x00000002, Sony_Ericsson_Dev38.Install.AddService
+
+
+[Sony_Ericsson_Dev38.Install.AddService]
+DisplayName	= %Sony_Ericsson_Dev38.Service.Name%
+Description	= %Sony_Ericsson_Dev38.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\SE26obex.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 038 USB WMC OBEX Interface installation disk"
+
+Sony_Ericsson_Dev38.Comm.Desc = "Sony Ericsson Device 038 USB WMC OBEX Interface"
+Sony_Ericsson_Dev38.Service.Name = "Sony Ericsson Device 038 USB WMC OBEX Interface"
+Sony_Ericsson_Dev38.Service.Desc = "Sony Ericsson Device 038 USB WMC OBEX Interface"
+
+
+CustomerDataPath = "Sony Ericsson Device 038"
+DriverSet = "Sony Ericsson Device 038 Software"
+UninstallFile = "SE26Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

@@ -1,0 +1,194 @@
+;*****************************************************************************
+;
+; s115bus.inf   -- Install the Sony Ericsson Device 115 drivers
+;
+; Copyright (c) 1997-2007 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/23/2007,4.40.2.1
+DriverVer=04/21/2009,4.40.2.1
+CatalogFile=s115bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+sed115Wdm.W95.CopyFiles       = 11                    ; LDID_SYS
+sed115Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s115bus.sys",,\i386
+
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s115bus.sys",,\amd64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+s115bus.sys = 1
+s115wh95.sys = 1
+s115whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed115, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[sed115]
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0fce&PID_d016
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D017
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D022
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D024
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D025
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D028
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D050
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D056
+
+[sed115.NTamd64]
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0fce&PID_d016
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D017
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D022
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D024
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D025
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D028
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D050
+%sed115.CdcBus.Desc% = sed115Wdm.Install, USB\VID_0FCE&PID_D056
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[sed115.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[sed115Wdm.Install]
+CopyFiles       = sed115Wdm.W95.CopyFiles, sed115.CopyFiles, PropPages.CopyFiles
+AddReg          = sed115Wdm.AddReg, sed115Wdm.W95.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[sed115Wdm.Install.NT]
+CopyFiles       = sed115Wdm.NT.CopyFiles
+AddReg          = sed115Wdm.AddReg, sed115Wdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[sed115Wdm.Install.NT.Services]
+AddService      = s115bus, 2, sed115Wdm.AddService
+
+[sed115Wdm.AddService]
+DisplayName             = %sed115.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s115bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[sed115Wdm.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[sed115Wdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,s115bus.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[sed115Wdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[sed115Wdm.W95.CopyFiles]
+s115bus.sys
+s115wh.sys,s115wh95.sys
+s115wh95.sys
+s115whnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[sed115Wdm.NT.CopyFiles]
+s115bus.sys
+s115wh.sys,s115whnt.sys
+s115whnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 115 Installation disk"
+
+sed115.CdcBus.Desc = "Sony Ericsson Device 115"
+sed115.Service.Desc = "Sony Ericsson Device 115 driver (WDM)"
+
+CustomerDataPath = "Sony Ericsson Device 115"
+DriverSet = "Sony Ericsson Device 115 Software"
+UninstallFile = "S115Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

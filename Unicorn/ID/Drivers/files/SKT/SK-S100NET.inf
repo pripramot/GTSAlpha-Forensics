@@ -1,0 +1,149 @@
+;*************************************************************************************
+;
+; Name      :  SK-S100Net.inf
+;
+; Function  :  Install  Miniport Ethernet Adapter device driver on Windows 2000/XP/VISTA/7
+;
+; Copyright (c) DEVGURU Co., LTD. (www.devguru.co.kr)
+;
+;*************************************************************************************
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %Msft%
+DriverVer   =09/16/2010,1.0.1700.0916
+CatalogFile = SK-S100Net.cat
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%Msft% = Msft,NTx86, NTamd64
+
+; For WinXP and later
+[Msft.NTx86]
+%USB\VID_1F53&PID_A004&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc%    = SK-S100.Install, USB\VID_1F53&PID_A004&CLASS_02&SUBCLASS_0C&PROT_07
+%USB\VID_1F53&PID_A003&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc%    = SK-S100.Install, USB\VID_1F53&PID_A003&CLASS_02&SUBCLASS_0C&PROT_07
+
+; For WinXP and later
+[Msft.NTamd64]
+%USB\VID_1F53&PID_A004&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc%    = SK-S100.Install, USB\VID_1F53&PID_A004&CLASS_02&SUBCLASS_0C&PROT_07
+%USB\VID_1F53&PID_A003&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc%    = SK-S100.Install, USB\VID_1F53&PID_A003&CLASS_02&SUBCLASS_0C&PROT_07
+
+;-------------------------------------------------------------------------------
+; Virtual Ethernet Adapter
+;
+[SK-S100.Install.NT]
+Characteristics = 0x84 ; NCF_PHYSICAL,NCF_HAS_UI 
+BusType         = 15 ; if you specify NCF_PHYSICAL, you must specify bustype
+AddReg          = SK-S100.Reg, ParamsPromiscuous
+CopyFiles       = SK-S100.CopyFiles
+
+
+[SK-S100.Install.NT.Services]
+AddService      = SK-S100Net, 2, SK-S100.Service, SK-S100.EventLog
+
+;-----------------------------------------------------------------------------
+; Virtual Miniport Common
+;
+[SK-S100.Reg]
+HKR,    ,                         BusNumber,           0, "0"
+HKR, Ndi,                         Service,             0, "SK-S100Net"
+HKR, Ndi\Interfaces,              UpperRange,          0, "ndis5"
+HKR, Ndi\Interfaces,              LowerRange,          0, "ethernet"
+
+[ParamsPromiscuous]
+;
+;    Should the physical NIC be set to Promiscuous mode
+;
+HKR, Ndi\Params\Promiscuous,     ParamDesc, , %Promiscuous%
+HKR, Ndi\Params\Promiscuous,     Default,  ,"0"
+HKR, Ndi\Params\Promiscuous,     type, ,      enum
+HKR, Ndi\Params\Promiscuous\enum,"1",  ,     %Promiscuous_Enable%
+HKR, Ndi\Params\Promiscuous\enum,"0",  ,     %Promiscuous_Disable%
+
+
+;-----------------------------------------------------------------------------
+; DestinationDirs
+;
+[SK-S100.CopyFiles]
+SK-S100NET.sys,,,2
+
+;-----------------------------------------------------------------------------
+; Driver and Service Section
+;
+
+[SK-S100.Service]
+DisplayName     = %SK-S100.Service.DispName%
+Description	= %SK-S100.Service.Desc%
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\SK-S100NET.sys
+LoadOrderGroup  = NDIS
+AddReg          = TextModeFlags.Reg
+
+[SK-S100.EventLog]
+AddReg = SK-S100.AddEventLog.Reg
+
+[SK-S100.AddEventLog.Reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[TextModeFlags.Reg]
+HKR, , TextModeFlags,    0x00010001, 0x0001
+
+[SourceDisksNames]
+1 = %DiskId1%,,,\i386
+2 = %DiskId1%,,,\amd64
+
+[SourceDisksFiles.x86]
+SK-S100NET.sys  = 1,,
+WdfCoInstaller01009.dll = 1 ; make sure the number matches with SourceDisksNames
+
+[SourceDisksFiles.amd64]
+SK-S100NET.sys  = 2,,
+WdfCoInstaller01009.dll = 2 ; make sure the number matches with SourceDisksNames
+
+;
+;--- SK-S100.Install WDF Coinstaller installation ------
+;
+[DestinationDirs]
+SK-S100_CoInstaller_CopyFiles = 11
+SK-S100.CopyFiles = 12
+
+[SK-S100.Install.NT.CoInstallers]
+AddReg=SK-S100_CoInstaller_AddReg
+CopyFiles=SK-S100_CoInstaller_CopyFiles
+
+[SK-S100_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01009.dll,WdfCoInstaller"
+
+[SK-S100_CoInstaller_CopyFiles]
+WdfCoInstaller01009.dll
+
+[SK-S100.Install.NT.Wdf]
+KmdfService = SK-S100Net, SK-S100_wdfsect
+
+[SK-S100_wdfsect]
+KmdfLibraryVersion = 1.9
+
+
+
+;-----------------------------------------------------------------------------
+; Localizable Strings
+;
+[Strings]
+Msft                       = "SK telesys"
+USB\VID_1F53&PID_A003&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc        = "SK telesys USB Ethernet Device"
+USB\VID_1F53&PID_A004&CLASS_02&SUBCLASS_0C&PROT_07.DeviceDesc        = "SK telesys USB Ethernet Device"
+SK-S100.Service.DispName    = "SK-S100 Network Adapter"
+SK-S100.Service.Desc = "SK-S100 Network Adapter device driver"
+
+DiskId1 = "SK telesys USB Ethernet Device Installation Disk"
+Promiscuous        = "Set the physical NIC to promiscuous mode"
+Promiscuous_Disable = "Disable"
+Promiscuous_Enable  = "Enable"
+

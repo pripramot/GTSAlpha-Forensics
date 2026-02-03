@@ -1,0 +1,189 @@
+;*****************************************************************************
+;
+; sy08bus.inf   -- Install the SANYO USB Composite Device SY08 drivers
+;
+; Copyright (c) 1997-2007 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=05/11/2009,4.40.7.0
+CatalogFile=sy08bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+SanyoWdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"sy08bus.sys",,\i386
+
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+;[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;1=%DiskString%,"sy08bus.sys",,\amd64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+sy08bus.sys = 1
+sy08wh95.sys = 1
+sy08whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+;%Sanyo%=SANYO, NTamd64
+%Sanyo%=SANYO
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[SANYO]
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0743
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0744
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0745
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0748
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_074B
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0750
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0751
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0752
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0753
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0754
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0755
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_024F
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_0250
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_0253
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_025F
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_0266
+%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_0269
+
+;[SANYO.NTamd64]
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0743
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0744
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0745
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0748
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_074B
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0750
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0751
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0752
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0753
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0754
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0474&PID_0755
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_024F
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_0250
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_0253
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_025F
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_0266
+;%Sanyo.CdcBus.Desc% = SanyoWdm.Install, USB\VID_0482&PID_0269
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[Sanyo.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SanyoWdm.Install.NT]
+CopyFiles       = SanyoWdm.NT.CopyFiles
+AddReg          = SanyoWdm.AddReg, SanyoWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SanyoWdm.Install.NT.Services]
+AddService      = sy08bus, 2, SanyoWdm.AddService
+
+[SanyoWdm.AddService]
+DisplayName             = %Sanyo.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\sy08bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SanyoWdm.AddReg]
+
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SanyoWdm.NT.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SanyoWdm.NT.CopyFiles]
+sy08bus.sys
+sy08wh.sys,sy08whnt.sys
+sy08whnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "KYOCERA Corporation"
+Sanyo = "KYOCERA Corporation"
+DiskString = "SANYO USB Composite Device SY08 Installation disk"
+
+Sanyo.CdcBus.Desc = "SANYO USB Composite Device SY08"
+Sanyo.Service.Desc = "SANYO USB Composite Device SY08 driver (WDM)"
+
+CustomerDataPath = "SANYO USB Modem SY08"
+DriverSet = "SANYO USB Modem SY08 Software"
+UninstallFile = "SY08Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

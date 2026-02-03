@@ -1,0 +1,120 @@
+✅ แนวคิดการวาง About บน Dashboard
+
+วางเป็น Section ท้ายหน้า Dashboard
+
+โทนอ่านง่าย สุภาพ ระดับผู้บริหาร
+
+ไม่รก ไม่แย่งความสนใจจาก Action Cards
+
+พร้อมย้ายไปหน้า “About” แยกในอนาคต
+
+1️⃣ แก้ pages/Dashboard.jsx (เพิ่ม About Section)
+import Card from '../components/Card';
+import './Dashboard.css';
+
+export default function Dashboard() {
+  return (
+    <div className="dashboard">
+      <h1>เริ่มต้นใช้งาน Unicorn</h1>
+      <p className="subtitle">
+        ศูนย์กลางงาน Digital Forensics ภายใต้ GTSAlpha-Forensics
+      </p>
+
+      <div className="card-grid">
+        <Card
+          title="เอกสาร Unicorn ล่าสุด"
+          description="Manual, SOP และแนวทางการใช้งาน"
+          icon="📘"
+        />
+        <Card
+          title="วิดีโอการอบรม"
+          description="สื่อฝึกอบรมสำหรับผู้ปฏิบัติงาน"
+          icon="▶️"
+        />
+        <Card
+          title="ถามคำถาม / สนับสนุน"
+          description="ติดต่อทีม หรือดูคำถามที่พบบ่อย"
+          icon="💬"
+        />
+      </div>
+
+      {/* About Section */}
+      <section className="about-section">
+        <h2>About Unicorn</h2>
+
+        <p>
+          <strong>Unicorn</strong> is a core platform under the
+          <strong> GTSAlpha-Forensics</strong> initiative, designed to support
+          advanced digital forensics operations, system integration, and
+          AI-assisted analysis within secure and restricted environments.
+        </p>
+
+        <p>
+          <strong>System Integration Testing (SIT)</strong> is a critical phase
+          in the validation of Unicorn. SIT involves comprehensive testing of an
+          entire integrated system composed of multiple subsystems or components
+          that have previously undergone individual subsystem testing.
+        </p>
+
+        <p>
+          The system under test may include computer hardware, software systems,
+          hardware with embedded software, or human-in-the-loop operational
+          testing. SIT ensures interoperability, reliability, and operational
+          readiness at the system level.
+        </p>
+
+        <p>
+          Unicorn is designed to operate in <strong>offline-first</strong> and
+          <strong> air-gapped environments</strong>, while remaining extensible
+          for future AI model integration and multi-platform support, including
+          desktop, Android, and iOS ecosystems.
+        </p>
+
+        <div className="about-footer">
+          <div>GtsAlphaMCP-LAB · 2026</div>
+          <div>
+            Pol. Lt. Col. Gittisak Wannakeeree — Director<br />
+            Jarntam — Data Scientist
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+2️⃣ เพิ่มสไตล์ใน pages/Dashboard.css
+.about-section {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  max-width: 900px;
+}
+
+.about-section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.about-section p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #d1d5db;
+  margin-bottom: 14px;
+}
+
+.about-footer {
+  margin-top: 24px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+✅ Checkpoint (ดูแล้วต้องได้ฟีลนี้)
+
+About อยู่ท้าย Dashboard
+
+อ่านสบาย ไม่เหมือนเว็บการตลาด
+
+เหมาะทั้ง Dev / ผู้บริหาร / เอกสารภายใน
+
+ไม่กระทบ Offline / Security

@@ -1,0 +1,86 @@
+;-------------------------------------------------------------------------
+; HTCNPROT.INF -- HTC NDIS Protocol Driver
+;
+; Copyright (c) HTC Corporation
+;-------------------------------------------------------------------------
+[version]
+Signature   = "$Windows NT$"
+Class       = NetTrans
+ClassGUID   = {4d36e975-e325-11ce-bfc1-08002be10318}
+Provider    = %OEM%
+DriverVer   = 06/25/2010,1.0.0.1
+CatalogFile = htcnprot.cat
+
+[Manufacturer]
+%OEM%=HTC,NTx86,NTia64,NTamd64
+
+[HTC.NTx86]
+%NDISPROT_Desc%=Install, MS_NDISPROT
+
+[HTC.NTia64]
+%NDISPROT_Desc%=Install, MS_NDISPROT
+
+[HTC.NTamd64]
+%NDISPROT_Desc%=Install, MS_NDISPROT
+
+;-------------------------------------------------------------------------
+; Installation Section
+;-------------------------------------------------------------------------
+[Install]
+AddReg=Inst_Ndi
+Characteristics=0x0 ; 
+CopyFiles=CpyFiles_Sys
+
+;-------------------------------------------------------------------------
+; Ndi installation support
+;-------------------------------------------------------------------------
+[Inst_Ndi]
+HKR,Ndi,Service,,"htcnprot"
+HKR,Ndi,HelpText,,%NDISPROT_HelpText%
+HKR,Ndi\Interfaces, UpperRange,, noupper
+HKR,"Ndi\Interfaces","LowerRange",,"ndis5,ndis4,ndis5_prot"
+
+;-------------------------------------------------------------------------
+; Service installation support
+;-------------------------------------------------------------------------
+[Install.Services]
+AddService=htcnprot,,NDISPROT_Service_Inst
+
+[NDISPROT_Service_Inst]
+DisplayName     = %NDISPROT_Desc%
+ServiceType     = 1 ;SERVICE_KERNEL_DRIVER
+StartType       = 3 ;SERVICE_DEMAND_START
+ErrorControl    = 1 ;SERVICE_ERROR_NORMAL
+ServiceBinary   = %12%\htcnprot.sys
+LoadOrderGroup  = NDIS
+Description     = %NDISPROT_Desc%
+
+[Install.Remove.Services]
+DelService=htcnprot,0x200
+
+;-------------------------------------------------------------------------
+; Declare Destination Directories for file copy/deletion
+;-------------------------------------------------------------------------
+[SourceDisksNames]
+1=%DiskDescription%,"",,
+
+[SourceDisksFiles]
+htcnprot.sys=1
+
+
+[DestinationDirs]
+CpyFiles_Sys    = 12    ; DIRID_DRIVERS
+
+
+;-------------------------------------------------------------------------
+; Files to Copy/Delete - Referenced by Install and Remove sections above
+;-------------------------------------------------------------------------
+[CpyFiles_Sys]
+htcnprot.sys,,,2
+
+[Strings]
+OEM               = "HTC"
+DiskDescription   = "HTC Ndis Protocol Driver Disk"
+NDISPROT_Desc     = "HTC NDIS Protocol Driver"
+NDISPROT_HelpText = "An NDIS protocol driver to support internet pass-through"
+

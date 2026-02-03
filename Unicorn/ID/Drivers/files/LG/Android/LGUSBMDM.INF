@@ -1,0 +1,101 @@
+;*****************************************************************************
+; lgusbmdm.inf
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=11/11/2008,4.9.4
+DriverVer=04/21/2009,4.9.4
+;Missing CAT file entry added by RTGL
+CatalogFile=LGUSBMDM.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"lgusbmdm.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+lgusbmdm.sys = 1
+lgsimdmv.inf = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+CopyFiles               = 11                    ; system
+;CopyFiles.W95		= 11			; system (for VXDs)
+CopyFiles.sys           = 11                    ; where .sys files go.
+;CopyFiles.W95.sys       = 11                    ; where .sys files go.
+;CopyFiles.W95.inf       = 17		        ; INF Directory\other.
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGSI%=LGSI
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGSI]
+%LGSI.Modem.Desc% = LGSI.Install, USB\VID_1004&PID_6000_MODEMInterface_OS9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[LGSI.Install]
+AddReg=LGSI.AddReg
+;CopyFiles=CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.Inf
+CopyFiles=CopyFiles, CopyFiles.sys
+;DriverVer=DriverVersion
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+; common registry entries 
+[LGSI.AddReg]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,,"lgusbmdm.sys,ccport.sys"
+HKR,,CRUpperDescription,,%UpperDescription%
+
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;
+[CopyFiles.sys]
+lgusbmdm.sys
+
+;[Copyfiles.W95.inf]
+;lgsimdmv.inf
+
+[LGSI.Install.HW]
+AddReg=LGSIAddReg.HW
+
+[LGSIAddReg.HW]
+HKR,,ChildID,2,"USB\LGMODEM"
+
+[Strings]
+Provider="LG Electronics Inc."
+LGSI="LG Electronics Inc."
+
+LGSI.Modem.Desc="LGE Mobile USB Modem"
+UpperDescription="LGE Mobile USB Modem (VCOMM)"
+CustomerDataPath="LGE Mobile USB Modem"
+
+DiskString="LGE Mobile USB Modem Driver"
+DriverSet="LGE Mobile USB Modem Software"
+

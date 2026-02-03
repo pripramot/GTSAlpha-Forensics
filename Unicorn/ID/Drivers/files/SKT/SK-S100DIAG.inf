@@ -1,0 +1,142 @@
+;*********************************************************************************************
+;
+; Name		: SK-S100Diag.inf
+;
+; Function	: Install USB Diagnostic Serial Port Driver on Windows 2000/XP/VISTA/7
+;
+; Copyright (c) DEVGURU Co., LTD. (www.devguru.co.kr)
+;
+;*********************************************************************************************
+
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=09/16/2010,1.0.1700.0916
+CatalogFile=SK-S100Diag.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+SK-S100Diag.sys = 1
+;MSSCINST.dll = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir  = 12             	; system32\drivers
+CopyFiles       = 12                    ; system32\drivers
+CopyFiles.Win2K = 12                    ;
+CoInstaller.CopyFiles = 11
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SK-S100%=SK-S100, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SK-S100]
+%USB\VID_1F53&PID_A000&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A000&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A004&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A004&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A003&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A003&CLASS_FF&SUBCLASS_F0&PROT_01
+
+[SK-S100.NTx86]
+%USB\VID_1F53&PID_A000&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A000&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A004&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A004&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A003&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A003&CLASS_FF&SUBCLASS_F0&PROT_01
+
+[SK-S100.NTamd64]
+%USB\VID_1F53&PID_A000&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A000&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A004&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A004&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A003&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S100.Install, USB\VID_1F53&PID_A003&CLASS_FF&SUBCLASS_F0&PROT_01
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SK-S100.Install.NT]
+AddReg		= SK-S100.AddReg,SK-S100.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SK-S100.AddReg]
+HKR,,NTMPDriver,,SK-S100Diag.sys
+
+; only for NT...
+[SK-S100.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+SK-S100Diag.sys
+
+;[CoInstaller.CopyFiles]
+;MSSCINST.dll
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+[SK-S100.Install.NT.Services]
+AddService = SK-S100Diag, 0x00000002, SK-S100.Install.AddService
+
+[SK-S100.Install.AddService]
+DisplayName	= %SK-S100.Service.Name%
+Description	= %SK-S100.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\SK-S100Diag.sys
+
+;[SK-S100.Install.nt.CoInstallers]
+;AddReg = CoInstaller.Addreg
+;Copyfiles = CoInstaller.CopyFiles
+
+;[CoInstaller.AddReg]
+;HKR,,CoInstallers32,0x00010000,"MSSCINST.dll,DevCoInstall"
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+Provider   = "SK telesys"
+SK-S100       = "SK telesys"
+
+DiskString = "SK-S100 Diagnostics Port Driver installation disk"
+
+SK-S100.Service.Name = "SK-S100 Diagnostics Port"
+SK-S100.Service.Desc = "SK-S100 Diagnostics Port"
+
+;
+; Composite mode
+;
+USB\VID_1F53&PID_A004&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc = "SK telesys USB Virtual Serial Port"
+USB\VID_1F53&PID_A003&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc = "SK telesys USB Virtual Serial Port"
+USB\VID_1F53&PID_A000&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc = "SK telesys USB Virtual Serial Port"

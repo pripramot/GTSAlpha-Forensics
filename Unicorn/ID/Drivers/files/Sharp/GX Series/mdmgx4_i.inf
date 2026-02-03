@@ -1,0 +1,246 @@
+; Windows Modem Setup File SHARP GX series(IrDA)
+; Copyright (c)2004 SHARP
+; Version 4.1.0.1  2004/09/14
+
+[Version]
+LayoutFile = layout.inf
+Signature = "$WINDOWS NT$"
+Class = Modem
+ClassGUID = {4D36E96D-E325-11CE-BFC1-08002BE10318}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer = 09/14/2004, 4.1.0.1
+DriverVer = 04/21/2009, 4.1.0.1
+Provider = %Mfg%
+CatalogFile=mdmgx4_i.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[DestinationDirs]
+;
+;  Specify destination directories for groups of files.
+;  '12' indicates the Windows System32\drivers directory.
+;
+MSIRCOMM.CopyFiles = 12
+DefaultDestDir = 12
+
+[Manufacturer]
+%Mfg% = Models
+
+[Models]
+%MDMGXIRDA% = MDMGX, IRENUM\SHP6103
+
+[MDMGX.NT]
+AddReg = ALL, MDMGX.MfgAddReg, AddReg, EXTERNAL
+CopyFiles = MSIRCOMM.CopyFiles
+
+[MDMGX.NT.Services]
+AddService = MSIRCOMM, 0, MSIRCOMM.AddService
+
+[MDMGX.NT.HW]
+AddReg = LowerFilterAddReg
+;
+; called by needs entry in oem inf - DON'T REMOVE
+;
+[MDMIRMDM.MSIRCOMM.CopyFiles]
+CopyFiles=MSIRCOMM.CopyFiles
+
+[MDMIRMDM.MSIRCOMM.AddService]
+AddService= MSIRCOMM, 0, MSIRCOMM.AddService
+
+[MDMIRMDM.MSIRCOMM.LowerFilterAddReg]
+AddReg=LowerFilterAddReg
+;
+; called by needs entry in oem inf - DON'T REMOVE
+;
+[MSIRCOMM.CopyFiles] 
+;MSIRCOMM.sys
+
+[MSIRCOMM.AddService]
+DisplayName = %MSIRCOMM.DisplayName%
+ServiceType = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType = 3 ;%SERVICE_DEMAND_START%
+ErrorControl = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary = %12%\MSIRCOMM.sys
+
+[LowerFilterAddReg]
+HKR,,"LowerFilters",0x00010000,MSIRCOMM
+
+[Strings]
+Mfg = "SHARP"
+MDMGXIRDA = "GXmdm4_Ir"
+MSIRCOMM.DisplayName = "Microsoft IR Communications Driver"
+
+[AddReg]
+HKR,, Properties, 1, 00,00,00,00, FF,00,00,00, 00,00,00,00, 00,00,00,00, 00,00,00,00, 31,00,00,00, 00,C2,01,00, 00,C2,01,00
+HKR,, DCB, 1, 1C,00,00,00, 00,C2,01,00, 15,20,00,00, 00,00, 0a,00, 0a,00, 08, 00, 00, 11, 13, 00, 00, 00
+
+[All]
+HKR,,ConfigDialog,,modemui.dll
+HKR,,PortSubClass,1,02
+HKR,,EnumPropPages,,"modemui.dll,EnumPropPages"
+HKR,,ConfigDelay, 1, 88, 13, 00, 00 ; 5sec
+
+[EXTERNAL]
+HKR,,DeviceType, 1, 01
+
+[MDMGX.MfgAddReg]
+HKR, Init,1,,"AT<cr>"
+HKR, Init,2,,"AT V1 E0 &D2 &C1 S0=0<cr>"
+HKR, Settings,Prefix,,"AT"
+HKR, Settings,Terminator,,"<cr>"
+HKR, Monitor, 1,, "ATS0=0<cr>"
+HKR, Monitor, 2,, "None"
+HKR, Hangup, 1,, "ATH<cr>"
+HKR, Answer, 1,, "ATA<cr>"
+HKR,,Reset,, "ATZ<cr>"
+HKR, Settings, DialPrefix,, "D"
+HKR, Settings, DialSuffix,, ""
+HKR, Settings, FlowControl_Hard,, " +IFC=2,2"
+HKR, Settings, FlowControl_Off,, " +IFC=0,0"
+HKR, Settings, FlowControl_Soft,, " +IFC=1,1"
+HKR, Settings, Compression_Off,, " +DS=0,0,512,20"
+HKR, Settings, Compression_On,, " +DS=3,0,512,20"
+HKR, Settings, Pulse,, "P"
+HKR, Settings, Tone,, "T"
+HKR, Settings, Blind_Off,, "X4"
+HKR, Settings, Blind_On,, "X3"
+HKR, Settings, CallSetupFailTimer,, "S7=<#>"
+HKR, Protocol\GSM\ANALOG_RLP,1,, "AT<cr>"
+
+HKR, Responses, "<cr>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "??",   1, 01, 00, 00,00,00,00, 00,00,00,00
+
+; OK
+HKR, Responses, "<cr><lf>OK<cr><lf>",  1, 00, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, " <cr><lf><cr><lf>OK<cr>",  1, 00, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "0<cr>",  1, 00, 00, 00,00,00,00, 00,00,00,00
+
+; Negotiation Progress
+HKR, Responses, "<cr><lf>CARRIER<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+
+; Connect
+HKR, Responses, "<cr><lf>CONNECT<cr><lf>",  1, 02, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "1<cr>", 1, 02, 00, 00,00,00,00, 00,00,00,00
+
+HKR, Responses, "<cr><lf>CONNECT 300<cr><lf>", 1, 02, 00, 2c,01,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 1200<cr><lf>", 1, 02, 00, b0,04,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 2400<cr><lf>", 1, 02, 00, 60,09,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 4800<cr><lf>", 1, 02, 00, C0,12,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 9600<cr><lf>", 1, 02, 00, 80,25,00,00, 00,00,00,00
+HKR, Responses, "CONNECT 9600<cr><lf>", 1, 02, 00, 80,25,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 14400<cr><lf>", 1, 02, 00, 40,38,00,00, 00,00,00,00
+
+; Error
+HKR, Responses, "<cr><lf>ERROR<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "4<cr>", 1, 03, 00, 00,00,00,00, 00,00,00,00
+
+; +FCERROR
+HKR, Responses, "<cr><lf>+FCERROR<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+F4<cr>", 1, 03, 00, 00,00,00,00, 00,00,00,00
+
+; No Carrier
+HKR, Responses, "<cr><lf>NO CARRIER<cr><lf>", 1, 04, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "3<cr>", 1, 04, 00, 00,00,00,00, 00,00,00,00
+
+; No Dial Tone
+HKR, Responses, "<cr><lf>NO DIALTONE<cr><lf>",  1, 05, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "6<cr>", 1, 05, 00, 00,00,00,00, 00,00,00,00
+
+; Busy
+HKR, Responses, "<cr><lf>BUSY<cr><lf>", 1, 06, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "7<cr>",  1, 06, 00, 00,00,00,00, 00,00,00,00
+
+; No Answer
+HKR, Responses, "<cr><lf>NO ANSWER<cr><lf>", 1, 07, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "8<cr>",  1, 07, 00, 00,00,00,00, 00,00,00,00
+
+; Ring
+HKR, Responses, "<cr><lf>RING<cr><lf>", 1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "2<cr>", 1, 08, 00, 00,00,00,00, 00,00,00,00
+
+; V.42bis data compression reporting control
+HKR, Responses, "<cr><lf>+DR: NONE<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+DR: V42B<cr><lf>", 1, 01, 01, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+DR: V42B RD<cr><lf>", 1, 01, 01, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+DR: V42B TD<cr><lf>", 1, 01, 01, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+DR: NONE<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+DR: V42B<cr><lf>",  1, 01, 01, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+DR: V42B RD<cr><lf>",  1, 01, 01, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+DR: V42B TD<cr><lf>",  1, 01, 01, 00,00,00,00, 00,00,00,00
+
+; Service Reporting Control
+HKR, Responses, "<cr><lf>+CR: ASYNC<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CR: SYNC<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CR: REL ASYNC<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CR: REL SYNC<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CR: ASYNC<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CR: SYNC<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CR: REL ASYNC<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CR: REL SYNC<cr><lf>",  1, 01, 00, 00,00,00,00, 00,00,00,00
+
+; Cellular Result Codes for incoming call indication
+HKR, Responses, "<cr><lf>+CRING: ASYNC<cr><lf>", 1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CRING: SYNC<cr><lf>", 1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CRING: REL ASYNC<cr><lf>", 1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CRING: REL SYNC<cr><lf>",  1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CRING: FAX<cr><lf>",  1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CRING: VOICE<cr><lf>",  1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CRING: ASYNC<cr><lf>",  1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CRING: SYNC<cr><lf>",  1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CRING: REL ASYNC<cr><lf>", 1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CRING: REL SYNC<cr><lf>",  1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CRING: FAX<cr><lf>",  1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "+CRING: VOICE<cr><lf>",  1, 08, 00, 00,00,00,00, 00,00,00,00
+
+; CME ERROR Codes
+HKR, Responses, "<cr><lf>+CME ERROR: 0<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; phone failure
+HKR, Responses, "<cr><lf>+CME ERROR: 1<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; no connection to phone
+HKR, Responses, "<cr><lf>+CME ERROR: 2<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; phone-adaptor link reserved
+HKR, Responses, "<cr><lf>+CME ERROR: 3<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; operation not allowed
+HKR, Responses, "<cr><lf>+CME ERROR: 4<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; operation not supported
+HKR, Responses, "<cr><lf>+CME ERROR: 5<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; PH-SIM PIN required
+HKR, Responses, "<cr><lf>+CME ERROR: 6<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; PH-FSIM PIN required
+HKR, Responses, "<cr><lf>+CME ERROR: 7<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; PH-FSIM PUK required
+HKR, Responses, "<cr><lf>+CME ERROR: 10<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM not inserted
+HKR, Responses, "<cr><lf>+CME ERROR: 11<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM PIN required
+HKR, Responses, "<cr><lf>+CME ERROR: 12<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM PUK required
+HKR, Responses, "<cr><lf>+CME ERROR: 13<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM failure
+HKR, Responses, "<cr><lf>+CME ERROR: 14<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM busy
+HKR, Responses, "<cr><lf>+CME ERROR: 15<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM wrong
+HKR, Responses, "<cr><lf>+CME ERROR: 16<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; incorrect password
+HKR, Responses, "<cr><lf>+CME ERROR: 17<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM PIN2 required
+HKR, Responses, "<cr><lf>+CME ERROR: 18<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM PUK2 required
+HKR, Responses, "<cr><lf>+CME ERROR: 20<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; memory full
+HKR, Responses, "<cr><lf>+CME ERROR: 21<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; invalid index
+HKR, Responses, "<cr><lf>+CME ERROR: 22<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; not found
+HKR, Responses, "<cr><lf>+CME ERROR: 23<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; memory failure
+HKR, Responses, "<cr><lf>+CME ERROR: 24<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; text string too long
+HKR, Responses, "<cr><lf>+CME ERROR: 25<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; invalid characters in text string
+HKR, Responses, "<cr><lf>+CME ERROR: 26<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; dial string too long
+HKR, Responses, "<cr><lf>+CME ERROR: 27<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; invalid characters in dial string
+HKR, Responses, "<cr><lf>+CME ERROR: 30<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; no network service
+HKR, Responses, "<cr><lf>+CME ERROR: 31<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; network timeout
+HKR, Responses, "<cr><lf>+CME ERROR: 32<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; network not allowed - emergency calls only
+HKR, Responses, "<cr><lf>+CME ERROR: 40<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; network personalisation PIN required
+HKR, Responses, "<cr><lf>+CME ERROR: 41<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; network personalisation PUK required
+HKR, Responses, "<cr><lf>+CME ERROR: 42<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; network subset personalisation PIN required
+HKR, Responses, "<cr><lf>+CME ERROR: 43<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; network subset personalisation PUK required
+HKR, Responses, "<cr><lf>+CME ERROR: 44<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; service provider personalisation PIN required
+HKR, Responses, "<cr><lf>+CME ERROR: 45<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; service provider personalisation PUK required
+HKR, Responses, "<cr><lf>+CME ERROR: 46<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; corporate personalisation PIN required
+HKR, Responses, "<cr><lf>+CME ERROR: 47<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; corporate personalisation PUK required
+HKR, Responses, "<cr><lf>+CME ERROR: 100<cr><lf>", 1, 03, 00, 00,00,00,00, 00,00,00,00   ; unknown
+
+; Mobile Equipment control and status
+HKR, Responses, "<cr><lf>+STC: 0<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CPIN: READY<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CPIN: SIM PIN<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CPIN: SIM PUK<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CPIN: PH_SIM PIN<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CPIN: PH_SIM PUK<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CPIN: SIM PIN2<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CPIN: SIM PUK2<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CFUN: 0<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+CFUN: 1<cr><lf>", 1, 01, 00, 00,00,00,00, 00,00,00,00

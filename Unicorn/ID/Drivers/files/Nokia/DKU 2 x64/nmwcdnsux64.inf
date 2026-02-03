@@ -1,0 +1,107 @@
+; Nokia USB Host Driver for Windows XP/Vista/W7 x64
+; Copyright (c) 2002-2010 by Nokia Corporation. All rights reserved.
+; INF for USB Wireless Communication Class Driver for flashing
+; Date: 08/12/2013, Version: 7.1.32.117
+
+[Version]
+Signature = "$Windows NT$"
+Class = "Wireless Communication Devices"
+ClassGuid = {4F919108-4ADF-11d5-882D-00B0D02FE381}
+Provider = %Manufacturer%
+DriverVer = 08/12/2013, 7.1.32.117
+CatalogFile = ccdcmbx64.cat
+
+[DestinationDirs]
+DefaultDestDir=10,System32\Drivers
+WMCClassInstallerCopyFiles=10,System32
+DLLCopyFiles=10,System32
+DriverCopyFiles=10,System32\Drivers
+
+; ================= Class section =====================
+
+[ClassInstall32]
+CopyFiles=WMCClassInstallerCopyFiles
+AddReg=WMCClassReg
+
+[WMCClassReg]
+HKR,,,0,%CLS%
+HKR,,Icon,,100
+HKR,,Installer32,,"nmwcdclsx64.dll,WMCClassInstaller"
+
+[WMCClassInstallerCopyFiles]
+nmwcdclsx64.dll
+
+;*****************************************
+; Device Install Section
+;*****************************************
+
+[Manufacturer]
+%Manufacturer% = DeviceList, NTamd64
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[DeviceList.NTamd64]
+%NokiaAVALON%=DriverInstall,USB\VID_0421&PID_0103
+%NokiaADL%=DriverInstall,USB\VID_0421&PID_0104
+%NokiaBB5ADLLoader%=DriverInstall,USB\VID_0421&PID_0105
+%NokiaROM%=DriverInstall,USB\VID_0421&PID_0106
+
+
+;------------------------------------------------------------------------------
+;  Windows AMD64 Sections
+;------------------------------------------------------------------------------
+
+
+[DriverInstall.NTamd64]
+CopyFiles=DriverCopyFiles,DLLCopyFiles
+
+
+
+
+[DriverInstall.NTamd64.Services]
+AddService = %ServiceName%, 0x00000002, DriverService
+
+;the "2" means that this service will be the function driver for the device.
+
+[DriverService]
+DisplayName   = %ServiceDisplayName%
+ServiceType   = 1	;Kernel mode driver
+StartType     = 3	;Demand-loaded by the PnP Manager
+ErrorControl  = 1	;Errors that occur during loading should be logged, but should not by themselves prevent the system from starting:
+ServiceBinary = %10%\system32\drivers\nmwcdnsux64.sys
+LoadOrderGroup = Extended Base
+
+
+
+
+
+[DriverCopyFiles]
+nmwcdnsux64.sys
+
+[DLLCopyFiles]
+
+[SourceDisksNames]
+1=%DISKNAME%,,,
+
+[SourceDisksFiles]
+nmwcdnsux64.sys=1
+nmwcdclsx64.dll=1
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+
+[Strings]
+CLS = "Wireless Communication Devices"
+Manufacturer = "Nokia"
+NokiaAVALON="ADL Flashing Engine AVALON Parent"
+NokiaADL="Nokia ADL USB Re-Flashing Engine Parent"
+NokiaBB5ADLLoader="Nokia BB5 ADL Loader USB Phone Parent"
+NokiaROM="Nokia USB Flashing Parent"
+
+
+ServiceName = "nmwcdnsux64"
+ServiceDisplayName = "Nokia USB Flashing Phone Parent"
+DISKNAME = "Nokia USB Flashing Installation Disk"
+	

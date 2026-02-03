@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "BoonTing-Files": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\usEr\\Desktop\\Case-Files"
+      ]
+    },
+    "BoonTing-Forensics": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\usEr\\Desktop\\gts-forensics"
+      ]
+    },
+    "BoonTing-System": {
+      "command": "C:\\Users\\usEr\\.local\\bin\\uv.exe",
+      "args": [
+        "--directory",
+        "C:\\Users\\usEr\\AppData\\Roaming\\Claude\\Claude Extensions\\ant.dir.cursortouch.windows-mcp",
+        "run",
+        "main.py"
+      ]
+    }
+  },
+  "preferences": {
+    "menuBarEnabled": true
+  }
+}

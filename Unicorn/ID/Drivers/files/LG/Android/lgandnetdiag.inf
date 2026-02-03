@@ -1,0 +1,233 @@
+
+;*****************************************************************************
+; Name:  lgandnetdiag.inf 
+;
+; Copyright (c) 2010-2011 LG Electronics Inc.
+; Manufacturer: LG Electronics Inc.
+;
+;*****************************************************************************
+
+[Version]
+signature   = "$WINDOWS NT$"
+Class       = Ports
+ClassGuid   = {4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider    = %Provider%
+DriverVer   = 05/12/2015,4.0.0.0
+CatalogFile = lgandnet32.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lgandnetdiag.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+lgandnetdiag.sys= 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir  = 12             	; system32\drivers
+CopyFiles       = 12                    ; system32\drivers
+CopyFiles.Win2K = 12                    ;
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGSI%=LGSI
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGSI]
+; For individual driver
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_61A1&MI_00
+%Lgsi.Comm.Desc02% = LGSI.Install, USB\VID_1004&PID_61A2&MI_00
+%Lgsi.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_61A3&MI_02
+%Lgsi.Comm.Desc04% = LGSI.Install, USB\VID_1004&PID_61A4&MI_02
+%Lgsi.Comm.Desc05% = LGSI.Install, USB\VID_1004&PID_61A5&MI_02
+%Lgsi.Comm.Desc07% = LGSI.Install, USB\VID_1004&PID_61D7&MI_04
+%Lgsi.Comm.Desc08% = LGSI.Install, USB\VID_1004&PID_61D8&MI_04
+%LGSI.Comm.Desc09% = LGSI.Install,USB\VID_1004&PID_61F1&MI_02
+%LGSI.Comm.Desc10% = LGSI.Install,USB\VID_1004&PID_61F2&MI_02
+%LGSI.Comm.Desc11% = LGSI.Install,USB\VID_1004&PID_61F3&MI_02
+%LGSI.Comm.Desc12% = LGSI.Install,USB\VID_1004&PID_61F4&MI_02
+%LGSI.Comm.Desc13% = LGSI.Install,USB\VID_1004&PID_61F5&MI_02
+%LGSI.Comm.Desc14% = LGSI.Install,USB\VID_1004&PID_61F6&MI_02
+%LGSI.Comm.Desc15% = LGSI.Install,USB\VID_1004&PID_61F7&MI_02
+%LGSI.Comm.Desc16% = LGSI.Install,USB\VID_1004&PID_61F8&MI_02
+%LGSI.Comm.Desc17% = LGSI.Install,USB\VID_1004&PID_61FA&MI_02
+%LGSI.Comm.Desc18% = LGSI.Install,USB\VID_1004&PID_61FB&MI_02
+%LGSI.Comm.Desc19% = LGSI.Install,USB\VID_1004&PID_61FC&MI_02
+%LGSI.Comm.Desc20% = LGSI.Install,USB\VID_1004&PID_61FD&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_61FE&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6310&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6311&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6314&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6315&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6316&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6317&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6318&MI_04
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6319&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_631A&MI_03
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_631B&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6334&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_633A&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_633C&MI_02
+%LGSI.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_633D&MI_04
+%Lgsi.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6340&MI_00
+%Lgsi.Comm.Desc21% = LGSI.Install,USB\VID_1004&PID_6340
+%Lgsi.Comm.Desc22% = LGSI.Install,USB\VID_1004&PID_6341&MI_02
+%Lgsi.Comm.Desc22% = LGSI.Install,USB\VID_1004&PID_6342&MI_02
+%Lgsi.Comm.Desc22% = LGSI.Install,USB\VID_1004&PID_633E&MI_03
+%Lgsi.Comm.Desc22% = LGSI.Install,USB\VID_1004&PID_633F&MI_03
+%Lgsi.Comm.Desc22% = LGSI.Install,USB\VID_1004&PID_6343&MI_04
+%Lgsi.Comm.Desc22% = LGSI.Install,USB\VID_1004&PID_6344&MI_04
+%Lgsi.Comm.Desc22% = LGSI.Install,USB\VID_1004&PID_6345&MI_02
+
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6200&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6204&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6208&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_620C&MI_04
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_620F&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6214&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6218&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6219&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_621A&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6226&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_622E&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6238&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6240&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6244&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_624A&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6246&MI_02
+%Lgsi.Comm.Desc05% = LGSI.Install, USB\VID_1004&PID_621D&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6252&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6258&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_625E&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6264&MI_02
+%Lgsi.Comm.Desc05% = LGSI.Install, USB\VID_1004&PID_6269&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_626D&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6271&MI_02
+%Verizon.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_6278&MI_02
+%Lgsi.Comm.Desc22% = LGSI.Install, USB\VID_1004&PID_627B&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_627F&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_6280&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_6281&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_6282&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_6286&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_628A&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_628C&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_628E&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_628F&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_6293&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_6298&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_629C&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_629D&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_629E&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_629F&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A0&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A1&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A2&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A3&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A4&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A5&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A6&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A8&MI_02
+; Verizon Common PID
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62C2&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62C3&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62C4&MI_04
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62C7&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62C8&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62CA&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62CB&MI_02
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62CE&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62CF&MI_03
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Lgsi.Install.nt]
+AddReg		= Lgsi.AddReg,Lgsi.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Lgsi.AddReg]
+HKR,,NTMPDriver,,lgandnetdiag.sys
+
+; only for NT...
+[Lgsi.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+lgandnetdiag.sys
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+[Lgsi.Install.NT.Services]
+AddService = AndNetDiag, 0x00000002, Lgsi.Install.AddService
+
+[Lgsi.Install.AddService]
+DisplayName	= %Lgsi.Service.Name%
+Description	= %Lgsi.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\lgandnetdiag.sys
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+Provider          = "LG Electronics, Inc."
+Lgsi              = "LG Electronics, Inc."
+
+DiskString        = "LGE USB Serial Port Drivers installation disk"
+Lgsi.Comm.Desc01  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc02  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc03  = "LGE Android Platform USB Serial Port"
+Lgsi.Comm.Desc04  = "LGE Android Platform USB Serial Port"
+Lgsi.Comm.Desc05  = "LGE Mobile USB Serial Port"
+Lgsi.Comm.Desc07  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc08  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc09  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc10  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc11  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc12  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc13  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc14  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc15  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc16  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc17  = "LGE Android Platform USB Serial Port"
+Lgsi.Comm.Desc18  = "LGE Android Platform USB Serial Port"
+Lgsi.Comm.Desc19  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc20  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc21  = "LGE AndroidNet USB Serial Port"
+Lgsi.Comm.Desc22  = "LGE Mobile USB Serial Port"
+Verizon.Comm.Desc = "LGE AndroidNet for VZW USB Serial Port"
+Verizon.Comm.Desc2 = "LGE Mobile for VZW USB Serial Port"
+Lgsi.Service.Name = "LGE AndroidNet USB Serial Port"
+Lgsi.Service.Desc = "LGE AndroidNet USB Serial Port"
+CustomerDataPath  = "LGE USB AndroidNet Diagnostic Kit"
+DriverSet         = "LGE USB AndroidNet Mobile Software" 
+

@@ -1,0 +1,54 @@
+.support-page {
+  padding: 0;
+  min-height: 400px;
+}
+
+.support-page h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.support-intro {
+  margin: 0 0 24px 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.support-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.support-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.support-card__badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+}
+
+.support-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+.support-card p {
+  font-size: 13px;
+  margin: 0;
+  opacity: 0.85;
+}

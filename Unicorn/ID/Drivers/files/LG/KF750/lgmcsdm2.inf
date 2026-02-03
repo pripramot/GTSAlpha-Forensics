@@ -1,0 +1,158 @@
+;*****************************************************************************
+;
+; Name:  lgmcsdm2.inf
+;
+; Function:
+;	Install LGE Mobile USB WMC Device Management Drivers on Win2000/XP
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=01/09/2008,4.42.0.0
+DriverVer=04/21/2009,4.42.0.0
+CatalogFile=lgmcmgmt.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lgmcmgmt.sys",,\i386
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+;[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;1=%DiskString%,"lgmcmgmt.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+lgmcmgmt.sys = 1
+lgmccmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+;%LGE%=LGEMobile, NTamd64
+%LGE%=LGEMobile
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGEMobile]
+%LGEMobile.Comm.Desc% = LGEMobile.Install, USB\VID_1004&PID_6073&Class_02&SubClass_09&Prot_01&OS_NT
+
+;[LGEMobile.NTamd64]
+;%LGEMobile.Comm.Desc% = LGEMobile.Install, USB\VID_1004&PID_6073&Class_02&SubClass_09&Prot_01&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[LGEMobile.Install.nt]
+AddReg		= LGEMobile.AddReg,LGEMobile.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[LGEMobile.AddReg]
+HKR,,NTMPDriver,,lgmcmgmt.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for NT...
+[LGEMobile.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,AllowSuspendWhileOpen, 0x10001, 01,00,00,00
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+lgmcmgmt.sys
+lgmccm.sys,lgmccmnt.sys
+lgmccmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[LGEMobile.Install.NT.Services]
+AddService = lgmcmgmt, 0x00000002, LGEMobile.Install.AddService
+
+
+[LGEMobile.Install.AddService]
+DisplayName	= %LGEMobile.Service.Name%
+Description	= %LGEMobile.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\lgmcmgmt.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "LG Electronics"
+LGE = "LG Electronics"
+DiskString = "LGE Mobile USB WMC Device Management installation disk"
+
+LGEMobile.Comm.Desc = "LGE Mobile USB WMC Device Management"
+LGEMobile.Service.Name = "LGE Mobile USB WMC Device Management Drivers (WDM)"
+LGEMobile.Service.Desc = "LGE Mobile USB WMC Device Management Drivers (WDM)"
+
+
+CustomerDataPath = "LGE Mobile"
+DriverSet = "LGE Mobile Software"
+UninstallFile = "LGMCUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

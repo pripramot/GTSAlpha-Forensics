@@ -1,0 +1,138 @@
+;***************************************************************************************
+;
+; Name: SK-S150BUS.inf  
+;
+; Function : Install USB Composite Device Drivers on Win2000/XP/VISTA/7
+;
+; Copyright (c) DEVGURU Co., LTD. (www.devguru.co.kr)
+;
+;***************************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=03/02/2011,1.0.1801.0302
+CatalogFile=SK-S150BUS.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+SK-S150.NT.CopyFiles        = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+SK-S150BUS.sys = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify phone manufacturer, devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SK-S150%=SK-S150, NTx86, NTamd64
+
+
+;-----------------------------------------------------------------------------
+; The phone devices
+;-----------------------------------------------------------------------------
+; For Win2K
+[SK-S150]
+%USB\VID_1F53&PID_A010.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A010
+%USB\VID_1F53&PID_A011.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A011
+%USB\VID_1F53&PID_A012.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A012
+%USB\VID_1F53&PID_A013.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A013
+%USB\VID_1F53&PID_A014.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A014
+
+; For XP and later
+[SK-S150.NTx86]
+%USB\VID_1F53&PID_A010.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A010
+%USB\VID_1F53&PID_A011.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A011
+%USB\VID_1F53&PID_A012.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A012
+%USB\VID_1F53&PID_A013.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A013
+%USB\VID_1F53&PID_A014.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A014
+
+[SK-S150.NTamd64]
+%USB\VID_1F53&PID_A010.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A010
+%USB\VID_1F53&PID_A011.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A011
+%USB\VID_1F53&PID_A012.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A012
+%USB\VID_1F53&PID_A013.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A013
+%USB\VID_1F53&PID_A014.DeviceDesc% = SK-S150.Install, USB\VID_1F53&PID_A014
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SK-S150.Install.NT]
+CopyFiles       = SK-S150.NT.CopyFiles
+AddReg          = SK-S150.AddReg, SK-S150.NT.AddReg
+
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SK-S150.Install.NT.Services]
+AddService      = SK-S150BUS, 2, SK-S150.AddService
+
+[SK-S150.AddService]
+DisplayName             = %SK-S150.Service.DeviceDesc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\SK-S150BUS.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SK-S150.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SK-S150.NT.AddReg]
+
+
+;----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SK-S150.NT.CopyFiles]
+SK-S150BUS.sys
+
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+Provider    = "SK telesys"
+SK-S150     = "SK telesys"
+
+DiskString = "SK telesys Composite Device Driver installation disk"
+
+USB\VID_1F53&PID_A010.DeviceDesc  = "SK telesys Composite Device"
+USB\VID_1F53&PID_A011.DeviceDesc  = "SK telesys Composite Device"
+USB\VID_1F53&PID_A012.DeviceDesc  = "SK telesys Composite Device"
+USB\VID_1F53&PID_A013.DeviceDesc  = "SK telesys Composite Device"
+USB\VID_1F53&PID_A014.DeviceDesc  = "SK telesys Composite Device"
+
+SK-S150.Service.DeviceDesc = "SK-S150 Composite Device Driver"
+

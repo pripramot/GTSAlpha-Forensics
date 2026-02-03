@@ -1,0 +1,50 @@
+[Version] 
+Signature="$Windows NT$" 
+Class=Ports 
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318} 
+
+Provider=%MTK% 
+;LayoutFile=layout.inf 
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=06/21/2006,6.0.6000.16386
+DriverVer=04/21/2009,6.0.6000.16386
+;Missing CAT file entry added by RTGL
+CatalogFile=usb2ser_XP64.cat
+
+[Manufacturer] 
+%MTK%=MTK,NTamd64
+
+[MTK.NTamd64]
+%MTK6218%=Reader,USB\Vid_143C&Pid_A001
+
+[DestinationDirs] 
+DefaultDestDir=12 
+Reader.NTamd64.Copy=12 
+
+[Reader.NTamd64] 
+Include=mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+AddReg=Reader.NTamd64.AddReg 
+
+[FakeModemCopyFileSection]
+
+[Reader.NTamd64.AddReg] 
+HKR,,DevLoader,,*ntkern 
+HKR,,NTMPDriver,,usbser.sys 
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider" 
+
+[Reader.NTamd64.Services] 
+AddService = usbser, 0x00000002, Service_Inst 
+
+[Service_Inst] 
+DisplayName = %Serial.SvcDesc% 
+ServiceType = 1 ; SERVICE_KERNEL_DRIVER 
+StartType = 3 ; SERVICE_DEMAND_START 
+ErrorControl = 1 ; SERVICE_ERROR_NORMAL 
+ServiceBinary = %12%\usbser.sys 
+LoadOrderGroup = Base 
+
+[Strings] 
+MTK = "Emgeton" 
+MTK6218 = "Emgeton Flexaret Mini Comm Port" 
+Serial.SvcDesc = "Emgeton Flexaret Mini USB Comm Port driver" 

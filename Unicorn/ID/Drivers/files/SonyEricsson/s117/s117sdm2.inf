@@ -1,0 +1,202 @@
+;*****************************************************************************
+;
+; Name:  s117sdm2.inf
+;
+; Function:
+;	Install Sony Ericsson Device 117 USB WMC Device Management Drivers on Win2000/XP
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=04/21/2009,4.40.2.0
+CatalogFile=s117mgmt.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s117mgmt.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s117mgmt.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+s117mgmt.sys = 1
+s117cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed117, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed117.NTx86]
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_d075&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_d076&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0a5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0ab&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0ac&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0af&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0b3&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0b9&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0bb&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0c5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0c6&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d4&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d6&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d8&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d9&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0da&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0de&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0e3&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0ec&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0f3&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0f5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0fb&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D100&Class_02&SubClass_09&Prot_01&OS_NT
+
+
+[sed117.NTamd64]
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_d075&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_d076&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0a5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0ab&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0ac&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0af&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0b3&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0b9&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0bb&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0c5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0c6&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d4&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d6&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d8&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0d9&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0da&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0de&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0e3&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0ec&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0f3&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0f5&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D0fb&Class_02&SubClass_09&Prot_01&OS_NT
+%sed117.Comm.Desc% = sed117.Install, USB\VID_0fce&PID_D100&Class_02&SubClass_09&Prot_01&OS_NT
+
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[sed117.Install.nt]
+AddReg		= sed117.AddReg,sed117.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[sed117.AddReg]
+HKR,,NTMPDriver,,s117mgmt.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for NT...
+[sed117.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,AllowSuspendWhileOpen, 0x10001, 01,00,00,00
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+s117mgmt.sys
+s117cm.sys,s117cmnt.sys
+s117cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[sed117.Install.NT.Services]
+AddService = s117mgmt, 0x00000002, sed117.Install.AddService
+
+
+[sed117.Install.AddService]
+DisplayName	= %sed117.Service.Name%
+Description	= %sed117.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\s117mgmt.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 117 USB WMC Device Management installation disk"
+
+sed117.Comm.Desc = "Sony Ericsson Device 117 USB WMC Device Management"
+sed117.Service.Name = "Sony Ericsson Device 117 USB WMC Device Management Drivers (WDM)"
+sed117.Service.Desc = "Sony Ericsson Device 117 USB WMC Device Management Drivers (WDM)"
+
+
+CustomerDataPath = "Sony Ericsson Device 117"
+DriverSet = "Sony Ericsson Device 117 Software"
+UninstallFile = "S117Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

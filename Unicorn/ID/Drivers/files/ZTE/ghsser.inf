@@ -1,0 +1,268 @@
+;*****************************************************************************
+;
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2012 
+;
+;This INF file installs a virtual COM port on 32-bit and 64-bit Windows OS, such as Windows XP, Vista and Win7.
+;
+;*****************************************************************************
+
+[Version]
+signature      =  "$WINDOWS NT$"
+Class          =  Ports
+Provider       =  %HS%
+ClassGuid      =  {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer      =  12/20/2012,10.2088.1.2
+CatalogFile    =  ghsser.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1 = %HSSRCDISK%,,,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1 = %HSSRCDISK%,,,\amd64
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+ghsser.sys = 1,,
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir        = 12
+HSportInstall.NT.Copy = 12
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%HS% = HScomSerialPort, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[HScomSerialPort]
+;=====Diag Interface=====
+;Previous
+%HSDiag0119%       = HSportInstall, USB\VID_19D2&PID_0119&MI_01
+%HSDiag0127%       = HSportInstall, USB\VID_19D2&PID_0127&MI_01
+%HSDiag0131%       = HSportInstall, USB\VID_19D2&PID_0131&MI_01
+%HSDiag0112%       = HSportInstall, USB\VID_19D2&PID_0112
+;P726G
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0212&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0213&MI_00
+;N9500
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0216&MI_01
+;N910
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0268&MI_02
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0269&MI_02
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0272&MI_01
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0273&MI_01
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0275&MI_04
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0276&MI_02
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0277&MI_02
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0278&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0279&MI_01
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0281&MI_03
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0282&MI_04
+;P825F01
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0454
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0455&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0456&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0457&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0458&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0459&MI_00
+
+;=====Diag Interface(Modem)=====
+;N910
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0268&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0269&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0272&MI_00
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0273&MI_00
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0275&MI_03
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0276&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0277&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0279&MI_02
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0281&MI_02
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0282&MI_03
+;P825F01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0457&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0458&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0459&MI_01
+
+;=====AT Interface=====
+;N910
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0217&MI_02
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0275&MI_08
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0276&MI_06
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0279&MI_05
+;P825F01
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0456&MI_03
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0459&MI_04
+
+;=====NMEA Interface=====
+;Previous
+%HSNMEA0119%       = HSportInstall, USB\VID_19D2&PID_0119&MI_02
+%HSNMEA0127%       = HSportInstall, USB\VID_19D2&PID_0127&MI_02
+%HSNMEA0131%       = HSportInstall, USB\VID_19D2&PID_0131&MI_02
+;P726G
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0212&MI_02
+;N9500
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0217&MI_01
+;N910
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0268&MI_04
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0273&MI_02
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0275&MI_06
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0276&MI_04
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0279&MI_04
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0282&MI_06
+;P825F01
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0455&MI_02
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0456&MI_02
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0458&MI_03
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0459&MI_03
+
+
+[HScomSerialPort.NTamd64]
+;=====Diag Interface=====
+;Previous
+%HSDiag0119%       = HSportInstall, USB\VID_19D2&PID_0119&MI_01
+%HSDiag0127%       = HSportInstall, USB\VID_19D2&PID_0127&MI_01
+%HSDiag0131%       = HSportInstall, USB\VID_19D2&PID_0131&MI_01
+%HSDiag0112%       = HSportInstall, USB\VID_19D2&PID_0112
+;P726G
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0212&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0213&MI_00
+;N9500
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0216&MI_01
+;N910
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0268&MI_02
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0269&MI_02
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0272&MI_01
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0273&MI_01
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0275&MI_04
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0276&MI_02
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0277&MI_02
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0278&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0279&MI_01
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0281&MI_03
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0282&MI_04
+;P825F01
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0454
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0455&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0456&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0457&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0458&MI_00
+%HSDiagGeneral%    = HSportInstall, USB\VID_19D2&PID_0459&MI_00
+
+;=====Diag Interface(Modem)=====
+;N910
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0268&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0269&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0272&MI_00
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0273&MI_00
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0275&MI_03
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0276&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0277&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0279&MI_02
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0281&MI_02
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0282&MI_03
+;P825F01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0457&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0458&MI_01
+%HSDiagMDM%        = HSportInstall, USB\VID_19D2&PID_0459&MI_01
+
+;=====AT Interface=====
+;N910
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0217&MI_02
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0275&MI_08
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0276&MI_06
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0279&MI_05
+;P825F01
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0456&MI_03
+%HSATGeneral%      = HSportInstall, USB\VID_19D2&PID_0459&MI_04
+
+;=====NMEA Interface=====
+;Previous
+%HSNMEA0119%       = HSportInstall, USB\VID_19D2&PID_0119&MI_02
+%HSNMEA0127%       = HSportInstall, USB\VID_19D2&PID_0127&MI_02
+%HSNMEA0131%       = HSportInstall, USB\VID_19D2&PID_0131&MI_02
+;P726G
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0212&MI_02
+;N9500
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0217&MI_01
+;N910
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0268&MI_04
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0273&MI_02
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0275&MI_06
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0276&MI_04
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0279&MI_04
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0282&MI_06
+;P825F01
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0455&MI_02
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0456&MI_02
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0458&MI_03
+%HSNMEAGeneral%    = HSportInstall, USB\VID_19D2&PID_0459&MI_03
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+[HSportInstall.NT]
+CopyFiles = HSportInstall.NT.Copy
+AddReg    = All, AddReg.NT
+
+[HSportInstall.NT.Copy]
+ghsser.sys
+
+[HSportInstall.NT.Services]
+AddService = ghsser, 0x00000002, HSport_Service_Inst
+
+[HSport_Service_Inst]
+DisplayName   = %HScomSerialPortName%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+AddReg        = PortDriver.Service.Reg
+ServiceBinary = %12%\ghsser.sys
+
+[All]
+HKR,,NTMPDriver,,ghsser.sys
+
+[PortDriver.Service.Reg]
+HKR,,QCDriverSelectiveSuspendIdleTime,%FLG_ADDREG_TYPE_DWORD%, 0x00000030
+HKR,,QCDriverPowerManagementEnabled,%FLG_ADDREG_TYPE_DWORD%, 0x00000001
+
+[AddReg.NT]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+HS                       = "HS Corporation"
+HSSRCDISK                = "HS Multimedia USB COM Driver Disk"
+HScomSerialPortName      = "Handset Serial Port for NOLOGO"
+
+;===Diag Interface==
+HSDiagGeneral            = "Handset Diagnostic Interface"
+HSDiag0112               = "Handset Diagnostic Interface(DFU)"
+HSDiag0119               = "HSPA Handset Diagnostic Interface"
+HSDiag0127               = "S3 Diagnostic Interface"
+HSDiag0131               = "S2x Diagnostic Interface"
+
+;===Diag Interface(Modem)===
+HSDiagMDM                = "Handset Diagnostic_MDM Interface"
+
+;===AT Interface===
+HSATGeneral              = "Handset USB AT Port"
+
+;===NMEA Interface===
+HSNMEAGeneral            = "Handset NMEA Port"
+HSNMEA0119               = "HSPA Handset NMEA Device"
+HSNMEA0127               = "S3 NMEA Device"
+HSNMEA0131               = "S2x NMEA Device"
+
+FLG_ADDREG_TYPE_DWORD = 0x00000001

@@ -1,0 +1,105 @@
+
+;*****************************************************************************
+; Name:  lganddiag64.inf (_MOON_)
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+CatalogFile = lganddriver64.cat
+DriverVer=11/30/2010,2.2.0.0
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lganddiag64.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+lganddiag64.sys = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir  = 12             	; system32\drivers
+CopyFiles       = 12                    ; system32\drivers
+CopyFiles.Win2K = 12                    ;
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGSI%=LGSI,NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGSI.NTamd64]
+; For individual driver
+%Lgsi.Comm.Desc% = LGSI.Install, USB\VID_1004&PID_618E_DIAGInterface
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Lgsi.Install.nt]
+AddReg		= Lgsi.AddReg,Lgsi.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Lgsi.AddReg]
+HKR,,NTMPDriver,,lganddiag64.sys
+
+; only for NT...
+[Lgsi.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+lganddiag64.sys
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+[Lgsi.Install.NT.Services]
+AddService = AndDiag, 0x00000002, Lgsi.Install.AddService
+
+[Lgsi.Install.AddService]
+DisplayName	= %Lgsi.Service.Name%
+Description	= %Lgsi.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\lganddiag64.sys
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+Provider = "LG Electronics Inc."
+Lgsi = "LG Electronics Inc."
+
+DiskString = "LGE USB Serial Port Drivers installation disk"
+Lgsi.Comm.Desc = "LGE Android Platform USB Serial Port"
+Lgsi.Service.Name = "LGE Android Platform USB Serial Port"
+Lgsi.Service.Desc = "LGE Android Platform USB Serial Port"
+CustomerDataPath = "LGE USB Android Platform Diagnostic Kit"
+DriverSet = "LGE USB Android Platform Mobile Software" 
+

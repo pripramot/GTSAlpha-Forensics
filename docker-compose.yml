@@ -1,0 +1,36 @@
+# GTSAlpha-Forensics — Docker (Local)
+# เชื่อมเฉพาะ Supabase/Docker ก่อน; บัญชีอื่นจะแจ้งทีหลัง
+
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: gtsalpha_unicorn_db
+    restart: always
+    environment:
+      POSTGRES_USER: super_admin
+      POSTGRES_PASSWORD: secret_unicorn_password
+      POSTGRES_DB: unicorn_gts
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+      - ./Unicorn/database/gts_schema.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - gtsalpha_net
+
+  adminer:
+    image: adminer
+    container_name: gtsalpha_adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    networks:
+      - gtsalpha_net
+
+networks:
+  gtsalpha_net:
+    driver: bridge

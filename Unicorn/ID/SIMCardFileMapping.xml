@@ -1,0 +1,1790 @@
+<?xml version="1.0"?>
+<mapping hashKey="3BA646D4160453CC168ED2A434D2D162" hashtype="MD5">
+	<section ref="acquisitioninfo">
+		<section ref="dsc">
+			<textref ref="type" element="0" path="FORENSIC/3F00/7F30/010C" record="0"/>
+			<textref ref="batchdate" element="2" path="FORENSIC/3F00/7F30/010C" record="0"/>
+			<textref ref="serialnumber" element="3" path="FORENSIC/3F00/7F30/010C" record="0"/>
+			<textref ref="version" element="1" path="FORENSIC/3F00/7F30/010C" record="0"/>
+			<textref formatnode="timestampterminal" ref="writestarttime" element="0" path="FORENSIC/3F00/7F30/0107" record="0"/>
+			<textref formatnode="timestampterminal" ref="writeendtime" element="0" path="FORENSIC/3F00/7F30/0108" record="0"/>
+			<textref ref="numbytesread" element="0" path="FORENSIC/3F00/7F30/0112" record="0"/>
+			<textref ref="numbyteswritten" element="0" path="FORENSIC/3F00/7F30/010D" record="0"/>
+			<textref ref="hashtype" element="0" path="FORENSIC/3F00/7F30/010B" record="0"/>
+			<textref ref="primaryhash" element="2" path="FORENSIC/3F00/7F30/010B" record="0"/>
+			<textref ref="secondaryhash" element="2" path="FORENSIC/3F00/7F30/010B" record="1"/>
+		</section>
+	</section>
+	<section ref="terminalinfo">
+		<textref ref="version" element="0" path="FORENSIC/3F00/7F30/0110" record="0"/>
+		<textref ref="type" element="0" path="FORENSIC/3F00/7F30/010F" record="0"/>
+		<textref ref="controlcardid" element="0" path="FORENSIC/3F00/7F30/0106" record="0"/>
+		<textref ref="userid" element="0" path="FORENSIC/3F00/7F30/010E" record="0"/>
+		<section ref="calibration">
+			<section path="FORENSIC/3F00/7F30/0117" record="0" element="0" condition="!invalid">
+				<text ref="state">calibrated</text>
+				<textref formatnode="timestampterminal" element="0"/>
+				<textref ref="method" element="1"/>
+			</section>
+			<section path="FORENSIC/3F00/7F30/0117" record="0" element="0" condition="invalid">
+				<section path="FORENSIC/3F00/7F30/0107" record="0" element="0" condition="!invalid">
+					<text ref="state">overdue</text>
+				</section>
+				<section path="FORENSIC/3F00/7F30/0107" record="0" element="0" condition="invalid">
+					<text ref="state">uncalibrated</text>
+				</section>
+			</section>
+		</section>
+	</section>
+	<section ref="datamodel">
+		<section ref="siminfo">
+			<textref ref="cardtype" element="0" path="FORENSIC/3F00/7F30/0114" record="0"/>
+			<section ref="gsm" path="FORENSIC/3F00/7F15/6F07">
+				<textref ref="imsi" element="1" record="0"/>
+			</section>
+			<section ref="usim" path="USIM/3F00/7FFE/6F07">
+				<textref ref="imsi" element="1" record="0"/>
+			</section>
+			<section ref="ruim" path="GSM/3F00/7F25/6F22">
+				<textref ref="imsi_m" element="0" record="0"/>
+			</section>
+			<section ref="ruim" path="GSM/3F00/7F25/6F23">
+				<textref ref="imsi_t" element="0" record="0"/>
+			</section>
+			<section path="GSM/3F00/2FE2">
+				<textref ref="iccid" record="0" element="0" prerequisiteelement="1" prerequisitefilepath="FORENSIC/3F00/7F15/6F07" prerequisiterecord="0" preservecr="true"/>
+			</section>
+			<section path="GSM/3F00/2FE2" condition="!path">
+				<textref ref="iccid" path="USIM/3F00/2FE2" record="0" element="0" prerequisiteelement="1" prerequisitefilepath="FORENSIC/3F00/7F15/6F07" prerequisiterecord="0" preservecr="true"/>
+			</section>
+		</section>
+		<section ref="usernumbers" id="usernumbers">
+			<textref path="GSM/3F00/7F10/6F40" ref="dmlinked" compare="USIM/3F00/7FFE/6F40"/>
+			<section path="GSM/3F00/7F10/6F40" ref="usernumber" repeat="record" element="3" condition="!">
+				<textref ref="position" formatnode="position"/>
+				<text ref="location">gsm</text>
+				<textref ref="name" element="0"/>
+				<text ref="number">
+					<text ref="embedded" element="1" condition="international">+</text>
+					<textref ref="embedded" element="3"/>
+					<section element="5">
+						<text ref="embedded" path="GSM/3F00/7F10/6F4A" record="elementval" element="0" condition="additionaldata">
+							<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+						</text>
+					</section>
+				</text>
+			</section>
+		</section>
+		<section ref="usernumbers" id="usernumbers">
+			<section path="USIM/3F00/7FFE/6F40" ref="usernumber" repeat="record" element="3" condition="!">
+				<textref ref="position" formatnode="position"/>
+				<text ref="location">usim</text>
+				<textref ref="name" element="0"/>
+				<text ref="number">
+					<text ref="embedded" element="1" condition="international">+</text>
+					<textref ref="embedded" element="3"/>
+					<section element="5">
+						<text ref="embedded" path="GSM/3F00/7F10/6F4A" record="elementval" element="0" condition="additionaldata">
+							<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+						</text>
+					</section>
+				</text>
+			</section>
+		</section>
+		<section ref="contacts" id="contacts">
+			<section ref="contact" path="GSM/3F00/7F10/6F3A" repeat="record" condition="!emptyadn">
+				<textref ref="position" formatnode="position"/>
+				<text ref="location">gsm</text>
+				<textref ref="name" element="0"/>
+				<section ref="defaultnumber">
+					<text ref="number">
+						<text ref="embedded" element="1" condition="international">+</text>
+						<textref ref="embedded" element="3"/>
+						<section element="5">
+							<text ref="embedded" path="GSM/3F00/7F10/6F4A" record="elementval" element="0" condition="additionaldata">
+								<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+							</text>
+						</section>
+					</text>
+				</section>
+			</section>
+		</section>
+		<section ref="contacts" id="contacts">
+			<section ref="contact" path="GSM/3F00/7F31/6F2A" repeat="record" condition="!">
+				<textref ref="position" formatnode="position"/>
+				<text ref="location">iden</text>
+				<textref ref="name" element="0"/>
+				<section ref="defaultnumber">
+					<text ref="name">
+						<textref ref="embedded" element="4"/>
+					</text>
+					<text ref="number">
+						<text ref="embedded" element="1" condition="international">+</text>
+						<textref ref="embedded" element="3"/>
+					</text>
+				</section>
+			</section>
+			<section ref="contact" path="GSM/3F00/7F31/6F2B" repeat="record" condition="!">
+				<textref ref="position" formatnode="position"/>
+				<text ref="location">iden</text>
+				<textref ref="name" element="0"/>
+				<section ref="defaultnumber">
+					<text ref="name">
+						<textref ref="embedded" element="4"/>
+					</text>
+					<text ref="number">
+						<text ref="embedded" element="1" condition="international">+</text>
+						<textref ref="embedded" element="3"/>
+					</text>
+				</section>
+			</section>
+			<section ref="contact" path="GSM/3F00/7F31/6F2C" repeat="record" condition="!">
+				<textref ref="position" formatnode="position"/>
+				<text ref="location">iden</text>
+				<textref ref="name" element="0"/>
+				<section ref="defaultnumber">
+					<text ref="name">
+						<textref ref="embedded" element="4"/>
+					</text>
+					<text ref="number">
+						<text ref="embedded" element="1" condition="international">+</text>
+						<textref ref="embedded" element="3"/>
+					</text>
+				</section>
+			</section>
+		</section>
+		<section ref="contacts" id="contacts">
+			<section ref="contact" dirpath="USIM/3F00/7F10/5F3A" filename="ADN" repeat="record">
+				<textref ref="position" formatnode="position"/>
+				<text ref="location">usim</text>
+				<textref ref="name" element="0"/>
+				<section ref="defaultnumber">
+					<text ref="number">
+						<text ref="embedded" element="1" condition="international">+</text>
+						<textref ref="embedded" element="3"/>
+						<section element="5">
+							<text ref="embedded" filename="EXT1" record="elementval" element="0" condition="additionaldata">
+								<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+							</text>
+						</section>
+					</text>
+				</section>
+				<section filetyperepeat="168">
+					<section ref="additionalnumbers" filenamecondition="ANR">
+						<section ref="number" element="3" condition="!">
+							<section element="0">
+								<textref ref="name" filename="AAS" record="elementval" element="0"/>
+							</section>
+							<text ref="number">
+								<text ref="embedded" element="1" condition="international">+</text>
+								<textref ref="embedded" element="3"/>
+								<section element="5">
+									<text ref="embedded" filename="EXT1" record="elementval" element="0" condition="additionaldata">
+										<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+									</text>
+								</section>
+							</text>
+						</section>
+					</section>
+					<section ref="emails" filenamecondition="EMAIL">
+						<textref ref="email" element="0" condition="!"/>
+					</section>
+					<section ref="groups" filenamecondition="GRP">
+						<section repeat="element">
+							<section record="elementval" filename="GAS">
+								<textref repeat="true" ref="group" element="0" condition="!"/>
+							</section>
+						</section>
+					</section>
+					<section ref="secondnames" filenamecondition="SNE">
+						<textref ref="name" element="0" condition="!"/>
+					</section>
+				</section>
+				<section filename="IAP">
+					<section repeat="element">
+						<section filetyperepeat="169" fileposcondition="elementnum" propagatedrecord="elementval">
+							<section ref="additionalnumbers" filenamecondition="ANR">
+								<section ref="number" createref="true" element="3" condition="!">
+									<section element="0">
+										<textref ref="name" filename="AAS" record="elementval" element="0"/>
+									</section>
+									<text ref="name">Additional Number</text>
+									<text ref="number">
+										<text ref="embedded" element="1" condition="international">+</text>
+										<textref ref="embedded" element="3"/>
+										<section element="5">
+											<text ref="embedded" filename="EXT1" record="elementval" element="0" condition="additionaldata">
+												<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+											</text>
+										</section>
+									</text>
+								</section>
+							</section>
+							<section ref="emails" filenamecondition="EMAIL">
+								<textref ref="email" createref="true" element="0" condition="!"/>
+							</section>
+							<section ref="groups" filenamecondition="GRP">
+								<section repeat="element">
+									<section record="elementval" filename="GAS">
+										<textref repeat="true" ref="group" element="0" condition="!"/>
+									</section>
+								</section>
+							</section>
+							<section ref="secondnames" filenamecondition="SNE">
+								<textref ref="name" createref="true" element="0" condition="!"/>
+							</section>
+						</section>
+					</section>
+				</section>
+			</section>
+		</section>
+		<section ref="sms">
+			<section ref="messages" id="inbox">
+				<text ref="name">inbox</text>
+				<section path="GSM/3F00/7F25/6F3C" ref="message" repeat="record" element="5" condition="received|statusreport">
+					<textref ref="position" formatnode="position"/>
+					<textref ref="type" element="5"/>
+					<text ref="location">ruim</text>
+					<section ref="timestamps">
+						<textref formatnode="timestampnetwork" ref="timestamp" element="9"/>
+					</section>
+					<textref ref="status" element="0"/>
+					<section ref="sender">
+						<section ref="contactnumber">
+							<textref ref="number" element="2"/>
+						</section>
+					</section>
+					<textref ref="text" element="8" preservecr="true"/>
+					<textref element="7" formatnode="concatdata"/>
+					<section ref="rawdata">
+						<text ref="type">pdu</text>
+					</section>
+				</section>
+			</section>
+			<section ref="messages" id="sentitems">
+				<text ref="name">sentitems</text>
+				<section path="GSM/3F00/7F25/6F3C" ref="message" repeat="record" element="5" condition="sent">
+					<textref ref="position" formatnode="position"/>
+					<textref ref="type" element="5"/>
+					<textref ref="messagereference" element="6"/>
+					<text ref="location">ruim</text>
+					<section ref="timestamps">
+						<section ref="timestamp">
+							<textref formatnode="timestamphandset" ref="timestamp" element="9"/>
+						</section>
+					</section>
+					<textref ref="status" element="0"/>
+					<section ref="recipients">
+						<section ref="contactnumber">
+							<textref ref="number" element="3"/>
+						</section>
+					</section>
+					<textref ref="text" element="8" preservecr="true"/>
+					<textref element="7" formatnode="concatdata"/>
+					<section ref="rawdata">
+						<text ref="type">pdu</text>
+					</section>
+				</section>
+			</section>
+		</section>
+		<section ref="sms">
+			<textref path="GSM/3F00/7F10/6F3C" ref="dmlinked" compare="USIM/3F00/7FFE/6F3C"/>
+			<textref path="GSM/3F00/7F10/6F47" ref="dmlinked" compare="USIM/3F00/7FFE/6F47" condition="dmlinked=true"/>
+			<section ref="messages" id="inbox">
+				<text ref="name">inbox</text>
+				<section path="GSM/3F00/7F10/6F3C" ref="message" repeat="record" element="2" condition="received|statusreport">
+					<textref ref="position" formatnode="position"/>
+					<textref ref="type" element="2"/>
+					<text ref="location">gsm</text>
+					<section ref="timestamps" condition="received">
+						<textref formatnode="timestampnetwork" ref="timestamp" element="10"/>
+					</section>
+					<section ref="timestamps" condition="statusreport">
+						<textref formatnode="timestampnetwork" ref="timestamp" element="8"/>
+					</section>
+					<textref ref="status" element="0"/>
+					<section ref="sender">
+						<section ref="contactnumber">
+							<textref ref="number" element="7"/>
+						</section>
+					</section>
+					<section ref="scaddress">
+						<textref ref="number" element="1"/>
+					</section>
+					<textref ref="text" element="12" preservecr="true"/>
+					<textref element="13" formatnode="concatdata"/>
+					<textref condition="hasemsfile" element="13" ref="emsposition" formatnode="emsposition"/>
+					<textref condition="hasemsfile" element="13" ref="emsfile" formatnode="emsfile"/>
+					<section condition="statusreport">
+						<section element="2">
+							<textref ref="deliverystatus" element="10"/>
+							<textref ref="messagereference" element="6"/>
+							<textref formatnode="timestampnetwork" ref="dischargetime" element="9"/>
+						</section>
+					</section>
+					<section ref="rawdata">
+						<text ref="type">pdu</text>
+					</section>
+				</section>
+			</section>
+			<section ref="messages" id="sentitems">
+				<text ref="name">sentitems</text>
+				<section path="GSM/3F00/7F10/6F3C" ref="message" repeat="record" element="2" condition="sent">
+					<textref ref="position" formatnode="position"/>
+					<textref ref="type" element="2"/>
+					<textref ref="messagereference" element="8"/>
+					<text ref="location">gsm</text>
+					<section ref="timestamps">
+						<section ref="timestamp">
+							<text ref="time">invalid</text>
+						</section>
+					</section>
+					<textref ref="status" element="0"/>
+					<section ref="recipients">
+						<section ref="contactnumber">
+							<textref ref="number" element="9"/>
+						</section>
+					</section>
+					<section ref="scaddress">
+						<textref ref="number" element="1"/>
+					</section>
+					<textref ref="text" element="14" preservecr="true"/>
+					<textref condition="hasemsfile" element="15" ref="emsposition" formatnode="emsposition"/>
+					<textref condition="hasemsfile" element="15" ref="emsfile" formatnode="emsfile"/>
+					<textref element="15" formatnode="concatdata"/>
+					<section ref="rawdata">
+						<text ref="type">pdu</text>
+					</section>
+				</section>
+			</section>
+			<section ref="messages" id="smsr">
+				<text ref="name">smsr</text>
+				<section path="GSM/3F00/7F10/6F47" ref="message" repeat="record" element="1" condition="statusreport">
+					<textref ref="smsrecordnumber" element="0"/>
+					<text ref="location">gsm</text>
+					<section element="1" condition="statusreport">
+						<textref ref="type" element="1"/>
+						<textref ref="messagereference" element="5"/>
+						<textref ref="recipientaddress" element="6"/>
+						<textref ref="dischargetime" formatnode="timestampnetwork" element="8"/>
+						<textref ref="deliverystatus" element="9"/>
+						<section ref="timestamps">
+							<textref formatnode="timestampnetwork" element="7"/>
+						</section>
+					</section>
+					<section ref="rawdata">
+						<text ref="type">pdu</text>
+					</section>
+				</section>
+			</section>
+		</section>
+		<section ref="sms">
+			<section ref="messages" id="inbox">
+				<text ref="name">inbox</text>
+				<section path="USIM/3F00/7FFE/6F3C" ref="message" repeat="record" element="2" condition="received|statusreport">
+					<textref ref="position" formatnode="position"/>
+					<textref ref="type" element="2"/>
+					<text ref="location">usim</text>
+					<section ref="timestamps" condition="received">
+						<textref formatnode="timestampnetwork" ref="timestamp" element="10"/>
+					</section>
+					<section ref="timestamps" condition="statusreport">
+						<textref formatnode="timestampnetwork" ref="timestamp" element="8"/>
+					</section>
+					<textref ref="status" element="0"/>
+					<section ref="sender">
+						<section ref="contactnumber">
+							<textref ref="number" element="7"/>
+						</section>
+					</section>
+					<section ref="scaddress">
+						<textref ref="number" element="1"/>
+					</section>
+					<textref ref="text" element="12" preservecr="true"/>
+					<section condition="statusreport">
+						<section element="2">
+							<textref ref="deliverystatus" element="10"/>
+							<textref ref="messagereference" element="6"/>
+							<textref formatnode="timestampnetwork" ref="dischargetime" element="9"/>
+						</section>
+					</section>
+					<textref element="13" formatnode="concatdata"/>
+					<textref condition="hasemsfile" element="13" ref="emsposition" formatnode="emsposition"/>
+					<textref condition="hasemsfile" element="13" ref="emsfile" formatnode="emsfile"/>
+					<section ref="rawdata">
+						<text ref="type">pdu</text>
+					</section>
+				</section>
+			</section>
+			<section ref="messages" id="sentitems">
+				<text ref="name">sentitems</text>
+				<section path="USIM/3F00/7FFE/6F3C" ref="message" repeat="record" element="2" condition="sent">
+					<textref ref="position" formatnode="position"/>
+					<textref ref="type" element="2"/>
+					<textref ref="messagereference" element="8"/>
+					<text ref="location">usim</text>
+					<section ref="timestamps">
+						<section ref="timestamp">
+							<text ref="time">invalid</text>
+						</section>
+					</section>
+					<textref ref="status" element="0"/>
+					<section ref="recipients">
+						<section ref="contactnumber">
+							<textref ref="number" element="9"/>
+						</section>
+					</section>
+					<section ref="scaddress">
+						<textref ref="number" element="1"/>
+					</section>
+					<textref ref="text" element="14" preservecr="true"/>
+					<textref element="15" formatnode="concatdata"/>
+					<textref condition="hasemsfile" element="15" ref="emsposition" formatnode="emsposition"/>
+					<textref condition="hasemsfile" element="15" ref="emsfile" formatnode="emsfile"/>
+					<section ref="rawdata">
+						<text ref="type">pdu</text>
+					</section>
+				</section>
+			</section>
+			<section ref="messages" id="smsr">
+				<text ref="name">smsr</text>
+				<section path="USIM/3F00/7FFE/6F47" ref="message" repeat="record" element="1" condition="statusreport">
+					<textref ref="smsrecordnumber" element="0"/>
+					<text ref="location">usim</text>
+					<section element="1" condition="statusreport">
+						<textref ref="type" element="1"/>
+						<textref ref="messagereference" element="5"/>
+						<textref ref="recipientaddress" element="6"/>
+						<textref ref="dischargetime" formatnode="timestampnetwork" element="8"/>
+						<textref ref="deliverystatus" element="9"/>
+						<section ref="timestamps">
+							<textref formatnode="timestampnetwork" element="7"/>
+						</section>
+					</section>
+					<section ref="rawdata">
+						<text ref="type">pdu</text>
+					</section>
+				</section>
+			</section>
+		</section>
+		<section ref="callregister">
+			<section ref="calls" id="diallednumbers">
+				<text ref="name">diallednumbers</text>
+				<section path="GSM/3F00/7F10/6F44" ref="call" repeat="record" element="3" condition="!">
+					<textref ref="position" formatnode="position"/>
+					<text ref="location">gsm</text>
+					<section ref="timestamp">
+						<text ref="time">invalid</text>
+					</section>
+					<section ref="contactnumber" element="3" condition="!">
+						<textref ref="name" element="0"/>
+						<text ref="number">
+							<text ref="embedded" element="1" condition="international">+</text>
+							<textref ref="embedded" element="3"/>
+							<section element="5">
+								<text ref="embedded" path="GSM/3F00/7F10/6F4A" record="elementval" element="0" condition="additionaldata">
+									<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+								</text>
+							</section>
+						</text>
+					</section>
+				</section>
+			</section>
+			<section ref="calls" id="diallednumbers">
+				<text ref="name">diallednumbers</text>
+				<section path="USIM/3F00/7FFE/6F81" ref="call" repeat="record" element="3" condition="!">
+					<textref ref="position" formatnode="position"/>
+					<text ref="location">usim</text>
+					<textref formatnode="timestamphandset" element="6"/>
+					<textref ref="duration" element="7"/>
+					<textref ref="phonebooklink" element="8"/>
+					<section ref="contactnumber">
+						<textref ref="name" element="0"/>
+						<text ref="number">
+							<text ref="embedded" element="1" condition="international">+</text>
+							<textref ref="embedded" element="3"/>
+							<section element="5">
+								<text ref="embedded" path="GSM/3F00/7F10/6F4A" record="elementval" element="0" condition="additionaldata">
+									<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+								</text>
+							</section>
+						</text>
+					</section>
+				</section>
+			</section>
+			<section ref="calls" id="receivedcalls" path="USIM/3F00/7FFE/6F80">
+				<text ref="name">receivedcalls</text>
+				<section repeat="record" element="8" condition="answered">
+					<section ref="call" element="3" condition="!">
+						<textref ref="position" formatnode="position"/>
+						<text ref="location">usim</text>
+						<textref formatnode="timestamphandset" element="6"/>
+						<textref ref="duration" element="7"/>
+						<textref ref="phonebooklink" element="9"/>
+						<section ref="contactnumber">
+							<textref ref="name" element="0"/>
+							<text ref="number">
+								<text ref="embedded" element="1" condition="international">+</text>
+								<textref ref="embedded" element="3"/>
+								<section element="5">
+									<text ref="embedded" path="GSM/3F00/7F10/6F4A" record="elementval" element="0" condition="additionaldata">
+										<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+									</text>
+								</section>
+							</text>
+						</section>
+					</section>
+				</section>
+			</section>
+			<section ref="calls" id="missedcalls" path="USIM/3F00/7FFE/6F80">
+				<text ref="name">missedcalls</text>
+				<section repeat="record" element="8" condition="notanswered">
+					<section ref="call" element="3" condition="!">
+						<textref ref="position" formatnode="position"/>
+						<text ref="location">usim</text>
+						<textref formatnode="timestamphandset" element="6"/>
+						<textref ref="duration" element="7"/>
+						<textref ref="phonebooklink" element="9"/>
+						<section ref="contactnumber">
+							<textref ref="name" element="0"/>
+							<text ref="number">
+								<text ref="embedded" element="1" condition="international">+</text>
+								<textref ref="embedded" element="3"/>
+								<section element="5">
+									<text ref="embedded" path="GSM/3F00/7F10/6F4A" record="elementval" element="0" condition="additionaldata">
+										<textref ref="embedded" element="1" nextrecordelement="2" stopcondition="255"/>
+									</text>
+								</section>
+							</text>
+						</section>
+					</section>
+				</section>
+			</section>
+		</section>
+		<section ref="gsm" path="FORENSIC/3F00/7F15/6F78">
+			<section ref="subscriber">
+				<section ref="msisdns" path="GSM/3F00/7F10/6F40">
+					<section ref="msisdn" repeat="record">
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<textref ref="imsi" path="FORENSIC/3F00/7F15/6F07" element="1" preservecr="true" record="0"/>
+				<textref ref="ifpsi" path="GSM/3F00/7F23/6F07" element="1" preservecr="true" record="0"/>
+				<textref ref="min" path="FORENSIC/3F00/7F15/5F40/4F88" element="1" preservecr="true" record="0"/>
+				<section ref="serviceprovider" path="FORENSIC/3F00/7F15/6F46">
+					<textref ref="displaystatus" element="0" record="0"/>
+					<textref ref="name" element="1" record="0"/>
+				</section>
+				<textref ref="ons" path="FORENSIC/3F00/7F15/6F14" element="0" record="0"/>
+				<textref ref="onsf" path="FORENSIC/3F00/7F15/6F18" element="0" record="0"/>
+			</section>
+			<section ref="phonenumbers">
+				<section ref="adns" path="GSM/3F00/7F10/6F3A">
+					<section ref="adn" repeat="record">
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="fdns" path="GSM/3F00/7F10/6F3B">
+					<section ref="fdn" repeat="record">
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="sdns" path="GSM/3F00/7F10/6F49">
+					<section ref="sdn" repeat="record">
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="bdns" path="GSM/3F00/7F10/6F4D">
+					<section ref="bdn" repeat="record">
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="sndns" path="GSM/3F00/7F23/6F41">
+					<section ref="sndn" repeat="record">
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="lnds" path="GSM/3F00/7F10/6F44">
+					<section ref="lnd" repeat="record">
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="mailboxnumbers" path="FORENSIC/3F00/7F15/6F17">
+					<section ref="mailboxnumber" repeat="record">
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="infonumbers" path="FORENSIC/3F00/7F15/6F19">
+					<section ref="infonumber" repeat="record">
+						<textref ref="name" element="1"/>
+						<textref ref="digitssection" element="4"/>
+						<textref ref="type" element="2"/>
+						<textref ref="plan" element="3"/>
+						<textref ref="entrystatus" element="0"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="callcounts" path="FORENSIC/3F00/7F15/5F40/4F83">
+					<section ref="callcount" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="count" element="0"/>
+					</section>
+				</section>
+				<section ref="ext1records" path="GSM/3F00/7F10/6F4A">
+					<section ref="record" repeat="record">
+						<textref ref="type" element="0"/>
+						<textref ref="data" element="1"/>
+						<textref ref="nextrecord" element="2"/>
+					</section>
+				</section>
+				<section ref="ext2records" path="GSM/3F00/7F10/6F4B">
+					<section ref="record" repeat="record">
+						<textref ref="type" element="0"/>
+						<textref ref="data" element="1"/>
+						<textref ref="nextrecord" element="2"/>
+					</section>
+				</section>
+				<section ref="ext3records" path="GSM/3F00/7F10/6F4C">
+					<section ref="record" repeat="record">
+						<textref ref="type" element="0"/>
+						<textref ref="data" element="1"/>
+						<textref ref="nextrecord" element="2"/>
+					</section>
+				</section>
+				<section ref="ext4records" path="GSM/3F00/7F10/6F4E">
+					<section ref="record" repeat="record">
+						<textref ref="type" element="0"/>
+						<textref ref="data" element="1"/>
+						<textref ref="nextrecord" element="2"/>
+					</section>
+				</section>
+				<section ref="ctsextrecords" path="GSM/3F00/7F23/6F4A">
+					<section ref="record" repeat="record">
+						<textref ref="type" element="0"/>
+						<textref ref="data" element="1"/>
+						<textref ref="nextrecord" element="2"/>
+					</section>
+				</section>
+				<section ref="gid1s" path="FORENSIC/3F00/7F15/6F3E">
+					<section ref="gid" repeat="element">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="identifier" record="0"/>
+					</section>
+				</section>
+				<section ref="gid2s" path="FORENSIC/3F00/7F15/6F3F" record="0">
+					<section ref="gid" repeat="element">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="identifier" record="0"/>
+					</section>
+				</section>
+			</section>
+			<section ref="sms">
+				<section ref="messages" path="GSM/3F00/7F10/6F3C">
+					<section ref="message" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="status" element="0"/>
+						<section element="2" condition="received">
+							<textref ref="type" element="2"/>
+							<textref ref="originatingaddress" element="7"/>
+							<textref ref="moremessages" element="4"/>
+							<section ref="servicecentre">
+								<textref ref="address" element="1"/>
+								<textref formatnode="timestampnetwork" element="10"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="codingscheme" element="9"/>
+								<textref ref="header" element="13" preservecr="true"/>
+								<textref ref="data" element="12" preservecr="true"/>
+								<textref condition="hasemsfile" element="13" ref="emsposition" formatnode="emsposition"/>
+								<textref condition="hasemsfile" element="13" ref="emsfile" formatnode="emsfile"/>
+							</section>
+						</section>
+						<section element="2" condition="sent">
+							<textref ref="type" element="2"/>
+							<textref ref="destinationaddress" element="9"/>
+							<section ref="servicecentre">
+								<textref ref="address" element="1"/>
+							</section>
+							<textref ref="messagereference" element="8"/>
+							<section ref="validityperiod">
+								<textref ref="format" element="4"/>
+								<textref ref="period" element="12"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="codingscheme" element="11"/>
+								<textref ref="header" element="15" preservecr="true"/>
+								<textref ref="data" element="14" preservecr="true"/>
+								<textref condition="hasemsfile" element="15" ref="emsposition" formatnode="emsposition"/>
+								<textref condition="hasemsfile" element="15" ref="emsfile" formatnode="emsfile"/>
+							</section>
+						</section>
+						<section element="2" condition="statusreport">
+							<textref ref="type" element="2"/>
+							<textref ref="messagereference" element="6"/>
+							<textref ref="recipientaddress" element="7"/>
+							<textref ref="moremessages" element="4"/>
+							<textref ref="dischargetime" formatnode="timestampnetwork" element="9"/>
+							<textref ref="deliverystatus" element="10"/>
+							<section ref="servicecentre">
+								<textref ref="address" element="1"/>
+								<textref formatnode="timestampnetwork" element="8"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="codingscheme" element="13"/>
+								<textref ref="header" element="16" preservecr="true"/>
+								<textref condition="hasemsfile" element="16" ref="emsposition" formatnode="emsposition"/>
+								<textref condition="hasemsfile" element="16" ref="emsfile" formatnode="emsfile"/>
+								<textref ref="data" element="15" preservecr="true"/>
+							</section>
+						</section>
+						<section element="2" condition="unknown">
+							<textref ref="type" element="2"/>
+						</section>
+					</section>
+				</section>
+				<section ref="statusreports" path="GSM/3F00/7F10/6F47">
+					<section ref="message" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="smsrecordnumber" element="0"/>
+						<section element="1" condition="statusreport">
+							<textref ref="type" element="1"/>
+							<textref ref="messagereference" element="5"/>
+							<textref ref="recipientaddress" element="6"/>
+							<textref ref="moremessages" element="3"/>
+							<textref ref="dischargetime" formatnode="timestampnetwork" element="8"/>
+							<textref ref="deliverystatus" element="9"/>
+							<section ref="servicecentre">
+								<textref formatnode="timestampnetwork" element="7"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="codingscheme" element="12"/>
+								<textref ref="header" element="15" preservecr="true"/>
+								<textref ref="data" element="14" preservecr="true"/>
+								<textref condition="hasemsfile" element="15" ref="emsposition" formatnode="emsposition"/>
+								<textref condition="hasemsfile" element="15" ref="emsfile" formatnode="emsfile"/>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section ref="parameters" path="GSM/3F00/7F10/6F42">
+					<section ref="parameter" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="alphaidentifier" element="0"/>
+						<textref ref="destinationaddress" element="2"/>
+						<textref ref="servicecentreaddress" element="3"/>
+						<textref ref="datacodingscheme" element="5"/>
+						<textref ref="validityperiod" element="6"/>
+						<textref ref="protocolid" element="4"/>
+					</section>
+				</section>
+				<section ref="status" path="GSM/3F00/7F10/6F43">
+					<textref ref="lastsmsreference" record="0" element="0"/>
+					<textref ref="memorycapacityexceeded" record="0" element="1"/>
+				</section>
+			</section>
+			<section ref="network">
+				<section ref="loci" path="FORENSIC/3F00/7F15/6F7E">
+					<textref ref="tmsi" element="0" record="0"/>
+					<textref ref="lai" element="1" record="0"/>
+					<textref ref="tmsitime" element="2" record="0"/>
+					<textref ref="status" element="3" record="0"/>
+				</section>
+				<section ref="locigprs" path="FORENSIC/3F00/7F15/6F53">
+					<textref ref="p-tmsi" element="0" record="0"/>
+					<textref ref="p-tmsisig" element="1" record="0"/>
+					<textref ref="rai" element="2" record="0"/>
+					<textref ref="status" element="3" record="0"/>
+				</section>
+				<section ref="cipheringkey" path="FORENSIC/3F00/7F15/6F20">
+					<textref ref="key" element="0" record="0"/>
+					<textref ref="keyseqno" element="1" record="0"/>
+				</section>
+				<section ref="gprscipheringkey" path="FORENSIC/3F00/7F15/6F52">
+					<textref ref="key" element="0" record="0"/>
+					<textref ref="keyseqno" element="1" record="0"/>
+				</section>
+				<section ref="orpk" path="FORENSIC/3F00/7F15/5F3C/4F41">
+					<section ref="certificate" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="parametersindicator" element="0"/>
+						<textref ref="flags" element="1"/>
+						<textref ref="typeofcertificate" element="2"/>
+						<textref ref="keyfileidentifier" element="3"/>
+						<textref ref="keyidentifier" element="6"/>
+					</section>
+				</section>
+				<section ref="arpk" path="FORENSIC/3F00/7F15/5F3C/4F42">
+					<section ref="certificate" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="parametersindicator" element="0"/>
+						<textref ref="flags" element="1"/>
+						<textref ref="typeofcertificate" element="2"/>
+						<textref ref="keyfileidentifier" element="3"/>
+						<textref ref="keyidentifier" element="6"/>
+					</section>
+				</section>
+				<section ref="tprpk" path="FORENSIC/3F00/7F15/5F3C/4F43">
+					<section ref="certificate" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="parametersindicator" element="0"/>
+						<textref ref="flags" element="1"/>
+						<textref ref="typeofcertificate" element="2"/>
+						<textref ref="keyfileidentifier" element="3"/>
+						<textref ref="keyidentifier" element="6"/>
+						<textref ref="certificateidentifier" element="8"/>
+					</section>
+				</section>
+				<section ref="allowednetworks" path="FORENSIC/3F00/7F15/6F30">
+					<section ref="network" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+					</section>
+				</section>
+				<section ref="forbiddennetworks" path="FORENSIC/3F00/7F15/6F7B">
+					<section ref="network" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+					</section>
+				</section>
+				<section ref="nsids" path="FORENSIC/3F00/7F15/5F40/4F84">
+					<section ref="sid" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="identifier" element="0"/>
+					</section>
+				</section>
+				<section ref="permittednetworks" path="GSM/3F00/7F23/6F7B">
+					<textref ref="status" element="0" record="0"/>
+					<section ref="permittednetwork" repeat="element" offset="1">
+						<textref ref="network" formatnode="position"/>
+						<textref ref="network" record="0"/>
+					</section>
+				</section>
+				<section ref="psids" path="FORENSIC/3F00/7F15/5F40/4F85">
+					<section ref="sid" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="identifier" element="0"/>
+					</section>
+				</section>
+				<textref ref="hplmn" path="FORENSIC/3F00/7F15/6F31" element="0" record="0"/>
+				<textref ref="gsmreconnecttimer" path="FORENSIC/3F00/7F15/5F40/4F90" element="0" record="0"/>
+				<section ref="amps2gsms" path="FORENSIC/3F00/7F15/5F40/4F91">
+					<section ref="amps2gsm">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="rescaninterval" element="0"/>
+					</section>
+				</section>
+				<textref ref="sid" path="FORENSIC/3F00/7F15/5F40/4F80" element="0" record="0"/>
+				<textref ref="csid" path="FORENSIC/3F00/7F15/5F40/4F8C" element="0" record="0"/>
+				<textref ref="gpi" path="FORENSIC/3F00/7F15/5F40/4F81" element="0" record="0"/>
+				<section ref="spls" path="FORENSIC/3F00/7F15/5F40/4F87">
+					<section ref="spl" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="priority" element="0"/>
+						<textref ref="fileid" element="1"/>
+					</section>
+				</section>
+				<section ref="cbmis" path="FORENSIC/3F00/7F15/6F45">
+					<section ref="cbmi" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="messageid" element="0"/>
+					</section>
+				</section>
+				<section ref="cbmids" path="FORENSIC/3F00/7F15/6F48">
+					<section ref="cbmid" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="messageid" element="0"/>
+					</section>
+				</section>
+				<section ref="cbmirs" path="FORENSIC/3F00/7F15/6F50">
+					<section ref="cbmir" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="messageid" element="0"/>
+					</section>
+				</section>
+				<section ref="cnls" path="FORENSIC/3F00/7F15/6F32">
+					<section ref="cnl" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="plmn" element="0"/>
+						<textref ref="networksubset" element="1"/>
+						<textref ref="serviceproviderid" element="2"/>
+						<textref ref="corporateid" element="3"/>
+					</section>
+				</section>
+				<section ref="nia" path="FORENSIC/3F00/7F15/6F51">
+					<textref ref="alertcategory" record="0" element="0"/>
+					<textref ref="informativetext" record="0" element="1"/>
+				</section>
+				<textref ref="netselflag" path="FORENSIC/3F00/7F15/5F40/4F86" element="0" record="0"/>
+				<textref ref="bcch" path="FORENSIC/3F00/7F15/6F74" element="0" record="0"/>
+				<section ref="ipc" path="FORENSIC/3F00/7F15/5F40/4F82">
+					<textref ref="primarychannel" element="0" record="0"/>
+					<textref ref="secondarychannel" element="1" record="0"/>
+				</section>
+				<textref ref="ccch" path="FORENSIC/3F00/7F15/5F40/4F8E" element="0" record="0"/>
+				<textref ref="ldcc" path="FORENSIC/3F00/7F15/5F40/4F8F" element="0" record="0"/>
+				<textref ref="regthreshold" path="FORENSIC/3F00/7F15/5F40/4F8D" element="0" record="0"/>
+				<section ref="cts-fprips" path="GSM/3F00/7F15/5F60/4F01">
+					<section ref="cts-fprip" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="alphaidentifier" element="0"/>
+						<textref ref="fpbi" element="1"/>
+						<textref ref="ifpei" element="2"/>
+						<textref ref="ctsmsi" element="3"/>
+						<textref ref="ka" element="4"/>
+						<textref ref="ctsbcharfcn" element="5"/>
+						<textref ref="ctsrxlevelaccessmin" element="6"/>
+						<textref ref="ctsmsmaxtxpower" element="7"/>
+					</section>
+				</section>
+				<section ref="acc" path="FORENSIC/3F00/7F15/6F78">
+					<textref ref="class0" element="0" record="0"/>
+					<textref ref="class1" element="1" record="0"/>
+					<textref ref="class2" element="2" record="0"/>
+					<textref ref="class3" element="3" record="0"/>
+					<textref ref="class4" element="4" record="0"/>
+					<textref ref="class5" element="5" record="0"/>
+					<textref ref="class6" element="6" record="0"/>
+					<textref ref="class7" element="7" record="0"/>
+					<textref ref="class8" element="8" record="0"/>
+					<textref ref="class9" element="9" record="0"/>
+					<textref ref="class10" element="10" record="0"/>
+					<textref ref="class11" element="11" record="0"/>
+					<textref ref="class12" element="12" record="0"/>
+					<textref ref="class13" element="13" record="0"/>
+					<textref ref="class14" element="14" record="0"/>
+					<textref ref="class15" element="15" record="0"/>
+				</section>
+				<textref ref="accolc" path="FORENSIC/3F00/7F15/5F40/4F89" element="0" record="0"/>
+				<section ref="servicestringtable" path="FORENSIC/3F00/7F15/6F12">
+					<section ref="entry" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="numbertype" element="1"/>
+						<textref ref="numberplan" element="2"/>
+						<textref ref="ccid" element="4"/>
+						<textref ref="cpsid" element="5"/>
+					</section>
+				</section>
+				<section ref="vmwf" path="FORENSIC/3F00/7F15/6F11">
+					<textref ref="line1" element="0" record="0"/>
+					<textref ref="line2" element="1" record="0"/>
+					<textref ref="fax" element="2" record="0"/>
+					<textref ref="data" element="3" record="0"/>
+				</section>
+				<section ref="cff" path="FORENSIC/3F00/7F15/6F13">
+					<textref ref="line1" element="0" record="0"/>
+					<textref ref="line2" element="1" record="0"/>
+					<textref ref="fax" element="2" record="0"/>
+					<textref ref="data" element="3" record="0"/>
+				</section>
+				<section ref="vgcs" path="FORENSIC/3F00/7F15/6FB1">
+					<section ref="entry" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="groupidlist" element="0"/>
+					</section>
+				</section>
+				<section ref="vgcss" path="FORENSIC/3F00/7F15/6FB2">
+					<section ref="entry" repeat="element">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="groupstatus" record="0"/>
+					</section>
+				</section>
+				<section ref="vbs" path="FORENSIC/3F00/7F15/6FB3">
+					<section ref="entry" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="groupidlist" element="0"/>
+					</section>
+				</section>
+				<section ref="vbss" path="FORENSIC/3F00/7F15/6FB4">
+					<section ref="entry" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="groupstatus" element="0"/>
+					</section>
+				</section>
+			</section>
+			<section ref="generalsiminfo">
+				<textref ref="iccid" path="GSM/3F00/2FE2" record="0" element="0" prerequisiteelement="1" prerequisitefilepath="FORENSIC/3F00/7F15/6F07" prerequisiterecord="0" preservecr="true"/>
+				<textref ref="sesn" path="FORENSIC/3F00/7F15/5F40/4F8B" record="0" element="0"/>
+				<section ref="sst" path="FORENSIC/3F00/7F15/6F38">
+					<textref ref="pin1deactivation" element="0" record="0"/>
+					<textref ref="adnstatus" element="1" record="0"/>
+					<textref ref="fdnstatus" element="2" record="0"/>
+					<textref ref="smsstatus" element="3" record="0"/>
+					<textref ref="adviceofcharge" element="4" record="0"/>
+					<textref ref="ccp" element="5" record="0"/>
+					<textref ref="plmnselector" element="6" record="0"/>
+					<textref ref="msisdnstatus" element="8" record="0"/>
+					<textref ref="ext1" element="9" record="0"/>
+					<textref ref="ext2" element="10" record="0"/>
+					<textref ref="smsparams" element="11" record="0"/>
+					<textref ref="ldn" element="12" record="0"/>
+					<textref ref="cbmi" element="13" record="0"/>
+					<textref ref="gid1" element="14" record="0"/>
+					<textref ref="gid2" element="15" record="0"/>
+					<textref ref="serviceprovidername" element="16" record="0"/>
+					<textref ref="servicediallingnumbers" element="17" record="0"/>
+					<textref ref="ext3" element="18" record="0"/>
+					<textref ref="vgcsgroupidentifierlist" element="20" record="0"/>
+					<textref ref="vbsgroupidentifierlist" element="21" record="0"/>
+					<textref ref="emlpp" element="22" record="0"/>
+					<textref ref="aaemlpp" element="23" record="0"/>
+					<textref ref="ddsmscb" element="24" record="0"/>
+					<textref ref="ddsmspp" element="25" record="0"/>
+					<textref ref="menuselection" element="26" record="0"/>
+					<textref ref="callcontrol" element="27" record="0"/>
+					<textref ref="proactivesim" element="28" record="0"/>
+					<textref ref="cbmir" element="29" record="0"/>
+					<textref ref="bdn" element="30" record="0"/>
+					<textref ref="ext4" element="31" record="0"/>
+					<textref ref="depersonalizationcontrolkeys" element="32" record="0"/>
+					<textref ref="cooperativenetworklist" element="33" record="0"/>
+					<textref ref="sm-sr" element="34" record="0"/>
+					<textref ref="networkindicationofalerting" element="35" record="0"/>
+					<textref ref="mo-smcontrolledbysim" element="36" record="0"/>
+					<textref ref="gprs" element="37" record="0"/>
+					<textref ref="images" element="38" record="0"/>
+					<textref ref="solsa" element="39" record="0"/>
+					<textref ref="ussdstringdata" element="40" record="0"/>
+					<textref ref="runatcommand" element="41" record="0"/>
+					<textref ref="usercontrolledplmnselector" element="42" record="0"/>
+					<textref ref="operatorcontrolledplmnselector" element="43" record="0"/>
+					<textref ref="hplmnselector" element="44" record="0"/>
+					<textref ref="cpbcchinfo" element="45" record="0"/>
+					<textref ref="investigationscan" element="46" record="0"/>
+					<textref ref="extendedcapabilityconfigparams" element="47" record="0"/>
+					<textref ref="mexe" element="48" record="0"/>
+					<textref ref="plmnnetworkname" element="50" record="0"/>
+					<textref ref="operatorplmnlist" element="51" record="0"/>
+					<textref ref="mdn" element="52" record="0"/>
+					<textref ref="mwistatus" element="53" record="0"/>
+					<textref ref="cfistatus" element="54" record="0"/>
+					<textref ref="serviceproviderdisplayinfo" element="55" record="0"/>
+					<textref ref="mms" element="56" record="0"/>
+					<textref ref="ext8" element="57" record="0"/>
+					<textref ref="mmsuserconnectivityparams" element="58" record="0"/>
+				</section>
+				<section ref="cts-info" path="GSM/3F00/7F23/6F38">
+					<textref ref="datadownload" element="0" record="0"/>
+					<textref ref="menuselection" element="1" record="0"/>
+					<textref ref="callcontrol" element="2" record="0"/>
+					<textref ref="proactivesim" element="3" record="0"/>
+				</section>
+				<section ref="mexe-st" path="FORENSIC/3F00/7F15/5F3C/4F40">
+					<textref ref="operatorrootpublickey" element="0" record="0"/>
+					<textref ref="administratorrootpublickey" element="1" record="0"/>
+					<textref ref="thirdpartyrootpublickey" element="2" record="0"/>
+				</section>
+				<section ref="cphsinfo" path="FORENSIC/3F00/7F15/6F16">
+					<textref ref="phase" element="0" record="0"/>
+					<textref ref="csp" element="1" record="0"/>
+					<textref ref="sst" element="2" record="0"/>
+					<textref ref="mailboxnumbers" element="3" record="0"/>
+					<textref ref="opnameshortform" element="4" record="0"/>
+					<textref ref="infonumbers" element="5" record="0"/>
+				</section>
+				<section ref="csp" path="FORENSIC/3F00/7F15/6F15">
+					<section ref="profile" repeat="record">
+						<textref ref="servicegroup" element="0"/>
+						<textref ref="services" element="1"/>
+					</section>
+				</section>
+				<section ref="ampsui" path="FORENSIC/3F00/7F15/5F40/4F93" record="0">
+					<textref ref="lci" element="1"/>
+					<textref ref="eami" element="2"/>
+				</section>
+				<textref ref="fc1" path="FORENSIC/3F00/7F15/5F40/4F8A" element="0" record="0"/>
+				<section ref="ad" path="FORENSIC/3F00/7F15/6FAD">
+					<textref ref="opmode" element="0" record="0"/>
+					<textref ref="additionalinfo" element="1" record="0"/>
+				</section>
+				<section ref="ctsad" path="GSM/3F00/7F23/6FAD">
+					<textref ref="opmode" element="0" record="0"/>
+					<textref ref="additionalinfo" element="1" record="0"/>
+				</section>
+				<textref ref="phase" path="FORENSIC/3F00/7F15/6FAE" element="0" record="0"/>
+				<section ref="lp" path="FORENSIC/3F00/7F15/6F05">
+					<section ref="preference" repeat="element">
+						<textref ref="priority" formatnode="position"/>
+						<textref ref="languagecode" record="0"/>
+					</section>
+				</section>
+				<section ref="elp" path="GSM/3F00/2F05">
+					<section ref="preference" repeat="record">
+						<textref ref="priority" formatnode="position"/>
+						<textref ref="languagecode" element="0"/>
+					</section>
+				</section>
+				<section ref="eccs" path="FORENSIC/3F00/7F15/6FB7">
+					<section ref="ecc" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="code" element="0" repeat="record"/>
+					</section>
+				</section>
+				<section ref="acms" path="FORENSIC/3F00/7F15/6F39">
+					<section ref="acm" repeat="record">
+						<textref ref="meter" element="0" repeat="record"/>
+					</section>
+				</section>
+				<textref ref="acmmax" path="FORENSIC/3F00/7F15/6F37" element="0" record="0"/>
+				<section ref="emlpp" path="FORENSIC/3F00/7F15/6FB5" record="0">
+					<textref ref="prioritya" element="0"/>
+					<textref ref="priorityb" element="1"/>
+					<textref ref="priority0" element="2"/>
+					<textref ref="priority1" element="3"/>
+					<textref ref="priority2" element="4"/>
+					<textref ref="priority3" element="5"/>
+					<textref ref="priority4" element="6"/>
+					<textref ref="prioritya-fcsu" element="8"/>
+					<textref ref="priorityb-fcsu" element="9"/>
+					<textref ref="priority0-fcsu" element="10"/>
+					<textref ref="priority1-fcsu" element="11"/>
+					<textref ref="priority2-fcsu" element="12"/>
+					<textref ref="priority3-fcsu" element="13"/>
+					<textref ref="priority4-fcsu" element="14"/>
+				</section>
+				<section ref="aaemlpp" path="FORENSIC/3F00/7F15/6FB6" record="0">
+					<textref ref="aaprioritya" element="0"/>
+					<textref ref="aapriorityb" element="1"/>
+					<textref ref="aapriority0" element="2"/>
+					<textref ref="aapriority1" element="3"/>
+					<textref ref="aapriority2" element="4"/>
+					<textref ref="aapriority3" element="5"/>
+					<textref ref="aapriority4" element="6"/>
+				</section>
+				<section ref="puct" path="FORENSIC/3F00/7F15/6F41" record="0">
+					<textref ref="cc" element="0"/>
+					<textref ref="ppu" element="1"/>
+				</section>
+				<section ref="dck" path="FORENSIC/3F00/7F15/6F2C" record="0">
+					<textref ref="network" element="0"/>
+					<textref ref="networksubset" element="1"/>
+					<textref ref="serviceprovider" element="2"/>
+					<textref ref="corporate" element="3"/>
+				</section>
+				<section ref="invalidatedfilelist" path="FORENSIC/3F00/7F30/0116">
+					<section ref="invalidatedfile" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="file" element="0" prerequisitefilemapping="true"/>
+					</section>
+				</section>
+				<section ref="imeihistory" path="GSM/3F00/7F43/6FE2">
+					<section ref="imei" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="number" element="0"/>
+					</section>
+				</section>
+			</section>
+		</section>
+		<section ref="usim" path="USIM/3F00/7FFE/6F07">
+			<section ref="subscriber">
+				<section ref="msisdns" path="USIM/3F00/7FFE/6F40">
+					<section ref="msisdn" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<textref ref="imsi" path="USIM/3F00/7FFE/6F07" element="1" preservecr="true" record="0"/>
+				<section ref="serviceprovider" path="USIM/3F00/7FFE/6F46">
+					<textref ref="displaystatus" element="0" record="0"/>
+					<textref ref="name" element="1" record="0"/>
+				</section>
+			</section>
+			<section ref="phonenumbers">
+				<section dirpath="USIM/3F00/7F10/5F3A">
+					<section ref="adns" filename="ADN">
+						<section ref="adn" repeat="record">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="name" element="0"/>
+							<textref ref="type" element="1"/>
+							<textref ref="plan" element="2"/>
+							<textref ref="number" element="3"/>
+							<textref ref="extid" element="5"/>
+						</section>
+					</section>
+					<section ref="anrs" filename="ANR">
+						<section ref="anr" repeat="record">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="aasref" element="0"/>
+							<textref ref="type" element="1"/>
+							<textref ref="plan" element="2"/>
+							<textref ref="number" element="3"/>
+							<textref ref="extid" element="5"/>
+						</section>
+					</section>
+					<section ref="emails" filename="EMAIL">
+						<section ref="email" repeat="record">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="address" element="0"/>
+						</section>
+					</section>
+					<section ref="groups" filename="GRP">
+						<section ref="record" repeat="record">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="gasref" repeat="element" condition="!"/>
+						</section>
+					</section>
+					<section ref="snes" filename="SNE">
+						<section ref="sne" repeat="record">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="name" element="0"/>
+						</section>
+					</section>
+					<section ref="aas" filename="AAS">
+						<section ref="name" repeat="record">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="string" element="0"/>
+						</section>
+					</section>
+					<section ref="gas" filename="GAS">
+						<section ref="group" repeat="record">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="string" element="0"/>
+						</section>
+					</section>
+					<section ref="ext1" filename="EXT1">
+						<section ref="record" repeat="record">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="type" element="0"/>
+							<textref ref="data" element="1"/>
+							<textref ref="nextrecord" element="2"/>
+						</section>
+					</section>
+					<section ref="iap" filename="IAP">
+						<section ref="entry" repeat="record">
+							<textref ref="recordnum" formatnode="position"/>
+							<section ref="element" repeat="element">
+								<textref ref="fileref" formatnode="position"/>
+								<textref ref="positionref"/>
+							</section>
+						</section>
+					</section>
+					<section ref="type2files">
+						<section ref="file" filetyperepeat="169">
+							<textref ref="position" formatnode="position"/>
+							<textref ref="name" formatnode="filename"/>
+						</section>
+					</section>
+				</section>
+				<section ref="fdns" path="USIM/3F00/7FFE/6F3B">
+					<section ref="fdn" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="sdns" path="USIM/3F00/7FFE/6F49">
+					<section ref="sdn" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="bdns" path="USIM/3F00/7FFE/6F4D">
+					<section ref="bdn" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+					</section>
+				</section>
+				<section ref="gid1s" path="USIM/3F00/7FFE/6F3E">
+					<section ref="gid" repeat="element">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="identifier" record="0"/>
+					</section>
+				</section>
+				<section ref="gid2s" path="USIM/3F00/7FFE/6F3F">
+					<section ref="gid" repeat="element">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="identifier" record="0"/>
+					</section>
+				</section>
+				<section ref="ocis" path="USIM/3F00/7FFE/6F81">
+					<section ref="oci" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+						<textref ref="timestamp" element="6"/>
+						<textref ref="duration" element="7"/>
+						<textref ref="phonebooklink" element="8"/>
+					</section>
+				</section>
+				<section ref="oct" path="USIM/3F00/7FFE/6F83">
+					<section ref="timer" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="value" element="0"/>
+					</section>
+				</section>
+				<section ref="icis" path="USIM/3F00/7FFE/6F80">
+					<section ref="ici" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+						<textref ref="number" element="3"/>
+						<textref ref="type" element="1"/>
+						<textref ref="plan" element="2"/>
+						<textref ref="extid" element="5"/>
+						<textref ref="timestamp" element="6"/>
+						<textref ref="duration" element="7"/>
+						<textref ref="status" element="8"/>
+						<textref ref="phonebooklink" element="9"/>
+					</section>
+				</section>
+				<section ref="ict" path="USIM/3F00/7FFE/6F82">
+					<section ref="timer" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="value" element="0"/>
+					</section>
+				</section>
+			</section>
+			<section ref="sms">
+				<section ref="messages" path="USIM/3F00/7FFE/6F3C">
+					<section ref="message" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="status" element="0"/>
+						<section element="2" condition="received">
+							<textref ref="type" element="2"/>
+							<textref ref="originatingaddress" element="7"/>
+							<textref ref="moremessages" element="4"/>
+							<section ref="servicecentre">
+								<textref ref="address" element="1"/>
+								<textref formatnode="timestampnetwork" element="10"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="codingscheme" element="9"/>
+								<textref ref="header" element="13" preservecr="true"/>
+								<textref ref="data" element="12" preservecr="true"/>
+								<image ref="emsimage"/>
+							</section>
+						</section>
+						<section element="2" condition="sent">
+							<textref ref="type" element="2"/>
+							<textref ref="destinationaddress" element="9"/>
+							<section ref="servicecentre">
+								<textref ref="address" element="1"/>
+							</section>
+							<textref ref="messagereference" element="8"/>
+							<section ref="validityperiod">
+								<textref ref="format" element="4"/>
+								<textref ref="period" element="12"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="codingscheme" element="11"/>
+								<textref ref="header" element="15" preservecr="true"/>
+								<textref ref="data" element="14" preservecr="true"/>
+								<image ref="emsimage"/>
+							</section>
+						</section>
+						<section element="2" condition="statusreport">
+							<textref ref="type" element="2"/>
+							<textref ref="messagereference" element="6"/>
+							<textref ref="recipientaddress" element="7"/>
+							<textref ref="moremessages" element="4"/>
+							<textref ref="dischargetime" formatnode="timestampnetwork" element="9"/>
+							<textref ref="deliverystatus" element="10"/>
+							<section ref="servicecentre">
+								<textref ref="address" element="1"/>
+								<textref formatnode="timestampnetwork" element="8"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="codingscheme" element="13"/>
+								<textref ref="header" element="16" preservecr="true"/>
+								<textref ref="data" element="15" preservecr="true"/>
+								<image ref="emsimage"/>
+							</section>
+						</section>
+						<section element="2" condition="unknown">
+							<textref ref="type" element="2"/>
+						</section>
+					</section>
+				</section>
+				<section ref="statusreports" path="USIM/3F00/7FFE/6F47">
+					<section ref="message" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="smsrecordnumber" element="0"/>
+						<section element="1" condition="statusreport">
+							<textref ref="type" element="1"/>
+							<textref ref="messagereference" element="5"/>
+							<textref ref="recipientaddress" element="6"/>
+							<textref ref="moremessages" element="3"/>
+							<textref ref="dischargetime" formatnode="timestampnetwork" element="8"/>
+							<textref ref="deliverystatus" element="9"/>
+							<section ref="servicecentre">
+								<textref formatnode="timestampnetwork" element="7"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="codingscheme" element="12"/>
+								<textref ref="header" element="15" preservecr="true"/>
+								<textref ref="data" element="14" preservecr="true"/>
+								<image ref="emsimage"/>
+							</section>
+						</section>
+					</section>
+				</section>
+				<section ref="parameters" path="USIM/3F00/7FFE/6F42">
+					<section ref="parameter" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="alphaidentifier" element="0"/>
+						<textref ref="destinationaddress" element="2"/>
+						<textref ref="servicecentreaddress" element="3"/>
+						<textref ref="datacodingscheme" element="5"/>
+						<textref ref="validityperiod" element="6"/>
+						<textref ref="protocolid" element="4"/>
+					</section>
+				</section>
+				<section ref="status" path="USIM/3F00/7FFE/6F43">
+					<textref ref="lastsmsreference" record="0" element="0"/>
+					<textref ref="memorycapacityexceeded" record="0" element="1"/>
+				</section>
+			</section>
+			<section ref="network">
+				<section ref="loci" path="USIM/3F00/7FFE/6F7E">
+					<textref ref="tmsi" element="0" record="0"/>
+					<textref ref="lai" element="1" record="0"/>
+					<textref ref="tmsitime" element="2" record="0"/>
+					<textref ref="status" element="3" record="0"/>
+				</section>
+				<section ref="cipheringkey" path="USIM/3F00/7FFE/5F3B/4F20">
+					<textref ref="key" element="0" record="0"/>
+					<textref ref="keyseqno" element="1" record="0"/>
+				</section>
+				<section ref="gprscipheringkey" path="USIM/3F00/7FFE/5F3B/4F52">
+					<textref ref="key" element="0" record="0"/>
+					<textref ref="keyseqno" element="1" record="0"/>
+				</section>
+				<section ref="orpk" path="USIM/3F00/7FFE/5F3C/4F41">
+					<section ref="certificate" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="parametersindicator" element="0"/>
+						<textref ref="flags" element="1"/>
+						<textref ref="typeofcertificate" element="2"/>
+						<textref ref="keyfileidentifier" element="3"/>
+						<textref ref="keyidentifier" element="6"/>
+					</section>
+				</section>
+				<section ref="arpk" path="USIM/3F00/7FFE/5F3C/4F42">
+					<section ref="certificate" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="parametersindicator" element="0"/>
+						<textref ref="flags" element="1"/>
+						<textref ref="typeofcertificate" element="2"/>
+						<textref ref="keyfileidentifier" element="3"/>
+						<textref ref="keyidentifier" element="6"/>
+					</section>
+				</section>
+				<section ref="tprpk" path="USIM/3F00/7FFE/5F3C/4F43">
+					<section ref="certificate" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="parametersindicator" element="0"/>
+						<textref ref="flags" element="1"/>
+						<textref ref="typeofcertificate" element="2"/>
+						<textref ref="keyfileidentifier" element="3"/>
+						<textref ref="keyidentifier" element="6"/>
+						<textref ref="certificateidentifier" element="8"/>
+					</section>
+				</section>
+				<section ref="forbiddennetworks" path="USIM/3F00/7FFE/6F7B">
+					<section ref="network" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="name" element="0"/>
+					</section>
+				</section>
+				<section ref="cbmis" path="USIM/3F00/7FFE/6F48">
+					<section ref="cbmi" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="messageid" element="0"/>
+					</section>
+				</section>
+				<section ref="cbmids" path="USIM/3F00/7FFE/6F48">
+					<section ref="cbmid" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="messageid" element="0"/>
+					</section>
+				</section>
+				<section ref="cbmirs" path="USIM/3F00/7FFE/6F50">
+					<section ref="cbmir" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="messageid" element="0"/>
+					</section>
+				</section>
+				<section ref="cnls" path="USIM/3F00/7FFE/6F32">
+					<section ref="cnl" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="plmn" element="0"/>
+						<textref ref="networksubset" element="1"/>
+						<textref ref="serviceproviderid" element="2"/>
+						<textref ref="corporateid" element="3"/>
+					</section>
+				</section>
+				<section ref="nia" path="USIM/3F00/7FFE/6FD3">
+					<textref ref="alertcategory" record="0" element="0"/>
+					<textref ref="informativetext" record="0" element="1"/>
+				</section>
+				<section ref="acc" path="USIM/3F00/7FFE/6F78">
+					<textref ref="class0" element="0" record="0"/>
+					<textref ref="class1" element="1" record="0"/>
+					<textref ref="class2" element="2" record="0"/>
+					<textref ref="class3" element="3" record="0"/>
+					<textref ref="class4" element="4" record="0"/>
+					<textref ref="class5" element="5" record="0"/>
+					<textref ref="class6" element="6" record="0"/>
+					<textref ref="class7" element="7" record="0"/>
+					<textref ref="class8" element="8" record="0"/>
+					<textref ref="class9" element="9" record="0"/>
+					<textref ref="class10" element="10" record="0"/>
+					<textref ref="class11" element="11" record="0"/>
+					<textref ref="class12" element="12" record="0"/>
+					<textref ref="class13" element="13" record="0"/>
+					<textref ref="class14" element="14" record="0"/>
+					<textref ref="class15" element="15" record="0"/>
+				</section>
+				<section ref="vgcs" path="USIM/3F00/7FFE/6FB1">
+					<section ref="entry" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="groupidlist" element="0"/>
+					</section>
+				</section>
+				<section ref="vgcss" path="USIM/3F00/7FFE/6FB2">
+					<section ref="entry" repeat="element">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="groupstatus" record="0"/>
+					</section>
+				</section>
+				<section ref="vbs" path="USIM/3F00/7FFE/6FB3">
+					<section ref="entry" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="groupidlist" element="0"/>
+					</section>
+				</section>
+				<section ref="vbss" path="USIM/3F00/7FFE/6FB4">
+					<section ref="entry" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="groupstatus" element="0"/>
+					</section>
+				</section>
+			</section>
+			<section ref="generalsiminfo">
+				<textref ref="iccid" path="USIM/3F00/2FE2" record="0" element="0" prerequisiteelement="1" prerequisitefilepath="USIM/3F00/7FFE/6F07" prerequisiterecord="0" preservecr="true"/>
+				<section ref="ust" path="USIM/3F00/7FFE/6F38" record="0">
+					<textref ref="localphonebook" element="0"/>
+					<textref ref="fdn" element="1"/>
+					<textref ref="ext2" element="2"/>
+					<textref ref="sdn" element="3"/>
+					<textref ref="ext3" element="4"/>
+					<textref ref="bdn" element="5"/>
+					<textref ref="ext4" element="6"/>
+					<textref ref="oci" element="7"/>
+					<textref ref="ici" element="8"/>
+					<textref ref="sms" element="9"/>
+					<textref ref="smssr" element="10"/>
+					<textref ref="smssp" element="11"/>
+					<textref ref="aoc" element="12"/>
+					<textref ref="ccp" element="13"/>
+					<textref ref="cbmi" element="14"/>
+					<textref ref="cbmir" element="15"/>
+					<textref ref="gid1" element="16"/>
+					<textref ref="gid2" element="17"/>
+					<textref ref="serviceprovidername" element="18"/>
+					<textref ref="usercontrolledplmnselector" element="19"/>
+					<textref ref="msisdn" element="20"/>
+					<textref ref="image" element="21"/>
+					<textref ref="solsa" element="22"/>
+					<textref ref="emlpp" element="23"/>
+					<textref ref="aaemlpp" element="24"/>
+					<textref ref="rfu" element="26"/>
+					<textref ref="gsmaccess" element="26"/>
+					<textref ref="ddsmspp" element="27"/>
+					<textref ref="ddsmscb" element="28"/>
+					<textref ref="callcontrolledbyusim" element="29"/>
+					<textref ref="mo-smcontrolledbyusim" element="30"/>
+					<textref ref="runatcommand" element="31"/>
+					<textref ref="enabledservicestable" element="33"/>
+					<textref ref="acl" element="34"/>
+					<textref ref="depersonalizationcontrolkeys" element="35"/>
+					<textref ref="cooperativenetworklist" element="36"/>
+					<textref ref="gsmsecuritycontext" element="37"/>
+					<textref ref="cpbcchinfo" element="38"/>
+					<textref ref="investigationscan" element="39"/>
+					<textref ref="mexe" element="40"/>
+					<textref ref="operatorcontrolledplmnselector" element="41"/>
+					<textref ref="hplmnselector" element="42"/>
+					<textref ref="ext5" element="43"/>
+					<textref ref="plmnnetworkname" element="44"/>
+					<textref ref="operatorplmnlist" element="45"/>
+					<textref ref="mailboxdiallingnumbers" element="46"/>
+					<textref ref="mwi" element="47"/>
+					<textref ref="cfi" element="48"/>
+					<textref ref="serviceproviderdisplayinfo" element="50"/>
+					<textref ref="mms" element="51"/>
+					<textref ref="ext8" element="52"/>
+					<textref ref="mmsuserconnectivityparams" element="54"/>
+					<textref ref="nia" element="55"/>
+					<textref ref="vgcs" element="56"/>
+					<textref ref="vbs" element="57"/>
+				</section>
+				<section ref="est" path="USIM/3F00/7FFE/6F56" record="0">
+					<textref ref="fdn" element="0"/>
+					<textref ref="bdn" element="1"/>
+					<textref ref="acl" element="2"/>
+				</section>
+				<section ref="mexe-st" path="USIM/3F00/7FFE/5F3C/4F40">
+					<textref ref="operatorrootpublickey" element="0" record="0"/>
+					<textref ref="administratorrootpublickey" element="1" record="0"/>
+					<textref ref="thirdpartyrootpublickey" element="2" record="0"/>
+				</section>
+				<section ref="ad" path="USIM/3F00/7FFE/6FAD">
+					<textref ref="opmode" element="0" record="0"/>
+					<textref ref="additionalinfo" element="1" record="0"/>
+				</section>
+				<section ref="eccs" path="USIM/3F00/7FFE/6FB7">
+					<section ref="ecc" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="code" element="0"/>
+						<textref ref="alphaidentifier" element="1"/>
+						<textref ref="servicecategory" element="2"/>
+					</section>
+				</section>
+				<section ref="acms" path="USIM/3F00/7FFE/6F39">
+					<section ref="acm" repeat="record">
+						<textref ref="meter" element="0" repeat="record"/>
+					</section>
+				</section>
+				<textref ref="acmmax" path="USIM/3F00/7FFE/6F37" element="0" record="0"/>
+				<section ref="emlpp" path="USIM/3F00/7FFE/6FB5" record="0">
+					<textref ref="prioritya" element="0"/>
+					<textref ref="priorityb" element="1"/>
+					<textref ref="priority0" element="2"/>
+					<textref ref="priority1" element="3"/>
+					<textref ref="priority2" element="4"/>
+					<textref ref="priority3" element="5"/>
+					<textref ref="priority4" element="6"/>
+					<textref ref="prioritya-fcsu" element="8"/>
+					<textref ref="priorityb-fcsu" element="9"/>
+					<textref ref="priority0-fcsu" element="10"/>
+					<textref ref="priority1-fcsu" element="11"/>
+					<textref ref="priority2-fcsu" element="12"/>
+					<textref ref="priority3-fcsu" element="13"/>
+					<textref ref="priority4-fcsu" element="14"/>
+				</section>
+				<section ref="aaemlpp" path="USIM/3F00/7FFE/6FB6" record="0">
+					<textref ref="autoanswerprioritya" element="0"/>
+					<textref ref="autoanswerpriorityb" element="1"/>
+					<textref ref="autoanswerpriority0" element="2"/>
+					<textref ref="autoanswerpriority1" element="3"/>
+					<textref ref="autoanswerpriority2" element="4"/>
+					<textref ref="autoanswerpriority3" element="5"/>
+					<textref ref="autoanswerpriority4" element="6"/>
+				</section>
+				<section ref="puct" path="USIM/3F00/7FFE/6F41" record="0">
+					<textref ref="cc" element="0"/>
+					<textref ref="ppu" element="1"/>
+				</section>
+				<section ref="dck" path="USIM/3F00/7FFE/6F2C" record="0">
+					<textref ref="network" element="0"/>
+					<textref ref="networksubset" element="1"/>
+					<textref ref="serviceprovider" element="2"/>
+					<textref ref="corporate" element="3"/>
+				</section>
+				<section ref="invalidatedfilelist" path="FORENSIC/3F00/7F30/0116">
+					<section ref="invalidatedfile" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="file" element="0" prerequisitefilemapping="true"/>
+					</section>
+				</section>
+			</section>
+		</section>
+		<section ref="ruim" path="GSM/3F00/7F25/6F23">
+			<section ref="subscriber">
+				<textref ref="imsi_m" path="GSM/3F00/7F25/6F22" record="0" element="0"/>
+				<textref ref="imsi_t" path="GSM/3F00/7F25/6F23" record="0" element="0"/>
+			</section>
+			<section ref="generalsiminfo">
+				<textref ref="esnme" path="GSM/3F00/7F25/6F38" record="0" element="0"/>
+				<textref ref="spn" path="GSM/3F00/7F25/6F41" record="0" element="0"/>
+				<textref ref="ruimid" path="GSM/3F00/7F25/6F31" record="0" element="0"/>
+			</section>
+			<section ref="sms">
+				<section ref="messages" path="GSM/3F00/7F25/6F3C">
+					<section ref="message" repeat="record">
+						<textref ref="position" formatnode="position"/>
+						<textref ref="status" element="0"/>
+						<section element="5" condition="received">
+							<textref ref="type" element="5"/>
+							<textref ref="originatingaddress" element="2"/>
+							<textref ref="moremessages" element="4"/>
+							<section ref="servicecentre">
+								<textref formatnode="timestampnetwork" element="9"/>
+							</section>
+							<section ref="userdata">
+								<textref ref="header" element="7" preservecr="true"/>
+								<textref ref="data" element="8" preservecr="true"/>
+								<textref condition="hasemsfile" element="7" ref="emsposition" formatnode="emsposition"/>
+								<textref condition="hasemsfile" element="7" ref="emsfile" formatnode="emsfile"/>
+							</section>
+						</section>
+						<section element="5" condition="sent">
+							<textref ref="type" element="5"/>
+							<textref ref="destinationaddress" element="3"/>
+							<section ref="servicecentre">
+								<textref formatnode="timestamphandset" element="9"/>
+							</section>
+							<textref ref="messagereference" element="6"/>
+							<section ref="userdata">
+								<textref ref="header" element="7" preservecr="true"/>
+								<textref ref="data" element="8" preservecr="true"/>
+								<textref condition="hasemsfile" element="7" ref="emsposition" formatnode="emsposition"/>
+								<textref condition="hasemsfile" element="7" ref="emsfile" formatnode="emsfile"/>
+							</section>
+						</section>
+					</section>
+				</section>
+			</section>
+		</section>
+	</section>
+</mapping>

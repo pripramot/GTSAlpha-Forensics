@@ -1,0 +1,190 @@
+;*****************************************************************************
+;
+; lgmdbus.inf   -- Install the LG Mobile drivers
+;
+; Copyright (c) 1997-2008 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=07/08/2008,4.46.1.0
+DriverVer=04/21/2009,4.46.1.0
+CatalogFile=lgmdbus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+lgmobileWdm.W95.CopyFiles       = 11                    ; LDID_SYS
+lgmobileWdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lgmdbus.sys",,\i386
+
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+;[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;1=%DiskString%,"lgmdbus.sys",,\amd64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+lgmdbus.sys = 1
+lgmdwh95.sys = 1
+lgmdwhnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+;%lge%=lgmobile, NTamd64
+%lge%=lgmobile
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[lgmobile]
+%lgmobile.CdcBus.Desc% = lgmobileWdm.Install, USB\VID_1004&PID_6091
+
+;[lgmobile.NTamd64]
+;%lgmobile.CdcBus.Desc% = lgmobileWdm.Install, USB\VID_1004&PID_6091
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[lgmobile.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[lgmobileWdm.Install]
+CopyFiles       = lgmobileWdm.W95.CopyFiles, lgmobile.CopyFiles, PropPages.CopyFiles
+AddReg          = lgmobileWdm.AddReg, lgmobileWdm.W95.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[lgmobileWdm.Install.NT]
+CopyFiles       = lgmobileWdm.NT.CopyFiles
+AddReg          = lgmobileWdm.AddReg, lgmobileWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[lgmobileWdm.Install.NT.Services]
+AddService      = lgmdbus, 2, lgmobileWdm.AddService, lgmobileWdm.Install.EventLog
+
+[lgmobileWdm.AddService]
+DisplayName             = %lgmobile.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\lgmdbus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       Setup event logging, if driver supports it
+;-----------------------------------------------------------------------------
+
+[lgmobileWdm.Install.EventLog]
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[lgmobileWdm.AddReg]
+
+HKR,,MCCI_TCPWindowSizeFix_MinValue,0x10001,f0,fa,00,00
+HKR,,MCCI_MCECIDFix,0x10001,07,00,00,00
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[lgmobileWdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,lgmdbus.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[lgmobileWdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[lgmobileWdm.W95.CopyFiles]
+lgmdbus.sys
+lgmdwh.sys,lgmdwh95.sys
+lgmdwh95.sys
+lgmdwhnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[lgmobileWdm.NT.CopyFiles]
+lgmdbus.sys
+lgmdwh.sys,lgmdwhnt.sys
+lgmdwhnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "LG Electronics"
+lge = "LG Electronics"
+DiskString = "LG Mobile Installation disk"
+
+lgmobile.CdcBus.Desc = "LG Mobile"
+lgmobile.Service.Desc = "LG Mobile driver (WDM)"
+
+CustomerDataPath = "LG Electronics Mobile"
+DriverSet = "LG Electronics Mobile Software"
+UninstallFile = "LGMDUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

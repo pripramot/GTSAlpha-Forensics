@@ -1,0 +1,382 @@
+;*****************************************************************************
+;
+; Name:  s116mdm2.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 116 USB WMC Modem Drivers on Win2000/XP
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Modem
+ClassGuid={4d36e96d-e325-11ce-bfc1-08002be10318}
+Provider=%Provider%
+DriverVer=04/21/2009,4.40.2.0
+CatalogFile=s116mdm.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s116mdm.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s116mdm.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+s116mdm.sys = 1
+s116cmnt.sys = 1
+s116mdfl.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed116, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed116.NTx86]
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0fce&PID_d038&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0fce&PID_d039&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D043&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D044&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D045&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D046&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D047&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D048&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D049&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D067&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D068&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D069&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D070&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D073&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D079&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D086&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D087&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D088&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D089&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D094&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D0a1&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a3&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a7&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0b7&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0b8&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D038&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D039&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0fce&PID_d038&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0fce&PID_d039&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D043&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D044&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D045&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D046&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D047&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D048&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D049&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D067&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D068&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D069&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D070&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D073&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D079&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D086&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D087&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D088&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D089&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D094&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a1&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a3&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a7&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0b7&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0b8&MI_03&OS_NT
+
+[sed116.NTamd64]
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0fce&PID_d038&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0fce&PID_d039&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D043&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D044&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D045&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D046&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D047&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D048&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D049&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D067&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D068&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D069&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D070&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D073&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D079&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D086&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D087&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D088&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D089&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D094&MI_01&OS_NT
+%sed116.Modem.Desc% = sed116.Install,   USB\VID_0FCE&PID_D0a1&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a3&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a7&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0b7&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0b8&MI_01&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D038&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D039&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0fce&PID_d038&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0fce&PID_d039&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D043&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D044&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D045&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D046&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D047&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D048&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D049&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D067&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D068&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D069&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D070&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D073&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D079&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D086&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D087&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D088&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D089&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D094&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a1&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a3&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0a7&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0b7&MI_03&OS_NT
+%sed116.Modem.Desc.2% = sed116.Install, USB\VID_0FCE&PID_D0b8&MI_03&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[sed116.Install.nt]
+AddReg = sed116.AddReg, sed116.NT.AddReg, GenericAddReg, USB
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[sed116.AddReg]
+HKR,,NTMPDriver,,s116mdm.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for NT...
+[sed116.NT.AddReg]
+HKR,,AllowSuspendWhileOpen, 0x10001, 01,00,00,00
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+s116mdm.sys
+s116cm.sys,s116cmnt.sys
+s116cmnt.sys
+s116mdfl.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+[sed116.Install.NT.HW]
+AddReg = LowerFilterAddReg
+AddReg = UpperFilterAddReg
+
+[sed116.Install.NT.Services]
+AddService = s116mdm, 0x00000000, sed116.Install.AddService
+AddService = s116mdfl,, sed116.Install.AddFilter
+
+[UpperFilterAddReg]
+HKR,,"UpperFilters",0x00010000,"s116mdfl"
+
+[sed116.Install.AddService]
+DisplayName	= %sed116.Service.Name%
+Description	= %sed116.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\s116mdm.sys
+
+[sed116.Install.AddFilter]
+DisplayName	= %sed116.Filter.Name%
+Description	= %sed116.Filter.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\s116mdfl.sys
+
+[LowerFilterAddReg]
+HKR,,"LowerFilters",0x00010000,"s116mdm"
+
+[GenericAddReg]
+HKR,, FriendlyDriver,,unimodem.vxd
+HKR,, PortSubClass,1, 02
+HKR,, ConfigDialog,, modemui.dll
+HKR,, EnumPropPages,, "modemui.dll,EnumPropPages"
+HKR,, FClass, 1, c3,00,00,00
+HKR,,Properties,  1, 00,00,00,00, FF,00,00,00, 00,00,00,00, 00,00,00,00, 00,00,00,00, 01,00,00,00, 00,c2,01,00, 80,70,00,00
+HKR,, DCB, 1, 1C,00,00,00, 00,C2,01,00, 15,20,00,00, 00,00, 0a,00, 0a,00, 08, 00, 00, 11, 13, 00, 00, 00
+;HKR,, VoiceProfile,    1,23,22,09,00
+HKR, Fax, CL1FCS,, "2"
+
+HKR, Init, 1,, "AT<cr>"
+HKR, Init, 2,, "AT &F<cr>"
+HKR, Init, 3,, "AT V1E0S0=0&D2&C1<cr>"
+HKR, Init, 4,, "AT +CMEE=1<cr>"
+HKR, Monitor, 1,, "ATS0=0<cr>"
+HKR, Monitor, 2,, "None"
+HKR, Answer, 1,, "ATA<cr>"
+HKR, Hangup, 1,, "ATH<cr>"
+HKR,, Reset,, "AT&F<cr>"
+HKR, Settings, Compression_Off,, "+DS=0;+DR=0;"
+HKR, Settings, Compression_On,, "+DS=3,0,2048,32;+DR=1;"
+HKR, Settings, CompatibilityFlags, 1, 01 ,00 ,00, 00
+HKR, Settings, CallSetupFailTimer,, "S7=<#>;"
+HKR, Settings, DialPrefix,, "D"
+HKR, Settings, DialSuffix,, ";"
+HKR, Settings, Prefix,, "AT"
+HKR, Settings, Terminator,, "<cr>"
+
+
+; DTE/DCE speeds will not be exact for generic modems because we will
+; treat CONNECT as a DCE speed when some modems will report it as DTE.
+HKR, Responses, "0<cr>",    1, 00, 00, 00,00,00,00, 00,00,00,00 ; OK - Command executed
+HKR, Responses, "1<cr>",    1, 02, 00, 00,00,00,00, 00,00,00,00 ; CONNECT - Connection
+HKR, Responses, "2<cr>",    1, 08, 00, 00,00,00,00, 00,00,00,00 ; RING - Ring signal indicated
+HKR, Responses, "3<cr>",    1, 04, 00, 00,00,00,00, 00,00,00,00 ; NO CARRIER 
+HKR, Responses, "4<cr>",    1, 03, 00, 00,00,00,00, 00,00,00,00 ; ERROR - Invalid command
+HKR, Responses, "5<cr>",    1, 02, 00, B0,04,00,00, 00,00,00,00 ; CONNECT 1200
+HKR, Responses, "6<cr>",    1, 05, 00, 00,00,00,00, 00,00,00,00 ; NO DIALTONE - No dial tone detected
+HKR, Responses, "7<cr>",    1, 06, 00, 00,00,00,00, 00,00,00,00 ; BUSY - Engaged (busy) signal
+HKR, Responses, "8<cr>",    1, 07, 00, 00,00,00,00, 00,00,00,00 ; NO ANSWER
+
+HKR, Responses, "<cr><lf>OK<cr><lf>",                     1, 00, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>RING<cr><lf>",                   1, 08, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>NO CARRIER<cr><lf>",             1, 04, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>ERROR<cr><lf>",                  1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>NO DIALTONE<cr><lf>",            1, 05, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>NO DIAL TONE<cr><lf>",           1, 05, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>BUSY<cr><lf>",                   1, 06, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>NO ANSWER<cr><lf>",              1, 07, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT<cr><lf>",                1, 02, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 2400<cr><lf>",           1, 02, 00, 60,09,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 4800<cr><lf>",           1, 02, 00, C0,12,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 9600<cr><lf>",           1, 02, 00, 80,25,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 14400<cr><lf>",          1, 02, 00, 40,38,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 19200<cr><lf>",          1, 02, 00, 00,4B,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 28800<cr><lf>",          1, 02, 00, 80,70,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 33600<cr><lf>",          1, 02, 00, 40,83,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 38400<cr><lf>",          1, 02, 00, 00,96,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 57600<cr><lf>",          1, 02, 00, 00,e1,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>CONNECT 115200<cr><lf>",         1, 02, 00, 00,c2,01,00, 00,00,00,00
+HKR, Responses, "<cr><lf>FAX<cr><lf>",                    1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>DATA<cr><lf>",                   1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>VOICE<cr><lf>",                  1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>RINGING<cr><lf>",                1, 01, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>DELAYED<cr><lf>",                1, 1D, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>DELAYED NUMBER<cr><lf>",         1, 1D, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>BLACKLISTED<cr><lf>",            1, 1C, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>BLACKLISTED NUMBER<cr><lf>",     1, 1C, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+FCERROR<cr><lf>",               1, 03, 00, 00,00,00,00, 00,00,00,00
+HKR, Responses, "<cr><lf>+DR: NONE<cr><lf>",              1, 02, 00, 00,00,00,00, 00,00,00,00   ; No compression
+HKR, Responses, "<cr><lf>+DR: V42B<cr><lf>",              1, 02, 03, 00,00,00,00, 00,00,00,00   ; Compression enabled
+
+HKR, Responses, "<cr><lf>+CME ERROR: 0<cr><lf>",    1, 03, 00, 00,00,00,00, 00,00,00,00   ; Phone failure.
+HKR, Responses, "<cr><lf>+CME ERROR: 1<cr><lf>",    1, 03, 00, 00,00,00,00, 00,00,00,00   ; No connection to phone.
+HKR, Responses, "<cr><lf>+CME ERROR: 2<cr><lf>",    1, 03, 00, 00,00,00,00, 00,00,00,00   ; Phone modem link reserved.
+HKR, Responses, "<cr><lf>+CME ERROR: 3<cr><lf>",    1, 03, 00, 00,00,00,00, 00,00,00,00   ; Operation not permitted.
+HKR, Responses, "<cr><lf>+CME ERROR: 4<cr><lf>",    1, 03, 00, 00,00,00,00, 00,00,00,00   ; Operation not supported.
+HKR, Responses, "<cr><lf>+CME ERROR: 5<cr><lf>",    1, 03, 00, 00,00,00,00, 00,00,00,00   ; PH-SIM card PIN required.
+HKR, Responses, "<cr><lf>+CME ERROR: 6<cr><lf>",    1, 03, 00, 00,00,00,00, 00,00,00,00   ; PH-FSIM PIN required
+HKR, Responses, "<cr><lf>+CME ERROR: 7<cr><lf>",    1, 03, 00, 00,00,00,00, 00,00,00,00   ; PH-FSIM PUK required
+HKR, Responses, "<cr><lf>+CME ERROR: 10<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM card not inserted.
+HKR, Responses, "<cr><lf>+CME ERROR: 11<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM card PIN required.
+HKR, Responses, "<cr><lf>+CME ERROR: 12<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM card PUK required.
+HKR, Responses, "<cr><lf>+CME ERROR: 13<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM card failure.
+HKR, Responses, "<cr><lf>+CME ERROR: 14<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM card busy.
+HKR, Responses, "<cr><lf>+CME ERROR: 15<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; SIM card wrong.
+HKR, Responses, "<cr><lf>+CME ERROR: 16<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Incorrect password.
+HKR, Responses, "<cr><lf>+CME ERROR: 20<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Memory full.
+HKR, Responses, "<cr><lf>+CME ERROR: 21<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Invalid index.
+HKR, Responses, "<cr><lf>+CME ERROR: 22<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Not found.
+HKR, Responses, "<cr><lf>+CME ERROR: 23<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Memory failure.
+HKR, Responses, "<cr><lf>+CME ERROR: 24<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Text string too long.
+HKR, Responses, "<cr><lf>+CME ERROR: 25<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Invalid character in text string.
+HKR, Responses, "<cr><lf>+CME ERROR: 26<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Dial string too long.
+HKR, Responses, "<cr><lf>+CME ERROR: 27<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Invalid character in dial string.
+HKR, Responses, "<cr><lf>+CME ERROR: 30<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; No network service
+HKR, Responses, "<cr><lf>+CME ERROR: 31<cr><lf>",   1, 03, 00, 00,00,00,00, 00,00,00,00   ; Network timeout
+HKR, Responses, "<cr><lf>+CME ERROR: 100<cr><lf>",  1, 03, 00, 00,00,00,00, 00,00,00,00   ; Unknown.
+HKR, Responses, "<cr><lf>+CMS ERROR: ",             1, 03, 00, 00,00,00,00, 00,00,00,00   ; CMS errors
+
+
+[USB]
+HKR,, PortDriver, 0, wdmmdmld.vxd
+HKR,, DeviceType, 1, 01
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 116 USB WMC Modem installation disk"
+
+sed116.Modem.Desc = "Sony Ericsson Device 116 USB WMC Data Modem"
+sed116.Service.Name = "Sony Ericsson Device 116 USB WMC Modem Driver"
+sed116.Service.Desc = "Sony Ericsson Device 116 USB WMC Modem Driver"
+
+sed116.Filter.Name = "Sony Ericsson Device 116 USB WMC Modem Filter"
+sed116.Filter.Desc = "Sony Ericsson Device 116 USB WMC Modem Filter"
+
+sed116.Modem.Desc.2 = "Sony Ericsson Device 116 USB WMC Modem"
+
+CustomerDataPath = "Sony Ericsson Device 116"
+DriverSet = "Sony Ericsson Device 116 Software"
+UninstallFile = "S116Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

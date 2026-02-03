@@ -1,0 +1,170 @@
+;Kyocera CDMA Wireless Control Port Installation File (Win2000/WinXP/Win2003/WinVista)
+;Copyright (c) 2007 Kyocera. All Rights Reserved.
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%COMPANY%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=08/28/2007,2.1.5.0
+DriverVer=04/21/2009,2.1.5.0
+CatalogFile=kwcusb.cat
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %DISKID%,,,""
+
+[SourceDisksFiles]
+kwusb2k.sys  = 1,,
+kwcoi.dll    = 1,,
+
+[DestinationDirs]
+Device.CopyFiles=12
+CoInstaller.CopyFiles=11
+DefaultDestDir=12
+
+[Manufacturer]
+%COMPANY%=Models,NTx86,NTamd64,NTia64
+
+[Models]
+;KPC650
+%DEVICENAME.KWCPCCTRL% = PCControlPort, USB\VID_0C88&PID_17DA&MI_01
+;KX2
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_005A&MI_01
+;KX3
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_0450&MI_01
+;KX5
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_0839&MI_01
+;KPC680
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_180A&MI_01
+;KX18
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1407&MI_01
+;KX525
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1BE3&MI_01
+;KX24
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FC7&MI_01
+;KX27
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FCD&MI_01
+;S2000/4000
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FE0&MI_01
+
+
+[Models.NTx86]
+;KPC650
+%DEVICENAME.KWCPCCTRL% = PCControlPort, USB\VID_0C88&PID_17DA&MI_01
+;KX2
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_005A&MI_01
+;KX3
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_0450&MI_01
+;KX5
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_0839&MI_01
+;KPC680
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_180A&MI_01
+;KX18
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1407&MI_01
+;KX525
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1BE3&MI_01
+;KX24
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FC7&MI_01
+;KX27
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FCD&MI_01
+;S2000/4000
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FE0&MI_01
+
+
+[Models.NTia64]
+%DEVICENAME.KWCPCCTRL% = PCControlPort, USB\VID_0C88&PID_17DA&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_005A&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_0450&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_0839&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_180A&MI_01
+
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1407&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1BE3&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FC7&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FCD&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FE0&MI_01
+
+
+[Models.NTamd64]
+%DEVICENAME.KWCPCCTRL% = PCControlPort, USB\VID_0C88&PID_17DA&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_005A&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_0450&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_0839&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_180A&MI_01
+
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1407&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1BE3&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FC7&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FCD&MI_01
+%DEVICENAME.KWCKXCTRL% = KXControlPort, USB\VID_0C88&PID_1FE0&MI_01
+
+
+;;
+
+[PCControlPort.NT]
+AddReg=ControlPort.AddReg
+CopyFiles=Device.CopyFiles
+
+[KXControlPort.NT]
+AddReg=ControlPort.AddReg
+CopyFiles=Device.CopyFiles
+
+;;
+
+[PCControlPort.NT.Services]
+AddService=kwkxusb, 0x00000002, Device.AddService
+
+[KXControlPort.NT.Services]
+AddService=kwkxusb, 0x00000002, Device.AddService
+
+;;
+
+[PCControlPort.NT.CoInstallers]
+AddReg=CoInstaller.AddReg
+CopyFiles=CoInstaller.CopyFiles
+
+[CoInstaller.CopyFiles]
+kwcoi.dll
+
+[CoInstaller.AddReg]
+HKR,,CoInstallers32,0x00010000,"kwcoi.dll,KWUSBModemCoInstaller"
+
+;;
+
+
+
+
+
+
+
+;;
+
+[Device.CopyFiles]
+kwusb2k.sys
+
+[Device.AddService]
+DisplayName=%SERVICENAME%
+ServiceType= 1
+StartType  = 3
+ErrorControl = 0
+ServiceBinary = %12%\kwusb2k.sys
+
+;;
+
+[Strings]
+COMPANY="Kyocera Wireless Corporation"
+SERVICENAME="Kyocera CDMA Wireless Modem Driver"
+DEVICENAME.KWCKXCTRL="Kyocera Control Port"
+DEVICENAME.KWCPCCTRL="Kyocera Control Port"
+DISKID="Kyocera CDMA Wireless Modem Install Disk"
+
+;;
+
+[ControlPort.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+

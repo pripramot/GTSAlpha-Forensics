@@ -1,0 +1,62 @@
+;-------------------------------------------------------------------------------
+;
+; Motorola Win2000 MTP Driver (motmtp2k.inf)
+;
+; Copyright (c) 2009-2014 Motorola
+;
+;-------------------------------------------------------------------------------
+[Version]
+Signature   = "$CHICAGO$"
+Class       = USB
+ClassGUID   = {36FC9E60-c465-11cf-8056-444553540000}
+Provider    = %Motorola%
+CatalogFile = motmtp2k_rtl_mod.cat
+DriverVer   = 02/25/2011, 1.0.2.0
+
+
+[Manufacturer]
+%Motorola% = Motorola
+
+; Models ------------------------------------------------------------------------
+
+[Motorola]
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_41D8&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_41DA&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_4283&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_4284&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42A1&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42A2&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42B1&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42B2&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42C1&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42C2&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42D4&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42D5&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42F4&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_42F5&MI_03
+
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_708A&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_708B&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_70AA&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_70AB&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_70C4&MI_03
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_70C5&MI_03
+
+;xt1032
+%USBMOTMTPW2K% = MOTMTPW2K, USB\VID_22b8&PID_2E76&MI_00
+
+; Models sections ---------------------------------------------------------------
+
+[MOTMTPW2K.NT]
+
+; Dummy Service ---------------------------------------------------------------------
+[MOTMTPW2K.NT.Services]
+AddService = ,2    ;
+
+
+
+; Strings ----------------------------------------------------------------------
+
+[Strings]
+Motorola      = "Motorola"
+USBMOTMTPW2K  = "Motorola MTP Device"

@@ -1,0 +1,202 @@
+;*****************************************************************************
+;
+; s117bus.inf   -- Install the Sony Ericsson Device 117 drivers
+;
+; Copyright (c) 1997-2007 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=04/21/2009,4.40.2.0
+CatalogFile=s117bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+sed117Wdm.W95.CopyFiles       = 11                    ; LDID_SYS
+sed117Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s117bus.sys",,\i386
+
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s117bus.sys",,\amd64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+s117bus.sys = 1
+s117wh95.sys = 1
+s117whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed117, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[sed117.NTx86]
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_d075
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_d076
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0a5
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0ab
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0ac
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0af
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0b3
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0b9
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0bb
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0c5
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0c6
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d4
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d5
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d6
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d8
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d9
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0da
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0de
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0e3
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0ec
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0f3
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0f5
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0fb
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D100
+
+
+[sed117.NTamd64]
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_d075
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_d076
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0a5
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0ab
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0ac
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0af
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0b3
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0b9
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0bb
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0c5
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0c6
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d4
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d5
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d6
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d8
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0d9
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0da
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0de
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0e3
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0ec
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0f3
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0f5
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D0fb
+%sed117.CdcBus.Desc% = sed117Wdm.Install, USB\VID_0fce&PID_D100
+
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[sed117.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[sed117Wdm.Install.NT]
+CopyFiles       = sed117Wdm.NT.CopyFiles
+AddReg          = sed117Wdm.AddReg, sed117Wdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[sed117Wdm.Install.NT.Services]
+AddService      = s117bus, 2, sed117Wdm.AddService
+
+[sed117Wdm.AddService]
+DisplayName             = %sed117.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s117bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[sed117Wdm.AddReg]
+
+HKR,,Configuration,0x10001, 03,00,00,00
+HKR,Scenarios,Scenario,0x10001, 00,00,00,00
+HKR,Scenarios\Scenario_0\ifc_0A\Description, default,, "Sony Ericsson Device 117"
+HKR,Scenarios\Scenario_0\ifc_0A,HardwareId,, "USB\Vid_$VID&Pid_$PID&Mi_$IFC$,"
+HKR,Scenarios\Scenario_0\ifc_0A,HardwareIdList,, "USB\MS_COMP_MTP$,USB\Vid_$VID&Pid_$PID&Class_$CLASS&SubClass_$SUBCLASS&Prot_$PROT&Os_$OS$,USB\Vid_$VID&Pid_$PID&Class_$CLASS&SubClass_$SUBCLASS&Prot_$PROT$,USB\Vid_$VID&Pid_$PID&Mi_$IFC&Os_$OS$,USB\Vid_$VID&Pid_$PID&MI_$IFC$,$,"
+HKR,Scenarios\Scenario_0\ifc_0A,CompatibleIdList,, "USB\MS_COMP_MTP$,USB\Vid_$VID&Pid_$PID&Mi_$IFC&Os_$OS$,USB\Vid_$VID&Pid_$PID&Mi_$IFC$,$,"
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[sed117Wdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[sed117Wdm.NT.CopyFiles]
+s117bus.sys
+s117wh.sys,s117whnt.sys
+s117whnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 117 Installation disk"
+
+sed117.CdcBus.Desc = "Sony Ericsson Device 117"
+sed117.Service.Desc = "Sony Ericsson Device 117 driver (WDM)"
+
+CustomerDataPath = "Sony Ericsson Device 117"
+DriverSet = "Sony Ericsson Device 117 Software"
+UninstallFile = "S117Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

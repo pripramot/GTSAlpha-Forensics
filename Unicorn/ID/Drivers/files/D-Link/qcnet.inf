@@ -1,0 +1,126 @@
+;-------------------------------------------------------------------------------
+; QCNET.INF
+;
+; D-Link Wireless Network Device
+;
+; Copyright (c) 2018 D-Link Inc.  All rights reserved.
+
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %PROVIDER%
+DriverVer   = 05/04/2018,4.0.2.1
+Catalogfile = qcnet.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%PROVIDER% = DLK, NTamd64
+	
+[SourceDisksNames.x86]
+1000 = %BMTSrcDisk%,"",,\ndis\5.1\i386
+
+[SourceDisksNames.amd64]
+1000 = %BMTSrcDisk%,"",,\ndis\5.1\amd64
+
+[SourceDisksFiles]
+qcusbnet.sys = 1000
+
+[DLK]
+%bmwwan.DeviceDesc20014%    = bmwwan.ndi, USB\VID_2001&PID_7E19&MI_04
+%bmwwan.DeviceDesc20014%    = bmwwan.ndi, USB\VID_2001&PID_7E35&MI_04
+%bmwwan.DeviceDesc20014%    = bmwwan.ndi, USB\VID_2001&PID_7E3D&MI_04
+
+[DLK.NTamd64]
+%bmwwan.DeviceDesc20014%    = bmwwan.ndi, USB\VID_2001&PID_7E19&MI_04
+%bmwwan.DeviceDesc20014%    = bmwwan.ndi, USB\VID_2001&PID_7E35&MI_04
+%bmwwan.DeviceDesc20014%    = bmwwan.ndi, USB\VID_2001&PID_7E3D&MI_04
+
+;-------------------------------------------------------------------------------
+; Virtual Ethernet Adapter
+;
+[bmwwan.ndi]
+Characteristics = 0x4 ; NCF_PHYSICAL
+BusType         = 15  ; PNPBus
+AddReg          = bmwwan.Reg
+CopyFiles       = bmwwan.CopyFiles
+
+[bmwwan.ndi.Services]
+AddService      = bmusbnet, 2, bmwwan.Service, bmwwan.EventLog
+
+;-----------------------------------------------------------------------------
+; WMI security settings
+;-----------------------------------------------------------------------------
+[gobiwwan.ndi.WMI]
+WMIInterface={DE81837E-BD78-4EC8-ABA8-89B7D026C1CF},,WMIGuidSecurity_AllReadAdminFul
+
+[WMIGuidSecurity_AllReadAdminFul]
+security="O:BAG:BAD:(A;;0x12001f;;;BA)(A;;0x12001f;;;LS)(A;;0x12001f;;;NS)(A;;0x12001f;;;SY)(A;;0x12001f;;;NO)(A;;CC;;;BU)"
+
+
+;-----------------------------------------------------------------------------
+; Virtual Miniport Common
+;
+[bmwwan.Reg]
+HKR,    ,                         BusNumber,           0, "0" 
+HKR, Ndi,                         Service,             0, "bmusbnet"
+HKR, Ndi\Interfaces,              UpperRange,          0, "ndis5"
+HKR, Ndi\Interfaces,              LowerRange,          0, "ethernet"
+; HKR, Ndi\params\VlanID,     ParamDesc,       0, %VlanID%
+; HKR, Ndi\params\VlanID,     default,         0, "777"
+; HKR, Ndi\params\VlanID,     type,            0, "long"
+; HKR, Ndi\params\VlanID,     min,             0, "0"
+; HKR, Ndi\params\VlanID,     max,             0, "4095"
+; HKR, Ndi\params\VlanID,     step,            0, "1"
+; HKR, Ndi\params\VlanID,     base,            0, "10"
+HKR,, QCDevDisableQoS, 0x00010001, 0x00000003
+
+;-----------------------------------------------------------------------------
+; Driver and Service Section
+;
+[bmwwan.CopyFiles]
+qcusbnet.sys
+
+[bmwwan.Service]
+DisplayName     = %bmwwan.Service.DispName%
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\qcusbnet.sys
+LoadOrderGroup  = NDIS
+AddReg          = TextModeFlags.Reg
+
+[bmwwan.EventLog]
+AddReg = bmwwan.AddEventLog.Reg
+
+[bmwwan.AddEventLog.Reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[TextModeFlags.Reg]
+HKR, , TextModeFlags,    0x00010001, 0x0001
+
+; [SourceDisksNames]
+; 1 = %DiskId1%,,,""
+
+;[SourceDisksFiles] ; Resolve ERROR(1209): duplicate section
+;qcusbnet.sys  = 1000
+
+;-----------------------------------------------------------------------------
+; DestinationDirs
+;
+[DestinationDirs]
+DefaultDestDir = 12
+
+;-----------------------------------------------------------------------------
+; Localizable Strings
+;
+[Strings]
+BMTSrcDisk = "USB Driver Disk"
+PROVIDER                    = "D-Link"                      
+bmwwan.DeviceDesc20014      = "D-Link Wireless HS-USB Ethernet Adapter"
+bmwwan.Service.DispName     = "D-Link USB-NDIS miniport"
+DiskId1 = "D-Link USB-NDIS Miniport Device Installation Disk #1"

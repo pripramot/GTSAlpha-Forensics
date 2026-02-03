@@ -1,0 +1,87 @@
+; Nokia Windows Portable Device Driver, Copyright 2005-2009
+; PCCSWpdDriver.inf
+;
+
+[Version]
+Signature="$Windows NT$"
+Class=WPD
+ClassGuid={EEC5AD98-8080-425f-922A-DABF3DE3F69A}
+Provider=%Manufacturer%
+DriverVer=12/23/2010,7.0.56.0
+CatalogFile=PCCSWpdDriver.cat
+
+[Manufacturer]
+%Manufacturer%=Nokia,NTx86,NTia64,NTamd64
+
+[Nokia.NTx86]
+%BasicDeviceName%=Basic_Install,WPD_NOKIA_73fd2114_0d73_49c3_9c65_1a2b2c7f6eba
+
+[Nokia.NTia64]
+%BasicDeviceName%=Basic_Install,WPD_NOKIA_73fd2114_0d73_49c3_9c65_1a2b2c7f6eba
+
+[Nokia.NTamd64]
+%BasicDeviceName%=Basic_Install,WPD_NOKIA_73fd2114_0d73_49c3_9c65_1a2b2c7f6eba
+
+[SourceDisksFiles]
+PCCSWpdDriver.dll=1
+WUDFUpdate_01009.dll=1
+
+[SourceDisksNames]
+1 = %MediaDescription%
+
+; =================== Nokia WPD Device ==================================
+
+[Basic_Install]
+CopyFiles=System32Copy
+
+[Basic_Install.hw]
+AddReg=Device_AddReg
+
+[Basic_Install.Services]
+AddService=WUDFRd,0x000001fa,WUDFRD_ServiceInstall
+
+[Basic_Install.CoInstallers]
+AddReg=Basic_Install.CoInstallers_AddReg
+CopyFiles=Basic_Install_CopyFiles
+
+[Basic_Install_CopyFiles]
+WUDFUpdate_01009.dll
+
+[Basic_Install.CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WUDFUpdate_01009.dll"
+
+[Basic_Install.Wdf]
+UmdfService=PCCSWpdDriver, PCCSWpdDriver_Install
+UmdfServiceOrder=PCCSWpdDriver
+
+[PCCSWpdDriver_Install]
+UmdfLibraryVersion=1.9.0
+DriverCLSID="{8FFB782B-62AE-4c0f-8366-66A69625B39D}"
+ServiceBinary=%12%\UMDF\PCCSWpdDriver.dll
+
+[Device_AddReg]
+HKR,,"EnableLegacySupport",0x10001,3
+HKR,,"ReportJPGFormatForEXIF",0x10001,1
+HKR,%NOKIA_WPD_DRIVER_DEVICE_PARAM%,"EnableLegacySupport",0x10001,3
+
+[WUDFRD_ServiceInstall]
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\WUDFRd.sys
+
+[DestinationDirs]
+System32Copy=12,UMDF ; copy to system32\drivers\umdf
+Basic_Install_CopyFiles=11
+
+[System32Copy]
+PCCSWpdDriver.dll
+
+; =================== Generic ==================================
+[Strings]
+Manufacturer="Nokia"
+MediaDescription="Nokia Windows Portable Device Driver"
+BasicDeviceName="Nokia Windows Portable Device Driver"
+WDF_ROOT="SOFTWARE\Microsoft\Windows NT\CurrentVersion\WUDF"
+WDF_SERVICES="SOFTWARE\Microsoft\Windows NT\CurrentVersion\WUDF\Services"
+NOKIA_WPD_DRIVER_DEVICE_PARAM="PCCSWpdDriver"

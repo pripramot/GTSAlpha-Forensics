@@ -1,0 +1,9 @@
+{
+  "name": "gtsalpha-send-supabase-email",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ส่งอีเมลคำขอบัญชี Supabase ผ่าน Gmail",
+  "dependencies": {
+    "nodemailer": "^6.9.x"
+  }
+}

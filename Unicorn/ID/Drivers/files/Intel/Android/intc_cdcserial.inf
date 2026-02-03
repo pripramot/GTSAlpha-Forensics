@@ -1,0 +1,155 @@
+;*********************************************************************************************
+; Windows USB CDC ACM Setup File for Intel Android Smartphones
+;
+; Copyright (c) 2015 Intel Corporation
+;
+; For use only on Windows operating systems.
+;*********************************************************************************************
+[Version]
+Signature			= "$Windows NT$"
+Class				= Ports
+ClassGuid			= {4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider			= %ProviderName%
+DriverVer			= 04/15/2015,1.9.0.0
+CatalogFile.NTx86  	= intc_cdcserialx86.cat
+CatalogFile.NTAMD64 = intc_cdcserialamd64.cat
+
+[Manufacturer]
+%ProviderName%=DeviceList, NTamd64
+
+[DestinationDirs]
+DefaultDestDir=12
+
+;------------------------------------------------------------------------------
+;  Windows 2000/XP/Vista-32bit Sections
+;------------------------------------------------------------------------------
+[DriverInstall.NT]
+include=mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+AddReg=DriverInstall.NT.AddReg
+
+[DriverInstall.NT.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropP ageProvider"
+
+[DriverInstall.NT.Services]
+AddService=usbser, 0x00000002, DriverServiceInst
+
+;------------------------------------------------------------------------------
+;  Vista-64bit Sections
+;------------------------------------------------------------------------------
+[DriverInstall.NTamd64]
+include=mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+AddReg=DriverInstall.NTamd64.AddReg
+
+[DriverInstall.NTamd64.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropP ageProvider"
+
+[DriverInstall.NTamd64.Services]
+AddService=usbser, 0x00000002, DriverServiceInst
+
+;------------------------------------------------------------------------------
+[DriverServiceInst]
+DisplayName=%SERVICE%
+ServiceType = 1 ; SERVICE_KERNEL_DRIVER
+StartType = 3 ; SERVICE_DEMAND_START
+ErrorControl = 1 ; SERVICE_ERROR_NORMAL
+ServiceBinary= %12%\usbser.sys
+LoadOrderGroup = Base
+
+[SourceDisksNames]
+1=%DISK%,,,
+
+[SourceDisksFiles]
+
+[FakeModemCopyFileSection]
+
+[DeviceList]
+; DELL BB
+%MFLDCDC%=DriverInstall,USB\VID_413C&PID_B150&MI_02
+
+; DELL EP
+%MFLDCDC%=DriverInstall,USB\VID_413C&PID_B158&MI_02
+
+; Intel Cherrytrail Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A92&MI_01 ; RNDIS + ACM + ADB
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A93&MI_02 ; RNDIS + ACM + ACM + ADB
+;%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A93&MI_03 ; RNDIS + ACM + ACM + ADB ; Duplicated in 1\Android\Intel\intc_adb.inf
+
+; Intel Baytrail Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A64&MI_02
+
+; Intel Merrifield Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A26&MI_02
+
+; Intel Clovertrail VictoriaBay Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A49&MI_01 ; MTP+ACM+ADB
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4b&MI_01 ; PTP+ACM+ADB
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4a&MI_01 ; MTP+ACM
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4c&MI_01 ; PTP+ACM
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4d&MI_02 ; RNDIS+ACM+ADB
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4e&MI_02 ; RNDIS+ACM
+
+; Intel Clovertrail Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A1B&MI_02
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A31&MI_02
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A31&MI_04
+
+; Intel Medfield ICS
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_09f2&MI_02
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_09f1&MI_02
+;%MFLDCDC%=DriverInstall,USB\VID_8087&PID_09f6&MI_02 ; Duplicated in 1\Android\Intel\intc_adb.inf
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_09f8&MI_02
+
+[DeviceList.NTamd64]
+; DELL BB
+%MFLDCDC%=DriverInstall,USB\VID_413C&PID_B150&MI_02
+
+; DELL EP
+%MFLDCDC%=DriverInstall,USB\VID_413C&PID_B158&MI_02
+
+; Intel Cherrytrail Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A92&MI_01 ; RNDIS + ACM + ADB
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A93&MI_02 ; RNDIS + ACM + ACM + ADB
+;%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A93&MI_03 ; RNDIS + ACM + ACM + ADB ; Duplicated in 1\Android\Intel\intc_adb.inf
+
+; Intel Baytrail Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A64&MI_02
+
+; Intel Merrifield Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A26&MI_02
+
+; Intel Clovertrail VictoriaBay Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A49&MI_01 ; MTP+ACM+ADB
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4b&MI_01 ; PTP+ACM+ADB
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4a&MI_01 ; MTP+ACM
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4c&MI_01 ; PTP+ACM
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4d&MI_02 ; RNDIS+ACM+ADB
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A4e&MI_02 ; RNDIS+ACM
+
+; Intel Clovertrail Android
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A1B&MI_02
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A31&MI_02
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_0A31&MI_04
+
+; Intel Medfield ICS
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_09f2&MI_02
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_09f1&MI_02
+;%MFLDCDC%=DriverInstall,USB\VID_8087&PID_09f6&MI_02 ; Duplicated in 1\Android\Intel\intc_adb.inf
+%MFLDCDC%=DriverInstall,USB\VID_8087&PID_09f8&MI_02
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+;Modify these strings to customize your device
+;------------------------------------------------------------------------------
+[Strings]
+ProviderName       	= "Intel Corporation"
+DRIVERFILENAME 		= "usbser"
+MFLDCDC 			= "Intel Android Virtual Com Port"
+SERVICE             = "Intel Android Virtual Com Port Driver"
+DISK             	= "Intel Android Virtual Com Port Driver Intallation Disk"

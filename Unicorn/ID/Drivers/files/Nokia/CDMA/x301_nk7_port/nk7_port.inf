@@ -1,0 +1,70 @@
+; Virtual Serial Port Setup File
+; Copyright (c) 2001-2009 CCI Incorporated
+;
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %SOURCE%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer=07/08/2009,2.0.6.7
+Catalogfile = NK7_USB.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1 = %SourceDisk%,"",,
+
+[SourceDisksFiles]
+NOK_USB.sys = 1
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[Manufacturer]
+%SOURCE% = CCI, NTia64, NTamd64
+
+[CCI]
+%NOKIA_X301_DIAG% = CCIPort, USB\VID_0421&PID_03CC&MI_01
+%NOKIA_X301_APP% = CCIPort, USB\VID_0421&PID_03CC&MI_02
+
+[CCI.NTia64]
+%NOKIA_X301_DIAG% = CCIPort, USB\VID_0421&PID_03CC&MI_01
+%NOKIA_X301_APP% = CCIPort, USB\VID_0421&PID_03CC&MI_02
+
+[CCI.NTamd64]
+%NOKIA_X301_DIAG% = CCIPort, USB\VID_0421&PID_03CC&MI_01
+%NOKIA_X301_APP% = CCIPort, USB\VID_0421&PID_03CC&MI_02
+
+[CCIPort.NT]
+CopyFiles=CCIUsbDriverFiles
+AddReg = All00, AddReg
+
+[CCIPort.NT.Services]
+AddService=NOK_USB,  0x00000002, CCI_USB_SERVICE
+
+[CCIUsbDriverFiles]
+NOK_USB.sys
+
+[CCI_USB_SERVICE]
+DisplayName   = %PORT_SERVICE%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\NOK_USB.sys
+
+[All00]
+HKR,,NTMPDriver,,NOK_USB.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+SOURCE = "Nokia"
+SourceDisk = "Nokia Mobile USB Driver Disk"
+PORT_SERVICE = "Nokia USB Services"
+
+NOKIA_X301_DIAG = "Nokia X3-01 USB Diagnostic Port"
+NOKIA_X301_APP = "Nokia X3-01 USB Application Port"

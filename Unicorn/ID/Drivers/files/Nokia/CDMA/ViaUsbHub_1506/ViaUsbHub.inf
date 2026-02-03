@@ -1,0 +1,108 @@
+; ==============================================================
+; +++++++++++++++++ Copyright Notification +++++++++++++++++++++
+; ==============================================================
+; VIA Telecom USB Hub Setup File
+; Copyright (c) 2004-2006 VIA Telecommunications
+; Manufacturer: VIA Telecom
+
+
+; ==============================================================
+; ================= Version/Class Sections =====================
+; ==============================================================
+[Version]
+CatalogFile = ViaTelecomFile.cat
+signature   = "$CHICAGO$"
+Class       = USB
+ClassGUID   = {36FC9E60-C465-11CF-8056-444553540000} 
+Provider    = %Nokia%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer   = 06/14/2008,2.0.13
+DriverVer   = 04/21/2009,2.0.13
+
+      
+; ==============================================================
+; =================== Table of Contents ========================
+; ==============================================================
+[Manufacturer]
+%VIATelecom% = DeviceList,NTia64,NTamd64
+      
+
+; ==============================================================
+; ================= Control Flags Sections =====================
+; ==============================================================
+[ControlFlags]
+ExcludeFromSelect = USB\VID_0421&PID_0327
+
+
+; ==============================================================
+; ================== Driver/Device Sections ====================
+; ==============================================================
+[DeviceList]
+%NOKIA1506% = Composite.Dev, USB\VID_0421&PID_0327
+
+[DeviceList.NTia64]
+%NOKIA1506% = Composite.Dev, USB\VID_0421&PID_0327
+
+[DeviceList.NTamd64]
+%NOKIA1506% = Composite.Dev, USB\VID_0421&PID_0327
+
+
+; ==============================================================
+; ===================== Pre-Copy Section =======================
+; ==============================================================
+
+
+
+; ==============================================================
+; =================== Copy Files Section =======================
+; ==============================================================
+[DestinationDirs]
+CoCopyINF.CopyFiles = 11					;
+
+[SourceDisksFiles]
+cocpyinf.dll = 1,,
+
+[SourceDisksNames]
+1 = %SOURCE_DISKS_NAMES%
+
+
+
+; =========================================================
+; ---------------- Windows 98/ME Sections -----------------
+; =========================================================
+[Composite.Dev]
+AddReg    = Hub.AddReg
+include   = usb.inf
+
+
+; ==============================================================
+; ---------------- Windows 2000 & XP Sections ------------------
+; ==============================================================
+[Composite.Dev.NT]
+AddReg    = StandardHub.AddReg.NT
+include   = usb.inf
+;CopyInf   = ViaUsbModem.inf, ViaUsbEts.inf
+
+[standardhub.addreg.nt] ; Fix ERROR(1203) Section [standardhub.addreg.nt] not found.
+
+;[Composite.Dev.NT.CoInstallers]
+;AddReg    = CoCopyINF.AddReg
+;CopyFiles = CoCopyINF.CopyFiles
+
+
+;[CoCopyINF.AddReg]
+;HKR,,CoInstallers32,0x10008,"cocpyinf.dll,CoCopyINF"
+
+;[CoCopyINF.CopyFiles]
+;cocpyinf.dll,,,0x10
+
+
+; ==============================================================
+; =================== Strings Sections =========================
+; ==============================================================
+[Strings]
+VIATelecom         = "Nokia Inc"
+NOKIA1506 = "Nokia 1506 Device #2"
+SOURCE_DISKS_NAMES = "VIA Telecom\\VIA CBP USBD"
+Nokia              = "Nokia Inc"
+VIATelecomHub = "VIA Telecom USB HUB"         

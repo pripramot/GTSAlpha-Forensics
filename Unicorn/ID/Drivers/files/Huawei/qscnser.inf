@@ -1,0 +1,67 @@
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2006,2007 Huawei Incorporated
+; Manufacturer: Huawei Incorporated
+;
+; This INF file installs a virtual COM port on Win2K system.
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %HUAWEI%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer  = 05/25/2009,2.0.5.301
+CatalogFile= qscnser.cat
+
+[SourceDisksNames]
+1000 = %HWSRCDISK%,"",,
+
+[SourceDisksFiles]
+qscnusb.sys = 1000
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[Manufacturer]
+%HUAWEI% = HMSerialPort
+
+[HMSerialPort]
+%HWDevice% = HMportInstall00, USB\VID_12d1&PID_101E&MI_01
+%DBDevice00% = HMportInstall00, USB\VID_12d1&PID_101D&MI_01
+%DBDevice01% = HMportInstall00, USB\VID_12d1&PID_101D&MI_02
+
+; ###### Installation Section ######
+
+[HMportInstall00.NT]
+CopyFiles = CopyFileSection00
+AddReg = All00, AddReg.NT
+
+[HMportInstall00.NT.Services]
+AddService = MobileAdapter,  0x00000002, HMport_Service_Inst00
+
+[HMport_Service_Inst00]
+DisplayName   = "Mobile Adapter USB Modem and USB Serial"
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qscnusb.sys
+
+[CopyFileSection00]
+qscnusb.sys,,,0x20
+
+[All00]
+HKR,,NTMPDriver,,qscnusb.sys
+
+
+[AddReg.NT]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+HUAWEI   = "HUAWEI Incorporated"
+HWSRCDISK = "Multimedia USB Driver Disk"
+HWDevice = "Mobile Adapter - PC UI Interface"
+DBDevice00 = "DBAdapter - Reserved Interface"
+DBDevice01 = "DBAdapter - PC UI Interface"

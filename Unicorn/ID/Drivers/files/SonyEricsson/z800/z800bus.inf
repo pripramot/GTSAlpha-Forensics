@@ -1,0 +1,172 @@
+;*****************************************************************************
+;
+; z800bus.inf   -- Install the Sony Ericsson Z800 drivers
+;
+; Copyright (c) 1997-2005 by MCCI 
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=02/09/2005, 4.28.0.2703
+DriverVer=04/21/2009, 4.28.0.2703
+CatalogFile=z800bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+SEMCWdm.W95.CopyFiles       = 11                    ; LDID_SYS
+SEMCWdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"z800bus.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+z800bus.sys = 1
+;z800wh95.sys = 1; RTGL: remove unused files from legacy OS versions
+z800whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=SEMC
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[SEMC]
+%SEMC.CdcBus.Desc% = SEMCWdm.Install, USB\VID_0FCE&PID_D018
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[SEMC.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install]
+DriverVer=02/09/2005, 4.28.0.2703
+CopyFiles       = SEMCWdm.W95.CopyFiles, SEMC.CopyFiles, PropPages.CopyFiles
+AddReg          = SEMCWdm.AddReg, SEMCWdm.W95.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install.NT]
+DriverVer=02/09/2005, 4.28.0.2703
+CopyFiles       = SEMCWdm.NT.CopyFiles
+AddReg          = SEMCWdm.AddReg, SEMCWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install.NT.Services]
+AddService      = z800bus, 2, SEMCWdm.AddService
+
+[SEMCWdm.AddService]
+DisplayName             = %SEMC.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\z800bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SEMCWdm.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[SEMCWdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,z800bus.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SEMCWdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[SEMCWdm.W95.CopyFiles]
+z800bus.sys
+;z800wh.sys,z800wh95.sys; RTGL: remove unused files from legacy OS versions
+;z800wh95.sys; RTGL: remove unused files from legacy OS versions
+z800whnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SEMCWdm.NT.CopyFiles]
+z800bus.sys
+z800wh.sys,z800whnt.sys
+z800whnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Z800 Installation disk"
+
+SEMC.CdcBus.Desc = "Sony Ericsson Z800"
+SEMC.Service.Desc = "Sony Ericsson Z800 driver (WDM)"
+
+CustomerDataPath = "Sony Ericsson Z800"
+DriverSet = "Sony Ericsson Z800 Software"
+UninstallFile = "Z800Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

@@ -1,0 +1,98 @@
+[version]
+LayoutFile=layout.inf
+signature="$CHICAGO$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%TexasInst%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=01/01/2004,1.0.0.0
+DriverVer=04/21/2009,1.0.0.0
+CatalogFile=TI-CDC-w2k.cat
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+CopyFiles = 12                         ; system32\drivers
+CopyFiles.Win2K = 12                   ;
+CopyFiles.NT.CoInstallers = 11         ; system
+CopyFiles.Inf=17
+AutoGen.Inf=17
+
+; Drivers
+;----------------------------------------------------------
+[Manufacturer]
+%TexasInst%   = TexasInst.Mfg
+
+[TexasInst.Mfg]
+%TexasInst.DeviceDesc0% = Serusb, USB\VID_22B8&PID_4061
+%TexasInst.DeviceDesc0% = Serusb, USB\VID_2811&PID_0702
+%TexasInst.DeviceDesc0% = Serusb, USB\VID_2811&PID_0702&MI_00
+%TexasInst.DeviceDesc0% = Serusb, USB\VID_2811&PID_0702&MI_02
+
+; COM sections
+;----------------------------------------------------------
+[Serusb.NT]
+;CopyFiles=Serusb.NT.Copy
+CopyFiles=FakeModemCopyFileSection
+AddReg=Serusb.AddReg, Serusb.NT.AddReg
+SyssetupPnPFlags = 1
+
+[FakeModemCopyFileSection]
+;[Serusb.NT.Copy]
+;usbser.sys,,,0x20
+
+[Serusb.AddReg]
+HKR,,PortSubClass,1,01
+
+[Serusb.NT.AddReg]
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,PortSubClass,1,01
+; Uncomment the following line if you want to override the advanced dialog for
+; your device.  See msports.h for protoype of OverrideAdvancedFunction
+; HKR,,EnumAdvancedDialog,,"yourdll.dll,OverrideAdvancedFunction"
+
+;-------------- Service installation
+; Port Driver (function driver for this device)
+[Serusb.NT.Services]
+AddService = serusb, 0x00000002, serusb_Service_Inst
+
+; -------------- Serial Port Driver install sections
+[serusb_Service_Inst]
+DisplayName    = %Serusb.SVCDESC%
+Description    = %Philog.Service.Desc%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_SYSTEM_START (this driver may do detection)
+ErrorControl   = 0               ; SERVICE_ERROR_IGNORE
+ServiceBinary  = %12%\usbser.sys
+
+;
+; Source file information
+;
+
+;[SourceDisksNames.x86]
+;1 = %DiskId1%,,,""
+
+;[SourceDisksFiles]
+;usbser.sys = 1,,
+
+[Strings]
+
+;
+; Non-Localizable Strings
+;
+
+REG_SZ         = 0x00000000
+REG_MULTI_SZ   = 0x00010000
+REG_EXPAND_SZ  = 0x00020000
+REG_BINARY     = 0x00000001
+REG_DWORD      = 0x00010001
+SERVICEROOT    = "System\CurrentControlSet\Services"
+
+;
+; Localizable Strings
+;
+
+TexasInst.DeviceDesc0 = "Motorola USB Comm Port"
+;DiskId1 = "TexasInst USB Comm Port Disk 1"
+TexasInst = "TexasInst"
+Serusb.SvcDesc="Motorola USB Comm Port"
+Philog.Service.Desc = "USB Serial line emulation driver"

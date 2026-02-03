@@ -1,0 +1,47 @@
+/* This file is used by Preview and ERV. It's not used for PDF exports. */
+img.visible {display:block; width:50%}
+tr.pagecontrol td input { height: 70px;}
+
+table.toctable caption { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-weight: 800; font-size: 48px; padding: 12px;} 
+table.toctable tr.toc1 td { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-weight: 700; font-size: 32px; padding: 12px; padding-left: 4px; padding-right:42px; background-color: #f2f2f2; border-left-width:0px; border-right-width:0px; }
+table.toctable tr.toc2 td { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-weight: 600; font-size: 24px; padding: 16px; padding-left: 24px; border-left-width:0px; border-right-width:0px;}
+table.toctable tr.toc3 td { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-weight: 600; font-size: 16px; padding: 20px; padding-left: 66px; border-left-width:0px; border-right-width:0px;}
+table.toctable tr.toc1 td.image { width: 80px}
+table.toctable tr.toc2 td.image { width: 50px}
+table.toctable tr.toc3 td.image { width: 30px}
+table.toctable td.items{ text-align:right;}
+table.toctable tr.toc1 td img { height: 70px; vertical-align: bottom;}
+table.toctable tr.toc2 td img { height: 50px; vertical-align: bottom;}
+table.toctable tr.toc3 td img { height: 40px; vertical-align: bottom;}
+tr.pagecontrol td img { height: 70px;}
+
+table.select  tr th img.sr_button_add{ height: 50px;}
+table.select  tr th img.sr_button_mark{ height: 50px;}
+table.select  tr th img.sr_button_cancel_mark{ height: 50px;}
+table.select  tr th img.sr_button_remove{ height: 50px;}
+
+table tr.select td img.sr_button_add{ height: 50px;}
+table tr.select td img.sr_button_mark{ height: 50px;}
+table tr.select td img.sr_button_cancel_mark{ height: 50px;}
+table tr.select td img.sr_button_remove{ height: 50px;}
+
+table.subreportmenu { background:#fff; position:absolute; z-index: 500; border-width:1px; border-style:solid; vertical-align:bottom; margin: 51px 0px 0px 0px;}
+table table.subreportmenu tr td {margin:10px; padding:10px; border:10px;}
+
+table.search td.searchPageTitle { font-size:46px; padding-top: 20px; padding-bottom: 30px; word-break: break-word; word-wrap: break-word; overflow-wrap: break-word;}
+table.search textarea.searchUserInputArea { text-align: center; padding: 16px; font-size: 24px; }
+table.search button.searchButton { text-align: center; padding: 16px; font-size: 24px; display: inline-block; vertical-align: top; }
+table.searchResults td { padding-right:5px; text-align:left;}
+table.search p.searchResultHeadingID { font-size:20px; color: rgb(40,20,150);}
+table.search p.searchResultHeading { font-size:20px; color: rgb(40,20,150); font-weight:bold; word-break: break-word; word-wrap: break-word; overflow-wrap: break-word;}
+table.searchResults td.searchResultHeaderRow { padding-top:20px; padding-bottom:20px; }
+table.header tr td img.sr_button_mark { height: 50px; margin: 0 5px 0 0;}
+
+table.fmt_chat_threads { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-size: 28px; border: 1px solid silver; border-collapse: collapse; background-color: white; margin-bottom:5px; margin-top:5px;} 
+table.fmt_chat_threads th { border: 1px solid silver; background-color: #b0c4de; text-align: left; vertical-align: top; padding-left: 4px; padding-right: 4px; font-size: 18px } 
+table.fmt_chat_threads tr { vertical-align: top; border: 1px solid silver;}
+table.fmt_chat_threads tr.even { background-color: #f2f2f2; border: 1px solid silver;} 
+table.fmt_chat_threads tr.odd { background-color: white; border: 1px solid silver;} 
+table.fmt_chat_threads td { border: 1px solid silver; padding-left: 4px; padding-right: 4px; word-wrap: break-word;}
+table.fmt_chat_threads td.description { border: 1px solid silver; padding-left: 4px; padding-right: 4px; text-align:left; word-break: break-word; word-wrap: break-word; overflow-wrap: break-word; }
+table.fmt_chat_threads td.items { border: 1px solid silver; padding-left: 4px; padding-right: 4px; text-align:right;}

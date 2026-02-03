@@ -1,0 +1,139 @@
+;-------------------------------------------------------------------------------
+;
+; Motorola USB MTP Driver for Windows XP (motmtpxp.inf)
+;
+; Copyright (c) 2013-2018 Motorola Mobility LLC
+;
+;-------------------------------------------------------------------------------;  
+
+[Version]
+Signature       = "$WINDOWS NT$"
+Class           = WPD
+ClassGUID       = {EEC5AD98-8080-425f-922A-DABF3DE3F69A}
+Provider        = %Motorola%
+LayoutFile      = layout.inf
+DriverVer       = 03/01/2013, 1.0.0.0
+CatalogFile     = motmtpxp.cat
+
+[Manufacturer]
+%Motorola%          = Motorola,ntx86.5.1,ntx86.6.0,ntamd64
+
+
+; Not supporting Windows 2000
+[Motorola]
+
+; XP supported (Only this shud be edited)
+[Motorola.ntx86.5.1]
+
+; q x,o,om
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E61&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E63&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E66&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E68&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E6B&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E6D&MI_00
+
+; tat
+;%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E76&MI_00 ; Duplicated in Motorola\Standard\motmtp2k_rtl_mod.inf
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E77&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E78&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E79&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E7A&MI_00
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E7B&MI_00
+
+
+; Vista and higher not needed
+[Motorola.ntx86.6.0]
+
+; test
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E63&MI_00
+
+; x64 not needed 
+[Motorola.ntamd64]
+
+; test
+%Motmtp.DeviceDesc%      = MTP, USB\VID_22B8&PID_2E63&MI_00
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+
+[MTP]
+Include = wpdmtp.inf
+Needs   = WPD.MTP
+
+[MTP.hw]
+Include = wpdmtp.inf
+Needs   = WPD.MTP.Registration
+
+[MTP.Services]
+Include = wpdmtp.inf
+Needs   = WPD.MTP.Services
+
+[MTP.CoInstallers]
+Include = wpdmtp.inf
+Needs = WPD.MTP.CoInstallers
+
+[MTP.Wdf]
+Include = wpdmtp.inf
+Needs = WPD.MTP.Wdf
+UmdfServiceOrder=WpdMtpDriver
+
+
+[Strings]
+Motorola              = "Motorola"
+Motmtp.DeviceDesc     = "Motorola MTP Device"
+Msft                 ="Microsoft" ; Moved from duplicate [Strings] section
+MfgNameVendorModels  ="(Standard MTP-Compliant Device)" ; Moved from duplicate [Strings] section
+GenericMTP.DeviceDesc="MTP Device" ; Moved from duplicate [Strings] section
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;[Strings] ; Resolve ERROR(1209): duplicate section
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; Localizable strings
+;Msft                 ="Microsoft"
+;MfgNameVendorModels  ="(Standard MTP-Compliant Device)"
+;GenericMTP.DeviceDesc="MTP Device"
+

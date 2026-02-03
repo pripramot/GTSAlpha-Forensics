@@ -1,0 +1,120 @@
+;;;
+;;; INF File for Aladdin HASP HL Function Driver
+;;;
+;;; "Copyright (c) 2009 SafeNet Inc." (c) Aladdin Knowledge Systems
+;;;
+
+[Version]
+signature="$Windows NT$"
+Provider=%Fast%
+Class=USB
+ClassGuid={36fc9e60-c465-11cf-8056-444553540000}
+DriverVer=12/01/2011,6.22
+CatalogFile=akshhl.cat
+
+[Manufacturer]
+%FastMfg%=Aladdin
+
+[Aladdin]
+%AKSCLASS\HaspHL.DeviceDesc%=akshhl, Aladdin\Vid0529&Pid0001&Hasphl ;HASP HL Protection Device
+
+;;
+;; Coinstaller section
+;;
+
+[akshhl.nt.CoInstallers]
+AddReg=akshhl.CoInstallers.reg
+CopyFiles=AladdinCoInstCopyFiles
+
+[akshhl.CoInstallers.reg]
+HKR,,CoInstallers32,0x00010000,"akshhl29.dll,AksHhlCoInstallEntryPoint"
+
+[AladdinCoInstCopyFiles]
+akshhl29.dll
+
+;;
+;; AKS HASP HL Device NT Install Section
+;;
+[akshhl.NT]
+CopyFiles=akshhl.NT.Copy
+CopyFiles=aksllm.NT.Copy
+
+[akshhl.NT.Copy]
+akshhl.sys
+aksfridge.sys
+
+[aksllm.NT.Copy]
+aksllmtp.exe,hasplms.exe,
+
+[akshhl.NT.HW]
+AddReg=akshhl.NT.HW.AddReg
+
+[akshhl.NT.HW.AddReg]
+HKR,,"BeepCount",0x00010003,4
+HKLM,"SOFTWARE\Aladdin Knowledge Systems\HASP\Driver\Installer","DrvPkgVersion",0x0,"6.22"
+
+[akshhl.NT.Services]
+AddService=akshhl,0x02,akshhl.addservices
+AddService=aksfridge,,AksFridge.Service
+
+[akshhl.addservices]
+DisplayName     = %svcdesc%
+ServiceBinary   = %12%\akshhl.sys
+ServiceType     = 1                             ;SERVICE_KERNEL_DRIVER
+StartType       = 3                             ;SERVICE_DEMAND_START
+ErrorControl    = 1                             ;SERVICE_ERROR_NORMAL
+LoadOrderGroup  = ExtendedBase
+
+[AksFridge.Service]
+DisplayName     = %AksFridgeServiceDisp%
+Description     = %AksFridgeServiceDesc%
+ServiceBinary   = %12%\aksfridge.sys            ;%windir%\system32\drivers\aksfridge.sys
+ServiceType     = 1                             ;SERVICE_KERNEL_DRIVER
+StartType       = 2                             ;SERVICE_AUTO_START
+ErrorControl    = 1                             ;SERVICE_ERROR_NORMAL
+
+;;
+;; AKSHASP Device Windows 9x Install Section
+;;
+
+[akshhl]
+CopyFiles=akshhl.Copy
+AddReg=akshhl.AddReg
+
+[akshhl.Copy]
+akshhl9x.sys
+
+[akshhl.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,akshhl9x.sys
+
+;;
+;; Source Files
+;;
+[sourcedisksnames]
+1=%INSTDISK%,,,""
+
+[SourceDisksFiles]
+akshhl.sys=1
+akshhl29.dll=1
+hasplms.exe=1
+aksfridge.sys=1
+
+[DestinationDirs]
+akshhl.NT.Copy = 10,system32\drivers
+aksllm.NT.Copy = 10,system32
+akshhl.Copy = 10,system32\drivers
+AladdinCoInstCopyFiles = 11
+
+[Strings]
+Fast                        = "SafeNet Inc."
+FastMfg                     = "SafeNet Inc."
+svcdesc                     = "SafeNet Inc. Sentinel HL Key"
+AKSCLASS\HaspHL.DeviceDesc  = "SafeNet Inc. Sentinel HL Key"
+ClassName                   = "SafeNet Inc. Software Protection Devices"
+INSTDISK                    = "SafeNet Inc. Install Disk"
+
+Aks                         = "SafeNet Inc."
+AksFridgeServiceDesc        = "SafeNet Inc. Sentinel Ancillary Function Driver"
+AksFridgeServiceDisp        = "Sentinel Fridge"
+AksFridgeServiceName        = "aksfridge"

@@ -1,0 +1,68 @@
+;************************************************************************
+;FILENAME: se091010mtp.inf
+;Copyright Sony Ericsson Mobile Communications AB/LTD/INC 2009. All rights reserved.
+;
+;The program(s) may be used and/or copied only with the written permission
+;from Sony Ericsson Mobile Communications AB or in accordance with the terms
+;and conditions stipulated in the agreement/contract under which the
+;program(s) have been supplied.
+;************************************************************************ 
+
+[Version]
+Signature = "$WINDOWS NT$"
+Class = WPD
+ClassGuid = {EEC5AD98-8080-425f-922A-DABF3DE3F69A}
+Provider = %SEMC%
+DriverVer = 10/28/2009,1.0.5.1  ; Date format: MM/DD/YYYY
+CatalogFile = se091010mtp.cat
+
+[Manufacturer]
+%SEMC% = Models, NT.5.1, NT.5.2
+
+[Models.NT.5.1]
+%INTERFACE% = Install, %MODEL_HARDWARE_ID%
+%INTERFACE% = Install, %MODEL2_HARDWARE_ID%
+%INTERFACE% = Install, %MODEL3_HARDWARE_ID%
+
+[Models.NT.5.2]
+;empty
+
+[Install.NT]
+CopyINF = se091010mdm.inf, se091010mgmt.inf
+Include = wpdmtp.inf
+Needs = WPD.MTP
+
+[Install.NT.HW]
+Include = wpdmtp.inf
+Needs   = WPD.MTP.Registration
+
+[Install.NT.Services]
+Include = wpdmtp.inf
+Needs = WPD.MTP.Services
+
+[Install.NT.CoInstallers]
+CopyFiles = FakeCopyFiles
+Include = wpdmtp.inf
+Needs = WPD.MTP.CoInstallers
+Needs = Install.NT.Wdf
+
+[Install.NT.Wdf]
+Include = wpdmtp.inf
+Needs = WPD.MTP.Wdf
+UmdfServiceOrder=WpdMtpDriver
+
+[FakeCopyFiles]
+; none
+
+[Strings]
+SEMC = "Sony Ericsson Mobile Communications AB"
+INTERFACE = "Sony Ericsson Device 091010 USB MTP"
+MODEL_HARDWARE_ID = "USB\VID_0FCE&PID_D10E&MI_00" ; MTP
+MODEL2_HARDWARE_ID = "USB\VID_0FCE&PID_D133&MI_00" ; MTP
+MODEL3_HARDWARE_ID = "USB\VID_0FCE&PID_D13A&MI_00" ; MTP
+
+[SourceDisksNames]
+; none
+
+[SourceDisksFiles]
+; none

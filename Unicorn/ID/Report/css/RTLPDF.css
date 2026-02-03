@@ -1,0 +1,41 @@
+/* This file is only used for PDF exports */
+img.visible {display:block; margin: auto; min-width:32px; width:30%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+table.fmt_chat_threads { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-size: 12px; border: 1px solid silver; border-collapse: collapse; background-color: white; margin-bottom:5px; margin-top:5px; width: 100%;}
+table.fmt_chat_threads th { background-color: #92b3d3; vertical-align: top; padding-left: 4px; padding-right: 4px; text-align: left} 
+table.fmt_chat_threads tr.even { background-color: #e3e3e3; } 
+table.fmt_chat_threads tr.odd { background-color: white; } 
+table.fmt_chat_threads td { padding-left: 4px; padding-right: 4px; }
+table.fmt_chat_threads td.description {  padding-left: 4px; padding-right: 4px; text-align:left;}
+table.fmt_chat_threads td.items { padding-left: 4px; padding-right: 4px; text-align:right;}

@@ -1,0 +1,108 @@
+;*-----------------------------------------------------*
+;| Installation inf for NOKIA                          |
+;|-----------------------------------------------------|
+;| Copyright (c) 1998 - 2008 by Hajesoft Corporation.  |
+;|                                                     |
+;| This inf file is lisenced. Any Modification is not  |
+;| permitted unless authorized by Hajesoft corporation.|
+;| For more information contact to www.hajesoft.com    |
+;*-----------------------------------------------------*
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = USB
+Provider    = %Provider%
+ClassGuid   = {36FC9E60-C465-11CF-8056-444553540000}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer   = 08/20/2008, 1.0.1.128
+DriverVer   = 04/21/2009, 1.0.1.128
+CatalogFile = nok_bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1 = %DiskString%, "nok_bus.sys",,
+
+[SourceDisksFiles]
+nok_bus.sys = 1
+nok_bus_64.sys = 1
+
+[DestinationDirs]
+NOKIA.Files.Ext.NTx86 = 12
+NOKIA.Files.Ext.NTamd64 = 12
+
+[Manufacturer]
+%Provider% = NOKIA,NTx86,NTamd64
+
+[NOKIA.NTx86]
+%Nokia3606.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_00B8
+%Nokia1606.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_00B9    
+%Nokia2228.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_00BA
+%Nokia3608.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_0161    
+%Nokia1006.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_01A7    
+%Nokia3706.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_02D8
+%Nokia6316slide.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_0303       
+%Nokia6316s.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_0304   
+
+[NOKIA.NTamd64]
+%Nokia3606.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_00B8
+%Nokia1606.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_00B9    
+%Nokia2228.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_00BA
+%Nokia3608.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_0161    
+%Nokia1006.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_01A7
+%Nokia3706.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_02D8
+%Nokia6316slide.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_0303       
+%Nokia6316s.DeviceDesc% = NOKIA.Install, USB\Vid_0421&Pid_0304
+
+[NOKIA.Install.NTx86]
+CopyFiles = NOKIA.Files.Ext.NTx86
+AddReg    = NOKIA.AddReg
+
+[NOKIA.Install.NTamd64]
+CopyFiles = NOKIA.Files.Ext.NTamd64
+AddReg    = NOKIA.AddReg
+
+[NOKIA.Install.NTx86.Services]
+Addservice = nokiabus, 0x00000002, NOKIA.Install.AddService.NTx86
+
+[NOKIA.Install.NTamd64.Services]
+Addservice = nokiabus, 0x00000002, NOKIA.Install.AddService.NTamd64
+
+[NOKIA.Install.AddService.NTx86]
+DisplayName    = %Nokia.Bus.ServiceDesc%
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %12%\nok_bus.sys
+LoadOrderGroup = Base
+
+[NOKIA.Install.AddService.NTamd64]
+DisplayName    = %Nokia.Bus.ServiceDesc%
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %12%\nok_bus_64.sys
+LoadOrderGroup = Base
+
+[NOKIA.AddReg]
+HKR,,LocationInformationOverride,,"NOKIA Mobile Technologies"
+
+[NOKIA.Files.Ext.NTx86]
+nok_bus.sys
+
+[NOKIA.Files.Ext.NTamd64]
+nok_bus_64.sys
+
+[Strings]
+Provider              = "Nokia"
+DiskString            = "Nokia Mobile USB Device Install Disk"
+Nokia3606.DeviceDesc  = "Nokia 3606 USB Phone Device"
+Nokia1606.DeviceDesc  = "Nokia 1606 USB Phone Device"
+Nokia2228.DeviceDesc  = "Nokia 2228 USB Phone Device"
+Nokia3608.DeviceDesc  = "Nokia 3608 USB Phone Device"
+Nokia1006.DeviceDesc  = "Nokia 1006 USB Phone Device"
+Nokia3706.DeviceDesc  = "Nokia 3706 USB Phone Device"
+Nokia6316slide.DeviceDesc  = "Nokia 6316 slide USB Phone Device"
+Nokia6316s.DeviceDesc  = "Nokia 6316s USB Phone Device"
+Nokia.Bus.ServiceDesc = "Nokia USB Bus Services (Vacom)"

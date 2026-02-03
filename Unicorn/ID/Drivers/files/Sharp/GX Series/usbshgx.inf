@@ -1,0 +1,62 @@
+; USBSHGX.Inf - install information file for Windows 2000 / XP
+; Copyright (C) 2004 SHARP Corporation.
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider  = %SHARP%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer = 02/02/2004, 1.0.0.32
+DriverVer = 04/21/2009, 1.0.0.32
+CatalogFile = usbshgx.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%SHARP% = SHARP
+
+[SHARP]
+%DEVICEDESC_USBCOM% = USBCOM, USB\VID_04DD&PID_903A
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DISKDESC_USBCOM%,"usbshgx.sys",,
+
+[SourceDisksFiles]
+usbshgx.sys = 1
+
+[USBCOM.NT]
+CopyFiles = USBCOM_COPYFILES
+AddReg    = USBCOM.NT.AddReg
+
+[USBCOM.NT.AddReg]
+HKR,, EnumPropPages32, , "MsPorts.dll, SerialPortPropPageProvider"
+HKR,, PortSubClass, 1, 01
+
+[USBCOM.NT.Services]
+Addservice = USBSHGX, %SPSVCINST_ASSOCSERVICE%, USBSHGX.AddService
+
+[USBSHGX.AddService]
+DisplayName = %DEVICEDESC_USBCOM%
+ServiceType = %SERVICE_KERNEL_DRIVER%
+StartType = %SERVICE_DEMAND_START%
+ErrorControl = %SERVICE_ERROR_NORMAL%
+ServiceBinary = %12%\usbshgx.sys
+LoadOrderGroup = Base
+
+[USBCOM_COPYFILES]
+usbshgx.sys
+
+[Strings]
+SHARP = "SHARP Corporation."
+DEVICEDESC_USBCOM = "SHARP GSM GPRS USB Driver 1.0.0"
+DISKDESC_USBCOM = "SHARP GSM GPRS USB Driver 1.0.0 Installation Disk"
+
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER = 1
+SERVICE_DEMAND_START = 3
+SERVICE_ERROR_NORMAL = 1

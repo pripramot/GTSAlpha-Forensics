@@ -1,0 +1,229 @@
+; Windows Vista Virtual Serial Port Setup File
+; Copyright (c) 2007 Acer Incorporated
+; Manufacturer: Acer Incorporated
+;
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %ACER%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer=05/25/2011,2.0.6.6
+Catalogfile= qcusbsera.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%ACER% = QcomSerialPort, NTia64, NTamd64
+
+[SourceDisksNames]
+  1000 = %ACERSrcDisk%,"",,
+
+[SourceDisksFiles]
+  qcusbser.sys = 1000
+
+[QcomSerialPort]
+;%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3202&MI_00	;A1 - 				ACER HS-USB Android DIAG ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3202&MI_03	;A1 - 				ACER Android Communications Port ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32030%  = QportInstall00, USB\VID_0502&PID_3203&MI_00	;A1 - 				ACER HS-USB Android DIAG ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32032%  = QportInstall00, USB\VID_0502&PID_3203&MI_02	;A1 - 				ACER Android Communications Port ; Duplicated in Acer\qcsera.inf
+;%ACERDevice90020%  = QportInstall00, USB\VID_0502&PID_9002			;A1/F1/C1/E1/L1 - 	ACER HS-USB Diagnostics ; Duplicated in Acer\qcsera.inf
+%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3222&MI_02	;A3 - 				ACER HS-USB Android DIAG
+%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3222&MI_05	;A3 - 				ACER Android Communications Port
+%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3223&MI_02	;A3 - 				ACER HS-USB Android DIAG
+%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3223&MI_04	;A3 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3300			;K4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3302&MI_00	;K4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3302&MI_03	;K4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3303&MI_00	;K4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3303&MI_02	;K4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3305			;C4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3307&MI_00	;C4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3307&MI_03	;C4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3308&MI_00	;C4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3308&MI_02	;C4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_330A			;K5 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_330C&MI_00	;K5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_330C&MI_03	;K5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_330D&MI_00	;K5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_330D&MI_02	;K5 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3315			;A4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3317&MI_00	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3317&MI_03	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3318&MI_00	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3318&MI_02	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3319&MI_02	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3319&MI_05	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331A&MI_02	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331A&MI_04	;A4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3310			;Monet - 			ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3312&MI_00	;Monet - 			ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3312&MI_03	;Monet - 			ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3313&MI_00	;Monet - 			ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3313&MI_02	;Monet - 			ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_331B			;A5 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331D&MI_00	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331D&MI_03	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331E&MI_00	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331E&MI_02	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331F&MI_02	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331F&MI_05	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3320&MI_02	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3320&MI_04	;A5 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3350			;C6 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3352&MI_00	;C6 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3352&MI_03	;C6 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3353&MI_00	;C6 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3353&MI_02	;C6 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3354&MI_02	;C6 - 				ACER HS-USB Android DIAG
+
+[QcomSerialPort.NTia64]
+;%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3202&MI_00	;A1 - 				ACER HS-USB Android DIAG ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3202&MI_03	;A1 - 				ACER Android Communications Port ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32030%  = QportInstall00, USB\VID_0502&PID_3203&MI_00	;A1 - 				ACER HS-USB Android DIAG ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32032%  = QportInstall00, USB\VID_0502&PID_3203&MI_02	;A1 - 				ACER Android Communications Port ; Duplicated in Acer\qcsera.inf
+;%ACERDevice90020%  = QportInstall00, USB\VID_0502&PID_9002			;A1/F1/C1/E1/L1 - 	ACER HS-USB Diagnostics ; Duplicated in Acer\qcsera.inf
+%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3222&MI_02	;A3 - 				ACER HS-USB Android DIAG
+%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3222&MI_05	;A3 - 				ACER Android Communications Port
+%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3223&MI_02	;A3 - 				ACER HS-USB Android DIAG
+%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3223&MI_04	;A3 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3300			;K4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3302&MI_00	;K4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3302&MI_03	;K4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3303&MI_00	;K4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3303&MI_02	;K4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3305			;C4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3307&MI_00	;C4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3307&MI_03	;C4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3308&MI_00	;C4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3308&MI_02	;C4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_330A			;K5 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_330C&MI_00	;K5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_330C&MI_03	;K5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_330D&MI_00	;K5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_330D&MI_02	;K5 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3315			;A4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3317&MI_00	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3317&MI_03	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3318&MI_00	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3318&MI_02	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3319&MI_02	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3319&MI_05	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331A&MI_02	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331A&MI_04	;A4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3310			;Monet - 			ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3312&MI_00	;Monet - 			ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3312&MI_03	;Monet - 			ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3313&MI_00	;Monet - 			ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3313&MI_02	;Monet - 			ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_331B			;A5 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331D&MI_00	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331D&MI_03	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331E&MI_00	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331E&MI_02	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331F&MI_02	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331F&MI_05	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3320&MI_02	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3320&MI_04	;A5 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3350			;C6 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3352&MI_00	;C6 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3352&MI_03	;C6 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3353&MI_00	;C6 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3353&MI_02	;C6 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3354&MI_02	;C6 - 				ACER HS-USB Android DIAG
+
+[QcomSerialPort.NTamd64]
+;%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3202&MI_00	;A1 - 				ACER HS-USB Android DIAG ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3202&MI_03	;A1 - 				ACER Android Communications Port ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32030%  = QportInstall00, USB\VID_0502&PID_3203&MI_00	;A1 - 				ACER HS-USB Android DIAG ; Duplicated in Acer\qcsera.inf
+;%ACERDevice32032%  = QportInstall00, USB\VID_0502&PID_3203&MI_02	;A1 - 				ACER Android Communications Port ; Duplicated in Acer\qcsera.inf
+;%ACERDevice90020%  = QportInstall00, USB\VID_0502&PID_9002			;A1/F1/C1/E1/L1 - 	ACER HS-USB Diagnostics ; Duplicated in Acer\qcsera.inf
+%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3222&MI_02	;A3 - 				ACER HS-USB Android DIAG
+%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3222&MI_05	;A3 - 				ACER Android Communications Port
+%ACERDevice32020%  = QportInstall00, USB\VID_0502&PID_3223&MI_02	;A3 - 				ACER HS-USB Android DIAG
+%ACERDevice32023%  = QportInstall00, USB\VID_0502&PID_3223&MI_04	;A3 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3300			;K4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3302&MI_00	;K4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3302&MI_03	;K4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3303&MI_00	;K4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3303&MI_02	;K4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3305			;C4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3307&MI_00	;C4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3307&MI_03	;C4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3308&MI_00	;C4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3308&MI_02	;C4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_330A			;K5 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_330C&MI_00	;K5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_330C&MI_03	;K5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_330D&MI_00	;K5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_330D&MI_02	;K5 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3315			;A4 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3317&MI_00	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3317&MI_03	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3318&MI_00	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3318&MI_02	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3319&MI_02	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3319&MI_05	;A4 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331A&MI_02	;A4 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331A&MI_04	;A4 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3310			;Monet - 			ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3312&MI_00	;Monet - 			ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3312&MI_03	;Monet - 			ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3313&MI_00	;Monet - 			ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3313&MI_02	;Monet - 			ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_331B			;A5 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331D&MI_00	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331D&MI_03	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331E&MI_00	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331E&MI_02	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_331F&MI_02	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_331F&MI_05	;A5 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3320&MI_02	;A5 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3320&MI_04	;A5 - 				ACER Android Communications Port
+%ACERHIGHSPDDIAG%  = QportInstall00, USB\VID_0502&PID_3350			;C6 - 				ACER HS-USB Diagnostics
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3352&MI_00	;C6 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3352&MI_03	;C6 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3353&MI_00	;C6 - 				ACER HS-USB Android DIAG
+%ACERANDROIDCOMM%  = QportInstall00, USB\VID_0502&PID_3353&MI_02	;C6 - 				ACER Android Communications Port
+%ACERANDROIDDIAG%  = QportInstall00, USB\VID_0502&PID_3354&MI_02	;C6 - 				ACER HS-USB Android DIAG
+
+[QportInstall00.NT]
+CopyFiles=QCUsbDriverFiles
+AddReg = All00, AddReg
+
+[QCUsbDriverFiles]
+qcusbser.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[QportInstall00.NT.Services]
+AddService=qcusbser,  0x00000002, QC_USBSerialService
+
+[QC_USBSerialService]
+DisplayName   = %ACERUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qcusbser.sys
+
+[All00]
+HKR,,NTMPDriver,,qcusbser.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+ACERUSBSER = "ACER Android USB Device for Legacy Serial Communication"
+ACER   = "ACER Incorporated"
+ACERSrcDisk = "Acer USB Driver Disk"
+ACERDevice32020 = "ACER HS-USB Android DIAG"
+ACERDevice32023 = "ACER Android Communications Port"
+ACERDevice32030 = "ACER HS-USB Android DIAG"
+ACERDevice32032 = "ACER Android Communications Port"
+ACERDevice90020 = "ACER HS-USB Diagnostics"
+ACERANDROIDDIAG = "ACER HS-USB Android DIAG"
+ACERANDROIDCOMM = "ACER Android Communications Port"
+ACERHIGHSPDDIAG = "ACER HS-USB Diagnostics"

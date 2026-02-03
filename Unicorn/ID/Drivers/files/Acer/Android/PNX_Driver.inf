@@ -1,0 +1,168 @@
+;
+; FIH Device Driver
+;
+; This INF works for Windows XP SP2, Windows XP x64,
+; and Windows Vista x86 and x64.
+; This INF will work with Windows XP, and Windows XP SP1
+; after applying specific hotfixes.
+;
+
+[Version]
+Signature	= "$Chicago$"
+provider	= %Provider%
+DriverVer	= 01/13/2010,1.0.0.0
+CatalogFile	= PNX_Driver.cat
+Class		= LibUsbDevices
+ClassGUID	= {EB781AAF-9C70-4523-A5DF-642A87ECA567}
+
+[ClassInstall]
+AddReg = libusb_class_install_add_reg
+
+[ClassInstall32]
+AddReg = libusb_class_install_add_reg
+
+[libusb_class_install_add_reg]
+HKR,,,,"LibUSB-Win32 Devices"
+HKR,,Icon,,"-20"
+
+[Manufacturer]
+%Provider% = Devices,NT,NTAMD64
+
+;--------------------------------------------------------------------------
+; Files
+;--------------------------------------------------------------------------
+
+[SourceDisksNames]
+1 = "Libusb-Win32 Driver Installation Disk",,
+
+[SourceDisksFiles]
+libusb0.sys = 1,,
+libusb0.dll = 1,,
+libusb0_x64.sys = 1,,
+libusb0_x64.dll = 1,,
+
+[DestinationDirs]
+libusb_files_sys = 10,system32\drivers\AU
+libusb_files_sys_x64 = 10,system32\drivers\AU
+libusb_files_dll = 10,system32\AU
+libusb_files_dll_wow64 = 10,syswow64\AU
+libusb_files_dll_x64 = 10,system32\AU
+
+[libusb_files_sys]
+libusb0.sys
+
+[libusb_files_sys_x64]
+libusb0.sys
+libusb0_x64.sys
+
+[libusb_files_dll]
+libusb0.dll
+
+[libusb_files_dll_wow64]
+libusb0.dll
+
+[libusb_files_dll_x64]
+libusb0.dll
+libusb0_x64.dll
+
+;--------------------------------------------------------------------------
+; Device driver
+;--------------------------------------------------------------------------
+
+[LIBUSB_DEV]
+CopyFiles = libusb_files_sys, libusb_files_dll
+AddReg    = libusb_add_reg
+
+[LIBUSB_DEV.NT]
+CopyFiles = libusb_files_sys, libusb_files_dll
+
+[LIBUSB_DEV.NTAMD64]
+CopyFiles = libusb_files_sys_x64, libusb_files_dll_wow64, libusb_files_dll_x64
+
+[LIBUSB_DEV.HW]
+DelReg = libusb_del_reg_hw
+AddReg = libusb_add_reg_hw
+
+[LIBUSB_DEV.NT.HW]
+DelReg = libusb_del_reg_hw
+AddReg = libusb_add_reg_hw
+
+[LIBUSB_DEV.NTAMD64.HW]
+DelReg = libusb_del_reg_hw
+AddReg = libusb_add_reg_hw
+
+[LIBUSB_DEV.NT.Services]
+AddService = libusb0, 0x00000002, libusb_add_service
+
+[LIBUSB_DEV.NTAMD64.Services]
+AddService = libusb0_x64, 0x00000002, libusb_add_service_x64
+
+[libusb_add_reg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,libusb0.sys
+
+
+; Older versions of this .inf file installed filter drivers. They are not
+; needed any more and must be removed
+[libusb_del_reg_hw]
+HKR,,LowerFilters
+HKR,,UpperFilters
+
+; Device properties
+[libusb_add_reg_hw]
+HKR,,SurpriseRemovalOK, 0x00010001, 1
+
+;--------------------------------------------------------------------------
+; Services
+;--------------------------------------------------------------------------
+
+[libusb_add_service]
+DisplayName    = "PNX Driver"
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 0
+ServiceBinary  = %12%\AU\libusb0.sys
+
+[libusb_add_service_x64]
+DisplayName    = "PNX Driver x64"
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 0
+ServiceBinary  = %12%\AU\libusb0_x64.sys
+
+;--------------------------------------------------------------------------
+; Devices
+;--------------------------------------------------------------------------
+
+[Devices]
+;"PNX 67xx DFU Driver"		= LIBUSB_DEV, USB\VID_04CC&PID_2B0B ; Duplicated in 1\Samsung\20_NXP_Driver\ssdudfu.inf
+"PNX 522x DFU Driver"		= LIBUSB_DEV, USB\VID_0471&PID_1253
+"Acer PNX 67xx DFU Driver"	= LIBUSB_DEV, USB\VID_0502&PID_3213
+
+"PNX Bulk Device"		= LIBUSB_DEV, USB\VID_0525&PID_A4A6
+"Acer PNX Bulk Device"		= LIBUSB_DEV, USB\VID_0502&PID_3214
+
+
+[Devices.NT]
+;"PNX 67xx DFU Driver"		= LIBUSB_DEV, USB\VID_04CC&PID_2B0B ; Duplicated in 1\Samsung\20_NXP_Driver\ssdudfu.inf
+"PNX 522x DFU Driver"		= LIBUSB_DEV, USB\VID_0471&PID_1253
+"Acer PNX 67xx DFU Driver"	= LIBUSB_DEV, USB\VID_0502&PID_3213
+
+"PNX Bulk Device"		= LIBUSB_DEV, USB\VID_0525&PID_A4A6
+"Acer PNX Bulk Device"		= LIBUSB_DEV, USB\VID_0502&PID_3214
+
+[Devices.NTAMD64]
+;"PNX 67xx DFU Driver"		= LIBUSB_DEV, USB\VID_04CC&PID_2B0B ; Duplicated in 1\Samsung\20_NXP_Driver\ssdudfu.inf
+"PNX 522x DFU Driver"		= LIBUSB_DEV, USB\VID_0471&PID_1253
+"Acer PNX 67xx DFU Driver"	= LIBUSB_DEV, USB\VID_0502&PID_3213
+
+"PNX Bulk Device"		= LIBUSB_DEV, USB\VID_0525&PID_A4A6
+"Acer PNX Bulk Device"		= LIBUSB_DEV, USB\VID_0502&PID_3214
+
+
+;--------------------------------------------------------------------------
+; Strings
+;--------------------------------------------------------------------------
+
+[Strings]
+Provider = "Acer Incorporated."

@@ -1,0 +1,311 @@
+;-------------------------------------------------------------------------------
+; Windows Wireless Network Setup File
+; Copyright (c) 2010 HTC Corp.
+; Manufacturer: HTC Corp.
+;
+; This INF file installs a wireless network device on Windows system.
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %HTC%
+DriverVer   = 08/10/2011,100.0505.0.2
+Catalogfile = htcusbnet.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+  1000 = %HTCSrcDisk%,"",,
+1 = %DiskId1%,,,"" ; Moved from duplicate [SourceDisksNames] section
+
+[SourceDisksFiles]
+  htcusbnet.sys = 1000
+htcusbnet.sys  = 1,, ; Moved from duplicate [SourceDisksFiles] section
+
+[Manufacturer]
+%HTC% = Models, NTia64, NTamd64
+
+[Models]
+
+%htcwwan.DeviceDesc00%    = htcwwan.ndi, USB\VID_0BB4&PID_0FCF&MI_06
+%htcwwan.DeviceDesc00%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD0&MI_05
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD2&MI_05
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD3&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD4&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD5&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD6&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD7&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD8&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD9&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FDA&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FDB&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FED
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FEF&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FF3&MI_02
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E07&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E08&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E0E&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E0F&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E12&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E13&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E19&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1A&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1D&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1E&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E24&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E25&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E28&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E29&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E2F&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E30&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E33&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E34&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3A&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3B&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3E&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3F&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E45&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E46&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E49&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E4A&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E50&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E51&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E54&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E55&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5B&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5C&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5F&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E60&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E66&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E67&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E6A&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E6B&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E71&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E72&MI_04
+
+[Models.NTia64]
+
+%htcwwan.DeviceDesc00%    = htcwwan.ndi, USB\VID_0BB4&PID_0FCF&MI_06
+%htcwwan.DeviceDesc00%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD0&MI_05
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD2&MI_05
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD3&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD4&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD5&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD6&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD7&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD8&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD9&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FDA&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FDB&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FED
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FEF&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FF3&MI_02
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E07&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E08&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E0E&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E0F&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E12&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E13&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E19&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1A&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1D&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1E&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E24&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E25&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E28&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E29&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E2F&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E30&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E33&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E34&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3A&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3B&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3E&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3F&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E45&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E46&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E49&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E4A&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E50&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E51&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E54&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E55&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5B&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5C&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5F&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E60&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E66&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E67&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E6A&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E6B&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E71&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E72&MI_04
+
+[Models.NTamd64]
+
+%htcwwan.DeviceDesc00%    = htcwwan.ndi, USB\VID_0BB4&PID_0FCF&MI_06
+%htcwwan.DeviceDesc00%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD0&MI_05
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD2&MI_05
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD3&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD4&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD5&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD6&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD7&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD8&MI_04
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FD9&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FDA&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FDB&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FED
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FEF&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0FF3&MI_02
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E07&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E08&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E0E&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E0F&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E12&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E13&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E19&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1A&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1D&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E1E&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E24&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E25&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E28&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E29&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E2F&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E30&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E33&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E34&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3A&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3B&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3E&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E3F&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E45&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E46&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E49&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E4A&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E50&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E51&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E54&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E55&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5B&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5C&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E5F&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E60&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E66&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E67&MI_04
+
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E6A&MI_02
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E6B&MI_01
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E71&MI_03
+%htcwwan.DeviceDesc01%    = htcwwan.ndi, USB\VID_0BB4&PID_0E72&MI_04
+
+;-------------------------------------------------------------------------------
+; Virtual Ethernet Adapter
+;
+[htcwwan.ndi]
+Characteristics = 0x4 ; NCF_PHYSICAL
+BusType         = 15  ; PNPBus
+AddReg          = htcwwan.Reg
+CopyFiles       = htcwwan.CopyFiles
+
+[htcwwan.ndi.Services]
+AddService      = htcusbnet, 2, htcwwan.Service, htcwwan.EventLog
+
+;-----------------------------------------------------------------------------
+; Virtual Miniport Common
+;
+[htcwwan.Reg]
+HKR,    ,                         BusNumber,           0, "0"
+HKR, Ndi,                         Service,             0, "htcusbnet"
+HKR, Ndi\Interfaces,              UpperRange,          0, "ndis5"
+HKR, Ndi\Interfaces,              LowerRange,          0, "ethernet"
+; HKR, Ndi\params\VlanID,     ParamDesc,       0, %VlanID%
+; HKR, Ndi\params\VlanID,     default,         0, "777"
+; HKR, Ndi\params\VlanID,     type,            0, "long"
+; HKR, Ndi\params\VlanID,     min,             0, "0"
+; HKR, Ndi\params\VlanID,     max,             0, "4095"
+; HKR, Ndi\params\VlanID,     step,            0, "1"
+; HKR, Ndi\params\VlanID,     base,            0, "10"
+HKR,, QCDevDisableQoS, 0x00010001, 0x00000003
+
+;-----------------------------------------------------------------------------
+; Driver and Service Section
+;
+[htcwwan.CopyFiles]
+htcusbnet.sys,,,2
+
+[htcwwan.Service]
+DisplayName     = %htcwwan.Service.DispName%
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\htcusbnet.sys
+LoadOrderGroup  = NDIS
+AddReg          = TextModeFlags.Reg
+
+[htcwwan.EventLog]
+AddReg = htcwwan.AddEventLog.Reg
+
+[htcwwan.AddEventLog.Reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[TextModeFlags.Reg]
+HKR, , TextModeFlags,    0x00010001, 0x0001
+
+;[SourceDisksNames] ; Resolve ERROR(1209): duplicate section
+;1 = %DiskId1%,,,""
+
+;[SourceDisksFiles] ; Resolve ERROR(1209): duplicate section
+;htcusbnet.sys  = 1,,
+
+;-----------------------------------------------------------------------------
+; DestinationDirs
+;
+[DestinationDirs]
+htcwwan.CopyFiles = 12
+
+;-----------------------------------------------------------------------------
+; Localizable Strings
+;
+[Strings]
+HTCSrcDisk               = "HTC USB Driver Disk"
+HTC                      = "HTC Corporation"
+htcwwan.DeviceDesc00     = "HTC Ethernet Adapter"
+htcwwan.DeviceDesc01     = "HTC Ethernet Adapter - 9K"
+
+
+htcwwan.Service.DispName = "HTC USB-NDIS miniport"
+DiskId1                  = "HTC USB-NDIS Miniport Device Installation Disk #1"

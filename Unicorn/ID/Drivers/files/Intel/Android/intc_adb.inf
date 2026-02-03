@@ -1,0 +1,250 @@
+;*********************************************************************************************
+; Windows USB Android Debug Bridge (ADB) Setup File for Intel Android Smartphones
+;
+; Copyright (c) 2015 Intel Corporation
+;
+; For use only on Windows operating systems.
+;*********************************************************************************************
+[Version]
+Signature           = "$Windows NT$"
+Class               = AndroidUsbDeviceClass
+ClassGuid           = {3F966BD9-FA04-4ec5-991C-D326973B5128}
+Provider            = %ProviderName%
+DriverVer			= 04/15/2015,1.9.0.0
+CatalogFile.NTx86  	= intc_adbx86.cat
+CatalogFile.NTAMD64 = intc_adbamd64.cat
+
+;
+; This section seems to be required for WinUsb driver installation.
+; If this section is removed the installer will report an error
+; "Required section not found in INF file".
+;
+[ClassInstall32]
+Addreg = AndroidWinUsbClassReg
+
+[AndroidWinUsbClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-1
+
+[Manufacturer]
+%ProviderName% = Generic, NTx86, NTamd64
+
+[Generic.NTx86]
+;Intel SoFIA Android
+%CompositeAdbInterface%		= USB_Install, USB\imc1&ff_42_01
+
+;DELL FASTBOOT
+%SingleAdbInterface%     	= USB_Install, USB\VID_413C&PID_09EF		; ADB
+
+;DELL BB
+%SingleAdbInterface%     	= USB_Install, USB\VID_413C&PID_B149		; ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B14B&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B14D&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B14F&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B150&MI_04	; ADB + RNDIS + ACM
+
+; DELL EP
+%SingleAdbInterface%     	= USB_Install, USB\VID_413C&PID_B151		; ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B153&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B155&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B157&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B158&MI_04	; ADB + RNDIS + ACM
+
+; Google Android
+;%AndroidAdbInterface%     	= USB_Install, USB\VID_18D1&PID_4EE7		; ADB only (Google Android VID/PID) ; Duplicated in Android\android_winusb.inf
+;%BootLoaderInterface%     	= USB_Install, USB\VID_18D1&PID_4EE0		; Bootloader adb/fastboot (Google Android VID/PID) ; Duplicated in 1\Android\Google\android_winusb.inf
+
+; Intel Cherrytrail Android
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_0A8B		; ADB only
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A8D&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A8F&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A91&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A92&MI_03	; ADB + RNDIS + ACM
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A93&MI_03	; ADB + RNDIS + ACM + ACM
+
+; Intel Baytrail Android
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_0A65		; ADB IAFW Fastboot mode
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_0A5D		; ADB only
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A5F&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A61&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A63&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A64&MI_04	; ADB + RNDIS + ACM
+
+; Intel Merrifield Android
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A1F&MI_00	; ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A21&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A23&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A25&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A26&MI_04	; ADB + RNDIS + ACM
+
+; Intel Clovertrail VictoriaBay Android
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A49&MI_03 ; MTP+ACM+ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A4b&MI_03 ; PTP+ACM+ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A4d&MI_04 ; RNDIS+ACM+ADB
+
+; Intel Clovertrail Android
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_0A14		; ADB only
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A16&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A18&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A1A&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A1B&MI_04	; ADB + RNDIS + ACM
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A31&MI_06	; ADB + RNDIS + ACM + ACM
+
+; Intel Medfield Android ICS
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_09EF		; ADB only
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09FC&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09FE&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F4&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F8&MI_04	; ADB + RNDIS + ACM
+
+; Intel Medfield Android GingerBread
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_09EF
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F2&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F6&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F4&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F6&MI_02
+
+; Intel Android Bootloader
+%SingleBootLoaderInterface% = USB_Install, USB\VID_8087&PID_0FFF
+
+[Generic.NTamd64]
+;Intel SoFIA Android
+%CompositeAdbInterface%		= USB_Install, USB\imc1&ff_42_01
+
+;DELL FASTBOOT
+%SingleAdbInterface%     	= USB_Install, USB\VID_413C&PID_09EF		; ADB
+
+;DELL BB
+%SingleAdbInterface%     	= USB_Install, USB\VID_413C&PID_B149		; ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B14B&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B14D&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B14F&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B150&MI_04	; ADB + RNDIS + ACM
+
+; DELL ICONIC
+%SingleAdbInterface%     	= USB_Install, USB\VID_413C&PID_B151		; ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B153&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B155&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B157&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_413C&PID_B158&MI_04	; ADB + RNDIS + ACM
+
+; Google Android
+;%AndroidAdbInterface%     	= USB_Install, USB\VID_18D1&PID_4EE7		; ADB only (Google Android VID/PID) ; Duplicated in Android\android_winusb.inf
+;%BootLoaderInterface%     	= USB_Install, USB\VID_18D1&PID_4EE0		; Bootloader adb/fastboot (Google Android VID/PID) ; Duplicated in 1\Android\Google\android_winusb.inf
+
+; Intel Cherrytrail Android
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_0A8B		; ADB only
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A8D&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A8F&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A91&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A92&MI_03	; ADB + RNDIS + ACM
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A93&MI_03	; ADB + RNDIS + ACM + ACM
+
+; Intel Baytrail Android
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_0A65		; ADB IAFW Fastboot mode
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_0A5D		; ADB only
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A5F&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A61&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A63&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A64&MI_04	; ADB + RNDIS + ACM
+
+; Intel Merrifield Android
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A1F&MI_00	; ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A21&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A23&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A25&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A26&MI_04	; ADB + RNDIS + ACM
+
+; Intel Clovertrail VictoriaBay Android
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A49&MI_03 ; MTP+ACM+ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A4b&MI_03 ; PTP+ACM+ADB
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A4d&MI_04 ; RNDIS+ACM+ADB
+
+; Intel Clovertrail Android
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_0A14		; ADB only
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A16&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A18&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A1A&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A1B&MI_04	; ADB + RNDIS + ACM
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_0A31&MI_06	; ADB + RNDIS + ACM + ACM
+
+; Intel Medfield Android ICS
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_09EF		; ADB only
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09FC&MI_01	; ADB + MTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09FE&MI_01	; ADB + PTP
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F4&MI_02	; ADB + RNDIS
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F8&MI_04	; ADB + RNDIS + ACM
+
+; Intel Medfield GingerBread
+%SingleAdbInterface%        = USB_Install, USB\VID_8087&PID_09EF
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F2&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F6&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F4&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_8087&PID_09F6&MI_02
+
+; Intel Android Bootloader
+%SingleBootLoaderInterface% = USB_Install, USB\VID_8087&PID_0FFF
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include     = winusb.inf
+AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall
+
+[WinUSB_ServiceInstall]
+DisplayName     = %WinUSB_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+[USB_Install.Wdf]
+KmdfService = WINUSB, WinUSB_Install
+
+[WinUSB_Install]
+KmdfLibraryVersion  = 1.9
+
+[USB_Install.HW]
+AddReg  = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{F72FE0D4-CBCB-407d-8814-9ED673D0DD6B}"
+
+[USB_Install.CoInstallers]
+AddReg    = CoInstallers_AddReg
+CopyFiles = CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01009.dll,WdfCoInstaller","WinUSBCoInstaller2.dll"
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+WdfCoInstaller01009.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles=11
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,,\i386
+2 = %DISK_NAME%,,,\amd64
+
+[SourceDisksFiles.x86]
+WinUSBCoInstaller2.dll  = 1
+WdfCoInstaller01009.dll = 1
+
+[SourceDisksFiles.amd64]
+WinUSBCoInstaller2.dll  = 2
+WdfCoInstaller01009.dll = 2
+
+[Strings]
+ProviderName                = "Intel Corporation"
+SingleAdbInterface          = "Intel Android ADB Interface"
+CompositeAdbInterface       = "Intel Android Composite ADB Interface"
+AndroidAdbInterface			= "Android ADB Interface"
+BootLoaderInterface			= "Android Bootloader Interface"
+SingleBootLoaderInterface   = "Intel Android Bootloader Interface"
+WinUSB_SvcDesc              = "Intel Android USB Driver"
+DISK_NAME                   = "Intel Android WinUsb installation disk"
+ClassName                   = "Intel Android Device"

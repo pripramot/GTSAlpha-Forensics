@@ -1,0 +1,141 @@
+;*****************************************************************************
+;
+; Name:  nkhsvsp.inf
+;
+; Function:
+;	Install the Nokia Handset Diagnostic Serial Port Drivers (WDM) on Win 2000/XP/2003/VISTA
+;
+; Copyright (c) DEVGURU
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=03/08/2007, 1.1.0.0
+DriverVer=04/21/2009, 1.1.0.0
+CatalogFile=nkhsvsp.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+; RTL Mods - remove references to 64 bit drivers since 64 bit files not present
+;[SourceDisksNames.ia64]
+;1 = %DiskString%,,,\ia64
+
+;[SourceDisksNames.amd64]
+;1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+nkhsvsp.sys = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+;%NOKIA%=NOKIA, NTx86, NTia64, NTamd64
+%NOKIA%=NOKIA, NTx86
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[NOKIA]
+%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_0479&MI_01
+%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_04F4&MI_01
+%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_04F5&MI_01
+
+[NOKIA.NTx86]
+%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_0479&MI_01
+%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_04F4&MI_01
+%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_04F5&MI_01
+
+;[NOKIA.NTia64]
+;%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_0479&MI_01
+;%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_04F4&MI_01
+;%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_04F5&MI_01
+
+;[NOKIA.NTamd64]
+;%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_0479&MI_01
+;%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_04F4&MI_01
+;%NOKIA.Comm.Desc% = NOKIA.Install, USB\VID_0421&PID_04F5&MI_01
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[NOKIA.Install.nt]
+AddReg		= NOKIA.AddReg,NOKIA.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[NOKIA.AddReg]
+HKR,,NTMPDriver,,nkhsvsp.sys
+HKR,,EnableCR1146,0x00010001,1
+HKR,,EnableSurpriseRemovalHeuristics, 0x10001, 02,00,00,00
+
+; only for NT...
+[NOKIA.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+nkhsvsp.sys
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[NOKIA.Install.NT.Services]
+AddService = nkhsvsp, 0x00000002, NOKIA.Install.AddService
+
+
+[NOKIA.Install.AddService]
+DisplayName	= %NOKIA.Service.Name%
+Description	= %NOKIA.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\nkhsvsp.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+Provider = "Nokia"
+NOKIA = "Nokia"
+DiskString = "Nokia Handset Diagnostic Serial Port Drivers installation disk (UDP)"
+
+NOKIA.Comm.Desc = "Nokia Handset Diagnostic Serial Port (UDP)"
+NOKIA.Service.Name = "Nokia Handset Diagnostic Serial Port (UDP)"
+NOKIA.Service.Desc = "Nokia Handset Diagnostic Serial Port (UDP)"

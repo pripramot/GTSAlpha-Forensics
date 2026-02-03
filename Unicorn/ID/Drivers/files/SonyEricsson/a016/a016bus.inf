@@ -1,0 +1,181 @@
+;*****************************************************************************
+;
+; a016bus.inf   -- Install the Sony Ericsson Device A016 drivers
+;
+; Copyright (c) 1997-2007 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=10/23/2007,4.42.0.0
+DriverVer=04/21/2009,4.42.0.0
+CatalogFile=a016bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+seda016Wdm.W95.CopyFiles       = 11                    ; LDID_SYS
+seda016Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"a016bus.sys",,\i386
+
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"a016bus.sys",,\amd64
+
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+a016bus.sys = 1
+a016wh95.sys = 1
+a016whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SonyEricsson%=seda016, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[seda016]
+%seda016.CdcBus.Desc% = seda016Wdm.Install, USB\VID_0fce&PID_d0d0
+
+[seda016.NTamd64]
+%seda016.CdcBus.Desc% = seda016Wdm.Install, USB\VID_0fce&PID_d0d0
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[seda016.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[seda016Wdm.Install]
+CopyFiles       = seda016Wdm.W95.CopyFiles, seda016.CopyFiles, PropPages.CopyFiles
+AddReg          = seda016Wdm.AddReg, seda016Wdm.W95.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[seda016Wdm.Install.NT]
+CopyFiles       = seda016Wdm.NT.CopyFiles
+AddReg          = seda016Wdm.AddReg, seda016Wdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[seda016Wdm.Install.NT.Services]
+AddService      = a016bus, 2, seda016Wdm.AddService
+
+[seda016Wdm.AddService]
+DisplayName             = %seda016.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\a016bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[seda016Wdm.AddReg]
+
+HKR,,MCCI_MCECIDFix,0x10001,07,00,00,00
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+[seda016Wdm.W95.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,a016bus.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[seda016Wdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[seda016Wdm.W95.CopyFiles]
+a016bus.sys
+a016wh.sys,a016wh95.sys
+a016wh95.sys
+a016whnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[seda016Wdm.NT.CopyFiles]
+a016bus.sys
+a016wh.sys,a016whnt.sys
+a016whnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+SonyEricsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device A016 Installation disk"
+
+seda016.CdcBus.Desc = "Sony Ericsson Device A016"
+seda016.Service.Desc = "Sony Ericsson Device A016 driver (WDM)"
+
+CustomerDataPath = "Sony Ericsson Device A016"
+DriverSet = "Sony Ericsson Device A016 Software"
+UninstallFile = "A016Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

@@ -1,0 +1,103 @@
+;-------------------------------------------------------------------------------
+;*****************************************************************************
+;
+; Windows Virtual Network Adapter Setup File
+;
+;This INF file installs a virtual Network Adapter on 32-bit and 64-bit Windows OS, such as Windows XP, Vista and Win7.
+;
+;*****************************************************************************
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %HS%
+DriverVer   = 09/04/2012,10.1069.1.1
+CatalogFile = ghsnet.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1 = %HSSRCDISK%,,,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1 = %HSSRCDISK%,,,\amd64
+
+[SourceDisksFiles]
+ghsnet.sys  = 1,,
+
+[DestinationDirs]
+DefaultDestDir = 12
+HSwwan.CopyFiles = 12
+
+[Manufacturer]
+%HS% = HSNetPort, NTamd64
+
+[HSNetPort]
+%HSWwanDevice%    = HSwwan.ndi, USB\VID_19D2&PID_0278&MI_01
+%HSWwanDevice%    = HSwwan.ndi, USB\VID_19D2&PID_0279&MI_06
+
+[HSNetPort.NTamd64]
+%HSWwanDevice%    = HSwwan.ndi, USB\VID_19D2&PID_0278&MI_01
+%HSWwanDevice%    = HSwwan.ndi, USB\VID_19D2&PID_0279&MI_06
+
+;-------------------------------------------------------------------------------
+; Virtual Ethernet Adapter
+;
+[HSwwan.ndi]
+Characteristics = 0x1 ; NCF_VIRTUAL
+BusType         = 15  ; PNPBus
+AddReg          = HSwwan.Reg
+CopyFiles       = HSwwan.CopyFiles
+
+[HSwwan.ndi.Services]
+AddService      = ghsnet, 2, HSwwan.Service, HSwwan.EventLog
+
+;-----------------------------------------------------------------------------
+; Virtual Miniport Common
+;
+[HSwwan.Reg]
+HKR,    ,                         BusNumber,           0, "0" 
+HKR, Ndi,                         Service,             0, "ghsnet"
+HKR, Ndi\Interfaces,              UpperRange,          0, "ndis5"
+HKR, Ndi\Interfaces,              LowerRange,          0, "ethernet"
+HKR,, QCDevDisableQoS, 0x00010001, 0x00000003
+
+;-----------------------------------------------------------------------------
+; Driver and Service Section
+;
+[HSwwan.CopyFiles]
+ghsnet.sys,,,2
+
+[HSwwan.Service]
+DisplayName     = %HSWwanServiceDispName%
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_DEMAND_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\ghsnet.sys
+LoadOrderGroup  = NDIS
+AddReg          = TextModeFlags.Reg
+
+[HSwwan.EventLog]
+AddReg = HSwwan.AddEventLog.Reg
+
+[HSwwan.AddEventLog.Reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[TextModeFlags.Reg]
+HKR, , TextModeFlags,    0x00010001, 0x0001
+
+;-----------------------------------------------------------------------------
+; Localizable Strings
+;
+[Strings]
+HS                     = "HS Coporation"   
+HSSRCDISK              = "USB-NDIS Miniport Device Installation Disk"
+HSWwanServiceDispName  = "Handset USB Network Adapter"
+
+HSWwanDevice           = "Handset Wireless HS-USB Ethernet Adapter"
+

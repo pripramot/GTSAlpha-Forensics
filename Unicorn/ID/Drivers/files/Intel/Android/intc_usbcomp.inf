@@ -1,0 +1,161 @@
+;*********************************************************************************************
+; Windows USB Composite Setup File for Intel Android Smartphones
+;
+; Copyright (c) 2015 Intel Corporation
+;
+; For use only on Windows operating systems.
+;*********************************************************************************************
+[Version]
+Signature 			= "$WINDOWS NT$"
+Class 				= USB
+ClassGUID 			= {36fc9e60-c465-11cf-8056-444553540000}
+Provider 			= %ProviderName%
+DriverVer			= 04/15/2015,1.9.0.0
+CatalogFile.NTx86  	= intc_usbcompx86.cat
+CatalogFile.NTAMD64 = intc_usbcompamd64.cat
+
+[Manufacturer]
+%ProviderName% 	=	Generic,NTx86,NTamd64
+
+[Generic.NTx86]
+; DELL BB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B14B ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B14D ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B14F ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B150 ; RNDIS+ACM+ADB
+
+; DELL EP
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B153 ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B155 ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B157 ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B158 ; RNDIS+ACM+ADB
+
+; Intel Cherrytrail Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A8D ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A8F ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A91 ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A92 ; RNDIS+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A93 ; RNDIS+ACM+ACM+ADB
+
+; Intel Baytrail Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A5F ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A61 ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A63 ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A64 ; RNDIS+ACM+ADB
+
+; Intel Merrifield Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A1F ; ADB+DVC
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A21 ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A23 ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A25 ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A26 ; RNDIS+ACM+ADB
+
+; Intel Clovertrail VictoriaBay Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A49 ; MTP+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4b ; PTP+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4a ; MTP+ACM
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4c ; PTP+ACM
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4d ; RNDIS+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4e ; RNDIS+ACM
+
+; Intel Clovertrail Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A16 ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A18 ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A1A ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A1B ; RNDIS+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A31 ; RNDIS+ACM+ACM+ADB
+
+; Intel Medfield Android ICS
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09FC ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09FE ; PTP+ADB
+;%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09F4 ; RNDIS+ADB ; Duplicated in 1\Android\Intel\intc_rndis.inf
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09F8 ; RNDIS+ACM+ADB
+
+; Intel Medfield Android GB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f2
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f1
+;%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f3 ; Duplicated in 1\Android\Intel\intc_rndis.inf
+;%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f4 ; Duplicated in 1\Android\Intel\intc_rndis.inf
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f6
+
+[Generic.NTamd64]
+; DELL BB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B14B ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B14D ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B14F ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B150 ; RNDIS+ACM+ADB
+
+; DELL EP
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B153 ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B155 ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B157 ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_413C&PID_B158 ; RNDIS+ACM+ADB
+
+; Intel Cherrytrail Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A8D ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A8F ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A91 ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A92 ; RNDIS+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A93 ; RNDIS+ACM+ACM+ADB
+
+; Intel Baytrail Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A5F ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A61 ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A63 ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A64 ; RNDIS+ACM+ADB
+
+; Intel Merrifield Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A1F ; ADB+DVC
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A21 ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A23 ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A25 ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A26 ; RNDIS+ACM+ADB
+
+; Intel Clovertrail VictoriaBay Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A49 ; MTP+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4b ; PTP+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4a ; MTP+ACM
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4c ; PTP+ACM
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4d ; RNDIS+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A4e ; RNDIS+ACM
+
+; Intel Clovertrail Android
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A16 ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A18 ; PTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A1A ; RNDIS+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A1B ; RNDIS+ACM+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A31 ; RNDIS+ACM+ACM+ADB
+
+; Intel Medfield Android ICS
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09FC ; MTP+ADB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09FE ; PTP+ADB
+;%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09F4 ; RNDIS+ADB ; Duplicated in 1\Android\Intel\intc_rndis.inf
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09F8 ; RNDIS+ACM+ADB
+
+; Intel Medfield Android GB
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f2
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f1
+;%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f3 ; Duplicated in 1\Android\Intel\intc_rndis.inf
+;%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f4 ; Duplicated in 1\Android\Intel\intc_rndis.inf
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_09f6
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+; Common Class Generic Parent for root ID
+[Composite.Device]
+Include=usb.inf
+Needs=Composite.Dev.NT
+
+[Composite.Device.Services]
+Include=usb.inf
+Needs=Composite.Dev.NT.Services
+
+[SourceDisksNames]
+1=%SourceDisk%,,1
+
+[Strings]
+ProviderName 		= "Intel Corporation"
+ServiceDisplayName	= "Intel Android USB Composite Device Driver"
+USBCompositeDevice	= "Intel Android USB Composite Device"
+SourceDisk 			= "Intel Android USB Composite Device Install Disk"

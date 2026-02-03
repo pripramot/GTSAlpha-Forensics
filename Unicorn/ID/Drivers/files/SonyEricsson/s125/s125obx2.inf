@@ -1,0 +1,180 @@
+;*****************************************************************************
+;
+; Name:  s125obx2.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 125 USB WMC OBEX Interface on Win2000/XP
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/24/2007,4.40.2.0
+DriverVer=04/21/2009,4.40.2.0
+CatalogFile=s125obex.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s125obex.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s125obex.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+s125obex.sys = 1
+s125cmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed125, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed125]
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D026&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D029&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D032&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D040&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D041&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D042&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D053&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D057&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D059&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D071&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D072&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D090&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D091&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D0a2&Class_02&SubClass_0B&Prot_00&OS_NT
+
+[sed125.NTamd64]
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D026&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D029&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D032&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D040&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D041&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D042&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D053&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D057&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D059&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D071&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D072&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D090&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D091&Class_02&SubClass_0B&Prot_00&OS_NT
+%sed125.Comm.Desc% = sed125.Install, USB\VID_0FCE&PID_D0a2&Class_02&SubClass_0B&Prot_00&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[sed125.Install.nt]
+AddReg		= sed125.AddReg,sed125.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[sed125.AddReg]
+HKR,,NTMPDriver,,s125obex.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[sed125.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+s125obex.sys
+s125cm.sys,s125cmnt.sys
+s125cmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[sed125.Install.NT.Services]
+AddService = s125obex, 0x00000002, sed125.Install.AddService
+
+
+[sed125.Install.AddService]
+DisplayName	= %sed125.Service.Name%
+Description	= %sed125.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\s125obex.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 125 USB WMC OBEX Interface installation disk"
+
+sed125.Comm.Desc = "Sony Ericsson Device 125 USB WMC OBEX Interface"
+sed125.Service.Name = "Sony Ericsson Device 125 USB WMC OBEX Interface"
+sed125.Service.Desc = "Sony Ericsson Device 125 USB WMC OBEX Interface"
+
+
+CustomerDataPath = "Sony Ericsson Device 125"
+DriverSet = "Sony Ericsson Device 125 Software"
+UninstallFile = "S125Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

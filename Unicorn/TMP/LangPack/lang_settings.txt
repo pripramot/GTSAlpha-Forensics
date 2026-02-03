@@ -1,0 +1,10 @@
+[RegionalSettings]
+Language = 00000809
+LanguageGroup="1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17"
+SystemLocale = 00000809
+UserLocale = 00000809
+InputLocale = 0809:00000809
+UserLocale_DefaultUser = 00000809
+InputLocale_DefaultUser = 0809:00000809
+MUILanguage = 00000809
+MUILanguage_DefaultUser = 00000809

@@ -1,0 +1,133 @@
+;***********************************************************************************************
+;
+; Name:  PSKYVSP.inf
+;
+; Function:  Install SKY Handset Diagnostic Serial Port Drivers on Win2000/XP/VISTA
+;
+; Copyright (c) DEVGURU
+;
+;***********************************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=04/27/2010,3.4.2.0426
+CatalogFile=PSKYVSP.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+PSKYVSP.sys = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%PANTECH%=PANTECH, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[PANTECH]
+%PANTECH.VID_10A9&PID_1102.Desc% = PANTECH.Install, USB\VID_10A9&PID_1102&MI_02 ;kt
+;%PANTECH.VID_10A9&PID_1103.Desc% = PANTECH.Install, USB\VID_10A9&PID_1103&MI_03 ;skt
+;%PANTECH.VID_10A9&PID_1104.Desc% = PANTECH.Install, USB\VID_10A9&PID_1104&Class_FF&SubClass_E0&Prot_10 ;android
+
+[PANTECH.NTx86]
+%PANTECH.VID_10A9&PID_1102.Desc% = PANTECH.Install, USB\VID_10A9&PID_1102&MI_02 ;kt
+;%PANTECH.VID_10A9&PID_1103.Desc% = PANTECH.Install, USB\VID_10A9&PID_1103&MI_03 ;skt
+;%PANTECH.VID_10A9&PID_1104.Desc% = PANTECH.Install, USB\VID_10A9&PID_1104&Class_FF&SubClass_E0&Prot_10 ;android
+
+[PANTECH.NTamd64]
+%PANTECH.VID_10A9&PID_1102.Desc% = PANTECH.Install, USB\VID_10A9&PID_1102&MI_02 ;kt
+;%PANTECH.VID_10A9&PID_1103.Desc% = PANTECH.Install, USB\VID_10A9&PID_1103&MI_03 ;skt
+;%PANTECH.VID_10A9&PID_1104.Desc% = PANTECH.Install, USB\VID_10A9&PID_1104&Class_FF&SubClass_E0&Prot_10 ;android
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[PANTECH.Install.nt]
+AddReg		= PANTECH.AddReg,PANTECH.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[PANTECH.AddReg]
+HKR,,NTMPDriver,,PSKYVSP.sys
+HKR,,EnableCR1146,0x00010001,1
+
+; only for NT...
+[PANTECH.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,AllowSuspendWhileOpen, 0x10001, 01,00,00,00
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+PSKYVSP.sys
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[PANTECH.Install.NT.Services]
+AddService = PSKYVSP, 0x00000002, PANTECH.Install.AddService
+
+
+[PANTECH.Install.AddService]
+DisplayName	= %PANTECH.Service.Name%
+Description	= %PANTECH.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\PSKYVSP.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+Provider = "PANTECH Co., Ltd. "
+PANTECH = "PANTECH"
+
+DiskString = "SKY Handset Diagnostic Serial Port Driver installation disk"
+
+PANTECH.VID_10A9&PID_1102.Desc    = "SKY Handset Diagnostic Serial Port "
+PANTECH.VID_10A9&PID_1103.Desc    = "SK Telecom USB Serial Port (SKY) "
+PANTECH.VID_10A9&PID_1104.Desc    = "SKY Handset Diagnostic Serial Port "
+PANTECH.Service.Name = "SKY Handset Diagnostic Serial Port "
+PANTECH.Service.Desc = "SKY Handset Diagnostic Serial Port "
+
+

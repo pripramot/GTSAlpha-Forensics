@@ -1,0 +1,142 @@
+;*********************************************************************************************
+;
+; Name		: SK-S150Diag.inf
+;
+; Function	: Install USB Diagnostic Serial Port Driver on Windows 2000/XP/VISTA/7
+;
+; Copyright (c) DEVGURU Co., LTD. (www.devguru.co.kr)
+;
+;*********************************************************************************************
+
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=03/02/2011,1.0.1801.0302
+CatalogFile=SK-S150Diag.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+SK-S150Diag.sys = 1
+;MSSCINST.dll = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir  = 12             	; system32\drivers
+CopyFiles       = 12                    ; system32\drivers
+CopyFiles.Win2K = 12                    ;
+CoInstaller.CopyFiles = 11
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SK-S150%=SK-S150, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SK-S150]
+%USB\VID_1F53&PID_A010&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A010&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A014&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A014&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A013&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A013&CLASS_FF&SUBCLASS_F0&PROT_01
+
+[SK-S150.NTx86]
+%USB\VID_1F53&PID_A010&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A010&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A014&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A014&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A013&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A013&CLASS_FF&SUBCLASS_F0&PROT_01
+
+[SK-S150.NTamd64]
+%USB\VID_1F53&PID_A010&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A010&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A014&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A014&CLASS_FF&SUBCLASS_F0&PROT_01
+%USB\VID_1F53&PID_A013&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc%=SK-S150.Install, USB\VID_1F53&PID_A013&CLASS_FF&SUBCLASS_F0&PROT_01
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SK-S150.Install.NT]
+AddReg		= SK-S150.AddReg,SK-S150.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SK-S150.AddReg]
+HKR,,NTMPDriver,,SK-S150Diag.sys
+
+; only for NT...
+[SK-S150.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+SK-S150Diag.sys
+
+;[CoInstaller.CopyFiles]
+;MSSCINST.dll
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+[SK-S150.Install.NT.Services]
+AddService = SK-S150Diag, 0x00000002, SK-S150.Install.AddService
+
+[SK-S150.Install.AddService]
+DisplayName	= %SK-S150.Service.Name%
+Description	= %SK-S150.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\SK-S150Diag.sys
+
+;[SK-S150.Install.nt.CoInstallers]
+;AddReg = CoInstaller.Addreg
+;Copyfiles = CoInstaller.CopyFiles
+
+;[CoInstaller.AddReg]
+;HKR,,CoInstallers32,0x00010000,"MSSCINST.dll,DevCoInstall"
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+Provider   = "SK telesys"
+SK-S150       = "SK telesys"
+
+DiskString = "SK-S150 Diagnostics Port Driver installation disk"
+
+SK-S150.Service.Name = "SK-S150 Diagnostics Port"
+SK-S150.Service.Desc = "SK-S150 Diagnostics Port"
+
+;
+; Composite mode
+;
+USB\VID_1F53&PID_A014&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc = "SK telesys USB Virtual Serial Port"
+USB\VID_1F53&PID_A013&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc = "SK telesys USB Virtual Serial Port"
+USB\VID_1F53&PID_A010&CLASS_FF&SUBCLASS_F0&PROT_01.DeviceDesc = "SK telesys USB Virtual Serial Port"

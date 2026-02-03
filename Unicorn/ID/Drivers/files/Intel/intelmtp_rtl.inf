@@ -1,0 +1,58 @@
+; Installation inf for devices supporting Media Transfer Protocol (MTP)
+;
+; Copyright (c) Microsoft Corporation.
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=WPD
+ClassGUID={EEC5AD98-8080-425f-922A-DABF3DE3F69A}
+Provider=%ProviderName%
+DriverVer=02/27/2012,1.1.0.0
+CatalogFile.NTx86  = intelmtpx86_rtl.cat
+
+[Manufacturer]
+%ProviderName%=Generic,NTx86
+
+[Generic.NTx86]
+;Hisense 7" tablet M470BSE (Sero 7 Pro) - Philippa's tablet
+%GenericMTP.DeviceDesc%=DriverInstall, USB\VID_109B&PID_9106&MI_00
+
+;Tesco Hudl
+%GenericMTP.DeviceDesc%=DriverInstall, USB\VID_0e79&PID_5009&MI_00
+
+;;******************************************************************************
+;; MTP section
+;;******************************************************************************
+
+[DriverInstall]
+Include = wpdmtp.inf
+Needs   = WPD.MTP
+
+[DriverInstall.hw]
+Include = wpdmtp.inf
+Needs   = WPD.MTP.Registration
+
+[DriverInstall.Services]
+Include = wpdmtp.inf
+Needs   = WPD.MTP.Services
+
+[DriverInstall.CoInstallers]
+Include = wpdmtp.inf
+Needs = WPD.MTP.CoInstallers
+
+[DriverInstall.Wdf]
+Include = wpdmtp.inf
+Needs = WPD.MTP.Wdf
+UmdfServiceOrder=WpdMtpDriver
+
+;
+; =================== Strings ===================
+;
+
+[Strings]
+ProviderName          	= "Intel Corporation"
+
+;Localizable
+WinUsb.SvcDesc			="WinUsb"
+GenericMTP.DeviceDesc	="Intel MTP USB Device"

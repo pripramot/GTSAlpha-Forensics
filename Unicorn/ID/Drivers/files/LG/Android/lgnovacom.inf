@@ -1,0 +1,94 @@
+; ================ Version section =================
+[Version]
+Signature 	= "$Windows NT$"
+Class 		= LG Devices
+ClassGuid 	= {B1193840-015C-4344-841C-59A7D99A9D37}
+Provider 	= %ProviderName%
+DriverVer 	= 05/12/2015,4.0.0.0
+CatalogFile = novacom.cat
+
+; ========== Manufacturer/Models sections ===========
+[Manufacturer]
+%ProviderName% = NOVACOM,NTx86,NTamd64
+
+[NOVACOM.NTx86]
+;======================== Device 1 =========================
+%DeviceDesc% = USB_Install, USB\VID_1004&PID_6345&MI_04
+
+[NOVACOM.NTamd64]
+;======================== Device 1 =========================
+%DeviceDesc% = USB_Install, USB\VID_1004&PID_6345&MI_04
+
+; ================== Installation ==================
+
+[ClassInstall]
+AddReg = ClassAddReg
+
+[ClassInstall32]
+AddReg = ClassAddReg
+
+[ClassAddReg]
+HKR,,,,"%ClassName%"
+HKR,,Icon,,-28
+
+[USB_Install]
+Include = WinUSB.inf
+Needs = WinUSB.NT
+
+[USB_Install.Services]
+Include    = WinUSB.inf
+AddService = WinUSB, 0x00000002, WinUSB_ServiceInstall
+
+[WinUSB_ServiceInstall]
+DisplayName   = %WinUSB_SvcDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\WinUSB.sys
+
+[USB_Install.Wdf]
+KmdfService = WinUSB, WinUSB_Install
+
+[WinUSB_Install]
+KmdfLibraryVersion = 1.9
+
+[USB_Install.HW]
+AddReg = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x00010000,"{43766882-B285-4a23-AAB4-B389533B391C}"
+
+[USB_Install.CoInstallers]
+AddReg 	  = CoInstallers_AddReg
+CopyFiles = CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR, , CoInstallers32, 0x00010000, "WinUSBCoInstaller2.dll","WdfCoInstaller01009.dll, WdfCoInstaller"
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+WdfCoInstaller01009.dll
+
+[SourceDisksNames]
+1 = %MediaDescription%
+
+[SourceDisksFiles]
+WinUSBCoInstaller2.dll 	= 1, "\i386"
+WdfCoInstaller01009.dll = 1, "\i386"
+
+[SourceDisksFiles.amd64]
+WinUSBCoInstaller2.dll 	= 1, "\amd64"
+WdfCoInstaller01009.dll = 1, "\amd64"
+
+[DestinationDirs]
+CoInstallers_CopyFiles = 11
+
+; ==================== Strings =====================
+
+[Strings]
+ClassName		= "LGE Mobile Novacom Modules"
+ProviderName		= "LG Electronics, Inc."
+DeviceDesc		= "LGE Mobile Novacom"
+DeviceDescBootloader 	= "LGE Mobile Novacom (bootie)"
+MediaDescription  	= "LGE Mobile Novacom Disc"
+WinUSB_SvcDesc 		= "LGE Mobile WinUSB Driver Service"

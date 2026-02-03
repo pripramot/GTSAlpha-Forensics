@@ -1,0 +1,117 @@
+
+;*****************************************************************************
+; Name:  lgandnetgps64.inf 
+;*****************************************************************************
+
+[Version]
+signature   = "$WINDOWS NT$"
+Class       = Ports
+ClassGuid   = {4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider    = %Provider%
+DriverVer   = 05/12/2015,4.0.0.0
+CatalogFile = lgandnet64.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1=%DiskString%,"lgandnetgps64.sys",,
+
+[SourceDisksFiles]
+lgandnetgps64.sys = 1
+
+[DestinationDirs]
+DefaultDestDir  = 12             	; system32\drivers
+CopyFiles       = 12                    ; system32\drivers
+CopyFiles.Win2K = 12                    ;
+
+[Manufacturer]
+%LGSI%=LGSI,NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[LGSI.NTamd64]
+; For individual driver
+%Lgsi.Comm.Desc01% = LGSI.Install, USB\VID_1004&PID_61A1&MI_05
+%Lgsi.Comm.Desc02% = LGSI.Install, USB\VID_1004&PID_61A2&MI_05
+%Lgsi.Comm.Desc03% = LGSI.Install, USB\VID_1004&PID_61A3&MI_03
+%Lgsi.Comm.Desc04% = LGSI.Install, USB\VID_1004&PID_61A4&MI_03
+%Lgsi.Comm.Desc05% = LGSI.Install, USB\VID_1004&PID_61A5&MI_03
+%Lgsi.Comm.Desc07% = LGSI.Install, USB\VID_1004&PID_61D7&MI_05
+%Lgsi.Comm.Desc08% = LGSI.Install, USB\VID_1004&PID_61D8&MI_05
+%Lgsi.Comm.Desc08% = LGSI.Install, USB\VID_1004&PID_6310&MI_03
+%Lgsi.Comm.Desc08% = LGSI.Install, USB\VID_1004&PID_6311&MI_03
+%Lgsi.Comm.Desc08% = LGSI.Install, USB\VID_1004&PID_6316&MI_04
+%Lgsi.Comm.Desc08% = LGSI.Install, USB\VID_1004&PID_6317&MI_04
+%Lgsi.Comm.Desc05% = LGSI.Install, USB\VID_1004&PID_621D&MI_03
+%Lgsi.Comm.Desc05% = LGSI.Install, USB\VID_1004&PID_6269&MI_03
+%Lgsi.Comm.Desc05% = LGSI.Install, USB\VID_1004&PID_627B&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62A6&MI_03
+%Verizon.Comm.Desc2% = LGSI.Install, USB\VID_1004&PID_62C2&MI_03
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Lgsi.Install.nt]
+AddReg		= Lgsi.AddReg,Lgsi.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Lgsi.AddReg]
+HKR,,NTMPDriver,,lgandnetgps64.sys
+
+; only for NT...
+[Lgsi.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+lgandnetgps64.sys
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+[Lgsi.Install.NT.Services]
+AddService = AndNetGps, 0x00000002, Lgsi.Install.AddService
+
+[Lgsi.Install.AddService]
+DisplayName	= %Lgsi.Service.Name%
+Description	= %Lgsi.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\lgandnetgps64.sys
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+Provider          = "LG Electronics, Inc."
+Lgsi              = "LG Electronics, Inc."
+
+DiskString        = "LGE USB GPS NMEA Port Drivers installation disk"
+Lgsi.Comm.Desc01  = "LGE AndroidNet USB GPS NMEA Port"
+Lgsi.Comm.Desc02  = "LGE AndroidNet USB GPS NMEA Port"
+Lgsi.Comm.Desc03  = "LGE Android Platform USB GPS NMEA Port"
+Lgsi.Comm.Desc04  = "LGE Android Platform USB GPS NMEA Port"
+Lgsi.Comm.Desc05  = "LGE Mobile USB GPS NMEA Port"
+Lgsi.Comm.Desc07  = "LGE AndroidNet USB GPS NMEA Port"
+Lgsi.Comm.Desc08  = "LGE AndroidNet USB GPS NMEA Port"
+Verizon.Comm.Desc = "LGE AndroidNet for VZW USB GPS NMEA Port"
+Verizon.Comm.Desc2 = "LGE Mobile for VZW USB GPS NMEA Port"
+Lgsi.Service.Name = "LGE AndroidNet USB GPS NMEA Port"
+Lgsi.Service.Desc = "LGE AndroidNet USB GPS NMEA Port"
+CustomerDataPath  = "LGE AndroidNet Diagnostic Kit"
+DriverSet         = "LGE USB AndroidNet Mobile Software" 

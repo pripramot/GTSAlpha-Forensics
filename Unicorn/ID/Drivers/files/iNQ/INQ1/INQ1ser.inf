@@ -1,0 +1,76 @@
+; Windows Vista Virtual Serial Port Setup File
+; Copyright (c) 2007 Amoi Incorporated
+; Manufacturer: Amoi Incorporated
+;
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %AMOI%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=01/01/2007,2.0.5.0
+DriverVer=04/21/2009,2.0.5.0
+Catalogfile= INQ1usbser.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%AMOI% = QcomSerialPort, NTia64, NTamd64
+
+[SourceDisksNames]
+1000 = %QCSRCDISK%,"",,
+
+[SourceDisksFiles]
+INQ1usbser.sys = 1000
+
+[QcomSerialPort]
+%QcomDevice6k% = QportInstall00, USB\VID_1614&PID_0408&MI_01
+%QcomDeviceNMEA% = QportInstall00, USB\VID_1614&PID_0408&MI_02
+%QcomDevicePCSYNC% = QportInstall00, USB\VID_1614&PID_0408&MI_03
+
+[QcomSerialPort.NTia64]
+%QcomDevice6k% = QportInstall00, USB\VID_1614&PID_0408&MI_01
+%QcomDeviceNMEA% = QportInstall00, USB\VID_1614&PID_0408&MI_02
+%QcomDevicePCSYNC% = QportInstall00, USB\VID_1614&PID_0408&MI_03
+
+[QcomSerialPort.NTamd64]
+%QcomDevice6k% = QportInstall00, USB\VID_1614&PID_0408&MI_01
+%QcomDeviceNMEA% = QportInstall00, USB\VID_1614&PID_0408&MI_02
+%QcomDevicePCSYNC% = QportInstall00, USB\VID_1614&PID_0408&MI_03
+
+[QportInstall00.NT]
+CopyFiles = QCUsbDriverFiles
+AddReg = All00, AddReg.NT
+
+[QCUsbDriverFiles]
+INQ1usbser.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[QportInstall00.NT.Services]
+AddService = INQ1usbser, 0x00000002, Qport_Service_Inst00
+
+[Qport_Service_Inst00]
+DisplayName   = %QCUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\INQ1usbser.sys
+
+[All00]
+HKR,,NTMPDriver,,INQ1usbser.sys
+
+[AddReg.NT]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+AMOI   = "Amoi Incorporated"
+QCUSBSER = "INQ1 USB Device for Legacy Serial Communication"
+QCSRCDISK = "INQ1 Multimedia USB Driver Disk"
+QcomDevice6k = "INQ1 Diagnostics Interface"
+QcomDeviceNMEA = "INQ1 NMEA Device"
+QcomDevicePCSYNC = "INQ1 PCSYNC Device"

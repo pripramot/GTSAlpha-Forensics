@@ -1,0 +1,371 @@
+;
+; Name:  lgandnetadb.inf
+; 
+; LGE Mobile Android WinUsb driver installation.
+;
+[Version]
+Signature           = "$Windows NT$"
+Class               = AndroidUsbDeviceClass
+ClassGuid           = {3F966BD9-FA04-4ec5-991C-D326973B5128}
+Provider            = %ProviderName%
+DriverVer           = 06/01/2015,4.0.0.0
+CatalogFile.NTx86   = androidwinusb86.cat
+CatalogFile.NTamd64 = androidwinusb64.cat
+
+[ClassInstall32]
+Addreg = AndroidWinUsbClassReg
+
+[AndroidWinUsbClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-1
+
+
+[Manufacturer]
+%ProviderName% = Google, NTx86, NTamd64
+
+
+; For XP and later
+[Google.NTx86]
+; For loopback testing
+%ADB.DeviceDescTest%=USB_Install, USB\VID_18D1&PID_DDDD
+; LGE ANDROID PLATFORM Driver
+%ADB.DeviceDescRelease02%=USB_Install, USB\VID_1004&PID_618E_ADBInterface
+; LGE ANDROID NET Drivers
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61A1&MI_07
+%ADB.DeviceDescRelease02%=USB_Install, USB\VID_1004&PID_61A3&MI_05
+%ADB.DeviceDescRelease03%=USB_Install, USB\VID_1004&PID_61A6&MI_01
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61D7&MI_07
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61D9&MI_02
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61F1&MI_04
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61F3&MI_04
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61F5&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61F7&MI_06
+%ADB.DeviceDescRelease03%=USB_Install, USB\VID_1004&PID_61F9&MI_01
+%ADB.DeviceDescRelease02%=USB_Install, USB\VID_1004&PID_61FA&MI_04
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61FC&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61FE&MI_05
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6310&MI_07
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6311&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6312&MI_02
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6313&MI_03
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6314&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6315&MI_07
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6316&MI_07
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6317&MI_08
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6318&MI_09
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6319&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_631A&MI_05
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_631B&MI_05
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_631D&MI_01
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_631F
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6334&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_633A&MI_03
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_633C&MI_03
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_633D&MI_08
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6341&MI_04
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6342&MI_05
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_633E&MI_04
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_633F&MI_05
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6343&MI_06
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6344&MI_05
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6347&MI_02
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6349&MI_02
+
+; LGE ANDROID NET Drivers for Verizon
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6200&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6204&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6208&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_620C&MI_08
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_620F&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6214&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6218&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6219&MI_04
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_621A&MI_04
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6220&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6221&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6222&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6226&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6228&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_622A&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_622C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_622E&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6230&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6232&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6234&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6235&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6237&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6238&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_623A&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_623C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_623E&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6240&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6242&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6244&MI_04
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_624A&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_624C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_624E&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6250&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6246&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_621B&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_621C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6252&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6254&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6256&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6258&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_625A&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_625C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_625E&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6260&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6262&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6264&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6266&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6268&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_626D&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6271&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6273&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6275&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6278&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_627F&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6280&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6281&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6282&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6283&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6284&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6286&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6287&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_628A&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_628E&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_628F&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6291&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6293&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6296&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6298&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629B&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629C&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629D&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629E&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629F&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A0&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A1&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A2&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A3&MI_06
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A4&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A5&MI_05
+; Verizon Common PID
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C3&MI_06
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C4&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C6&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C7&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C8&MI_06
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CA&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CB&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CC&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CE&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CF&MI_05
+
+; For AMD64 and later
+[Google.NTamd64]
+; For loopback testing
+%ADB.DeviceDescTest%=USB_Install, USB\VID_18D1&PID_DDDD
+; LGE ANDROID PLATFORM Driver
+%ADB.DeviceDescRelease02%=USB_Install, USB\VID_1004&PID_618E_ADBInterface
+; LGE ANDROID NET Drivers
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61A1&MI_07
+%ADB.DeviceDescRelease02%=USB_Install, USB\VID_1004&PID_61A3&MI_05
+%ADB.DeviceDescRelease03%=USB_Install, USB\VID_1004&PID_61A6&MI_01
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61D7&MI_07
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61D9&MI_02
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61F1&MI_04
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61F3&MI_04
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61F5&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61F7&MI_06
+%ADB.DeviceDescRelease03%=USB_Install, USB\VID_1004&PID_61F9&MI_01
+%ADB.DeviceDescRelease02%=USB_Install, USB\VID_1004&PID_61FA&MI_04
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61FC&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_61FE&MI_05
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6310&MI_07
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6311&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6312&MI_02
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6313&MI_03
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6314&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6315&MI_07
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6316&MI_07
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6317&MI_08
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6318&MI_09
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6319&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_631A&MI_05
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_631B&MI_05
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_631D&MI_01
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_631F
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_6334&MI_06
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_633A&MI_03
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_633C&MI_03
+%ADB.DeviceDescRelease01%=USB_Install, USB\VID_1004&PID_633D&MI_08
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6341&MI_04
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6342&MI_05
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_633E&MI_04
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_633F&MI_05
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6343&MI_06
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6344&MI_05
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6347&MI_02
+%ADB.DeviceDescRelease04%=USB_Install, USB\VID_1004&PID_6349&MI_02
+
+; LGE ANDROID NET Drivers for Verizon
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6200&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6204&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6208&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_620C&MI_08
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_620F&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6214&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6218&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6219&MI_04
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_621A&MI_04
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6220&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6221&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6222&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6226&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6228&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_622A&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_622C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_622E&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6230&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6232&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6234&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6235&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6237&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6238&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_623A&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_623C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_623E&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6240&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6242&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6244&MI_04
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_624A&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_624C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_624E&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6250&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6246&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_621B&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_621C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6252&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6254&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6256&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6258&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_625A&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_625C&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_625E&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6260&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6262&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6264&MI_06
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6266&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6268&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_626D&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6271&MI_05
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6273&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6275&MI_01
+%Verizon.DeviceDescRelease%=USB_Install, USB\VID_1004&PID_6278&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_627F&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6280&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6281&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6282&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6283&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6284&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6286&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6287&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_628A&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_628E&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_628F&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6291&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6293&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6296&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_6298&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629B&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629C&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629D&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629E&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_629F&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A0&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A1&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A2&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A3&MI_06
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A4&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62A5&MI_05
+; Verizon Common PID
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C3&MI_06
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C4&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C6&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C7&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62C8&MI_06
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CA&MI_05
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CB&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CC&MI_01
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CE&MI_04
+%Verizon.DeviceDescRelease2%=USB_Install, USB\VID_1004&PID_62CF&MI_05
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include     = winusb.inf
+AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall
+
+[WinUSB_ServiceInstall]
+DisplayName     = %WinUSB_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+[USB_Install.Wdf]
+KmdfService = WINUSB, WinUSB_Install
+
+[WinUSB_Install]
+KmdfLibraryVersion  = 1.9
+
+[USB_Install.HW]
+AddReg  = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{F72FE0D4-CBCB-407d-8814-9ED673D0DD6B}"
+
+[USB_Install.CoInstallers]
+AddReg    = CoInstallers_AddReg
+CopyFiles = CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01009.dll,WdfCoInstaller","WinUSBCoInstaller2.dll"
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+WdfCoInstaller01009.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles=11
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,,\i386
+2 = %DISK_NAME%,,,\amd64
+
+[SourceDisksFiles.x86]
+WinUSBCoInstaller2.dll  = 1
+WdfCoInstaller01009.dll = 1
+
+[SourceDisksFiles.amd64]
+WinUSBCoInstaller2.dll  = 2
+WdfCoInstaller01009.dll = 2
+
+[Strings]
+ProviderName                = "Google, Inc."
+WinUSB_SvcDesc              = "LGE Mobile Android USB Driver"
+DISK_NAME                   = "LGE Mobile Android WinUsb installation disk"
+ClassName                   = "Android Device"
+ADB.DeviceDescTest          = "ADB Testing Interface"
+; LGE Android
+ADB.DeviceDescRelease01     = "AndroidNet Sooner Single ADB Interface"
+ADB.DeviceDescRelease02     = "Android Platform Sooner Single ADB Interface"
+ADB.DeviceDescRelease03     = "Android Sooner Single ADB Interface"
+ADB.DeviceDescRelease04     = "LGE Mobile ADB Interface"
+; LGE ANDROID NET Drivers for Verizon
+Verizon.DeviceDescRelease="LGE AndroidNet for VZW ADB Interface"
+Verizon.DeviceDescRelease2="LGE Mobile for VZW ADB Interface"

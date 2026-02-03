@@ -1,0 +1,154 @@
+;*****************************************************************************
+;
+; Name:  z3f2obxw.inf
+;
+; Function:
+;	Install the Sony Ericsson USB WMC OBEX Interface on Win9x
+;
+; Copyright (c) 1997-2003 MCCI
+;
+; $Id: lower9x.inf,v 1.16 2002/06/12 17:37:35 greg Exp $
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=10/24/2003, 3.48.0.2701
+DriverVer=04/21/2009, 3.48.0.2701
+;Missing CAT file entry added by RTGL
+CatalogFile=z3f2obxw.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"z3f2obex.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+z3f2obex.sys = 1
+z3f2cr.sys = 1
+;z3f2vcr.vxd = 1; RTGL: remove unused files from legacy OS versions
+;z3f2cm95.sys = 1; RTGL: remove unused files from legacy OS versions
+z3f2cmnt.sys = 1
+;z3f2comm.vxd = 1; RTGL: remove unused files from legacy OS versions
+;z3f2vcd.vxd = 1; RTGL: remove unused files from legacy OS versions
+z3f2obxv.inf = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC_Z1010%=SEMC_Z1010
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC_Z1010]
+%SEMC_Z1010.Comm.Desc% = SEMC_Z1010.Install, USB\VID_0FCE&PID_1010&Class_02&SubClass_0B&Prot_00&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SEMC_Z1010.Install]
+;AddReg		= SEMC_Z1010.AddReg,SEMC_Z1010.W95.AddReg,SEMC_Z1010.W95.AddReg.CRGuid
+AddReg		= SEMC_Z1010.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+;DriverVer=10/24/2003, 3.48.0.2701
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC_Z1010.AddReg]
+HKR,,NTMPDriver,,z3f2obex.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for Win95....
+;[SEMC_Z1010.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+
+;[SEMC_Z1010.W95.Addreg.CRGuid]
+;HKR,,CRGuid,,{40B65E8A-2B42-4944-A5F7-F733AABB661B}
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;z3f2vcr.vxd
+;z3f2comm.vxd
+;z3f2vcd.vxd
+;
+[CopyFiles.sys]
+z3f2obex.sys
+z3f2cr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;z3f2cm.sys,z3f2cm95.sys
+;z3f2cm95.sys
+;z3f2cmnt.sys
+;
+;[Copyfiles.W95.inf]
+;z3f2obxv.inf
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+SEMC_Z1010 = "Sony Ericsson"
+DiskString = "Sony Ericsson USB WMC OBEX Interface installation disk"
+
+SEMC_Z1010.Comm.Desc = "Sony Ericsson USB WMC OBEX Interface"
+UpperDescription = "Sony Ericsson USB WMC OBEX Interface (VCOMM)"
+
+CustomerDataPath = "Z1010 series Kit"
+DriverSet = "Z1010 series Software"
+UninstallFile = "Z3F2Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

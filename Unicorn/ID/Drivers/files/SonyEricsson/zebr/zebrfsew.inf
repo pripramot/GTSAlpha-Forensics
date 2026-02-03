@@ -1,0 +1,179 @@
+;*****************************************************************************
+;
+; Name:  zebrserw.inf
+;
+; Function:
+;	Install the Sony Ericsson Port (WDM)
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+;Missing CAT file entry added by RTGL
+CatalogFile=zebrfsew.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"zebrmdm.sys",,\i386
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+zebrmdm.sys = 1
+zebrcr.sys = 1
+zebrvcr.vxd = 1
+zebrcm95.sys = 1
+zebrcmnt.sys = 1
+zebrcomm.vxd = 1
+zebrvcd.vxd = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%SerialA1%=Install.1,USB\VID_0FCE&PID_E012&MI_01&OS_9X
+%SerialB1%=Install.2,USB\VID_0FCE&PID_E012&MI_03&OS_9X
+%SerialA1%=Install.1,USB\VID_0FCE&PID_E011&MI_01&OS_9X
+%SerialB1%=Install.2,USB\VID_0FCE&PID_E011&MI_03&OS_9X
+%SerialA1%=Install.1,USB\VID_0FCE&PID_E010&MI_01&OS_9X
+%SerialB1%=Install.2,USB\VID_0FCE&PID_E010&MI_03&OS_9X
+%SerialA1%=Install.1,USB\VID_0FCE&PID_F092&MI_01&OS_9X
+%SerialB1%=Install.2,USB\VID_0FCE&PID_F092&MI_03&OS_9X
+%SerialA1%=Install.1,USB\VID_0FCE&PID_F065&MI_01&OS_9X
+%SerialB1%=Install.2,USB\VID_0FCE&PID_F065&MI_03&OS_9X
+%SerialA1%=Install.1,USB\VID_0FCE&PID_F0CD&MI_01&OS_9X
+%SerialB1%=Install.2,USB\VID_0FCE&PID_F0CD&MI_03&OS_9X
+%SerialA1%=Install.1,USB\VID_0FCE&PID_F0CB&MI_01&OS_9X
+%SerialB1%=Install.2,USB\VID_0FCE&PID_F0CB&MI_03&OS_9X
+%SerialA1%=Install.1,USB\VID_0FCE&PID_F0CE&MI_01&OS_9X
+%SerialB1%=Install.2,USB\VID_0FCE&PID_F0CE&MI_03&OS_9X
+
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Install.1]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.1
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.1]
+;HKR,,CrGuid,,{8272F932-117D-48be-A878-32CA24F6718D}
+
+[Install.2]
+;AddReg = SEMC.AddReg, SEMC.W95.AddReg, SEMC.W95.AddReg.2
+;CopyFiles = CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys, CopyFiles.W95.Inf
+AddReg = SEMC.AddReg
+CopyFiles = CopyFiles, CopyFiles.sys
+
+;[SEMC.W95.AddReg.2]
+;HKR,,CrGuid,,{8272F931-117D-48be-A878-32CA24F6718D}
+
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC.AddReg]
+HKR,,NTMPDriver,,zebrmdm.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for Win95....
+;[SEMC.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;zebrvcr.vxd
+;zebrcomm.vxd
+;zebrvcd.vxd
+;
+[CopyFiles.sys]
+zebrmdm.sys
+zebrcr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;zebrcm.sys,zebrcm95.sys
+;zebrcm95.sys
+;zebrcmnt.sys
+;
+[Copyfiles.W95.inf]
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson Mobile Communications AB"
+SEMC = "Sony Ericsson Mobile Communications AB"
+DiskString = "Sony Ericsson Port Installation Disk"
+
+UpperDescription = "Sony Ericsson Port Driver (VCOMM)"
+
+SerialA1 = "Sony Ericsson Master Port"
+SerialB1 = "Sony Ericsson Slave Port"
+
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+
+McciOptions = "Uninstallable NotInstallOnWinVer5"
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

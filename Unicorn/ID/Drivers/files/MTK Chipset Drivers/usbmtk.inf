@@ -1,0 +1,130 @@
+;
+; USBMTK.INF 
+; only valid in Windows NT
+;
+
+[Version]
+signature="$Windows NT$"
+Class=Image
+ClassGUID={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider=%Mtk%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=10/03/2005,5.13.01.0002 
+DriverVer=04/21/2009,5.13.01.0002
+CatalogFile=usbmtk.cat
+
+[SourceDisksNames]
+1=%SourceDiskName%,,,
+
+[SourceDisksFiles]
+usbmtk.sys=1
+mtkjpeg.dll=1
+
+[ControlFlags]
+; All PnP devices should be excluded from manual AddDevice Applet list
+ExcludeFromSelect=*
+
+[Manufacturer]
+%MtkMfg%=Mtk
+
+[DestinationDirs]
+Mtk.USBDCam.Files.Ext = 10,System32\Drivers
+Mtk.USBDCam.CopyCODEC = 11
+
+[Mtk]
+%USB\VID_04C8&PID_0720.DeviceDesc%=Mtk.USBDCam,USB\VID_0E8D&PID_0004
+
+[Mtk.USBDCam.NT]
+Include=    ks.inf, kscaptur.inf, dshowext.inf
+Needs=      KS.Registration,KSCAPTUR.Registration.NT, DSHOWEXT.Registration
+AddReg=     Mtk.USBDCam.AddReg
+CopyFiles=Mtk.USBDCam.Files.Ext,Mtk.USBDCam.CopyCODEC
+UpdateInis= Mtk.USBDCam.UpdateIni
+;WIA
+SubClass=StillImage
+DeviceType=3
+DeviceSubType=0x1
+Capabilities=0x00000031
+DeviceData=Mtk.USBDCam.DeviceData
+ICMProfiles="sRGB Color Space Profile.icm"
+
+[Mtk.USBDCam.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbmtk.sys
+HKR,,PageOutWhenUnopened,3,01
+
+; WIA
+HKR,,HardwareConfig,1,1
+HKR,,USDClass,,"{0527d1d0-88c2-11d2-82c7-00c04f8ec183}"
+
+;MJPEG Codec
+HKLM,SYSTEM\CurrentControlSet\Control\MediaResources\icm\vidc.MJPG,Description,0,%MJPG.DeviceDesc%
+HKLM,SYSTEM\CurrentControlSet\Control\MediaResources\icm\vidc.MJPG,Driver,0,mtkjpeg.dll
+
+[Mtk.USBDCam.UpdateIni]
+system.ini,drivers32,,"VIDC.MJPG=mtkjpeg.dll"
+
+[Mtk.USBDCam.DeviceData]
+Server=local
+UI DLL=sti.dll
+UI Class ID={5d8ef5a3-ac13-11d2-a093-00c04f72dc3c}
+
+[Mtk.USBDCam.NT.Interfaces]
+AddInterface=%KSCATEGORY_CAPTURE%,GLOBAL,Mtk.USBDCam.Interface
+AddInterface=%KSCATEGORY_VIDEO%,GLOBAL,Mtk.USBDCam.Interface
+
+[Mtk.USBDCam.Interface]
+AddReg=Mtk.USBDCam.Intf.AddReg
+         
+[Mtk.USBDCam.Intf.AddReg]
+HKR,,CLSID,,%ProxyVCap.CLSID%
+HKR,,FriendlyName,,%USB\VID_04C8&PID_0720.DeviceDesc%
+HKR,PageAliases,"{71F96464-78F3-11d0-A18C-00A0C9118956}",1,21,E8,C2,3D, 13,47, d2,11, 0xba, 0x41, 0x0, 0xa0, 0xc9, 0xd, 0x2b, 0x5
+HKR,PinFactory\1\Interfaces\{5BB95400-52BB-11d2-BA41-00A0C90D2B05},,,
+
+
+[Mtk.USBDCam.NT.Services]
+AddService = DCamUSBMtk,0x00000002,Mtk.USBDCam.ServiceInstall
+
+[Mtk.USBDCam.ServiceInstall]
+DisplayName   = %USB\VID_04C8&PID_0720.DeviceDesc%
+ServiceType   = %SERVICE_KERNEL_DRIVER%
+StartType     = %SERVICE_DEMAND_START%
+ErrorControl  = %SERVICE_ERROR_NORMAL%
+ServiceBinary = %10%\System32\Drivers\usbmtk.sys
+
+[Mtk.USBDCam.Files.Ext]
+usbmtk.sys
+
+[Mtk.USBDCam.CopyCODEC]
+mtkjpeg.dll
+
+[Strings]
+
+;----------------
+; Non-Localizable
+;----------------
+
+; note: only register value is case sensitive, key is not.
+ProxyVCap.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_VIDEO="{6994AD05-93EF-11D0-A3CC-00A0C9223196}"
+SERVICE_KERNEL_DRIVER=1
+; PnP should use demand start
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+
+;----------------
+; Localizable
+;----------------
+
+Msft="Microsoft"
+Mtk="MediaTek Inc."
+MtkMfg="Mtk"
+USB\VID_04C8&PID_0720.DeviceDesc="Webcam phone"
+MJPG.DeviceDesc="MJPEG Decompressor"
+SourceDiskName="Installation diskette 1"
+
+
+

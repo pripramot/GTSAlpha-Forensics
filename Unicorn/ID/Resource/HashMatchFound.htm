@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Hash Matches Found</title>
+		<link rel="stylesheet" href="../../../Common/AcquisitionDataTransformer/css/report1.css" type="text/css" />
+		<link rel="stylesheet" href="../../../ThirdPartySoftware/jquery-ui/jquery-ui.min.css">
+		<style type="text/css">
+::-webkit-scrollbar {
+width: 40px;
+height: 60px;
+}
+
+::-webkit-scrollbar-button {
+background-size: 100%;
+height: 50px;
+width: 40px;
+}
+
+::-webkit-scrollbar-track {
+-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+border-radius: 10px;
+background-color: rgb(0,131,203);
+-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+height: 40px;
+}
+
+::-webkit-scrollbar-button:vertical:decrement {
+background-image: url("file:/C:/PROGRA~1/RADIOT~1/FORENS~1/ReportImages/up2u.png");
+background-repeat: no-repeat, no-repeat;
+background-position: 0 0, 0 0;
+}
+
+::-webkit-scrollbar-button:vertical:increment {
+background-image: url("file:/C:/PROGRA~1/RADIOT~1/FORENS~1/ReportImages/down2u.png");
+background-repeat: no-repeat, no-repeat;
+background-position: 0 10px, 0 0;
+}
+
+body {
+-webkit-user-select: none;
+}
+
+#hash-matches-list-box
+{
+padding: 5px;
+}
+
+#hash-matches-list-box > p
+{
+margin-top: 0px;
+margin-bottom: 0px;
+font-size: 16px;
+padding: 5px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+button.collapsible {
+  margin-top: 5px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0px 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+.content p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.content p:last-child {
+  margin-bottom: 10px;
+}
+
+.content p:first-child {
+  margin-top: 10px;
+}
+
+.ui-tabs .ui-tabs-panel {
+    padding: 5px;
+}
+
+		</style>		
+	    <script src="../../../ThirdPartySoftware/jquery-ui/external/jquery/jquery.min.js"></script>
+	    <script src="../../../ThirdPartySoftware/jquery-ui/jquery-ui.min.js"></script>		
+		<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+
+function AddCollapsibleRow(title, paragraph)
+{  
+    var waStatusBox = document.getElementById('hash-matches-list-box');
+    if (waStatusBox != null)
+	{
+	    RemoveTempRow(waStatusBox);
+	    var item = document.createElement("button");
+		item.setAttribute('class','collapsible');
+		item.appendChild(document.createTextNode(title));
+	    var content = document.createElement("div");
+		content.setAttribute('class','content');
+		
+		var lines = paragraph.split("\n");
+		for (line of lines)
+		{
+    		var p1 = document.createElement("p");
+		    p1.appendChild(document.createTextNode(line));
+     		content.appendChild(p1);
+		}
+		
+		waStatusBox.appendChild(item);
+		waStatusBox.appendChild(content);
+		
+		item.addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            } 
+        });
+		
+		waStatusBox.scrollTop = waStatusBox.scrollHeight;
+	}
+}
+
+function IncrementSummaryCategoryRow(categoryStr)
+{
+    var incCat = Number(categoryStr);
+    var summaryTable = document.getElementById('hash-matches-summary-table');
+	if (summaryTable != null)
+	{
+	    var rows = summaryTable.getElementsByTagName("tr");
+		if (rows.length >= 1)
+		{
+		    var i = 1;
+		    for ( ; i < rows.length; i++)
+		    {
+		    	var categoryElement = rows[i];
+		    	if (categoryElement != null)
+		    	{
+				    var tds = categoryElement.getElementsByTagName("td");
+					if (tds.length == 2)
+					{
+		    	        var category = Number(tds[0].innerText);
+		    	        if (category == incCat)
+		    		    {
+    	    		    	var count = Number(tds[1].innerText);
+		    		    	count++;
+		    		    	tds[1].innerText = count.toString();
+		    		    	return;
+		    		    }
+		    		    else if (category > incCat)
+		    		    {
+		    		    	break;
+		    		    }
+					}
+		    	}
+		    }
+			var tr = summaryTable.parentNode.insertRow(i);
+
+            var td1 = document.createElement("td");
+		    td1.innerText = categoryStr;
+		    tr.appendChild(td1);
+		    
+		    var td2 = document.createElement("td");
+		    td2.innerText = "1";
+		    tr.appendChild(td2);
+		}
+	}
+}
+
+function AppendStatusLine(content, style)
+{  
+    var waStatusBox = document.getElementById('hash-matches-list-box');
+    if (waStatusBox != null)
+	{
+	    RemoveTempRow(waStatusBox);
+	    var p1 = document.createElement("P");
+        p1.style = style;
+        p1.appendChild(document.createTextNode(content));
+        waStatusBox.appendChild(p1);
+        waStatusBox.scrollTop = waStatusBox.scrollHeight;
+	}
+}
+
+function RemoveTempRow(waStatusBox)
+{
+    if (waStatusBox != null)
+	{
+        var tmpRow = document.getElementById('temp-row');
+        if (tmpRow != null)
+	    {
+	        waStatusBox.removeChild(tmpRow);
+	    }
+    }
+}
+
+function UpdateTempLine(content)
+{  
+    var waStatusBox = document.getElementById('hash-matches-list-box');
+    if (waStatusBox != null)
+	{
+        RemoveTempRow(waStatusBox);
+		var p1 = document.createElement("P");
+        p1.appendChild(document.createTextNode(content));
+		p1.setAttribute('id', 'temp-row');
+		p1.style.fontWeight = "bold";
+        waStatusBox.appendChild(p1);
+        // Don't auto scroll to the bottom
+	}
+}
+
+
+function ReplaceTempLine(content)
+{  
+    var waStatusBox = document.getElementById('hash-matches-list-box');
+    if (waStatusBox != null)
+	{
+        RemoveTempRow(waStatusBox);
+		var p1 = document.createElement("P");
+        p1.appendChild(document.createTextNode(content));
+		p1.setAttribute('id', 'temp-row');
+		p1.style.fontWeight = "bold";
+        waStatusBox.appendChild(p1);
+        waStatusBox.scrollTop = waStatusBox.scrollHeight;
+	}
+}
+
+function SetActiveTab(tabIndex)
+{
+$( "#tabs" ).tabs({ active: tabIndex });
+}
+        </script>	
+	</head>
+
+	<body>
+    	<h1 style = 'text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 5px;'>Hash Matches Found</h1>
+		<div id="tabs">
+            <ul>
+              <li><a href="#tabs-1">Details</a></li>
+			  <li><a href="#tabs-2">Matches</a></li>
+			  <li><a href="#tabs-3">Summary</a></li>
+            </ul>
+
+			<div id="tabs-1">
+			    <div style="overflow-y: auto; height:208px; border: 1px solid silver;padding-left: 10px;padding-right: 5px;">
+		    	    <ul><li>Further details of how to proceed, configuration restrictions, etc can be put here.</li><li>The contents of this can be configurable for each customer.</li></ul>
+				</div>
+			</div>
+
+			<div id="tabs-2">
+		    	<p style="margin-top: 0px; margin-bottom: 5px;">
+		    		<big>File system Hash Matches found:</big>
+		    	</p>					
+				<div id="hash-matches-list-box" style="overflow-y: auto; height:170px; border: 1px solid silver;">
+				</div>
+			</div>
+			
+			<div id="tabs-3">
+			    <div style="overflow-y: auto; height:208px; border: 1px solid silver;padding-left: 10px;padding-right: 5px;">
+		    	    <p style="margin-top: 0px; margin-bottom: 5px;">
+		    		    <big>Summary of Hash Matches found:</big>
+		    	    </p>
+			        <table style="width: 95%; text-align: left; margin-left: auto; margin-right: auto;" class="fmt">
+				    <tbody id="hash-matches-summary-table">
+					    <tr>
+						    <th>Category</th>
+							<th>Count</th>
+						</tr>
+					</tbody>
+					</table>
+				</div>
+			</div>			
+		</div>
+        <p style="margin-bottom: 0px; font-weight: bold; text-align: center;">
+            <big id="continue-message">Press 'OK' to proceed</big>
+	    </p>	
+	</body>
+</html>

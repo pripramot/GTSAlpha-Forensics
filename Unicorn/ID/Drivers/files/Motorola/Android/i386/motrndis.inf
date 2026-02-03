@@ -1,0 +1,147 @@
+;-------------------------------------------------------------------------------
+;
+; Motorola USB Remote NDIS Driver (motrndis.inf)
+;
+; Copyright (c) 2010-2015 Motorola
+;
+;-------------------------------------------------------------------------------;                     
+
+[Version]
+Signature           = "$Windows NT$"
+Class               = Net
+ClassGUID           = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider            = %Motorola%
+DriverVer           = 03/01/2013, 1.0.8.0
+CatalogFile         = motrndis.cat
+
+[Manufacturer]
+%Motorola%          = Motorola,ntx86.5.1,ntx86.6.0,ntamd64
+
+; Not supporting Windows 2000 anymore
+[Motorola]
+
+; XP supported
+[Motorola.ntx86.5.1]
+
+; tat
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E7C
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E7D&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E7E
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E7F&MI_00
+
+; q xs
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E74&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E75&MI_00
+
+; x im
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_64CC&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_64CE&MI_00
+; x am
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_64B1&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_64B2&MI_00
+
+; i
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_7109&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_710A&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_710B
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_710C&MI_00
+
+; qc d
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E24
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E25&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E2A&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2E2B&MI_00
+
+; t qc
+%Motrndis.DeviceDesc%	= RNDIS.NT.5.1, USB\VID_22B8&PID_2E19&MI_00
+%Motrndis.DeviceDesc%	= RNDIS.NT.5.1, USB\VID_22B8&PID_2E1A&MI_00
+
+; p qc
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2DFC
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2DFD&MI_00
+
+; o4-1
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_431C
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_431D&MI_00
+; o4-2
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_4338
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_4339&MI_00
+; dq+
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2DE9&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_2DEB&MI_00
+
+; et
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_7095&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_7096&MI_00
+; ev
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_70B2&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_70B3&MI_00
+; t o4
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_42FC
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_42FD&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_4303&MI_00
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_4304&MI_00
+; s o4
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_42DC
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_42DD&MI_00
+; d nV
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_70CC
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_70CD&MI_00
+
+; e
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_70AE
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_70AF&MI_00
+; o3
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_41E4
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_41E5&MI_00
+; o/e
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_7091
+%Motrndis.DeviceDesc%    = RNDIS.NT.5.1, USB\VID_22B8&PID_7092&MI_00
+
+%Motrndis.DeviceDesc%    = MOTRNDISTEST, USB\VID_22B8&PID_41EE&MI_08
+
+; Vista and higher not needed
+[Motorola.ntx86.6.0]
+
+%Motrndis.DeviceDesc%    = MOTRNDISTEST, USB\VID_22B8&PID_41EE&MI_08
+
+; x64 not needed 
+[Motorola.ntamd64]
+
+%Motrndis.DeviceDesc%    = MOTRNDISTEST, USB\VID_22B8&PID_41EE&MI_08
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+; Windows XP and later sections -----------------------------------
+
+[RNDIS.NT.5.1]
+Characteristics = 0x84   ; NCF_PHYSICAL + NCF_HAS_UI
+BusType         = 15
+include         = netrndis.inf
+needs           = Usb_Rndis.ndi
+
+; no copyfiles - the files are already in place
+
+[RNDIS.NT.5.1.Services]
+include     = netrndis.inf
+needs       = Usb_Rndis.ndi.Services
+
+
+; Test sections -----------------------------------------------------
+[MOTRNDISTEST]
+Characteristics = 0x84   ; NCF_PHYSICAL + NCF_HAS_UI
+BusType         = 15;
+
+[MOTRNDISTEST.Services]
+AddService = ,2    ;
+
+
+
+[Strings]
+Motorola              = "Motorola"
+Motrndis.DeviceDesc   = "Motorola USB RNDIS Device"
+
+
+
+

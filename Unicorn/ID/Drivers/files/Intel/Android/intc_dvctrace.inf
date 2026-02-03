@@ -1,0 +1,119 @@
+;*********************************************************************************************
+; Windows USB Dvc.Trace Setup File for Intel Android Smartphones
+;
+; Copyright (c) 2015 Intel Corporation
+;
+; For use only on Windows operating systems.
+;*********************************************************************************************
+[Version]
+Signature           = "$Windows NT$"
+Class               = DvcTraceUsbDeviceClass
+ClassGuid           = {80833492-2889-414A-A705-AE2EE8A95C6E}
+Provider            = %ProviderName%
+DriverVer			= 04/15/2015,1.9.0.0
+CatalogFile.NTx86  	= intc_dvctracex86.cat
+CatalogFile.NTAMD64 = intc_dvctraceamd64.cat
+
+;
+; This section seems to be required for WinUsb driver installation.
+; If this section is removed the installer will report an error
+; "Required section not found in INF file".
+;
+[ClassInstall32]
+Addreg = DvcTraceUsbDeviceClassReg
+
+[DvcTraceUsbDeviceClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-1
+
+[Manufacturer]
+%ProviderName% = DvcTraceDevices, NTx86, NTamd64
+
+[DvcTraceDevices.NTx86]
+; Intel Merrifield Android
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A1F&MI_01       ; ADB + DvcTrace (data + ctrl), DvcDFX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A21&MI_02       ; MTP + ADB + DvcTrace (data + ctrl), DvcDFX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A23&MI_02       ; PTP + ADB + DvcTrace (data + ctrl), DvcDFX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A25&MI_03       ; RNDIS Control + RNDIS data + ADB + DvcTrace (data + ctrl), DvcDFX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A26&MI_05       ; ACM(2) + RNDIS Control + RNDIS data + ADB + DvcTrace (data + ctrl), DvcDFX
+
+; Not supported, only Microsoft can register class driver
+;%CompositeDvcTraceInterface&LDeviceName%=USB_Install, USB\Class_DC&SubClass_07&Prot_00
+
+; Intel Merrifield SCU DnX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_1141&MI_01	; DvcTrace (data + ctrl)
+
+[DvcTraceDevices.NTamd64]
+; Intel Merrifield Android
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A1F&MI_01       ; ADB + DvcTrace (data + ctrl), DvcDFX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A21&MI_02       ; MTP + ADB + DvcTrace (data + ctrl), DvcDFX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A23&MI_02       ; PTP + ADB + DvcTrace (data + ctrl), DvcDFX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A25&MI_03       ; RNDIS Control + RNDIS data + ADB + DvcTrace (data + ctrl), DvcDFX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_0A26&MI_05       ; ACM(2) + RNDIS Control + RNDIS data + ADB + DvcTrace (data + ctrl), DvcDFX
+
+; Not supported, only Microsoft can register class driver
+;%CompositeDvcTraceInterface&LDeviceName%=USB_Install, USB\Class_DC&SubClass_07&Prot_00
+
+; Intel Merrifield SCU DnX
+%CompositeDvcTraceInterface%     = USB_Install, USB\VID_8087&PID_1141&MI_01	; DvcTrace (data + ctrl)
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include     = winusb.inf
+AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall
+
+[WinUSB_ServiceInstall]
+DisplayName     = %WinUSB_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+[USB_Install.Wdf]
+KmdfService = WINUSB, WinUSB_Install
+
+[WinUSB_Install]
+KmdfLibraryVersion  = 1.9
+
+[USB_Install.HW]
+AddReg  = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{602B3DCC-DD46-48B3-BBEB-06C957CE6C27}" ; WinUSB API GUID
+
+[USB_Install.CoInstallers]
+AddReg    = CoInstallers_AddReg
+CopyFiles = CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01009.dll,WdfCoInstaller","WinUSBCoInstaller2.dll"
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+WdfCoInstaller01009.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles=11
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,,\i386
+2 = %DISK_NAME%,,,\amd64
+
+[SourceDisksFiles.x86]
+WinUSBCoInstaller2.dll  = 1
+WdfCoInstaller01009.dll = 1
+
+[SourceDisksFiles.amd64]
+WinUSBCoInstaller2.dll  = 2
+WdfCoInstaller01009.dll = 2
+
+[Strings]
+ProviderName                = "Intel Corporation"
+CompositeDvcTraceInterface  = "Intel DvcTrace Composite Interface"
+SingleBootLoaderInterface   = "Intel Android Bootloader Interface"
+WinUSB_SvcDesc              = "Intel DvcTrace USB Driver"
+DISK_NAME                   = "Intel DvcTrace WinUsb installation disk"
+ClassName                   = "Intel DvcTrace Device"

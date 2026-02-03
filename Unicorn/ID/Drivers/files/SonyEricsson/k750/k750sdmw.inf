@@ -1,0 +1,150 @@
+;*****************************************************************************
+;
+; Name:  k750sdmw.inf
+;
+; Function:
+;	Install Sony Ericsson 750 USB WMC Device Management on Win98/SE/ME
+;
+; Copyright (c) 1997-2005 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=02/11/2005, 4.28.0.2703
+DriverVer=04/21/2009, 4.28.0.2703
+CatalogFile=k750mgmt.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"k750mgmt.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+k750mgmt.sys = 1
+k750cr.sys = 1
+;k750vcr.vxd = 1; RTGL: remove unused files from legacy OS versions
+;k750cm95.sys = 1; RTGL: remove unused files from legacy OS versions
+k750cmnt.sys = 1
+;k750comm.vxd = 1; RTGL: remove unused files from legacy OS versions
+;k750vcd.vxd = 1; RTGL: remove unused files from legacy OS versions
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%SEMC.Comm.Desc% = SEMC.Install, USB\VID_0FCE&PID_D016&Class_02&SubClass_09&Prot_01&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[SEMC.Install]
+;AddReg		= SEMC.AddReg,SEMC.W95.AddReg,SEMC.W95.AddReg.CRGuid
+AddReg		= SEMC.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+;DriverVer=02/11/2005, 4.28.0.2703
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[SEMC.AddReg]
+HKR,,NTMPDriver,,k750mgmt.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200 initial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+HKR,,EnableSetClearFeatureIdle, 0x10001, 01,00,00,00
+
+; only for Win95....
+;[SEMC.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+
+;[SEMC.W95.Addreg.CRGuid]
+;HKR,,CRGuid,,{EE230F5C-5F9C-4981-99D9-4C987E38714C}
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;k750vcr.vxd
+;k750comm.vxd
+;k750vcd.vxd
+;
+[CopyFiles.sys]
+k750mgmt.sys
+k750cr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;k750cm.sys,k750cm95.sys
+;k750cm95.sys
+;k750cmnt.sys
+;
+;[Copyfiles.W95.inf]
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson 750 USB WMC Device Management installation disk"
+
+SEMC.Comm.Desc = "Sony Ericsson 750 USB WMC Device Management (WDM)"
+UpperDescription = "Sony Ericsson 750 USB WMC Device Management Drivers"
+
+CustomerDataPath = "Sony Ericsson 750"
+DriverSet = "Sony Ericsson 750 Software"
+UninstallFile = "K750Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

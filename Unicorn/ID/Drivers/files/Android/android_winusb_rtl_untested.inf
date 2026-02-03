@@ -1,0 +1,805 @@
+;
+; Android WinUsb driver installation.
+;
+[Version]
+Signature           = "$Windows NT$"
+Class               = AndroidUsbDeviceClass
+ClassGuid           = {3F966BD9-FA04-4ec5-991C-D326973B5128}
+Provider            = %ProviderName%
+DriverVer           = 12/06/2010,4.0.0000.00000
+CatalogFile.NTx86   = androidwinusb86_rtl_untested.cat
+CatalogFile.NTamd64 = androidwinusba64_rtl_untested.cat
+
+; 
+; This section seems to be required for WinUsb driver installation.
+; If this section is removed the installer will report an error
+; "Required section not found in INF file".
+;
+[ClassInstall32]
+Addreg = AndroidWinUsbClassReg
+
+[AndroidWinUsbClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-1
+
+[Manufacturer]
+%ProviderName% = Google, NTx86, NTamd64
+
+[Google.NTx86]
+
+
+;Driver details taken from audit logs
+
+
+;Acer
+;=======
+
+;Acer B1-710 Iconia Tab
+%CompositeAdbInterface%    = USB_Install, USB\VID_0502&PID_3532&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0502&PID_3532&MI_01
+
+;ALBA
+;=======
+
+;ALBA AC40NE - UK
+;MTP
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_03
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_04
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_05
+;PTP
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_03
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_04
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_05
+
+;ALBA AC50DNE - UK
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_03
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_04
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_05
+
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_03
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_04
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_05
+
+;ALBA AC50BNE
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5176&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5176&MI_01
+
+;Alcatel
+;=======
+
+;Alcatel 5051X Pop4 - UK
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00F&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00F&MI_01
+;Possible Drivers - PTP
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00D&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00D&MI_01
+;Possible Drivers - ?
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00E&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00E&MI_01
+
+;Alcatel 9008X A3 XL - UK
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_2008&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_2008&MI_01
+
+;Amazon
+;=======
+
+;Amazon SD4930UR Fire Phone - UK
+;Possible Drivers
+%CompositeAdbInterface%    = USB_Install, USB\VID_1949&PID_0800&MI_00
+;%CompositeAdbInterface%    = USB_Install, USB\VID_1949&PID_0800&MI_01 ; Duplicated in Android\android_winusb.inf
+
+;Amazon SV98LN Kindle Fire 7 2015 Wi-Fi - UK
+;Possible Drivers
+%CompositeAdbInterface%    = USB_Install, USB\VID_1949&PID_0222&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1949&PID_0222&MI_01
+
+;Asus
+;====
+
+;Asus Z00ED - Solomon Islands
+%CompositeAdbInterface%     = USB_Install, USB\VID_0B05&PID_5F03&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_0B05&PID_5F03&MI_01
+;%CompositeAdbInterface%     = USB_Install, USB\VID_0B05&PID_5F03&MI_02 duplicated elsewhere
+%CompositeAdbInterface%     = USB_Install, USB\VID_0B05&PID_5F03&MI_03
+
+;Archos
+;=========
+
+;Archos 5s Platinum
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_52B3&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_52B3&MI_01
+
+;Archos 55b Platinum
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_544A&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_544A&MI_01
+
+;Bush
+;=========
+
+;Bush AC55 55 Platinum
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_3221&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_3221&MI_01
+
+;CAT
+;=========
+
+;CAT S30
+%CompositeAdbInterface%     = USB_Install, USB\VID_04B7&PID_88B9&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_04B7&PID_88B9&MI_01
+
+;dtac - Thailand
+;=====================
+
+;dtac Phone Joey Jet 2
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_03
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_04
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_05
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_06
+
+;dtac Phone Joey Jet 2, true SMART MAX 4.0
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_03
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_04
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_05
+
+;Hipstreet Pilot
+;====================
+
+;Hipstreet Pilot 10DTB42 10.1 Tablet
+%CompositeAdbInterface%    = USB_Install, USB\VID_7731&PID_201D&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_7731&PID_201D&MI_01
+
+;Huawei
+;======
+
+;Huawei Y511-U00 - Thailand, Huawei Y511-U30 - Australia
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_2314&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_2314&MI_01
+
+;Huawei BLN-L21 Honor 6X
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107E&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107E&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107E&MI_02
+
+;Huawei TRT-LX2 Y7, LDN-LX2 - Thailand
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107D&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107D&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107D&MI_02
+
+;Huawei DRA-LX2, DRA-LX5 - Thailand
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107F&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107F&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107F&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107F&MI_03
+
+;i-Mobile - Thailand
+;=====================
+
+;i-Mobile IQ 5.8
+%CompositeAdbInterface%     = USB_Install, USB\VID_0A5C&PID_E688&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0A5C&PID_E688&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_0A5C&PID_E681&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0A5C&PID_E681&MI_01
+
+;i-Mobile IQ 5.1A
+%CompositeAdbInterface%     = USB_Install, USB\VID_1C9E&PID_9E08&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_1C9E&PID_9E08&MI_01
+
+;i-Mobile i-STYLE 215, i-STYLE 810, true SMART MAX 4.0 Plus, true SMART 3.5 Touch, dtac Phone Joey Jet 2
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_03
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_04
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_05
+
+;i-Mobile IQZ
+%CompositeAdbInterface%     = USB_Install, USB\VID_05C6&PID_903A&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_05C6&PID_903A&MI_01 ; Duplicated in Qualcomm\qcser.inf
+%CompositeAdbInterface%     = USB_Install, USB\VID_05C6&PID_903A&MI_02
+
+;LAVA (AIS) - Thailand
+;=====================
+
+;LAVA (AIS) iris 515, iris 512, iris 550, true SMART Speedy 4.0 Plus, TWZ Y58 
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_2003&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_2003&MI_01 ; Duplicated in 1\Android\MTK\android_winusb.inf
+
+;LAVA (AIS) iris 405, Wiko RAINBOW
+%CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&PID_0C02&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&PID_0C02&MI_01 - duplicated in Android files
+
+;Lenovo
+;======
+
+;Lenovo B A2016a40 - UK 
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A19&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A19&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A19&MI_02
+
+;Lenovo A516 (Lenovo A6000-I from Thai Audit Logs, Lenovo A850 from AFP Audit Logs)
+;MTP
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_7718&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7718&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7718&MI_02
+;MTP
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_74F9&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_74F9&MI_01
+
+;Lenovo A800 
+;Mass Storage
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_7435&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7435&MI_01
+;MTP
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_7498&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7498&MI_01 ; Duplicated in Android\android_winusb.inf
+;PTP
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_749B&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_749B&MI_01
+
+;Lenovo A1000M - Thailand 
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_79E8&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_79E8&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_79E8&MI_02
+
+;Lenovo YT3-X50F Yoga Tab 3
+%CompositeAdbInterface%    = USB_Install, USB\VID_17EF&PID_7933&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7933&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7933&MI_02
+
+;Lenovo AK53A48 K6 Note - Thailand 
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A2B&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A2B&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A2B&MI_02
+
+;ONEPLUS
+;=======
+
+;ONEPLUS Five A5000, Three A3003
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_9011&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_9011&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_9011&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_904E&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_904E&MI_01
+
+;OPPO
+;====
+
+;OPPO F1f, A33
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2773&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2773&MI_01
+
+;OPPO R1001, U707
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2765&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2765&MI_01
+
+;OPPO R6007 - Thailand
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2778&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2778&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2778&MI_02
+
+;Prestigio
+;============
+
+;Prestigio PAP4500 MultiPhone 4500 Duo
+%CompositeAdbInterface%     = USB_Install, USB\VID_12D1&PID_2583&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_12D1&PID_2583&MI_01
+
+;Sony - CD Mode Enabled Drivers
+;==============================
+
+;Sony E6853 Xperia Z5 Premium
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_41DB&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_41DB&MI_01
+
+;Sony D6503 Xperia Z2
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_41AF&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_41AF&MI_01
+
+;Sony E5603 Xperia M5
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_51D6&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_51D6&MI_01
+
+;Sony G8441 Xperia XZ1 Compact? Not in driver file, not sure why
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_01F4&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_01F4&MI_01
+
+;VIVO - Thailand
+;===============
+
+;VIVO Y51, Y31L, Y35
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_9039&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_9039&MI_01
+
+;VIVO V3Max
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_904E&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_904E&MI_01
+
+;VIVO V3, Y21
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_FF08&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_FF08&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_FF08&MI_02
+
+;VIVO Y15
+%CompositeAdbInterface%    = USB_Install, USB\VID_9BB5&PID_0C02&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_9BB5&PID_0C02&MI_01
+
+;VIVO Y22
+%CompositeAdbInterface%    = USB_Install, USB\VID_9BB5&PID_0C03&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_9BB5&PID_0C03&MI_01
+
+;VIVO 1807, 1804, 1724, 1611, 1606
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6003&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6003&MI_01
+;Other Mode VIVO 1606
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6005&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6005&MI_01
+;Other Mode VIVO 1611
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6007&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6007&MI_01
+
+;WIKO - Thailand
+;================
+
+;WIKO JERRY
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_03
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_04
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_05
+
+;Xiaomi
+;======
+
+;Xiaomi MI 2013121 - Australia
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_FF40&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_FF40&MI_01
+
+;Xiaomi MI MAX - Australia
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_FF48&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_FF48&MI_01
+
+;Xiaomi MI Pad - Australia
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_0660&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_0660&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_0660&MI_02
+
+[Google.NTamd64]
+
+
+;Driver details taken from audit logs
+
+
+;Acer
+;=======
+
+;Acer B1-710 Iconia Tab
+%CompositeAdbInterface%    = USB_Install, USB\VID_0502&PID_3532&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0502&PID_3532&MI_01
+
+;ALBA
+;=======
+
+;ALBA AC40NE - UK
+;MTP
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_03
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_04
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5369&MI_05
+;PTP
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_03
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_04
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_536B&MI_05
+
+;ALBA AC50DNE - UK
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_03
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_04
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5372&MI_05
+
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_03
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_04
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5371&MI_05
+
+;ALBA AC50BNE
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5176&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0E79&PID_5176&MI_01
+
+;Alcatel
+;=======
+
+;Alcatel 5051X Pop4 - UK
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00F&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00F&MI_01
+;Possible Drivers - PTP
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00D&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00D&MI_01
+;Possible Drivers - ?
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00E&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_A00E&MI_01
+
+;Alcatel 9008X A3 XL - UK
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_2008&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1BBB&PID_2008&MI_01
+
+;Amazon
+;=======
+
+;Amazon SD4930UR Fire Phone - UK
+;Possible Drivers
+%CompositeAdbInterface%    = USB_Install, USB\VID_1949&PID_0800&MI_00
+;%CompositeAdbInterface%    = USB_Install, USB\VID_1949&PID_0800&MI_01 ; Duplicated in Android\android_winusb.inf
+
+;Amazon SV98LN Kindle Fire 7 2015 Wi-Fi - UK
+;Possible Drivers
+%CompositeAdbInterface%    = USB_Install, USB\VID_1949&PID_0222&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_1949&PID_0222&MI_01
+
+;Asus
+;====
+
+;Asus Z00ED - Solomon Islands
+%CompositeAdbInterface%     = USB_Install, USB\VID_0B05&PID_5F03&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_0B05&PID_5F03&MI_01
+;%CompositeAdbInterface%     = USB_Install, USB\VID_0B05&PID_5F03&MI_02 duplicated elsewhere
+%CompositeAdbInterface%     = USB_Install, USB\VID_0B05&PID_5F03&MI_03
+
+;Archos
+;=========
+
+;Archos 5s Platinum
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_52B3&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_52B3&MI_01
+
+;Archos 55b Platinum
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_544A&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_544A&MI_01
+
+;Bush
+;=========
+
+;Bush AC55 55 Platinum
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_3221&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E79&PID_3221&MI_01
+
+;CAT
+;=========
+
+;CAT S30
+%CompositeAdbInterface%     = USB_Install, USB\VID_04B7&PID_88B9&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_04B7&PID_88B9&MI_01
+
+;dtac - Thailand
+;=====================
+
+;dtac Phone Joey Jet 2
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_03
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_04
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_05
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D21&MI_06
+
+;dtac Phone Joey Jet 2, true SMART MAX 4.0
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_03
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_04
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_5D24&MI_05
+
+;Hipstreet Pilot
+;====================
+
+;Hipstreet Pilot 10DTB42 10.1 Tablet
+%CompositeAdbInterface%    = USB_Install, USB\VID_7731&PID_201D&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_7731&PID_201D&MI_01
+
+;Huawei
+;======
+
+;Huawei Y511-U00 - Thailand, Huawei Y511-U30 - Australia
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_2314&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_2314&MI_01
+
+;Huawei BLN-L21 Honor 6X
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107E&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107E&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107E&MI_02
+
+;Huawei TRT-LX2 Y7, LDN-LX2 - Thailand
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107D&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107D&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107D&MI_02
+
+;Huawei DRA-LX2, DRA-LX5 - Thailand
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107F&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107F&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107F&MI_02
+%CompositeAdbInterface%    = USB_Install, USB\VID_12D1&PID_107F&MI_03
+
+;i-Mobile - Thailand
+;=====================
+
+;i-Mobile IQ 5.8
+%CompositeAdbInterface%     = USB_Install, USB\VID_0A5C&PID_E688&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0A5C&PID_E688&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_0A5C&PID_E681&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0A5C&PID_E681&MI_01
+
+;i-Mobile IQ 5.1A
+%CompositeAdbInterface%     = USB_Install, USB\VID_1C9E&PID_9E08&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_1C9E&PID_9E08&MI_01
+
+;i-Mobile i-STYLE 215, i-STYLE 810, true SMART MAX 4.0 Plus, true SMART 3.5 Touch, dtac Phone Joey Jet 2
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_03
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_04
+%CompositeAdbInterface%     = USB_Install, USB\VID_1782&PID_4002&MI_05
+
+;i-Mobile IQZ
+%CompositeAdbInterface%     = USB_Install, USB\VID_05C6&PID_903A&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_05C6&PID_903A&MI_01 ; Duplicated in Qualcomm\qcser.inf
+%CompositeAdbInterface%     = USB_Install, USB\VID_05C6&PID_903A&MI_02
+
+;LAVA (AIS) - Thailand
+;=====================
+
+;LAVA (AIS) iris 515, iris 512, iris 550, true SMART Speedy 4.0 Plus, TWZ Y58 
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_2003&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_2003&MI_01 ; Duplicated in 1\Android\MTK\android_winusb.inf
+
+;LAVA (AIS) iris 405, Wiko RAINBOW
+%CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&PID_0C02&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&PID_0C02&MI_01 - duplicated in Android files
+
+;Lenovo
+;======
+
+;Lenovo B A2016a40 - UK 
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A19&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A19&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A19&MI_02
+
+;Lenovo A516 (Lenovo A6000-I from Thai Audit Logs, Lenovo A850 from AFP Audit Logs)
+;MTP
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_7718&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7718&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7718&MI_02
+;MTP
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_74F9&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_74F9&MI_01
+
+;Lenovo A800 
+;Mass Storage
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_7435&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7435&MI_01
+;MTP
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_7498&MI_00
+;%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7498&MI_01 ; Duplicated in Android\android_winusb.inf
+;PTP
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_749B&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_749B&MI_01
+
+;Lenovo A1000M - Thailand 
+%SingleAdbInterface%     = USB_Install, USB\VID_17EF&PID_79E8&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_79E8&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_79E8&MI_02
+
+;Lenovo YT3-X50F Yoga Tab 3
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7933&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7933&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7933&MI_02
+
+;Lenovo AK53A48 K6 Note - Thailand 
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A2B&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A2B&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_17EF&PID_7A2B&MI_02
+
+;ONEPLUS
+;=======
+
+;ONEPLUS Five A5000, Three A3003
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_9011&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_9011&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_9011&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_904E&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_2A70&PID_904E&MI_01
+
+;OPPO
+;====
+
+;OPPO F1f, A33
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2773&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2773&MI_01
+
+;OPPO R1001, U707
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2765&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2765&MI_01
+
+;OPPO R6007 - Thailand
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2778&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2778&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_22D9&PID_2778&MI_02
+
+;Prestigio
+;============
+
+;Prestigio PAP4500 MultiPhone 4500 Duo
+%CompositeAdbInterface%     = USB_Install, USB\VID_12D1&PID_2583&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_12D1&PID_2583&MI_01
+
+;Sony - CD Mode Enabled Drivers
+;==============================
+
+;Sony E6853 Xperia Z5 Premium
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_41DB&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_41DB&MI_01
+
+;Sony D6503 Xperia Z2
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_41AF&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_41AF&MI_01
+
+;Sony E5603 Xperia M5
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_51D6&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_51D6&MI_01
+
+;Sony G8441 Xperia XZ1 Compact? Not in driver file, not sure why
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_01F4&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_0FCE&PID_01F4&MI_01
+
+;VIVO - Thailand
+;===============
+
+;VIVO Y51, Y31L, Y35
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_9039&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_9039&MI_01
+
+;VIVO V3Max
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_904E&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_904E&MI_01
+
+;VIVO V3, Y21
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_FF08&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_FF08&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_05C6&PID_FF08&MI_02
+
+;VIVO Y15
+%CompositeAdbInterface%    = USB_Install, USB\VID_9BB5&PID_0C02&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_9BB5&PID_0C02&MI_01
+
+;VIVO Y22
+%CompositeAdbInterface%    = USB_Install, USB\VID_9BB5&PID_0C03&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_9BB5&PID_0C03&MI_01
+
+;VIVO 1807, 1804, 1724, 1611, 1606
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6003&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6003&MI_01
+;Other Mode VIVO 1606
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6005&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6005&MI_01
+;Other Mode VIVO 1611
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6007&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2D95&PID_6007&MI_01
+
+;WIKO - Thailand
+;================
+
+;WIKO JERRY
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_00
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_01
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_02
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_03
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_04
+%CompositeAdbInterface%     = USB_Install, USB\VID_0E8D&PID_4002&MI_05
+
+;Xiaomi
+;======
+
+;Xiaomi MI 2013121 - Australia
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_FF40&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_FF40&MI_01
+
+;Xiaomi MI MAX - Australia
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_FF48&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_FF48&MI_01
+
+;Xiaomi MI Pad - Australia
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_0660&MI_00
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_0660&MI_01
+%CompositeAdbInterface%    = USB_Install, USB\VID_2717&PID_0660&MI_02
+
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include     = winusb.inf
+AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall
+
+[WinUSB_ServiceInstall]
+DisplayName     = %WinUSB_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+[USB_Install.Wdf]
+KmdfService = WINUSB, WinUSB_Install
+
+[WinUSB_Install]
+KmdfLibraryVersion  = 1.9
+
+[USB_Install.HW]
+AddReg  = Dev_AddReg
+
+[Dev_AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{F72FE0D4-CBCB-407d-8814-9ED673D0DD6B}"
+
+[USB_Install.CoInstallers]
+AddReg    = CoInstallers_AddReg
+CopyFiles = CoInstallers_CopyFiles
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01009.dll,WdfCoInstaller","WinUSBCoInstaller2.dll"
+
+[CoInstallers_CopyFiles]
+WinUSBCoInstaller2.dll
+WdfCoInstaller01009.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles=11
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,,\i386
+2 = %DISK_NAME%,,,\amd64
+
+[SourceDisksFiles.x86]
+WinUSBCoInstaller2.dll  = 1
+WdfCoInstaller01009.dll = 1
+
+[SourceDisksFiles.amd64]
+WinUSBCoInstaller2.dll  = 2
+WdfCoInstaller01009.dll = 2
+
+[Strings]
+ProviderName                = "Google, Inc."
+SingleAdbInterface          = "Android ADB Interface"
+CompositeAdbInterface       = "Android Composite ADB Interface"
+SingleBootLoaderInterface   = "Android Bootloader Interface"
+WinUSB_SvcDesc              = "RTL Android USB Driver"
+DISK_NAME                   = "Android WinUsb installation disk"
+ClassName                   = "Android Device"

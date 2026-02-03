@@ -1,0 +1,324 @@
+;*****************************************************************************
+;
+; Name:  zebrserv.inf 
+;
+; Function:
+;	Install the Sony Ericsson Port (WDM)
+;
+; Copyright (c) 2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+;Missing CAT file entry added by RTGL
+CatalogFile=zebrserv.cat
+
+;-----------------------------------------------------------------------------
+; No files are copied by this file.. no filecopy init declarations are here.
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%SerialF1%=SEMC.Install, ZEBRCR\{8272F936-117D-48be-A878-32CA24F6718D}
+%SerialE1%=SEMC.Install, ZEBRCR\{8272F935-117D-48be-A878-32CA24F6718D}
+%SerialD1%=SEMC.Install, ZEBRCR\{8272F934-117D-48be-A878-32CA24F6718D}
+%SerialC1%=SEMC.Install, ZEBRCR\{8272F933-117D-48be-A878-32CA24F6718D}
+;%SerialB1%=SEMC.Install, ZEBRCR\{8272F932-117D-48be-A878-32CA24F6718D} ; Duplicated in SonyEricsson\Generic\zebrfsev.inf
+;%SerialA1%=SEMC.Install, ZEBRCR\{8272F931-117D-48be-A878-32CA24F6718D} ; Duplicated in SonyEricsson\Generic\zebrfsev.inf
+%SerialI1%=SEMC.Install, ZEBRCR\{8272F939-117D-48be-A878-32CA24F6718D}
+%SerialJ1%=SEMC.Install, ZEBRCR\{8272F930-117D-48be-A878-32CA24F6718D}
+%SerialK1%=SEMC.Install, ZEBRCR\{8272F93A-117D-48be-A878-32CA24F6718D}
+%SerialL1%=SEMC.Install, ZEBRCR\{8272F93B-117D-48be-A878-32CA24F6718D}
+%SerialM1%=SEMC.Install, ZEBRCR\{8272F93C-117D-48be-A878-32CA24F6718D}
+%SerialN1%=SEMC.Install, ZEBRCR\{8272F93D-117D-48be-A878-32CA24F6718D}
+%SerialO1%=SEMC.Install, ZEBRCR\{8272F93E-117D-48be-A878-32CA24F6718D}
+%SerialP1%=SEMC.Install, ZEBRCR\{8272F93F-117D-48be-A878-32CA24F6718D}
+%SerialQ1%=SEMC.Install, ZEBRCR\{8272F940-117D-48be-A878-32CA24F6718D}
+%SerialR1%=SEMC.Install, ZEBRCR\{8272F941-117D-48be-A878-32CA24F6718D}
+
+
+;-----------------------------------------------------------------------------
+; The exclude-from-select stuff
+;-----------------------------------------------------------------------------
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+[SEMC.Install]
+AddReg		= SEMC.W95AddReg,SEMC.W95Overrides
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+;**** here's the stuff for W95 ports.
+;**** it's in this INF file, but we'll not use it until we get enumerated.
+[SEMC.W95AddReg]
+HKR,,DevLoader,,*vcomm
+HKR,,PortDriver,,zebrcomm.vxd
+HKR,,Contention,,zebrvcd.vxd
+HKR,,DCB,3,1C,00,00,00, 00,C2,01,00, 11,33,00,00, 00,00, 0a,00, 0a,00, 08, 00, 00, 11, 13, 00, 00, 00
+HKR,,PortSubClass,1,01
+HKR,,ConfigDialog,,serialui.dll
+HKR,,EnumPropPages,,"serialui.dll,EnumPropPages"
+
+;-----------------------------------------------------------------------------
+;  Logical Configurations
+;-----------------------------------------------------------------------------
+[SEMC.W95Overrides]
+;-- Config for 3f8 - COM1,IRQ4
+HKR,Override,0000,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+F8,03,FF,03, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+10,00,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for 2f8 0 COM2 IRQ3
+HKR,Override,0001,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+F8,02,FF,02, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+08,00,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for 3e8 0 COM3 IRQ4
+HKR,Override,0002,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+E8,03,EF,03, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+10,00,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for 2e8 0 COM4 IRQ3
+HKR,Override,0003,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+E8,02,EF,02, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+08,00,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;-- Config for 3f8 - COM1 IRQAny
+HKR,Override,0004,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+F8,03,FF,03, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+FF,FF,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for 2f8 0 COM2 IRQAny
+HKR,Override,0005,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+F8,02,FF,02, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+FF,FF,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for 3e8 0 COM3 IRQAny
+HKR,Override,0006,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+E8,03,EF,03, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+FF,FF,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for 2e8 0 COM4 IRQAny
+HKR,Override,0007,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+E8,02,EF,02, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+FF,FF,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for anywhere- COMx IRQ Any
+HKR,Override,0008,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+00,01,FF,03, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** IRQ ***
+10,00,00,00, \  ; total length of irq resource descriptor
+04,00,00,00, \  ; ResType_IRQ - 0x00000004
+01,00,00,00, \  ; IRQD_Flags / IRQD_Alloc_Num
+FF,FF,00,00, \  ; IRQD_Req_Mask / IRQD_Reserved
+\ ;*** TERMINATOR ***
+00,00,00,00
+;
+;--- Config for anywhere- COMx IRQ None
+HKR,Override,0009,1, \
+00,04,00,00,00,00,00,00, \
+\ ;*** I/O Range 0 ***
+20,00,00,00, \  ; total length of io resource descriptor
+02,00,00,00, \  ; ResType_IO = 0x00000002
+01,00,0C,00, \  ; IOD_count / IOD_Type = 0x0c
+00,00,00,00, \  ; IOD_Alloc_Base / IOD_Alloc_End
+00,00,00,00, \  ; IOD_DesFlags / IOD_Alloc_Alias / IOD_Alloc_Decode
+F8,FF,08,00, \  ; IOR_Align / IOR_nPorts
+00,01,FF,03, \  ; IOR_Min / IOR_Max
+00,00,00,00, \  ; IOR_RangeFlags / IOR_Alias / IOR_Decode
+\ ;*** TERMINATOR ***
+00,00,00,00
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson Mobile Communications AB"
+SEMC = "Sony Ericsson Mobile Communications AB"
+
+
+SerialA1 = "Sony Ericsson P990 Application Port"
+SerialB1 = "Sony Ericsson P990 Debug Port"
+SerialC1 = "Sony Ericsson M600 Application Port"
+SerialD1 = "Sony Ericsson M600 Debug Port"
+SerialE1 = "Sony Ericsson W950 Application Port"
+SerialF1 = "Sony Ericsson W950 Debug Port"
+SerialI1 = "Sony Ericsson P1 Application Port"
+SerialJ1 = "Sony Ericsson P1 Debug Port"
+SerialK1 = "Sony Ericsson W960 Application Port"
+SerialL1 = "Sony Ericsson W960 Debug Port"
+SerialM1 = "Sony Ericsson G700 Application Port"
+SerialN1 = "Sony Ericsson G700 Debug Port"
+SerialO1 = "Sony Ericsson G900 Application Port"
+SerialP1 = "Sony Ericsson G900 Debug Port"
+SerialQ1 = "Sony Ericsson G700c Application Port"
+SerialR1 = "Sony Ericsson G700c Debug Port"
+
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+
+McciOptions = "Uninstallable NotInstallOnWinVer5"
+;END ENG - US English Strings
+
+;--- strings following this line should not be localized ---
+
+;*** end of file ***

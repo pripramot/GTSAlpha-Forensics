@@ -1,0 +1,102 @@
+;/*++
+;
+;Copyright (c) 2007-08 Sony Ericsson All rights Reserved
+;
+;Module Name:
+;
+;    seehcri.inf
+;
+;Abstract:
+;    INF file for installing seehcri device drivers
+;--*/
+[Version]
+Signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36fc9e60-c465-11cf-8056-444553540000}
+Provider=%SEMC%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=01/09/2008,1.1.0.0
+DriverVer=04/21/2009,1.1.0.0
+CatalogFile=seehcri.cat
+
+[DestinationDirs]
+seehcri.NT.Copy = 12
+
+[Manufacturer]
+%SEMC%=semc,NTx86,NTamd64
+
+[semc.NTx86]
+; %Seehcrirf.DeviceDesc%=seehcrirf, USB\ROOT_HUB
+; %Seehcrirf.DeviceDesc%=seehcrirf, USB\ROOT_HUB20
+%Seehcricd.DeviceDesc%=seehcricd, %seehcricd_HWId%
+%Seehcricd.DeviceDesc%=seehcricd, DETECTEDInternal\seehcri
+%Seehcricd.DeviceDesc%=seehcricd, DETECTED\seehcri
+
+[semc.NTamd64]
+; %Seehcrirf.DeviceDesc%=seehcrirf, USB\ROOT_HUB
+; %Seehcrirf.DeviceDesc%=seehcrirf, USB\ROOT_HUB20
+%Seehcricd.DeviceDesc%=seehcricd, %seehcricd_HWId%
+%Seehcricd.DeviceDesc%=seehcricd, DETECTEDInternal\seehcri
+%Seehcricd.DeviceDesc%=seehcricd, DETECTED\seehcri
+
+;=====================================================================
+[seehcrirf.NT]  
+Include=usbport.inf
+Needs=ROOTHUB.Dev.NT
+CopyFiles=seehcri.NT.Copy
+
+[seehcricd.NT]  
+CopyFiles=seehcri.NT.Copy
+
+[seehcri.NT.Copy]
+seehcri.sys
+
+[seehcrirf.NT.HW]
+AddReg = seehcrirf.NT.HW.AddReg
+Include = usbport.inf
+Needs = ROOTHUB.Dev.NT.HW
+
+[seehcrirf.NT.HW.AddReg]  
+HKR,,"UpperFilters",0x00010000,"seehcri"
+
+[seehcrirf.NT.Services]
+AddService = seehcri,,seehcri_Service_Inst 
+Include=usbport.inf
+Needs=ROOTHUB.Dev.NT.Services
+
+[seehcricd.NT.Services]
+AddService = seehcri,,seehcri_Service_Inst 
+
+[seehcri_Service_Inst]
+DisplayName    = %seehcrirf.SvcDesc%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\seehcri.sys                            
+AddReg=seehcri_Service_Inst.AddReg
+
+[seehcri_Service_Inst.AddReg]  
+HKR,,"ControlDeviceHWId",0x00000000,%seehcricd_HWId%
+
+[SourceDisksNames.x86]
+1 = %DiskId1%,seehcri.sys,,\i386
+
+[SourceDisksNames.amd64]
+1 = %DiskId1%,seehcri.sys,,\amd64
+
+[SourceDisksFiles]
+seehcri.sys  = 1,,
+
+[Strings]
+SEMC = "Sony Ericsson"
+
+seehcricd_HWId="root\seehcricd"
+
+DiskId1 = "Seehcri Devices Installation Disk #1"
+Seehcrirf.DeviceDesc = "USB Root Hub"
+Seehcricd.DeviceDesc = "Sony Ericsson seehcri Control Device"
+seehcrirf.SvcDesc = "Sony Ericsson seehcri Device Driver"
+seehcricd.SvcDesc = "Sony Ericsson seehcri Control Device Driver"
+
+
+;DriverVer updated to the minimum required to support the required OSs

@@ -1,0 +1,163 @@
+;*****************************************************************************
+;
+; sh2bus.inf   -- Install SHARP 902SH_802SH USB Control drivers
+;
+; Copyright (c) 1997-2004 by MCCI 
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=07/21/2004, 4.22.0.2701
+DriverVer=04/21/2009, 4.22.0.2701
+CatalogFile=sh2bus.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+SharpWdm.W95.CopyFiles       = 11                    ; LDID_SYS
+SharpWdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"sh2bus.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+sh2bus.sys = 1
+sh2whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SHARP%=SHARP
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[SHARP]
+%Sharp.CdcBus.Desc% = SharpWdm.Install, USB\VID_04DD&PID_908D
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[Sharp.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SharpWdm.Install.NT]
+DriverVer=07/21/2004, 4.22.0.2701
+CopyFiles       = SharpWdm.NT.CopyFiles
+AddReg          = SharpWdm.AddReg, SharpWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SharpWdm.Install.NT.Services]
+AddService      = sh2bus, 2, SharpWdm.AddService
+
+[SharpWdm.AddService]
+DisplayName             = %Sharp.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\sh2bus.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SharpWdm.AddReg]
+
+; set the default scenario
+HKR,Scenarios,Scenario,0x10001, 00,00,00,00
+
+; // {E24D0928-968A-4ce2-B54D-0FED020D231B}
+; DEFINE_GUID(GUID_MCCISCENARIO_SHEARWATER_END_USER_1,
+; 0xe24d0928, 0x968a, 0x4ce2, 0xb5, 0x4d, 0xf, 0xed, 0x2, 0xd, 0x23, 0x1b);
+HKR,Scenarios\Scenario_0\Guids, GUID_SCENARIO_SHEARWATER_END_USER_1,,  "{E24D0928-968A-4ce2-B54D-0FED020D231B}"
+HKR,Scenarios\Scenario_0, Description_0409,, "End User"
+HKR,Scenarios\Scenario_0\ifc_01,DisableIfc, 0x10001, 01,00,00,00
+HKR,Scenarios\Scenario_0\ifc_02,DisableIfc, 0x10001, 01,00,00,00
+
+; // {C978A317-2EC9-4a03-B0B7-446832B4565A}
+; DEFINE_GUID(GUID_MCCISCENARIO_SHEARWATER_DEVELOPER_1,
+; 0xc978a317, 0x2ec9, 0x4a03, 0xb0, 0xb7, 0x44, 0x68, 0x32, 0xb4, 0x56, 0x5a);
+HKR,Scenarios\Scenario_1\Guids, GUID_MCCISCENARIO_SHEARWATER_DEVELOPER_1,,  "{C978A317-2EC9-4a03-B0B7-446832B4565A}"
+HKR,Scenarios\Scenario_1, Description_0409,, "Developer"
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SharpWdm.NT.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SharpWdm.NT.CopyFiles]
+sh2bus.sys
+sh2wh.sys,sh2whnt.sys
+sh2whnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "SHARP"
+SHARP = "SHARP"
+DiskString = "SHARP 902SH_802SH USB Control Installation disk"
+
+Sharp.CdcBus.Desc = "SHARP 902SH_802SH USB Control"
+Sharp.Service.Desc = "SHARP 902SH_802SH USB Control driver (WDM)"
+
+CustomerDataPath = "SHARP 902SH_802SH"
+DriverSet = "SHARP 902SH_802SH USB Driver"
+UninstallFile = "SH2Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

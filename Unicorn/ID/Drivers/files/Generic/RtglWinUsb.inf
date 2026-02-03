@@ -1,0 +1,965 @@
+; 
+; 
+; Installs WinUsb 
+; from: https://technet.microsoft.com/en-us/ff540283(v=vs.90)
+ 
+[Version] 
+Signature           = "$Windows NT$"
+Class     = USB 
+ClassGUID = {36FC9E60-C465-11CF-8056-444553540000} 
+Provider  = %ManufacturerName% 
+CatalogFile = RtglWinUsb.cat 
+DriverVer=09/04/2010,1.0.0.1 
+ 
+; ========== Manufacturer/Models sections =========== 
+ 
+[Manufacturer] 
+%ManufacturerName% = Standard,NTx86,NTamd64 
+ 
+[Standard.NTx86] 
+; Unused Nokia Modem:
+%DeviceName% = USB_Install, USB\VID_0421&PID_069A&MI_00
+; Unused serial ports on the D-link DWM-222 (from Qualcom qcser.inf)
+%DeviceName%  = USB_Install, USB\VID_2001&PID_7E35&MI_00
+%DeviceName%  = USB_Install, USB\VID_2001&PID_7E35&MI_02
+%DeviceName%  = USB_Install, USB\VID_2001&PID_7E35&MI_03
+ 
+[Standard.NTamd64] 
+; Unused Nokia Modem:
+%DeviceName% = USB_Install, USB\VID_0421&PID_069A&MI_00                              
+; ================ Devices without x64 drivers (which aren't used by RTGL) ==================================
+; Vodafone Smart II Network Adapter	Microsoft Corporation	Net	\Alcatel\linux_cdc_rndis_brcm_vid.inf                                                 
+%DeviceName% = USB_Install, USB\VID_18D1&PID_4E12                                       
+; Vodafone Smart II Network Adapter	Microsoft Corporation	Net	\Alcatel\linux_cdc_rndis_brcm_vid.inf                                                 
+%DeviceName% = USB_Install, USB\VID_18D1&PID_4E12&MI_00                                 
+; WP-S1 Proprietary USB Modem	Amoi Incorporated	Modem	\Amoi\qcmdm6k.inf                                                                         
+%DeviceName% = USB_Install, USB\VID_1614&PID_0804&MI_00                              
+; Ericsson R320 IR modem	Ericsson	Modem	\Ericsson\R320\erir320_i.inf                                                                          
+%DeviceName% = USB_Install, INFRARED\ERI0010                                         
+; Ericsson R320 IR modem	Ericsson	Modem	\Ericsson\R320\erir320_i.inf                                                                          
+%DeviceName% = USB_Install, UNIMODEM51148B56                                         
+; Ericsson R320 cable modem	Ericsson	Modem	\Ericsson\R320\erir320_s.inf                                                                          
+%DeviceName% = USB_Install, SERENUM\ERI0009                                          
+; Ericsson R320 cable modem	Ericsson	Modem	\Ericsson\R320\erir320_s.inf                                                                          
+%DeviceName% = USB_Install, UNIMODEMB9516116                                         
+; HTC USB Modem	HTC Corporation	Modem	\HTC\x32\qcusbmdm.inf                                                                                         
+%DeviceName% = USB_Install, USB\VID_0BB4&PID_0EFC&MI_00                              
+; HTC USB Modem	HTC Corporation	Modem	\HTC\x32\qcusbmdm.inf                                                                                         
+%DeviceName% = USB_Install, USB\VID_0BB4&PID_0EFF                                    
+; Vodafone Mobile Adapter - 3G Modem	HUAWEI Incorporated	Modem	\Huawei\hmvmdm.inf                                                                
+%DeviceName% = USB_Install, USB\VID_12D1&PID_1009&MI_00                              
+; DBAdapter - Modem	HUAWEI Incorporated	Modem	\Huawei\qscnmdm.inf                                                                                   
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_101D&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Mobile Adapter - Modem	HUAWEI Incorporated	Modem	\Huawei\qscnmdm.inf                                                                           
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_101E&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; HUAWEI Mobile Connect - Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                          
+%DeviceName% = USB_Install, USB\VID_12D1&PID_1057&MI_0C                              
+; HUAWEI Mobile Connect - 3G Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                      
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1058&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_105C&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_105D&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_105E&MI_01                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1080&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1081&MI_03                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_2493&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_2498&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_2540&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_2541&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_2552&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_255B&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_255C&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_3612&MI_03                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_3622&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; HUAWEI Mobile Connect - 3G Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                      
+;%DeviceName% = USB_Install, USB\VID_12D1&SUBCLASS_11&PROT_01                          ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; HUAWEI Mobile Connect - Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                          
+%DeviceName% = USB_Install, USB\VID_12D1&SUBCLASS_11&PROT_10                         
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\Hisuite\X86\hw_qumdm.inf                                                                  
+%DeviceName% = USB_Install, USB\VID_12D1&SUBCLASS_11&PROT_21                         
+; HUAWEI Mobile Connect - 3G Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                            
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1001&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; HUAWEI Mobile Connect - 3G Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                            
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1003&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Mobile Adapter - ETS Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1010&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Mobile Adapter - ETS Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1011&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem (for Logo Test)	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                        
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1033&MI_00                               ; Duplicated in 1\Android\Vodafone\amd64\smhwmdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                        
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1035&MI_00                               ; Duplicated in 1\Android\Vodafone\amd64\smhwmdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                        
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1055                                     ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                        
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1056&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; HUAWEI CDMA Handset - Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1802&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; HUAWEI CDMA Handset - Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1803&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; HUAWEI FP Handset - Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                    
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1804&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; HUAWEI FP Handset - Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                    
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_1805&MI_00                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                        
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_3619&MI_03                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android Adapter Modem	Huawei Incorporated	Modem	\Huawei\U8815\hw_qumdm.inf                                                                        
+;%DeviceName% = USB_Install, USB\VID_12D1&PID_3629&MI_02                               ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_qumdm.inf
+; Android USB Ethernet/RNDIS	INQ	Net	\iNQ\android\INQnet.inf                                                                                       
+%DeviceName% = USB_Install, USB\VID_2314&PID_0003&MI_00                              
+; Android USB Ethernet/RNDIS	INQ	Net	\iNQ\android\INQnet.inf                                                                                       
+%DeviceName% = USB_Install, USB\VID_2314&PID_0004&MI_00                              
+; Intel Medfield Android Remote NDIS based Device	Intel Corporation	Net	\Intel\rndis.inf                                                          
+;%DeviceName% = USB_Install, USB\VID_8087&PID_09F3                                     ; Duplicated in 1\Android\Intel\intc_rndis.inf
+; Intel Medfield Android Remote NDIS based Device	Intel Corporation	Net	\Intel\rndis.inf                                                          
+;%DeviceName% = USB_Install, USB\VID_8087&PID_09F3&MI_00                               ; Duplicated in 1\Android\Intel\intc_rndis.inf
+; Intel Medfield Android Remote NDIS based Device	Intel Corporation	Net	\Intel\rndis.inf                                                          
+;%DeviceName% = USB_Install, USB\VID_8087&PID_09F4                                     ; Duplicated in 1\Android\Intel\intc_rndis.inf
+; Intel Medfield Android Remote NDIS based Device	Intel Corporation	Net	\Intel\rndis.inf                                                          
+;%DeviceName% = USB_Install, USB\VID_8087&PID_09F4&MI_00                               ; Duplicated in 1\Android\Intel\intc_rndis.inf
+; Intel Medfield Android Remote NDIS based Device	Intel Corporation	Net	\Intel\rndis.inf                                                          
+;%DeviceName% = USB_Install, USB\VID_8087&PID_09F8&MI_00                               ; Duplicated in 1\Android\Intel\intc_rndis.inf
+; LG Mobile USB WMC Data Modem	LG Electronics	Modem	\LG\GT500\lgmdmdm2.inf                                                                        
+%DeviceName% = USB_Install, USB\VID_1004&PID_6091&MI_01&OS_NT                        
+; LGE Mobile USB Modem	LG Electronics Inc	Modem	\LG\KE500\lgusbsmodem.inf                                                                         
+%DeviceName% = USB_Install, USB\VID_1004&PID_6016                                    
+; LGE Mobile USB WMC Data Modem	LG Electronics	Modem	\LG\KF750\lgmcmdm2.inf                                                                        
+%DeviceName% = USB_Install, USB\VID_1004&PID_6073&MI_01&OS_NT                        
+; LGE Mobile USB WMC Modem	LG Electronics	Modem	\LG\KF750\lgmcmdm2.inf                                                                            
+%DeviceName% = USB_Install, USB\VID_1004&PID_6073&MI_03&OS_NT                        
+; LGE Mobile USB WMC Ethernet (NDIS 5)	LG Electronics	Net	\LG\KF750\lgmcndis.inf                                                                    
+%DeviceName% = USB_Install, LGMCCR\{52116BC3-6EA0-4E80-A214-57BBA54E33AA}            
+; LGE Mobile USB WMC Ethernet (NDIS 3)	LG Electronics	Net	\LG\KF750\lgmcndis.inf                                                                    
+%DeviceName% = USB_Install, LGMCCR\{DFB8F56F-92C7-4AE3-A033-99011FD90472}            
+; LGE Android Platform USB Modem	LG Electronics Inc	Modem	\LG\LGUnitedMobileDriver\lgandmodem.inf                                               
+;%DeviceName% = USB_Install, USB\VID_1004&PID_618E_MODEMINTERFACE                      ; Duplicated in 1\Android\LGE\lgandmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61A1&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61A2&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Android Platform USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                        
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61A3&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Android Platform USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                        
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61A4&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Mobile USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                    
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61A5&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61D7&MI_02                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61D8&MI_02                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F1&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F2&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F3&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F4&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F5&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F6&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F7&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F8&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Android Platform USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                        
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61FA&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Android Platform USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                        
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61FB&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61FC&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61FD&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61FE&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6310&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6311&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6314&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6315&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6316&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6317&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6318&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6319&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_631A&MI_01                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_631B&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6334&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_633A&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                
+;%DeviceName% = USB_Install, USB\VID_1004&PID_633D&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Mobile USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                    
+;%DeviceName% = USB_Install, USB\VID_1004&PID_633E&MI_01                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Mobile USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                    
+;%DeviceName% = USB_Install, USB\VID_1004&PID_633F&MI_01                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Mobile USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                    
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6341&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Mobile USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                    
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6342&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Mobile USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                    
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6343&MI_02                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Mobile USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                    
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6344&MI_02                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE Mobile USB Modem	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem.inf                                                    
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6345&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetmodem64.inf
+; LGE AndroidNet USB Modem2	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem2.inf                                               
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6318&MI_02                               ; Duplicated in 1\Android\LGE\lgandnetmodem264.inf
+; LGE AndroidNet USB Modem2	LG Electronics, Inc. 	Modem	\LG\LGUnitedMobileDriver\lgandnetmodem2.inf                                               
+;%DeviceName% = USB_Install, USB\VID_1004&PID_633D&MI_02                               ; Duplicated in 1\Android\LGE\lgandnetmodem264.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61A1&MI_01                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61A2&MI_01                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F5&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F6&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F7&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61F8&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61FC&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61FD&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61FE&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6310&MI_04                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6311&MI_04                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6312&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6313&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6314&MI_04                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6315&MI_04                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6316&MI_05                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6317&MI_05                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6318&MI_06                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6319&MI_04                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_633B                                     ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_633C&MI_00                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                         
+;%DeviceName% = USB_Install, USB\VID_1004&PID_633D&MI_05                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE Mobile NDIS Ethernet Adapter	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetndis.inf                                             
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6342&MI_03                               ; Duplicated in 1\Android\LGE\lgandnetndis64.inf
+; LGE AndroidNet Remote NDIS Device	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetrndis.inf                                            
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61D7&MI_00                               ; Duplicated in 1\Android\LGE\lgvzandnetrndis64.inf
+; LGE AndroidNet Remote NDIS Device	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetrndis.inf                                            
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61D8&MI_00                               ; Duplicated in 1\Android\LGE\lgvzandnetrndis64.inf
+; LGE AndroidNet Remote NDIS Device	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetrndis.inf                                            
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61D9&MI_00                               ; Duplicated in 1\Android\LGE\lgvzandnetrndis64.inf
+; LGE AndroidNet Remote NDIS Device	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetrndis.inf                                            
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61DA                                     ; Duplicated in 1\Android\LGE\lgvzandnetrndis64.inf
+; LGE AndroidNet Remote NDIS Device	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetrndis.inf                                            
+;%DeviceName% = USB_Install, USB\VID_1004&PID_61DA&MI_00                               ; Duplicated in 1\Android\LGE\lgvzandnetrndis64.inf
+; LGE Mobile Remote NDIS Device	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetrndis.inf                                                
+%DeviceName% = USB_Install, USB\VID_1004&PID_6343&MI_00                              
+; LGE Mobile Remote NDIS Device	LG Electronics, Inc.	Net	\LG\LGUnitedMobileDriver\lgandnetrndis.inf                                                
+%DeviceName% = USB_Install, USB\VID_1004&PID_6344&MI_00                              
+; LGE Mobile USB Modem	LG Electronics Inc	Modem	\LG\LGUnitedMobileDriver\lgusbmodem.inf                                                           
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6000_MODEMINTERFACE                      ; Duplicated in 1\Android\LGE\lgx64modem.inf
+; LGE AndroidRmNet Ethernet Adapter	LGE Electronics Inc.	Net	\LG\LGUnitedMobileDriver\RmNet51\lgandRmNet.inf                                       
+;%DeviceName% = USB_Install, USB\VID_1004&PID_6334&MI_04                               ; Duplicated in 1\Android\LGE\RmNet51\lgandRmNet64.inf
+; LGE U400 USB WMC Data Modem	LG Electronics	Modem	\LG\U400\U400mdm2.inf                                                                         
+%DeviceName% = USB_Install, USB\VID_1004&PID_6024&MI_01&OS_NT                        
+; LGE U400 USB WMC Modem	LG Electronics	Modem	\LG\U400\U400mdm2.inf                                                                             
+%DeviceName% = USB_Install, USB\VID_1004&PID_6024&MI_03&OS_NT                        
+; LGE U8110 USB WMC Data Modem	LG Electronics	Modem	\LG\U8xxx\U81xmdm2.inf                                                                        
+%DeviceName% = USB_Install, USB\VID_1004&PID_1FAE&MI_01&OS_NT                        
+; LGE U8110 USB WMC Modem	LG Electronics	Modem	\LG\U8xxx\U81xmdm2.inf                                                                            
+%DeviceName% = USB_Install, USB\VID_1004&PID_1FAE&MI_03&OS_NT                        
+; Siemens USB Modem	Siemens AG	Modem	\Motorola\legacy\USB2000XPSIE.INF                                                                             
+%DeviceName% = USB_Install, USB\VID_22B8&PID_1C02                                    
+; Siemens USB Modem	Siemens AG	Modem	\Motorola\legacy\USB2000XPSIE.INF                                                                             
+%DeviceName% = USB_Install, USB\VID_22B8&PID_6132                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_2DE9&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_2DEB&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_2DFC                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_2DFD&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_41E4                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_41E5&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+;%DeviceName% = USB_Install, USB\VID_22B8&PID_41EE&MI_08                               ; Duplicated in 1\Android\Motorola\i386\motrndis.inf
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_42DC                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_42DD&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_42FC                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_42FD&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_4303&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_4304&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_431C                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_431D&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_4338                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_4339&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_7091                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_7092&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_7095&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_7096&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_70AE                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_70AF&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_70B2&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_70B3&MI_00                              
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_70CC                                    
+; Motorola USB RNDIS Device	Motorola	Net	\Motorola\Standard\motrndis.inf                                                                           
+%DeviceName% = USB_Install, USB\VID_22B8&PID_70CD&MI_00                              
+; NEC 228 USB Modem	NEC Corporation	Modem	\NEC\228\Drivers\urusbm.inf                                                                               
+%DeviceName% = USB_Install, WDM_MODEM\URUSBM                                         
+; NEC 338 USB Modem	NEC Corporation	Modem	\NEC\338\338WinXPDrivers\liusbm.inf                                                                       
+%DeviceName% = USB_Install, WDM_MODEM\LIUSBM                                         
+; NEC 616 USB Modem	NEC Corporation	Modem	\NEC\616\ulusbm.inf                                                                                       
+%DeviceName% = USB_Install, WDM_MODEM\ULUSBM                                         
+; NEC 313 USB Modem	NEC Corporation	Modem	\NEC\e313\Win2000\atusbm.inf                                                                              
+%DeviceName% = USB_Install, WDM_MODEM\ATUSBM                                         
+; NEC 606 USB Modem	NEC Corporation	Modem	\NEC\e606\n606usbm.inf                                                                                    
+%DeviceName% = USB_Install, WDM_MODEM\NMODEMH                                        
+; Nokia Handset (UDP)	Nokia	Modem	\Nokia\CDMA\nkhsmdm\nkhsmdm.inf                                                                               
+%DeviceName% = USB_Install, USB\VID_0421&PID_0479&MI_00                              
+; Nokia Handset (UDP)	Nokia	Modem	\Nokia\CDMA\nkhsmdm\nkhsmdm.inf                                                                               
+%DeviceName% = USB_Install, USB\VID_0421&PID_04F4&MI_00                              
+; Nokia Handset (UDP)	Nokia	Modem	\Nokia\CDMA\nkhsmdm\nkhsmdm.inf                                                                               
+%DeviceName% = USB_Install, USB\VID_0421&PID_04F5&MI_00                              
+; USB Mobile Pseudo CDC Modem	Sagem Communication	Modem	\Sagem\SAG03\SagemMobileMdm.inf                                                           
+%DeviceName% = USB_Install, USB\VID_079B&PID_002F&REV_0000&MI_00                     
+; USB Mobile Pseudo CDC Trace	Sagem Communication	Modem	\Sagem\SAG03\SagemMobileMdm.inf                                                           
+%DeviceName% = USB_Install, USB\VID_079B&PID_002F&REV_0000&MI_01                     
+; USB Mobile Pseudo CDC Chimera	Sagem Communication	Modem	\Sagem\SAG03\SagemMobileMdm.inf                                                           
+%DeviceName% = USB_Install, USB\VID_079B&PID_002F&REV_0000&MI_02                     
+; USB Mobile Communication Device	Sagem Communication	Modem	\Sagem\SAG03\SagemMobileMdm.inf                                                       
+%DeviceName% = USB_Install, USB\VID_079B&PID_0030&REV_0000                           
+; USB Mobile Video Pseudo CDC Trace	Sagem Communication	Modem	\Sagem\SAG03\SagemMobileMdm.inf                                                       
+%DeviceName% = USB_Install, USB\VID_079B&PID_0042&REV_0000&MI_02                     
+; USB Mobile Mass Storage Pseudo CDC Trace	Sagem Communication	Modem	\Sagem\SAG03\SagemMobileMdm.inf                                               
+%DeviceName% = USB_Install, USB\VID_079B&PID_005D&REV_0000&MI_01                     
+; USB Mobile Mass Storage Pseudo CDC Chimera	Sagem Communication	Modem	\Sagem\SAG03\SagemMobileMdm.inf                                           
+%DeviceName% = USB_Install, USB\VID_079B&PID_005D&REV_0000&MI_02                     
+; Samsung USB VoIP Adapter	Samsung Electronics	Net	\Samsung\22_WiBro_WiMAX\C7xxPhone.inf                                                             
+%DeviceName% = USB_Install, USB\VID_04E8&PID_6840&MI_00                              
+; Samsung USB VoIP Adapter (Downloader Mode)	Samsung Electronics	Net	\Samsung\22_WiBro_WiMAX\C7xxPhone.inf                                         
+%DeviceName% = USB_Install, USB\VID_04E8&PID_68A8                                    
+; SANYO USB Phone	Microsoft	Modem	\Sanyo\Sanyomdmxp.inf                                                                                         
+%DeviceName% = USB_Install, USB\VID_0474&PID_0701                                    
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0743&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0744&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0745&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0748&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_074B&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0750&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0751&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0752&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0753&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0754&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0474&PID_0755&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0482&PID_024F&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0482&PID_0250&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0482&PID_0253&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0482&PID_025F&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0482&PID_0266&MI_00&OS_NT                        
+; SANYO USB Modem SY08	KYOCERA Corporation	Modem	\Sanyo\sy08\sy08mdm2.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0482&PID_0269&MI_00&OS_NT                        
+; SHARP 3G GSM USB Modem	SHARP	Modem	\Sharp\550SH\sh6mdm2.inf                                                                                  
+%DeviceName% = USB_Install, USB\VID_04DD&PID_90F2&CLASS_02&SUBCLASS_02&PROT_01&OS_NT 
+; SHARP 902SH_802SH	SHARP	Modem	\Sharp\902\sh2mdm2.inf                                                                                            
+%DeviceName% = USB_Install, USB\VID_04DD&PID_908D&CLASS_02&SUBCLASS_02&PROT_01&OS_NT 
+; GXmdm4_Ir	SHARP	Modem	\Sharp\GX Series\mdmgx4_i.inf                                                                                             
+%DeviceName% = USB_Install, IRENUM\SHP6103                                           
+; Siemens Mobile Phone USB Modem	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                                 
+%DeviceName% = USB_Install, USB\VID_0815&PID_0100                                    
+; Siemens Mobile Phone USB Modem	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                                 
+%DeviceName% = USB_Install, USB\VID_0815&PID_0100&MI_00                              
+; Siemens Mobile Phone USB Modem (Debug)	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                         
+%DeviceName% = USB_Install, USB\VID_0815&PID_0100&MI_01                              
+; Siemens Mobile Phone USB Modem	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                                 
+%DeviceName% = USB_Install, USB\VID_0CC4&PID_0815                                    
+; Siemens Mobile Phone USB Modem	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                                 
+%DeviceName% = USB_Install, USB\VID_0CC4&PID_0816&MI_00                              
+; Siemens Mobile Phone USB Modem (Debug)	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                         
+%DeviceName% = USB_Install, USB\VID_0CC4&PID_0816&MI_01                              
+; Siemens Mobile Phone USB Modem	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                                 
+%DeviceName% = USB_Install, USB\VID_11F5&PID_0003                                    
+; Siemens Mobile Phone USB Modem	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                                 
+%DeviceName% = USB_Install, USB\VID_11F5&PID_0003&MI_00                              
+; Siemens Mobile Phone USB Modem (Debug)	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                         
+%DeviceName% = USB_Install, USB\VID_11F5&PID_0003&MI_01                              
+; Siemens Mobile Phone USB Modem	Siemens AG	Modem	\siemens\C65\rtl_siusbmod.inf                                                                 
+%DeviceName% = USB_Install, USB\VID_11F5&PID_0815                                    
+; AC35 (GPRS)	Siemens AG - Wireless Modules	Modem	\siemens\TC35\driver\mdmsiewm_v2.6.inf                                                        
+%DeviceName% = USB_Install, AC35                                                     
+; AC45 (GPRS)	Siemens AG - Wireless Modules	Modem	\siemens\TC35\driver\mdmsiewm_v2.6.inf                                                        
+%DeviceName% = USB_Install, AC45                                                     
+; MC35 (GPRS)	Siemens AG - Wireless Modules	Modem	\siemens\TC35\driver\mdmsiewm_v2.6.inf                                                        
+%DeviceName% = USB_Install, MC35                                                     
+; MC388 (GPRS)	Siemens AG - Wireless Modules	Modem	\siemens\TC35\driver\mdmsiewm_v2.6.inf                                                        
+%DeviceName% = USB_Install, MC388                                                    
+; MC45 (GPRS)	Siemens AG - Wireless Modules	Modem	\siemens\TC35\driver\mdmsiewm_v2.6.inf                                                        
+%DeviceName% = USB_Install, MC45                                                     
+; TC35	Siemens AG - Wireless Modules	Modem	\siemens\TC35\driver\mdmsiewm_v2.6.inf                                                                
+%DeviceName% = USB_Install, TC35                                                     
+; Sony sa0103 Remote NDIS based Device	Sony	Net	\Sony\sa0103\sa0103rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7169&MI_00                              
+; Sony sa0103 Remote NDIS based Device	Sony	Net	\Sony\sa0103\sa0103rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7175&MI_00                              
+; Sony sa0103 Remote NDIS based Device	Sony	Net	\Sony\sa0103\sa0103rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7176&MI_00                              
+; Sony sa0103 Remote NDIS based Device	Sony	Net	\Sony\sa0103\sa0103rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7177&MI_00                              
+; Sony sa0103 Remote NDIS based Device	Sony	Net	\Sony\sa0103\sa0103rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8169&MI_00                              
+; Sony sa0103 Remote NDIS based Device	Sony	Net	\Sony\sa0103\sa0103rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8175&MI_00                              
+; Sony sa0103 Remote NDIS based Device	Sony	Net	\Sony\sa0103\sa0103rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8176&MI_00                              
+; Sony sa0103 Remote NDIS based Device	Sony	Net	\Sony\sa0103\sa0103rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8177&MI_00                              
+; Sony Ericsson sa0104 Remote NDIS based Device	Sony Ericsson	Net	\Sony\sa0104\sa0104rndis.inf                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7171&MI_00                              
+; Sony Ericsson sa0104 Remote NDIS based Device	Sony Ericsson	Net	\Sony\sa0104\sa0104rndis.inf                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7172&MI_00                              
+; Sony Ericsson sa0104 Remote NDIS based Device	Sony Ericsson	Net	\Sony\sa0104\sa0104rndis.inf                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7173&MI_00                              
+; Sony Ericsson sa0104 Remote NDIS based Device	Sony Ericsson	Net	\Sony\sa0104\sa0104rndis.inf                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8171&MI_00                              
+; Sony Ericsson sa0104 Remote NDIS based Device	Sony Ericsson	Net	\Sony\sa0104\sa0104rndis.inf                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8172&MI_00                              
+; Sony Ericsson sa0104 Remote NDIS based Device	Sony Ericsson	Net	\Sony\sa0104\sa0104rndis.inf                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8173&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7178&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7181&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7182&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7183&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7184&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8178&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8181&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8182&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8183&MI_00                              
+; Sony sa0105 Remote NDIS based Device	Sony	Net	\Sony\sa0105\sa0105rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8184&MI_00                              
+; Sony sa0106 Remote NDIS based Device	Sony	Net	\Sony\sa0106\sa0106rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7186&MI_00                              
+; Sony sa0106 Remote NDIS based Device	Sony	Net	\Sony\sa0106\sa0106rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_718F&MI_00                              
+; Sony sa0106 Remote NDIS based Device	Sony	Net	\Sony\sa0106\sa0106rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7190&MI_00                              
+; Sony sa0106 Remote NDIS based Device	Sony	Net	\Sony\sa0106\sa0106rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8186&MI_00                              
+; Sony sa0106 Remote NDIS based Device	Sony	Net	\Sony\sa0106\sa0106rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_818F&MI_00                              
+; Sony sa0106 Remote NDIS based Device	Sony	Net	\Sony\sa0106\sa0106rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8190&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7189&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_718A&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_718D&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7193&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7194&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7197&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7198&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8189&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_818A&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_818D&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8193&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8194&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8197&MI_00                              
+; Sony sa0107 Remote NDIS based Device	Sony	Net	\Sony\sa0107\sa0107rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8198&MI_00                              
+; Sony sa0108 Remote NDIS based Device	Sony	Net	\Sony\sa0108\sa0108rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7195&MI_00                              
+; Sony sa0108 Remote NDIS based Device	Sony	Net	\Sony\sa0108\sa0108rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7196&MI_00                              
+; Sony sa0108 Remote NDIS based Device	Sony	Net	\Sony\sa0108\sa0108rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8195&MI_00                              
+; Sony sa0108 Remote NDIS based Device	Sony	Net	\Sony\sa0108\sa0108rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8196&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_719C&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_719D&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_719E&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_719F&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71A5&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71A6&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71A7&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_819C&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_819D&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_819E&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_819F&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81A5&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81A6&MI_00                              
+; Sony sa0109 Remote NDIS based Device	Sony	Net	\Sony\sa0109\sa0109rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81A7&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71A9&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71AF&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71B0&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71B1&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71B2&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71B3&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71BA&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71BB&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71BF&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71C0&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71C2&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81A9&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81AF&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81B0&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81B1&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81B2&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81B3&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81BA&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81BB&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81BF&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81C0&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81C2&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D1B0&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0111\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D1B2&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71C9&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71CD&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71CE&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71CF&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81C9&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81CD&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81CE&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81CF&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81D0&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D1CD&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D1CE&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0112\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D1D0&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0113\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71D9&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0113\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71DA&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0113\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71DB&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0113\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81D9&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0113\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81DA&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\sa0113\sarndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81DB&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7170&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7180&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7188&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_718C&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71A3                                    
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8170&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8180&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8188&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_818C&MI_00                              
+; Sony so0101 Remote NDIS based Device	Sony	Net	\Sony\so0101\so0101rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81A3&MI_00                              
+; Sony so0103 Remote NDIS	Sony	Net	\Sony\so0103\so0103rndis.inf                                                                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7192&MI_00                              
+; Sony so0103 Remote NDIS	Sony	Net	\Sony\so0103\so0103rndis.inf                                                                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8192&MI_00                              
+; Sony so0104 Remote NDIS based Device	Sony	Net	\Sony\so0104\so0104rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_719B&MI_00                              
+; Sony so0104 Remote NDIS based Device	Sony	Net	\Sony\so0104\so0104rndis.inf                                                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_819B&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0106\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71AA&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0106\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71AB&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0106\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71B8&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0106\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81AA&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0106\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81AB&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0106\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81B8&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0107\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71AD&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0107\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71B5&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0107\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81AD&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0107\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81B5&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71BC&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71C4&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71C5&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71CB&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71D2&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71D6&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_71D7&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81BC&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81C4&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81C5&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81CB&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81D2&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81D6&MI_00                              
+; Sony Android Remote NDIS based Device	Sony	Net	\Sony\so0112\sorndis.inf                                                                          
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_81D7&MI_00                              
+; Sony Ericsson S700i IrDA Modem	Sony Ericsson Mobile Communications	Modem	\SonyEricsson\S700i-IrDA.inf                                          
+%DeviceName% = USB_Install, IRENUM\SERB005                                           
+; Sony Ericsson Device 116 USB Ethernet Emulation (NDIS 3)	Sony Ericsson	Net	\SonyEricsson\s116\s116ndis.inf                                       
+%DeviceName% = USB_Install, S116CR\{D68BDAAB-92A7-4FF1-A467-B7ED7FF447B5}            
+
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_715A&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7161&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7166&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7167&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_7168&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_815A&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8161&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8166&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8167&MI_00                              
+; Sony Ericsson sa0102 Remote NDIS based Device	Sony Ericsson	Net	\SonyEricsson\SE02 Generic\sa0102rndis.inf                                        
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_8168&MI_00                              
+; Sony Ericsson USB Mobile Pseudo CDC Modem	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_0107&REV_0000&MI_00                     
+; Sony Ericsson USB Mobile Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_0107&REV_0000&MI_01                     
+; Sony Ericsson USB Mobile Pseudo CDC Console	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_0107&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Pseudo CDC Modem	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_011C&REV_0000&MI_00                     
+; Sony Ericsson USB Mobile Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_011C&REV_0000&MI_01                     
+; Sony Ericsson USB Mobile Pseudo CDC Console	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_011C&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Pseudo CDC Modem	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_0127&REV_0000&MI_00                     
+; Sony Ericsson USB Mobile Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_0127&REV_0000&MI_01                     
+; Sony Ericsson USB Mobile Pseudo CDC Console	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_0127&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Video Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                              
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_1107&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Video Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                              
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_111C&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Video Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                              
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_1127&REV_0000&MI_02                     
+; Sony Ericsson Mobile Device	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D107&REV_0000                           
+; Sony Ericsson Mobile Device	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D11C&REV_0000                           
+; Sony Ericsson Mobile Device	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D127&REV_0000                           
+; Sony Ericsson USB Mobile Mass Storage Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_E107&REV_0000&MI_01                     
+; Sony Ericsson USB Mobile Mass Storage Pseudo CDC Console	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_E107&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Mass Storage Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_E11C&REV_0000&MI_01                     
+; Sony Ericsson USB Mobile Mass Storage Pseudo CDC Console	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_E11C&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Mass Storage Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_E127&REV_0000&MI_01                     
+; Sony Ericsson USB Mobile Mass Storage Pseudo CDC Console	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SE1008mdm.inf                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_E127&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Pseudo CDC Modem	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SS1018mdm.inf                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_00C8&REV_0000&MI_00                     
+; Sony Ericsson USB Mobile Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SS1018mdm.inf                                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_00C8&REV_0000&MI_01                     
+; Sony Ericsson USB Mobile Pseudo CDC Console	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SS1018mdm.inf                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_00C8&REV_0000&MI_02                     
+; Sony Ericsson USB Mobile Video Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SS1018mdm.inf                              
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_10C8&REV_0000&MI_02                     
+; Sony Ericsson Mobile Device	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SS1018mdm.inf                                                  
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D0C8&REV_0000                           
+; Sony Ericsson USB Mobile Mass Storage Pseudo CDC Trace	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SS1018mdm.inf                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_E0C8&REV_0000&MI_01                     
+; Sony Ericsson USB Mobile Mass Storage Pseudo CDC Console	Sony Ericsson	Modem	\SonyEricsson\SE02 W395 Series\SS1018mdm.inf                      
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_E0C8&REV_0000&MI_02                     
+; Sony Ericsson V800-Vodafone 802SE USB WMC Data Modem	Sony Ericsson	Modem	\SonyEricsson\v800\v800mdm2.inf                                       
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D008&MI_01&OS_NT                        
+; Sony Ericsson V800-Vodafone 802SE USB WMC Modem	Sony Ericsson	Modem	\SonyEricsson\v800\v800mdm2.inf                                           
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D008&MI_03&OS_NT                        
+; Sony Ericsson Z800 USB WMC Data Modem	Sony Ericsson	Modem	\SonyEricsson\z800\z800mdm2.inf                                                       
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D018&MI_01&OS_NT                        
+; Sony Ericsson Z800 USB WMC Modem	Sony Ericsson	Modem	\SonyEricsson\z800\z800mdm2.inf                                                           
+%DeviceName% = USB_Install, USB\VID_0FCE&PID_D018&MI_03&OS_NT                        
+; Thuraya SG-2520 USB GSM Modem	Thuraya	Modem	\Thuraya\SG-2520\ap_usbgsmmodem.inf                                                                   
+%DeviceName% = USB_Install, USB\VID_1A26&PID_9D81&MI_00                              
+; Thuraya SG-2520 USB SAT Modem	Thuraya	Modem	\Thuraya\SG-2520\ap_usbsatmodem.inf                                                                   
+%DeviceName% = USB_Install, USB\VID_1A26&PID_9D82&MI_00                              
+; APsi SO_2510 USB Modem	Asia Pacific	Modem	\Thuraya\SO-2510\ap_gvm2k.inf                                                                     
+%DeviceName% = USB_Install, USB\VID_1A26&PID_09CE&MI_00   
+
+; From: SAMSUNG Mobile Modem Diagnostic Serial Port (WDM)	SAMSUNG Electronics Co., Ltd. Ports \Samsung\03_Swallowtail\sscdsdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6601&MI_02&OS_NT ; Duplicated in 1\Samsung\03_Swallowtail\sscdsdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6640&MI_02&OS_NT ; Duplicated in 1\Samsung\03_Swallowtail\sscdsdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6771&MI_02&OS_NT ; Duplicated in 1\Samsung\03_Swallowtail\sscdsdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_684B&MI_03&OS_NT ; Duplicated in 1\Samsung\03_Swallowtail\sscdsdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_684C&MI_03&OS_NT ; Duplicated in 1\Samsung\03_Swallowtail\sscdsdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_68C1&MI_02&OS_NT ; Duplicated in 1\Samsung\03_Swallowtail\sscdsdm2.inf
+
+; From  SAMSUNG Mobile Modem Diagnostic Serial Port V2 (WDM)	SAMSUNG Electronics Co., Ltd. Ports \Samsung\04_semseyite\sscesdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6810&MI_02&OS_NT ; Duplicated in 1\Samsung\04_semseyite\sscesdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6811&MI_02&OS_NT ; Duplicated in 1\Samsung\04_semseyite\sscesdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6812&MI_02&OS_NT ; Duplicated in 1\Samsung\04_semseyite\sscesdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6813&MI_02&OS_NT ; Duplicated in 1\Samsung\04_semseyite\sscesdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6814&MI_02&OS_NT ; Duplicated in 1\Samsung\04_semseyite\sscesdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_684D&MI_03&OS_NT ; Duplicated in 1\Samsung\04_semseyite\sscesdm2.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_684E&MI_03&OS_NT  ; Duplicated in 1\Samsung\04_semseyite\sscesdm2.inf
+
+; From Samsung Mobile Modem Device	SAMSUNG Electronics Co., Ltd. 	USB \Samsung\08_EMPChipset\ssecbus.inf
+;%DeviceName% = USB_Install, USB\VID_04e8&PID_6777 ; Duplicated in 1\Samsung\08_EMPChipset\ssecbus.inf
+
+; From Samsung Mobile USB Modem	SAMSUNG Electronics Co., Ltd. 	USB \Samsung\17_EMP_Chipset2\secubus.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_681B ; Duplicated in 1\Samsung\17_EMP_Chipset2\secubus.inf
+ 
+; From SANYO USB Modem SY08 Diagnostic Serial Port (WDM) KYOCERA Corporation	Ports \Sanyo\sy08\sy08ser2.inf
+%DeviceName% = USB_Install, USB\VID_0474&PID_0743&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0744&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0745&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0748&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_074B&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0750&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0751&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0752&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0753&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0754&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0474&PID_0755&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0482&PID_024F&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0482&PID_0250&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0482&PID_0253&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0482&PID_025F&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0482&PID_0266&MI_02&OS_NT
+%DeviceName% = USB_Install, USB\VID_0482&PID_0269&MI_02&OS_NT 
+
+; From LGE Mobile USB WMC Ethernet (WDM)	LG Electronics	USB \LG\KF750\lgmcunic.inf
+%DeviceName% = USB_Install, USB\VID_1004&PID_6073&CLASS_02&SUBCLASS_06&PROT_00
+
+; From Samsung Mobile Ethernet	SAMSUNG Electronics Co., Ltd. 	USB \Samsung\08_EMPChipset\ssecunic.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6777&CLASS_02&SUBCLASS_0A&PROT_00 ; Duplicated in 1\Samsung\08_EMPChipset\ssecunic.inf
+
+; From SAMSUNG Android Networking (CDC/EEM Ethernet) Drivers (WDM)	SAMSUNG Electronics Co., Ltd. 	USB \Samsung\21_Searsburg\ssaeunic.inf
+;%DeviceName% = USB_Install, USB\VID_04E8&PID_6850&MI_02 ; Duplicated in 1\Android\Samsung\21_Searsburg\ssaeunic.inf
+
+; From 'SonyEricsson\s1018\s1018unic.inf' - x64 drivers for 'Sony Ericsson WMC ETH Comm interface' don't work
+%DeviceName% = USB_Install, USB\VID_0fce&PID_20ef&Class_02&SubClass_0A&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_20f1&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2105&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2108&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2109&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_210b&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_210c&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2112&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2113&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_211a&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_211d&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_211e&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2120&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2121&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2123&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_2126&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_212d&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d0ef&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d0f1&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d105&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d108&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d109&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d10b&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d10c&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d112&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d113&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d11a&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d11d&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d11e&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d120&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d121&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d123&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d126&Class_02&SubClass_0a&Prot_00
+%DeviceName% = USB_Install, USB\VID_0fce&PID_d12d&Class_02&SubClass_0a&Prot_00
+
+; Unused serial ports on the D-link DWM-222 (from Qualcom qcser.inf)
+%DeviceName%  = USB_Install, USB\VID_2001&PID_7E35&MI_00
+%DeviceName%  = USB_Install, USB\VID_2001&PID_7E35&MI_02
+%DeviceName%  = USB_Install, USB\VID_2001&PID_7E35&MI_03
+
+; =================== Installation =================== 
+ 
+[USB_Install] 
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include     = winusb.inf
+AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall
+
+[WinUSB_ServiceInstall]
+DisplayName     = %WinUSB_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+ 
+; =================== Strings =================== 
+ 
+[Strings] 
+ManufacturerName="Radio Tactics Group Limited"
+DeviceName="Generic USB Device"
+WinUSB_SvcDesc= "RTL USB Driver"

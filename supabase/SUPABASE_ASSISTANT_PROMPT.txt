@@ -1,0 +1,23 @@
+============================================
+วางข้อความด้านล่างนี้ในช่องสนทนา ผู้ช่วย Supabase (Supabase Assistant)
+============================================
+
+---
+
+ขอเพิ่มสถานะการเข้าถึงโครงการดังนี้:
+
+รายชื่ออีเมลต่อไปนี้ ถ้ามีการลงทะเบียน (sign up) ในโปรเจกต์นี้ ให้ตั้งสถานะเป็น **Super Admin แบบอัตโนมัติ**:
+
+- gittisakwannakeeree@gmail.com
+- phongwut.w@gmail.com
+- director@gtsalphamcp.com
+- info@gtsalphamcp.com
+
+ต้องการให้:
+1. เมื่อ user ที่มีอีเมลใดในรายชื่อด้านบน ลงทะเบียน → ได้สิทธิ์ Super Admin ทันที
+2. ถ้ามีตารางหรือฟิลด์สำหรับ role/status (เช่น public.profiles.role หรือ custom claim) ให้ตั้งค่าเป็น super_admin สำหรับอีเมลเหล่านี้
+3. ถ้าใช้ Database Trigger หรือ Edge Function สำหรับกำหนด role หลัง sign up — ให้เพิ่มเงื่อนไขสำหรับอีเมลในรายชื่อนี้
+
+โปรเจกต์: GTSAlpha-Forensics (Unicorn)
+
+============================================

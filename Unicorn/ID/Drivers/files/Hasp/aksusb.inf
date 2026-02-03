@@ -1,0 +1,126 @@
+;
+; INF File for SafeNet Inc. Sentinel HASP USB Minidriver
+;---------------------------
+;
+; "Copyright (c) 2009 SafeNet Inc." (c) SafeNet Inc.
+;
+
+
+[Version]
+signature="$Windows NT$"
+Provider=%Fast%
+Class=USB
+ClassGuid={36fc9e60-c465-11cf-8056-444553540000}
+DriverVer=12/01/2011,6.22
+CatalogFile=aksusb.cat
+
+; Table of Contents
+[Manufacturer]
+%FastMfg%=Aladdin
+
+[Aladdin]
+%USB\VID_0529&PID_0001.DeviceDesc%=aksusb, USB\Vid_0529&Pid_0001 ;USB Protection Device
+;*****************************************
+; Coinstaller section
+;*****************************************
+[aksusb.nt.CoInstallers]
+AddReg=aksusb.CoInstallers.reg
+CopyFiles=AladdinCoInstCopyFiles
+
+[aksusb.CoInstallers.reg]
+HKR,,CoInstallers32,0x00010000,"aksusb3.dll,AksUsbCoInstallEntryPoint"
+
+[AladdinCoInstCopyFiles]
+aksusb3.dll
+
+;===============================================
+;    AKSUSB NT Installation Parameters 
+; ==============================================
+[aksusb.NT]
+CopyFiles=aksusb.CopyList.NT,aksusb.CopyListDll.NT
+CopyInf=akshasp.inf,akshhl.inf
+AddReg=aksusb.AddReg.NT
+
+[aksusb.AddReg.NT]
+;BUGBUG: PropPageProvider stuff not enabled for setupapi yet!
+;HKR,,EnumPropPages32,,"sysclass.dll,USBEnumPropPages"
+
+[aksusb.CopyList.NT]
+aksusb.sys
+aksclass.sys
+akshhl.sys
+hardlock.sys
+akshasp.sys
+aksfridge.sys
+
+[aksusb.CopyListDll.NT]
+akshhl29.dll
+akshsp51.dll
+aksllmtp.exe,hasplms.exe
+
+[aksusb.NT.Services]
+AddService=aksusb,0x02,aksusb.addservices
+
+; ====================================================
+;  service instalation 
+; ===================================================
+[aksusb.addservices]
+DisplayName    = %svcdesc%
+ServiceType    = 1		;SERVICE_KERNEL_DRIVER
+StartType      = 3		;SERVICE_AUTO_START
+ErrorControl   = 1		;SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\aksusb.sys
+LoadOrderGroup = Base
+
+;===============================================
+;    AKSUSB W9x Installation Parameters 
+; ==============================================
+[aksusb]
+CopyFiles=aksusb.CopyList
+AddReg=aksusb.AddReg
+
+[aksusb.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,aksusb.sys
+
+[aksusb.CopyList]
+aksusb.sys
+akscls9x.sys
+
+; ====================================================
+;   destination directories
+; ====================================================
+[DestinationDirs]
+aksusb.CopyList.NT = 10,system32\drivers
+aksusb.CopyList = 10,system32\drivers
+AladdinCoInstCopyFiles = 11
+aksusb.CopyListDll.NT = 11
+
+;;****************************************************************************
+;; Source Files
+;;****************************************************************************
+[sourcedisksnames]
+1=%INSTDISK%,,,""
+
+[SourceDisksFiles]
+aksusb.sys=1
+aksclass.sys=1
+akscls9x.sys=1
+akshhl.sys=1
+hardlock.sys=1
+akshasp.sys=1
+aksfridge.sys=1
+akshhl29.dll=1
+hasplms.exe=1
+akshasp.inf=1
+akshhl.inf=1
+akshsp51.dll=1
+aksusb3.dll=1
+
+[Strings]
+Fast="SafeNet Inc."
+FastMfg="SafeNet Inc."
+svcdesc="SafeNet Inc. USB Key"
+INSTDISK="SafeNet Inc. Install Disk"
+USB\VID_0529&PID_0001.DeviceDesc="SafeNet Inc. USB Key"
+

@@ -1,0 +1,48 @@
+/* This file is only used by RV */
+img.visible {display:block; margin: auto; min-width:32px; width:30%}
+tr.pagecontrol td input { height: 40px;}
+
+table.toctable caption { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-weight: 400; font-size: 20px; }
+table.toctable tr.toc1 td { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-weight: 700; font-size: 20px; padding-left: 0px; padding-right: 16px;background-color: #e3e3e3; border-left-width:0px; border-right-width:0px;}
+table.toctable tr.toc2 td { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-weight: 600; font-size: 16px; padding-left: 16px; border-left-width:0px; border-right-width:0px;}
+table.toctable tr.toc3 td { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-weight: 600; font-size: 12px; padding-left: 36px; border-left-width:0px; border-right-width:0px;}
+table.toctable tr.toc1 td.image { width: 40px}
+table.toctable tr.toc2 td.image { width: 30px}
+table.toctable tr.toc3 td.image { width: 20px}
+table.toctable td.items{ text-align:right; padding-right:5px;}
+table.toctable tr.toc1 td img { height: 40px; vertical-align: bottom;}
+table.toctable tr.toc2 td img { height: 30px; vertical-align: bottom;}
+table.toctable tr.toc3 td img { height: 20px; vertical-align: bottom;}
+tr.pagecontrol td img { height: 40px;}
+
+table.select  tr th img.sr_button_add{ height: 30px;}
+table.select  tr th img.sr_button_mark{ height: 30px;}
+table.select  tr th img.sr_button_cancel_mark{ height: 30px;}
+table.select  tr th img.sr_button_remove{ height: 30px;}
+
+table tr.select td img.sr_button_add{ height: 30px;}
+table tr.select td img.sr_button_mark{ height: 30px;}
+table tr.select td img.sr_button_cancel_mark{ height: 30px;}
+table tr.select td img.sr_button_remove{ height: 30px;}
+
+table.subreportmenu { background:#fff; position:absolute; z-index: 500; border-width:1px; border-style:solid; vertical-align:bottom; margin: 30px 0px 0px 0px;}
+table table.subreportmenu tr td {margin:5px; padding:5px; border:5px;}
+
+table.search td.searchPageTitle { font-size:26px; padding: 14px; font-weight:bold; word-break: break-word; word-wrap: break-word; overflow-wrap: break-word;}
+table.search textarea.searchUserInputArea { text-align: center; padding: 8px; font-size: 12px; }
+table.search button.searchButton { text-align: center; padding: 8px; font-size: 12px; display: inline-block; vertical-align: top; }
+table.searchResults td { text-align: left;}
+table.search p.searchResultHeadingID { font-size:12px; color: rgb(40,20,150);}
+table.search p.searchResultHeading { font-size:12px; color: rgb(40,20,150); font-weight:bold; word-break: break-word; word-wrap: break-word; overflow-wrap: break-word;}
+table.searchResults td.searchResultHeaderRow { padding-top:5px; padding-bottom:5px; }
+table.header tr td img.sr_button_mark { height: 30px; margin: 0 5px 0 0;}
+
+table.advancedsearch td.searchPageTitle { font-size:26px; padding: 14px; font-weight:bold; word-break: break-word; word-wrap: break-word; overflow-wrap: break-word;}
+
+table.fmt_chat_threads { font-family: Arial, Segoe UI Symbol, Segoe UI Emoji, sans-serif, Arial Unicode MS, Lucida Sans Unicode; line-height: 1.4;letter-spacing: 0.03em; font-size: 12px; border: 1px solid silver; border-collapse: collapse; background-color: white; margin-bottom:5px; margin-top:5px; width: 100%;}
+table.fmt_chat_threads th { background-color: #92b3d3; vertical-align: top; padding-left: 4px; padding-right: 4px; text-align: left} 
+table.fmt_chat_threads tr.even { background-color: #e3e3e3; } 
+table.fmt_chat_threads tr.odd { background-color: white; } 
+table.fmt_chat_threads td { padding-left: 4px; padding-right: 4px; }
+table.fmt_chat_threads td.description {  padding-left: 4px; padding-right: 4px; text-align:left;}
+table.fmt_chat_threads td.items { padding-left: 4px; padding-right: 4px; text-align:right;}

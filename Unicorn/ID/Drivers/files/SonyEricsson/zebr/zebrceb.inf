@@ -1,0 +1,188 @@
+;*****************************************************************************
+;
+; zebrceb.inf   -- Install the Sony Ericsson Cable Emulation Bus
+;
+; Copyright (c) 2007 by MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+CatalogFile=zebrceb.cat
+
+;-----------------------------------------------------------------------------
+; Install class (for NT and Win95)
+;-----------------------------------------------------------------------------
+;[ClassInstall32]
+;AddReg=SEMCClassReg
+
+[SEMCClassReg]
+HKR,,,0,"SEMC Cable Emulation Bus"
+HKR,,Icon,,-5
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+SEMCWdm.W95.CopyFiles       = 11                    ; LDID_SYS
+SEMCWdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"zebrceb.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"zebrceb.sys",,\amd64
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+zebrceb.sys = 1
+zebrwh95.sys = 1
+zebrwhnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=MCCI, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[MCCI]
+%SEMC.CableBus.Desc% = SEMCWdm.Install, {3A4687C6-2342-48fb-A5B3-632BAA20734B}
+
+[MCCI.NTamd64]
+%SEMC.CableBus.Desc% = SEMCWdm.Install, {3A4687C6-2342-48fb-A5B3-632BAA20734B}
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[SEMC.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install]
+;DriverVer=12/26/2007,4.40.6.0
+;CopyFiles       = SEMCWdm.W95.CopyFiles, SEMC.CopyFiles, PropPages.CopyFiles
+CopyFiles       = SEMC.CopyFiles, PropPages.CopyFiles
+;AddReg          = SEMCWdm.AddReg, SEMCWdm.W95.AddReg
+AddReg          = SEMCWdm.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install.NT]
+;DriverVer=12/26/2007,4.40.6.0
+CopyFiles       = SEMCWdm.NT.CopyFiles
+AddReg          = SEMCWdm.AddReg, SEMCWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[SEMCWdm.Install.NT.Services]
+AddService      = zebrceb, 2, SEMCWdm.AddService
+
+[SEMCWdm.AddService]
+DisplayName             = %SEMC.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\zebrceb.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[SEMCWdm.AddReg]
+
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (W95/98) (including how to start the driver)
+;-----------------------------------------------------------------------------
+;[SEMCWdm.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+;HKR,,NTMPDriver,,zebrceb.sys
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[SEMCWdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for Win95 -- different because things go in
+;       different places.  Also, we probably need to rename drivers 
+;       during the install.
+;-----------------------------------------------------------------------------
+[SEMCWdm.W95.CopyFiles]
+zebrceb.sys
+zebrwh.sys,zebrwh95.sys
+zebrwh95.sys
+zebrwhnt.sys
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[SEMCWdm.NT.CopyFiles]
+zebrceb.sys
+zebrwh.sys,zebrwhnt.sys
+zebrwhnt.sys
+
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson Mobile Communications AB"
+SEMC = "Sony Ericsson Mobile Communications AB"
+DiskString = "Sony Ericsson Cable Emulation Bus Installation Disk"
+
+SEMC.CableBus.Desc = "Sony Ericsson Cable Emulation Bus"
+SEMC.Service.Desc = "Sony Ericsson Cable Emulation Bus (WDM)"
+
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+McciOptions = "Uninstallable PreInstallDevice"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

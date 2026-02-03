@@ -1,0 +1,148 @@
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2005,2006,2007,2008, Amoi Incorporated
+; Manufacturer: Amoi Incorporated
+;
+; This INF file installs a virtual COM port on Win2K/WinXp system.
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %Amoi%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer  = 10/03/2007,1.0.0.10
+DriverVer  = 04/21/2009,1.0.0.10
+CatalogFile = qcser6k.cat
+
+[SourceDisksNames]
+1000 = %ACSRCDISK%,"",,
+
+[SourceDisksFiles]
+qcusbmdm.sys = 1000
+qcusbmdmXp.sys = 1000
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[Manufacturer]
+%AMOI% = AmoiSerialPort, NTx86.5.1
+
+[AmoiSerialPort]
+%AmoiDevice6k%   = AportInstall6k, USB\VID_1614&PID_0804&MI_01
+%AmoiDeviceNMEA% = AportInstallNMEA, USB\VID_1614&PID_0804&MI_02
+%AmoiDevicePCSYNC% = AportInstallPCSYNC, USB\VID_1614&PID_0804&MI_03
+
+[AmoiSerialPort.NTx86.5.1]
+%AmoiDevice6k%   = AportInstall6kXp, USB\VID_1614&PID_0804&MI_01
+%AmoiDeviceNMEA% = AportInstallNMEAXp, USB\VID_1614&PID_0804&MI_02
+%AmoiDevicePCSYNC% = AportInstallPCSYNCXp, USB\VID_1614&PID_0804&MI_03
+
+; ###### Installation Section ######
+[AportInstall6k.NT]
+CopyFiles = FakePortCopyFileSection6k
+AddReg = All6k, AddReg.NT
+
+[AportInstallNMEA.NT]
+CopyFiles = FakePortCopyFileSectionNMEA
+AddReg = AllNMEA, AddReg.NT
+
+[AportInstallPCSYNC.NT]
+CopyFiles = FakePortCopyFileSectionPCSYNC
+AddReg = AllPCSYNC, AddReg.NT
+
+[AportInstall6k.NT.Services]
+AddService = qcusbser6k, 0x00000002, Aport_Service_Inst6k
+
+[AportInstallNMEA.NT.Services]
+AddService = qcusbnmea, 0x00000002, Aport_Service_InstNMEA
+
+[AportInstallPCSYNC.NT.Services]
+AddService = qcusbpcsync, 0x00000002, Aport_Service_InstPCSYNC
+
+[AportInstall6kXp.NT]
+CopyFiles = FakePortCopyFileSection6kXp
+AddReg = All6k, AddReg.NT
+
+[AportInstallNMEAXp.NT]
+CopyFiles = FakePortCopyFileSectionNMEAXp
+AddReg = AllNMEA, AddReg.NT
+
+[AportInstallPCSYNCXp.NT]
+CopyFiles = FakePortCopyFileSectionPCSYNCXp
+AddReg = AllPCSYNC, AddReg.NT
+
+
+[AportInstall6kXp.NT.Services]
+AddService = qcusbser6k, 0x00000002, Aport_Service_Inst6k
+
+[AportInstallNMEAXp.NT.Services]
+AddService = qcusbnmea, 0x00000002, Aport_Service_InstNMEA
+
+[AportInstallPCSYNCXp.NT.Services]
+AddService = qcusbpcsync, 0x00000002, Aport_Service_InstPCSYNC
+
+[Aport_Service_Inst6k]
+DisplayName   = %AmoiSerialPortName6k%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qcusbser6k.sys
+
+[Aport_Service_InstNMEA]
+DisplayName   = %AmoiSerialPortNameNMEA%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qcusbnmea.sys
+
+[Aport_Service_InstPCSYNC]
+DisplayName   = %AmoiSerialPortNamePCSYNC%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\qcusbpcsync.sys
+
+[FakePortCopyFileSection6k]
+qcusbser6k.sys, qcusbmdm.sys,,0x20
+
+[FakePortCopyFileSection6kXp]
+qcusbser6k.sys, qcusbmdmXp.sys,,0x20
+
+[FakePortCopyFileSectionNMEA]
+qcusbnmea.sys,  qcusbmdm.sys,,0x20
+
+[FakePortCopyFileSectionNMEAXp]
+qcusbnmea.sys,  qcusbmdmXp.sys,,0x20
+
+[FakePortCopyFileSectionPCSYNC]
+qcusbpcsync.sys,  qcusbmdm.sys,,0x20
+
+[FakePortCopyFileSectionPCSYNCXp]
+qcusbpcsync.sys,  qcusbmdmXp.sys,,0x20
+
+[All6k]
+HKR,,NTMPDriver,,qcusbser6k.sys
+
+[AllNMEA]
+HKR,,NTMPDriver,,qcusbnmea.sys
+
+[AllPCSYNC]
+HKR,,NTMPDriver,,qcusbpcsync.sys
+
+[AddReg.NT]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce",0x00000010
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+Amoi   = "Amoi Incorporated"
+ACSRCDISK = "WP-S1 USB Driver Disk"
+AmoiDevice6k = "WP-S1 Diagnostics Interface"
+AmoiDeviceNMEA = "WP-S1 NMEA Device"
+AmoiDevicePCSYNC = "WP-S1 PCSYNC Device"
+AmoiSerialPortName6k = "WP-S1 Diagnostic Port"
+AmoiSerialPortNameNMEA = "WP-S1 NMEA Port"
+AmoiSerialPortNamePCSYNC = "WP-S1 PCSYNC Port"

@@ -1,0 +1,96 @@
+;*-----------------------------------------------------*
+;| Installation inf for NOKIA                          |
+;|-----------------------------------------------------|
+;| Copyright (c) 1998 - 2008 by Hajesoft Corporation.  |
+;|                                                     |
+;| This inf file is lisenced. Any Modification is not  |
+;| permitted unless authorized by Hajesoft corporation.|
+;| For more information contact to www.hajesoft.com    |
+;*-----------------------------------------------------*
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = Ports
+Provider    = %Provider%
+ClassGuid   = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer   = 04/30/2009, 1.0.1.139
+CatalogFile = nk_prt.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1 = %DiskString%, "nk_prt.sys",,
+
+[SourceDisksFiles]
+nk_prt.sys = 1
+nk_flt.sys = 1
+
+[DestinationDirs]
+NOKIA.Files.Ext = 12
+
+[Manufacturer]
+%Provider% = NOKIA, ntamd64
+      
+[NOKIA]
+%Nokia6205.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00A3&MI_02
+%Nokia8200.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00B0&MI_02    
+%Nokia6405.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_01A5&MI_02
+%Nokia2705.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_01A6&MI_02
+%Nokia7705.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_023E&MI_02
+
+[NOKIA.ntamd64]
+%Nokia6205.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00A3&MI_02
+%Nokia8200.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_00B0&MI_02    
+%Nokia6405.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_01A5&MI_02
+%Nokia2705.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_01A6&MI_02
+%Nokia7705.DeviceDesc% = Nokia.Install, USB\Vid_0421&Pid_023E&MI_02
+
+[NOKIA.Install.nt]
+AddReg    = NOKIA.AddReg
+CopyFiles = NOKIA.Files.Ext
+
+[NOKIA.AddReg]
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,LocationInformationOverride,,"NOKIA Mobile Technologies"
+
+[NOKIA.Files.Ext]
+nk_prt.sys
+nk_flt.sys
+
+[NOKIA.Install.NT.HW]
+AddReg = UpperFilterAddReg
+
+[NOKIA.Install.nt.Services]
+AddService = nkprt, 0x00000002, NOKIA.Install.AddService
+AddService = nkflt,, NOKIA.Install.AddFilter
+
+[NOKIA.Install.AddService]
+DisplayName   = %Nokia.Port.ServiceDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\nk_prt.sys
+
+[NOKIA.Install.AddFilter]
+DisplayName   = %Nokia.Filter.ServiceDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl	= 1
+ServiceBinary	= %12%\nk_flt.sys
+
+[UpperFilterAddreg]
+HKR,,"UpperFilters",0x00010000,"nkflt"
+
+[Strings]
+Provider                 = "Nokia"
+DiskString               = "Nokia Mobile USB Port Install Disk"
+Nokia6205.DeviceDesc="Nokia 6205 USB Port"
+Nokia8200.DeviceDesc="Nokia 8200 USB Port"
+Nokia2605.DeviceDesc="Nokia 2605 USB Port"
+Nokia7205.DeviceDesc="Nokia 7205 USB Port"
+Nokia6405.DeviceDesc="Nokia 6405 USB Port"
+Nokia2705.DeviceDesc="Nokia 2705 USB Port"
+Nokia7705.DeviceDesc="Nokia 7705 USB Port"
+Nokia.Port.ServiceDesc   = "Nokia USB Port Services"
+Nokia.Filter.ServiceDesc = "Nokia USB Filter Services"

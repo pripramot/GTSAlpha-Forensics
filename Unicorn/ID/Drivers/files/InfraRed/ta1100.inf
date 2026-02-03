@@ -1,0 +1,125 @@
+;
+; USB Driver Installation Information for Windows 2000/XP
+; 
+
+[Version]
+Signature = "$Windows NT$"
+Class = Infrared
+provider = %S110%
+ClassGUID = {6bdd1fc5-810f-11d0-BEC7-08002BE2092F}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer = 11/03/2006,1.28.0.0 
+DriverVer = 04/21/2009,1.28.0.0 
+CatalogFile=ta1100.cat
+
+[Manufacturer]
+%S110%=S110
+
+[ControlFlags]
+ExcludeFromSelect = USB\VID_1685&PID_0200
+ExcludeFromSelect = USB\VID_0E55&PID_110A
+
+[S110]
+%USB\VID_1685&PID_0200.DeviceDesc%=ta1100.Dev,USB\VID_1685&PID_0200
+%USB\VID_1685&PID_0200.DeviceDesc%=ta1100.Dev,USB\VID_0E55&PID_110A
+
+[DestinationDirs]
+ta1100.CopyFiles = 12
+DefaultDestDir = 12
+                
+[ta1100.Dev.NT]
+CopyFiles=ta1100.CopyFiles
+AddReg=ta1100.AddReg, ta1100.Params.AddReg
+BusType=1
+Characteristics = 0x84; NCF_PHYSICAL, NCF_HAS_UI
+
+[ta1100.Dev.NT.Services]
+Addservice = ta1100, 0x00000002, ta1100.AddService, common.EventLog
+
+[ta1100.AddService]
+DisplayName    = %ta1100.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\ta1100.sys
+LoadOrderGroup = NDIS
+
+[ta1100.AddReg]
+HKR,  Ndi,            HelpText,     0,      %ta1100.Help%
+HKR,  Ndi,            Service,      0,      "ta1100"
+HKR,  Ndi\Interfaces, UpperRange,   0,      "ndisirda"
+HKR,  Ndi\Interfaces, LowerRange,   0,      "nolower"
+HKR,  Ndi,            RequiredAll,  0,      "MS_IrDA"
+
+[ta1100.Params.AddReg]
+HKR,,ReceiveMode,0,"2"
+HKR,Ndi\params\TransceiverType,ParamDesc,,%ta1100RXSEL%
+HKR,Ndi\params\TransceiverType,default,,"0"
+HKR,Ndi\params\TransceiverType,type,,"enum"
+HKR,Ndi\params\TransceiverType\enum,"0",,"SigmaTel 4012 [Default]"
+HKR,Ndi\params\TransceiverType\enum,"1",,"Vishay 6101E"
+HKR,Ndi\params\TransceiverType\enum,"2",,"Vishay 6102F"
+HKR,Ndi\params\TransceiverType\enum,"3",,"Vishay 6102F (alternate)"
+HKR,Ndi\params\TransceiverType\enum,"4",,"Infineon"
+HKR,Ndi\params\TransceiverType\enum,"5",,"HP 1100"
+HKR,Ndi\params\TransceiverType\enum,"6",,"Zilog ZHX2010"
+
+;
+;    IrDA Minimum Turnaround Time (value in mS)
+;
+HKR,Ndi\params\MinTurnTime,ParamDesc,,%ta1100IRDATURNTIME%
+HKR,Ndi\params\MinTurnTime,default,,"1000"
+HKR,Ndi\params\MinTurnTime,type,,"enum"
+HKR,Ndi\params\MinTurnTime\enum,"500",," 0.5 mS"
+HKR,Ndi\params\MinTurnTime\enum,"1000",," 1.0 mS [Default]"
+HKR,Ndi\params\MinTurnTime\enum,"5000",," 5.0 mS"
+HKR,Ndi\params\MinTurnTime\enum,"10000",,"10.0 mS"
+
+;
+;    IrDA Speed enables
+;
+;
+;       Note:  Miniport will always enable 9600,
+;               no matter what this key says
+;
+HKR,Ndi\params\SpeedEnable,ParamDesc,,%ta1100SPEEDENABLE%
+HKR,Ndi\params\SpeedEnable,type,,"enum"
+HKR,Ndi\params\SpeedEnable,default,,"115200"
+HKR,Ndi\params\SpeedEnable\enum,"2400",,   "   2400"
+HKR,Ndi\params\SpeedEnable\enum,"9600",,   "   9600"
+HKR,Ndi\params\SpeedEnable\enum,"19200",,  "  19200"
+HKR,Ndi\params\SpeedEnable\enum,"38400",,  "  38400"
+HKR,Ndi\params\SpeedEnable\enum,"57600",,  "  57600"
+HKR,Ndi\params\SpeedEnable\enum,"115200",, " 115200 [Default]" 
+
+[common.EventLog]
+AddReg = common.AddEventLog.reg
+
+[common.AddEventLog.reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[ta1100.CopyFiles]
+ta1100.sys
+
+[SourceDisksFiles]
+ta1100.sys=1
+
+[SourceDisksNames]
+1 = %strDRIVERDISK%,,,
+
+;---------------------------------------------------------------;
+
+[Strings]
+S110="S110"
+USB\VID_1685&PID_0200.DeviceDesc="S110 USB Infrared Controller"
+ta1100.SvcDesc="ta1100.sys S110 USB Infrared Controller"
+ta1100.Help   = "The USB Infrared Controller is compliant with IrDA SIR protocol. It can be used to establish wireless serial and network links to other computers."
+
+ta1100RXSEL="Infrared Transceiver Type"
+ta1100IRDATURNTIME="Min. Turn-Around Time"
+ta1100SPEEDENABLE="Speed Enable"
+ta1100RXWINDOW="Receive Window"
+
+ta1100DRIVERDISK="S110 Driver Disk"
+strDRIVERDISK="Driver Disk"

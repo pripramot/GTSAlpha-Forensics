@@ -1,0 +1,106 @@
+; Installation inf for Nokia
+;
+; (c) Copyright 2009 Nokia
+;
+
+[Version]
+signature   = "$WINDOWS NT$"
+Class       = Ports
+Provider    = %Provider%
+ClassGuid   = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer   = 07/29/2009,6.0.3.11
+Catalogfile = nokusbser.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%Provider% = SerialPort,NTx86,NTamd64
+
+[SourceDisksNames]
+  1000 = %DiskString%,"",,
+
+[SourceDisksFiles]
+  nokusbser.sys = 1000
+  nokusbser_64.sys = 1000
+
+[SerialPort.NTx86]
+%Nokia2608.DeviceDesc%  = Install, USB\VID_0421&PID_018E&MI_01
+%Nokia8208.DeviceDesc%  = Install, USB\VID_0421&PID_0167&MI_01
+%Nokia7208.DeviceDesc%  = Install, USB\VID_0421&PID_0259&MI_01
+%Nokia2605.DeviceDesc%  = Install, USB\VID_0421&PID_00B5&MI_02
+%Nokia7205.DeviceDesc%  = Install, USB\VID_0421&PID_00B6&MI_02
+%Nokia8208c.DeviceDesc% = Install, USB\VID_0421&PID_0267&MI_01
+%Nokia8208i.DeviceDesc% = Install, USB\VID_0421&PID_0345&MI_01
+%Nokia105.DeviceDesc% = Install, USB\VID_0421&PID_069A&MI_01
+
+[SerialPort.NTamd64]
+%Nokia2608.DeviceDesc%  = Install, USB\VID_0421&PID_018E&MI_01
+%Nokia8208.DeviceDesc%  = Install, USB\VID_0421&PID_0167&MI_01
+%Nokia7208.DeviceDesc%  = Install, USB\VID_0421&PID_0259&MI_01
+%Nokia2605.DeviceDesc%  = Install, USB\VID_0421&PID_00B5&MI_02
+%Nokia7205.DeviceDesc%  = Install, USB\VID_0421&PID_00B6&MI_02
+%Nokia8208c.DeviceDesc% = Install, USB\VID_0421&PID_0267&MI_01
+%Nokia8208i.DeviceDesc% = Install, USB\VID_0421&PID_0345&MI_01
+%Nokia105.DeviceDesc% = Install, USB\VID_0421&PID_069A&MI_01
+
+[Install.NTx86]
+CopyFiles=CopyDriverFiles.NTx86
+AddReg = All00.NTx86, AddReg
+
+[Install.NTamd64]
+CopyFiles=CopyDriverFiles.NTamd64
+AddReg = All00.NTamd64, AddReg
+
+[CopyDriverFiles.NTx86]
+nokusbser.sys
+
+[CopyDriverFiles.NTamd64]
+nokusbser_64.sys
+
+[DestinationDirs]
+CopyDriverFiles.NTx86 = 12
+CopyDriverFiles.NTamd64 = 12
+
+[Install.NTx86.Services]
+AddService=nokusbser,  0x00000002, USBSerialService.NTx86
+
+[Install.NTamd64.Services]
+AddService=nokusbser,  0x00000002, USBSerialService.NTamd64
+
+[USBSerialService.NTx86]
+DisplayName   = %USBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\nokusbser.sys
+
+[USBSerialService.NTamd64]
+DisplayName   = %USBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\nokusbser_64.sys
+
+[All00.NTx86]
+HKR,,NTMPDriver,,nokusbser.sys
+
+[All00.NTamd64]
+HKR,,NTMPDriver,,nokusbser_64.sys
+
+[AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+USBSER = "Nokia USB Device"
+Provider = "Nokia"
+DiskString = "Nokia Mobile USB Device Install Disk"
+Nokia2608.DeviceDesc  = "Nokia 2608 USB Port"
+Nokia8208.DeviceDesc  = "Nokia 8208 USB Port"
+Nokia7208.DeviceDesc  = "Nokia 7208 USB Port"
+Nokia2605.DeviceDesc  = "Nokia 2605 USB Port"
+Nokia7205.DeviceDesc  = "Nokia 7205 USB Port"
+Nokia8208c.DeviceDesc = "Nokia 8208c USB Port"
+Nokia8208i.DeviceDesc = "Nokia 8208i USB Port"
+Nokia105.DeviceDesc = "Nokia COM Port"

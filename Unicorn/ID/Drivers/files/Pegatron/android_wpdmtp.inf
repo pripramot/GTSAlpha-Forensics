@@ -1,0 +1,49 @@
+;
+; Installation inf for devices supporting Media Transfer Protocol (MTP)
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=WPD
+ClassGUID={EEC5AD98-8080-425f-922A-DABF3DE3F69A}
+Provider=%Provider%
+DriverVer=07/05/2011,1.0.0.0
+CatalogFile=android_wpdmtp.cat
+
+[Manufacturer]
+%Provider%=MTPDevices, NTx86, NTamd64
+
+[MTPDevices.NTx86]
+%MTPDevices.MTP.DeviceDesc%=MTPDevices.Install, USB\VID_1D4D&PID_13A6&MI_00
+%MTPDevices.MTP.DeviceDesc%=MTPDevices.Install, USB\VID_1D4D&PID_13A7
+
+
+[MTPDevices.NTamd64]
+%MTPDevices.MTP.DeviceDesc%=MTPDevices.Install, USB\VID_1D4D&PID_13A6&MI_00
+%MTPDevices.MTP.DeviceDesc%=MTPDevices.Install, USB\VID_1D4D&PID_13A7
+
+
+[MTPDevices.Install]
+Include = wpdmtp.inf, WINUSB.INF
+Needs   = WPD.MTP, WINUSB.NT
+
+[MTPDevices.Install.hw]
+Include = wpdmtp.inf
+Needs   = WPD.MTP.Registration
+
+[MTPDevices.Install.Services]
+Include = wpdmtp.inf
+Needs   = WPD.MTP.Services
+
+[MTPDevices.Install.CoInstallers]
+Include = wpdmtp.inf
+Needs = WPD.MTP.CoInstallers
+
+[MTPDevices.Install.Wdf]
+Include = wpdmtp.inf
+Needs = WPD.MTP.Wdf
+UmdfServiceOrder=WpdMtpDriver
+
+[Strings]
+Provider="Android Products"
+MTPDevices.MTP.DeviceDesc="MTP Device"

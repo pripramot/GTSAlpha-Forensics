@@ -1,0 +1,76 @@
+; Windows Vista Virtual Serial Port Setup File
+; Copyright (c) 2007 Amoi Incorporated
+; Manufacturer: Amoi Incorporated
+;
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %AMOI%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=01/01/2007,2.0.5.0
+DriverVer=04/21/2009,2.0.5.0
+Catalogfile= S2usbser.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%AMOI% = QcomSerialPort, NTia64, NTamd64
+
+[SourceDisksNames]
+1000 = %QCSRCDISK%,"",,
+
+[SourceDisksFiles]
+S2usbser.sys = 1000
+
+[QcomSerialPort]
+%QcomDevice6k% = QportInstall00, USB\VID_1614&PID_0407&MI_01
+%QcomDeviceNMEA% = QportInstall00, USB\VID_1614&PID_0407&MI_02
+%QcomDevicePCSYNC% = QportInstall00, USB\VID_1614&PID_0407&MI_03
+
+[QcomSerialPort.NTia64]
+%QcomDevice6k% = QportInstall00, USB\VID_1614&PID_0407&MI_01
+%QcomDeviceNMEA% = QportInstall00, USB\VID_1614&PID_0407&MI_02
+%QcomDevicePCSYNC% = QportInstall00, USB\VID_1614&PID_0407&MI_03
+
+[QcomSerialPort.NTamd64]
+%QcomDevice6k% = QportInstall00, USB\VID_1614&PID_0407&MI_01
+%QcomDeviceNMEA% = QportInstall00, USB\VID_1614&PID_0407&MI_02
+%QcomDevicePCSYNC% = QportInstall00, USB\VID_1614&PID_0407&MI_03
+
+[QportInstall00.NT]
+CopyFiles = QCUsbDriverFiles
+AddReg = All00, AddReg.NT
+
+[QCUsbDriverFiles]
+S2usbser.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[QportInstall00.NT.Services]
+AddService = S2usbser, 0x00000002, Qport_Service_Inst00
+
+[Qport_Service_Inst00]
+DisplayName   = %QCUSBSER%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\S2usbser.sys
+
+[All00]
+HKR,,NTMPDriver,,S2usbser.sys
+
+[AddReg.NT]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+AMOI   = "Amoi Incorporated"
+QCUSBSER = "S2 USB Device for Legacy Serial Communication"
+QCSRCDISK = "S2 Multimedia USB Driver Disk"
+QcomDevice6k = "S2 Diagnostics Interface"
+QcomDeviceNMEA = "S2 NMEA Device"
+QcomDevicePCSYNC = "S2 PCSYNC Device"

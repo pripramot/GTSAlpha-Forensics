@@ -1,0 +1,124 @@
+;***********************************************************************************************
+;
+; Name:  PSKTOBEX.inf
+;
+; Function:  Install SK Telecom USB OBEX Device Drivers on Win2000/XP/VISTA
+;
+; Copyright (c) DEVGURU
+;
+;***********************************************************************************************
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%Provider%
+DriverVer=04/27/2010,3.4.2.0426
+CatalogFile=PSKTOBEX.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+
+[SourceDisksNames.x86]
+1 = %DiskString%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %DiskString%,,,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+PSKTOBEX.sys = 1
+
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%PANTECH%=PANTECH, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[PANTECH]
+%PANTECH.VID_10A9&PID_1103.Desc% = PANTECH.Install, USB\VID_10A9&PID_1103&MI_05 ;skt
+%PANTECH.VID_10A9&PID_1104.Desc% = PANTECH.Install, USB\VID_10A9&PID_1104&Class_0A&SubClass_00&Prot_01 ;android
+
+[PANTECH.NTx86]
+%PANTECH.VID_10A9&PID_1103.Desc% = PANTECH.Install, USB\VID_10A9&PID_1103&MI_05 ;skt
+%PANTECH.VID_10A9&PID_1104.Desc% = PANTECH.Install, USB\VID_10A9&PID_1104&Class_0A&SubClass_00&Prot_01 ;android
+
+[PANTECH.NTamd64]
+%PANTECH.VID_10A9&PID_1103.Desc% = PANTECH.Install, USB\VID_10A9&PID_1103&MI_05 ;skt
+%PANTECH.VID_10A9&PID_1104.Desc% = PANTECH.Install, USB\VID_10A9&PID_1104&Class_0A&SubClass_00&Prot_01 ;android
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[PANTECH.Install.nt]
+AddReg		= PANTECH.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[PANTECH.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,PSKTOBEX.sys
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+PSKTOBEX.sys
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[PANTECH.Install.NT.Services]
+AddService = PSKTOBEX, 0x00000002, PANTECH.Install.AddService
+
+
+[PANTECH.Install.AddService]
+DisplayName	= %PANTECH.Service.Name%
+Description	= %PANTECH.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\PSKTOBEX.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+Provider = "PANTECH Co., Ltd. "
+PANTECH = "PANTECH"
+
+DiskString = "SK Telecom USB OBEX Device Driver installation disk"
+
+PANTECH.VID_10A9&PID_1102.Desc    = "SKY Handset OBEX Device "
+PANTECH.VID_10A9&PID_1103.Desc    = "SK Telecom USB OBEX Device (SKY) "
+PANTECH.VID_10A9&PID_1104.Desc    = "SKY Handset OBEX Device "
+PANTECH.Service.Name = "SK Telecom USB OBEX Device (SKY)"
+PANTECH.Service.Desc = "SK Telecom USB OBEX Device (SKY)"
+
+

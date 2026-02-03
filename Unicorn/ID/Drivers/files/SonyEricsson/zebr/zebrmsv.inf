@@ -1,0 +1,112 @@
+;*****************************************************************************
+;
+; Name:  zebrmsv.inf 
+;
+; Function:
+;	Install Sony Ericsson drivers (PDR)
+;
+; Copyright (c) 2007 MCCI
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=HDC
+ClassGuid={4d36e96a-e325-11ce-bfc1-08002be10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=12/26/2007,4.40.6.0
+DriverVer=04/21/2009,4.40.6.0
+;Missing CAT file entry added by RTGL
+CatalogFile=zebrmsv.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[PreCopySection]
+HKR,,NoSetupUI,,1
+
+;---------------------------------------------------------------;
+;		Directory and File Names and Locations
+;---------------------------------------------------------------;
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"zebrmsw.sys",,\i386
+
+[SourceDisksFiles]
+zebrmsv.pdr=1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir=12
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%SEMC%=SEMC
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[SEMC]
+%PortDesc%=SEMC.Install,ZEBRMSC\DISK
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+[SEMC.Install]
+AddReg=SEMC.Reg
+CopyFiles=SEMC.Files.Pdr
+
+
+[SEMC.Install.Nt]
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+[SEMC.Reg]
+HKR,,DevLoader,,*ios
+HKR,,PortDriver,,zebrmsv.pdr
+HKR,,NoSetupUI,,1          ; ForceMPCopy
+HKR,,DigitalAudioPlay,1,7  ; WDM Audio Key (support)
+
+
+;-----------------------------------------------------------------------------
+;	Copy Files
+;-----------------------------------------------------------------------------
+
+[SEMC.Files.Pdr]
+zebrmsv.pdr
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+;BEGIN ENG - US English Strings
+SEMC="SEMC"
+Provider="MCCI Corporation"
+DiskString = "Sony Ericsson installation disk"
+PortDesc="Sony Ericsson Mass Storage (PDR)"
+
+;END ENG - US English Strings
+
+;--- strings following this line should not be localized ---
+;--strings for InstallRight Pro (tm)--
+CustomerDataPath = "Sony Ericsson"
+DriverSet = "Sony Ericsson Symbian 9 Drivers"
+UninstallFile = "ZEBRUninstall.exe"
+McciOptions = "Uninstallable NotInstallOnWinMe NotInstallOnWinVer5"
+;-------------------------------------
+
+;*** end of file ***

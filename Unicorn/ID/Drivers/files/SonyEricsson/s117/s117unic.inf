@@ -1,0 +1,209 @@
+
+;*****************************************************************************
+;
+; s117unic.inf   -- Install the Sony Ericsson Device 117 USB Ethernet Emulation (WDM)
+;
+; Copyright (c) 1997-2007 MCCI Corporation
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation.
+;
+;*****************************************************************************
+
+[version]
+signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+DriverVer=04/21/2009,4.40.2.0
+CatalogFile=s117unic.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir                  = 11                    ; LDID_SYS
+S117Wdm.W95.CopyFiles       = 11                    ; LDID_SYS
+S117Wdm.W95.CopyFiles.sys   = 11                    ; LDID_SYS
+S117Wdm.NT.CopyFiles        = 12                    ; system32\drivers
+PropPages.CopyFiles             = 11                    ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s117unic.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"s117unic.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+s117unic.sys = 1
+s117cr95.sys = 1
+s117crnt.sys = 1
+s117vcr.vxd = 1
+s117wh95.sys = 1
+s117whnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%S117%=S117, NTx86, NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[S117.NTx86]
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_d075&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_d076&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0a5&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0ab&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0ac&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0af&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0b3&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0b9&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0bb&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0c5&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0c6&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d4&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d5&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d6&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d8&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d9&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0da&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0de&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0e3&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0ec&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0f3&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0f5&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0fb&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D100&Class_02&SubClass_06&Prot_00
+
+
+[S117.NTamd64]
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_d075&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_d076&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0a5&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0ab&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0ac&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0af&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0b3&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0b9&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0bb&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0c5&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0c6&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d4&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d5&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d6&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d8&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0d9&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0da&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0de&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0e3&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0ec&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0f3&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0f5&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D0fb&Class_02&SubClass_06&Prot_00
+%S117.Ndis.Desc% = S117Wdm.Install, USB\VID_0fce&PID_D100&Class_02&SubClass_06&Prot_00
+
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[S117.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[S117Wdm.Install.NT]
+DriverVer=04/04/2007,4.40.2.0
+AddReg          = S117Wdm.AddReg, S117Wdm.NT.AddReg
+CopyFiles       = S117Wdm.NT.CopyFiles
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[S117Wdm.Install.NT.Services]
+AddService      = s117unic, 2, S117Wdm.AddService
+
+[S117Wdm.AddService]
+DisplayName             = %S117.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\s117unic.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[S117Wdm.AddReg]
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,CREnum,,s117CR
+; configuration variables for CDC Ethernet Control Model.
+; These have no effect for MDLM devices.
+HKR,,UseTxCrc, 0x10001, 00,00,00,00
+HKR,,CdcEthernetSetAddressMethod, 0x10001, 00,00,00,00
+HKR,,EnableRxBulkStream, 0x10001, 01,00,00,00
+HKR,,nRxBulkStreamObjects, 0x10001,08,00,00,00
+HKR,,DataAltSetting,1,  01,00,00,00
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[S117Wdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[S117Wdm.NT.CopyFiles]
+s117unic.sys
+s117wh.sys,s117whnt.sys
+s117cr.sys,s117crnt.sys
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+S117 = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 117 USB Ethernet Emulation Installation Disk"
+
+S117.Ndis.Desc = "Sony Ericsson Device 117 USB Ethernet Emulation (WDM)"
+S117.Service.Desc = "Sony Ericsson Device 117 USB Ethernet Emulation SEMC117 (WDM)"
+
+UpperDescription = "Sony Ericsson Device 117 USB Ethernet Emulation (for Networking Device)"
+
+CustomerDataPath = "Sony Ericsson USB WMC"
+DriverSet = "Sony Ericsson USB WMC Software"
+UninstallFile = "S117Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; Following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+;*** end of file ***

@@ -1,0 +1,155 @@
+;*****************************************************************************
+;
+; Name:  se3eobx2.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 062 USB WMC OBEX Interface on Win2000/XP
+;
+; Copyright (c) 1997-2007 MCCI Corporation 
+;
+; MCCI is a registered trademark of MCCI Corporation.
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; MCCI Corporation
+;
+;*****************************************************************************
+
+[Version]
+signature="$WINDOWS NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/10/2007,4.40.2.0
+DriverVer=04/21/2009,4.40.2.0
+CatalogFile=se3eobex.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"se3eobex.sys",,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"se3eobex.sys",,\amd64
+
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+se3eobex.sys = 1
+se3ecmnt.sys = 1
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12                    ; system32\drivers
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=sed62, NTamd64
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[sed62]
+%sed62.Comm.Desc% = sed62.Install, USB\VID_0FCE&PID_D062&Class_02&SubClass_0B&Prot_00&OS_NT
+
+[sed62.NTamd64]
+%sed62.Comm.Desc% = sed62.Install, USB\VID_0FCE&PID_D062&Class_02&SubClass_0B&Prot_00&OS_NT
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[sed62.Install.nt]
+AddReg		= sed62.AddReg,sed62.NT.AddReg
+CopyFiles	= CopyFiles, CopyFiles.Win2K
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[sed62.AddReg]
+HKR,,NTMPDriver,,se3eobex.sys
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for NT...
+[sed62.NT.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,AllowSuspendWhileOpen, 0x10001, 01,00,00,00
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+[CopyFiles.Win2K]
+se3eobex.sys
+se3ecm.sys,se3ecmnt.sys
+se3ecmnt.sys
+
+
+
+;-----------------------------------------------------------------------------
+;  NT Services installation
+;-----------------------------------------------------------------------------
+
+[sed62.Install.NT.Services]
+AddService = se3eobex, 0x00000002, sed62.Install.AddService
+
+
+[sed62.Install.AddService]
+DisplayName	= %sed62.Service.Name%
+Description	= %sed62.Service.Desc%
+ServiceType	= 1			;%SERVICE_KERNEL_DRIVER%
+StartType	= 3			;%SERVICE_DEMAND_START%
+ErrorControl	= 1			;%SERVICE_ERROR_NORMAL%	
+ServiceBinary	= %12%\se3eobex.sys
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;<<localize the following>>
+
+;BEGIN ENG - US English Strings
+
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 062 USB WMC OBEX Interface installation disk"
+
+sed62.Comm.Desc = "Sony Ericsson Device 062 USB WMC OBEX Interface"
+sed62.Service.Name = "Sony Ericsson Device 062 USB WMC OBEX Interface"
+sed62.Service.Desc = "Sony Ericsson Device 062 USB WMC OBEX Interface"
+
+
+CustomerDataPath = "Sony Ericsson Device 062 Driver Kit"
+DriverSet = "Sony Ericsson Device 062 Driver Software"
+UninstallFile = "SE3EUninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

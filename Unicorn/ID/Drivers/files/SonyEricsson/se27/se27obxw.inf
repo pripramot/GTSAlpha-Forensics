@@ -1,0 +1,152 @@
+;*****************************************************************************
+;
+; Name:  SE27obxw.inf
+;
+; Function:
+;	Install the Sony Ericsson Device 039 USB WMC OBEX Interface on Win9x
+;
+; Copyright (c) 1997-2005 MCCI
+;
+; MCCI is a registered trademark of Moore Computer Consultants, Inc
+;
+; NOTICE: This software is licensed, not sold.  Any modification of this
+; inf file to change the reference to an operating system or to change the
+; reference to a device is not permitted unless authorized in writing by
+; Moore Computer Consultants, Inc..
+;
+;*****************************************************************************
+
+[Version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-c465-11cf-8056-444553540000}
+Provider=%Provider%
+;DriverVer updated to the minimum required to support the required OSs
+;DriverVer=04/28/2006, 4.34.0.2705
+DriverVer=04/21/2009, 4.34.0.2705
+;Missing CAT file entry added by RTGL
+CatalogFile=se27obxw.cat
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+;   Change A:\ to source drive (or omit to always (?) be prompted)
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+;	having the tagfile non-null seems to help...
+1=%DiskString%,"SE27obex.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[,[ subdir][, size]]
+SE27obex.sys = 1
+SE27cr.sys = 1
+;SE27vcr.vxd = 1; RTGL: remove unused files from legacy OS versions
+;SE27cm95.sys = 1; RTGL: remove unused files from legacy OS versions
+SE27cmnt.sys = 1
+;SE27comm.vxd = 1; RTGL: remove unused files from legacy OS versions
+;SE27vcd.vxd = 1; RTGL: remove unused files from legacy OS versions
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir          = 11                    ; LDID_SYS
+
+;-----------------------------------------------------------------------------
+; Table of Contents
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%Sony Ericsson%=Sony_Ericsson_Dev39
+
+;-----------------------------------------------------------------------------
+; Device-by-device entries
+;-----------------------------------------------------------------------------
+[Sony_Ericsson_Dev39]
+%Sony_Ericsson_Dev39.Comm.Desc% = Sony_Ericsson_Dev39.Install, USB\VID_0FCE&PID_D039&Class_02&SubClass_0B&Prot_00&OS_9X
+%Sony_Ericsson_Dev39.Comm.Desc% = Sony_Ericsson_Dev39.Install, USB\VID_0FCE&PID_D039&Class_02&SubClass_0B&Prot_00&OS_9X
+
+;-----------------------------------------------------------------------------
+; Installation instructions
+;-----------------------------------------------------------------------------
+
+[Sony_Ericsson_Dev39.Install]
+;AddReg		= Sony_Ericsson_Dev39.AddReg,Sony_Ericsson_Dev39.W95.AddReg,Sony_Ericsson_Dev39.W95.AddReg.CRGuid
+AddReg		= Sony_Ericsson_Dev39.AddReg
+;CopyFiles	= CopyFiles, CopyFiles.W95, CopyFiles.sys, CopyFiles.W95.sys
+CopyFiles	= CopyFiles, CopyFiles.sys
+;DriverVer=04/28/2006, 4.34.0.2705
+
+
+;-----------------------------------------------------------------------------
+;  Registry
+;-----------------------------------------------------------------------------
+
+; common registry entries 
+[Sony_Ericsson_Dev39.AddReg]
+HKR,,NTMPDriver,,SE27obex.sys
+HKR,,CRUpperDescription,,%UpperDescription%
+HKR,,OverrideDefaultPortSettings, 0x10001, 01,00,00,00
+HKR,,InitialBaudRate, 0x10001, 00,C2,01,00			;115200``nitial baud rate
+HKR,,InitialLineControl,, "8N1"					;8-bits, No parity, 1 stop bit
+
+; only for Win95....
+;[Sony_Ericsson_Dev39.W95.AddReg]
+;HKR,,DevLoader,,*ntkern
+
+;[Sony_Ericsson_Dev39.W95.Addreg.CRGuid]
+;HKR,,CRGuid,,{A348B308-DC8E-486C-9813-B35183BDC235}
+
+;-----------------------------------------------------------------------------
+;  Copy lists
+;-----------------------------------------------------------------------------
+[CopyFiles]
+
+;[CopyFiles.W95]; RTGL: Remove legacy OS sections
+;SE27vcr.vxd
+;SE27comm.vxd
+;SE27vcd.vxd
+;
+[CopyFiles.sys]
+SE27obex.sys
+SE27cr.sys
+
+;[CopyFiles.W95.sys]; RTGL: Remove legacy OS sections
+;SE27cm.sys,SE27cm95.sys
+;SE27cm95.sys
+;SE27cmnt.sys
+;
+;[Copyfiles.W95.inf]
+
+
+
+;-----------------------------------------------------------------------------
+; STRINGS
+;-----------------------------------------------------------------------------
+[Strings]
+
+;BEGIN ENG - US English Strings
+Provider = "Sony Ericsson"
+Sony Ericsson = "Sony Ericsson"
+DiskString = "Sony Ericsson Device 039 USB WMC OBEX Interface installation disk"
+
+Sony_Ericsson_Dev39.Comm.Desc = "Sony Ericsson Device 039 USB WMC OBEX Interface"
+UpperDescription = "Sony Ericsson Device 039 USB WMC OBEX Interface (VCOMM)"
+
+CustomerDataPath = "Sony Ericsson Device 039"
+DriverSet = "Sony Ericsson Device 039 Software"
+UninstallFile = "SE27Uninstall.exe"
+McciOptions = "Uninstallable"
+
+
+;END ENG - US English Strings
+
+
+;-----------------------------------------------------------------------------
+; The following are symbolic constants which don't change per locale.
+;-----------------------------------------------------------------------------
+
+
+;*** end of file ***

@@ -1,0 +1,134 @@
+
+;*****************************************************************************
+; Name:  lgandnetbus64.inf
+;*****************************************************************************
+
+[version]
+signature="$CHICAGO$"
+Class=USB
+ClassGuid={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%Provider%
+CatalogFile = lgandnetbus64.cat
+DriverVer= 05/12/2015,4.0.0.0
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+; Specify target paths...
+;-----------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir              = 11                ; LDID_SYS
+LGSIWdm.NT.CopyFiles        = 12                ; system32\drivers
+PropPages.CopyFiles         = 11                ; system
+
+;-----------------------------------------------------------------------------
+; Specify the install disks.  A bit unwieldy during development.
+;-----------------------------------------------------------------------------
+[SourceDisksNames]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1=%DiskString%,"lgandnetbus64.sys",,
+
+[SourceDisksFiles]
+; filename = diskid[, [subdir] [, size]]
+lgandnetbus64.sys = 1
+
+;-----------------------------------------------------------------------------
+; Table of Contents:  manufacturer, then devices.
+;-----------------------------------------------------------------------------
+[Manufacturer]
+%LGSI%=LGSI,NTamd64
+
+;-----------------------------------------------------------------------------
+; The devices
+;-----------------------------------------------------------------------------
+[LGSI.NTamd64]
+%LGSI.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_633E
+%LGSI.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_633F
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_627F
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_6280
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_6281
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_6282
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_628A
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_628E
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_6293
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_6298
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_629E
+; Verizon Common PID
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_62CE
+%Verizon.CdcBus.Desc% = LGSIWdm.Install, USB\VID_1004&PID_62CF
+
+;-----------------------------------------------------------------------------
+; How to install them:  On W9x, the [section] name is used directly.
+; On NT, the system first tries [section.NT], then [section].
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Diagnostics Files CopyFiles List Section
+;-----------------------------------------------------------------------------
+[LGSI.CopyFiles]
+
+;-----------------------------------------------------------------------------
+; XXX when we have a property page DLL, add it to the following section.
+;-----------------------------------------------------------------------------
+[PropPages.CopyFiles]
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on W95/W98
+;-----------------------------------------------------------------------------
+[LGSIWdm.Install]
+CopyFiles=LGSI.CopyFiles, PropPages.CopyFiles
+AddReg=LGSIWdm.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to install the WDM driver on NT
+;-----------------------------------------------------------------------------
+[LGSIWdm.Install.NT]
+CopyFiles = LGSIWdm.NT.CopyFiles
+AddReg    = LGSIWdm.AddReg, LGSIWdm.NT.AddReg
+
+;-----------------------------------------------------------------------------
+;       How to start the WDM driver on NT
+;-----------------------------------------------------------------------------
+[LGSIWdm.Install.NT.Services]
+AddService = AndnetBus, 2, LGSIWdm.AddService
+
+[LGSIWdm.AddService]
+DisplayName             = %LGSI.Service.Desc%
+ServiceType             = 1     ; SERVICE_KERNEL_DRIVER
+StartType               = 3     ; SERVICE_DEMAND_START
+ErrorControl            = 1     ; SERVICE_ERROR_NORMAL
+ServiceBinary           = %12%\lgandnetbus64.sys
+LoadOrderGroup          = Base
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (all platforms)
+;-----------------------------------------------------------------------------
+[LGSIWdm.AddReg]
+
+;-----------------------------------------------------------------------------
+;       WDM registry entries (NT only)
+;-----------------------------------------------------------------------------
+[LGSIWdm.NT.AddReg]
+
+;-----------------------------------------------------------------------------
+;       The WDM copy list for NT -- different because things go in
+;       different places.
+;-----------------------------------------------------------------------------
+[LGSIWdm.NT.CopyFiles]
+lgandnetbus64.sys
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+Provider="LG Electronics, Inc."
+LGSI="LG Electronics, Inc."
+
+DiskString="LGE Mobile USB Composite Device Installation disk"
+LGSI.CdcBus.Desc="LGE Mobile USB Composite Device"
+Verizon.CdcBus.Desc="LGE Mobile for VZW USB Composite Device"
+LGSI.Service.Desc="LGE Mobile USB Composite Device"
+CustomerDataPath="LGE USB Mobile"
+DriverSet="LGE USB AndroidNet Mobile Software"
+

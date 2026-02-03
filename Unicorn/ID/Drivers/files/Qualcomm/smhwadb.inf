@@ -1,0 +1,143 @@
+;/*++
+;
+;Abstract:
+;    Installation inf for the Android USB Bulk device
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=AndroidUsbDeviceClass
+ClassGuid={3F966BD9-FA04-4ec5-991C-D326973B5128}
+Provider=%GOOG%
+DriverVer=05/16/2011,1.1.0009.00000
+CatalogFile.NTx86=smhwadb86.cat
+CatalogFile.NTamd64=smhwadb64.cat
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=AndroidUsbClassReg
+
+[AndroidUsbClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+[DestinationDirs]
+DefaultDestDir = 12
+CoInstaller_CopyFiles = 11 ; Moved from duplicate [DestinationDirs] section
+
+; ================= Device section =====================
+
+[Manufacturer]
+%MfgName%=Google,NTx86,NTamd64
+
+; For Win2K
+[Google]
+; For Fastboot
+;%HWFASTBOOT%=androidusb.Dev, USB\VID_18D1&PID_D00D ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_goadb.inf
+; Android Adapter 
+;%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9025 ; Duplicated in 1\Android\CAT\amd64\smhwser.inf
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9024
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_01
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9024&MI_02
+;for window logo test
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_1033&MI_01
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_01
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_02
+
+; For XP and later
+[Google.NTx86]
+; For Fastboot
+;%HWFASTBOOT%=androidusb.Dev, USB\VID_18D1&PID_D00D ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_goadb.inf
+; Android Adapter 
+;%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9025 ; Duplicated in 1\Android\CAT\amd64\smhwser.inf
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9024
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_01
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9024&MI_02
+;for window logo test
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_9025
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_1033&MI_01
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_01
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_02
+; For AMD64 and later
+[Google.NTamd64]
+; For Fastboot
+;%HWFASTBOOT%=androidusb.Dev, USB\VID_18D1&PID_D00D ; Duplicated in 1\Android\Huawei\Huawei3\amd64\hw_goadb.inf
+; Android Adapter 
+;%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9025 ; Duplicated in 1\Android\CAT\amd64\smhwser.inf
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9024
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_01
+%HWADBNAME%=androidusb.Dev, USB\VID_05C6&PID_9024&MI_02
+;for window logo test
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_9025
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_1033&MI_01
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_01
+;%HWLOGOTEST%=androidusb.Dev, USB\VID_05C6&PID_9025&MI_02
+
+[androidusb.Dev.NT]
+CopyFiles=androidusb.Files.Ext
+
+[androidusb.Dev.NT.Services]
+Addservice = androidusb, 0x00000002, androidusb.AddService
+
+[androidusb.AddService]
+DisplayName    = %androidusb.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\smhwadb.sys
+AddReg         = androidusb.AddReg
+LoadOrderGroup = Base
+
+[androidusb.AddReg]
+HKR,"Parameters","MaximumTransferSize",0x10001,4096
+HKR,"Parameters","DebugLevel",0x10001,2
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+[androidusb.Files.Ext]
+smhwadb.sys
+
+[SourceDisksNames]
+1=%Disk_Description%,,,
+
+[SourceDisksFiles]
+smhwadb.sys = 1
+wdfcoinstaller01005.dll=1 ; make sure the number matches with SourceDisksNames ; Moved from duplicate [SourceDisksFiles] section
+
+;-------------- WDF Coinstaller installation
+;[DestinationDirs] ; Resolve ERROR(1209): duplicate section
+;CoInstaller_CopyFiles = 11
+
+[androidusb.Dev.NT.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+wdfcoinstaller01005.dll
+
+;[SourceDisksFiles] ; Resolve ERROR(1209): duplicate section
+;wdfcoinstaller01005.dll=1 ; make sure the number matches with SourceDisksNames
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "wdfcoinstaller01005.dll,WdfCoInstaller"
+
+[androidusb.Dev.NT.Wdf]
+KmdfService = androidusb, androidusb_wdfsect
+
+[androidusb_wdfsect]
+KmdfLibraryVersion = 1.5
+
+;---------------------------------------------------------------;
+
+[Strings]
+GOOG            = "Google, Inc"
+MfgName         = "Google, Inc"
+Disk_Description= "ADB Interface Installation Disk"
+androidusb.SvcDesc = "ADB Interface Driver"
+ClassName       = "ADB Interface"
+HWFASTBOOT="Android Fast Boot ADB Interface"
+HWADBNAME="Android ADB Interface"
+;HWLOGOTEST="Android Adapter ADB Interface (for Logo Test)"

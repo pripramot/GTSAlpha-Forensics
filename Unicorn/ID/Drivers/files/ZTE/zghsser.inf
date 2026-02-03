@@ -1,0 +1,392 @@
+;*****************************************************************************
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2012 ZTE Corporation
+; Manufacturer: ZTE Corporation
+;
+; This INF file installs a virtual COM port on 32-bit and 64-bit Windows OS, such as Windows XP, Vista and Win7.
+;*****************************************************************************
+
+[Version]
+signature       =  "$WINDOWS NT$"
+Class           =  Ports
+Provider        =  %ZTE%
+ClassGuid       =  {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer       =  10/31/2012,5.2088.1.2
+CatalogFile     =  zghsser.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames.x86]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1 = %ZTESRCDISK%,,,\i386
+
+[SourceDisksNames.amd64]
+; diskid = description[, [tagfile] [, <unused>, subdir]]
+1 = %ZTESRCDISK%,,,\amd64
+
+[SourceDisksFiles]
+zghsser.sys            = 1,,
+
+[DestinationDirs]
+DefaultDestDir         = 12
+ZTEportInstall.NT.Copy = 12
+
+[Manufacturer]
+%ZTE%  = ZTEcomSerialPort, NTamd64
+
+[ZTEcomSerialPort]
+;;;;;Diag Interface;;;;;
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0020&MI_01
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0005&MI_01
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0081&MI_01
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0011&MI_01
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0102&MI_00
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0163&MI_01
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1358&MI_01
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1359&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1360&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1366&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1367&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_0309&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_0398&MI_00
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0074&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0023&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0041&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0085&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0093&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0114&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0236&MI_01
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0192&MI_01
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0229&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0010&MI_01
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0068&MI_01
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0111&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_1350&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0248&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0249&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0253&MI_02
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0255&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0251&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0252&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0347&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0348&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0295&MI_02
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0339&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0308&MI_02
+;U960D
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0291&MI_00
+;P940A10
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0342&MI_01
+;P864A10
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0423&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0432&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_0433&MI_00
+;201Z
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0461&MI_01
+
+
+;;;;;Diag Interface(Modem);;;;;
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0248&MI_04
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0249&MI_02
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0253&MI_05
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0255&MI_04
+;P864A10
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0423&MI_01
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0432&MI_01
+%ZTEDiagMDMTelecom%= ZTEportInstall, USB\VID_19D2&PID_0433&MI_01
+
+;;;;;AT Interface;;;;;
+%ZTEATCDMA%        = ZTEportInstall, USB\VID_19D2&PID_0011&MI_03
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_1358&MI_03
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_1366&MI_05
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_1367&MI_04
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_0309&MI_03
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_0398&MI_03
+%ZTEATTD%          = ZTEportInstall, USB\VID_19D2&PID_0114&MI_02
+%ZTEATTD%          = ZTEportInstall, USB\VID_19D2&PID_0236&MI_02
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0295&MI_01
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0303&MI_00
+%ZTEATEXT%         = ZTEportInstall, USB\VID_19D2&PID_0303&MI_01
+;P940A10
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0342&MI_00
+;P864A10
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_0433&MI_04
+;U930HD
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0450&MI_00
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0451&MI_00
+
+;;;;;NMEA Interface;;;;;
+%ZTENMEACDMA%      = ZTEportInstall, USB\VID_19D2&PID_0081&MI_02
+%ZTENMEACDMA%      = ZTEportInstall, USB\VID_19D2&PID_0011&MI_02
+%ZTENMEACDMA%      = ZTEportInstall, USB\VID_19D2&PID_0163&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_1358&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_1360&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_1366&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_1367&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_0309&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_0398&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0074&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0023&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0041&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0085&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0050&MI_01
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0192&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0010&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0111&MI_01
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_1350&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0248&MI_03
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0251&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0252&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0347&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0348&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0308&MI_04
+;P864A10
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0432&MI_03
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_0433&MI_03
+;201Z
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0461&MI_02
+
+;;;;;Trace Interface;;;;;
+%ZTETraceGeneral%  = ZTEportInstall, USB\VID_19D2&PID_0251&MI_03
+%ZTETraceGeneral%  = ZTEportInstall, USB\VID_19D2&PID_0252&MI_03
+%ZTETraceGeneral%  = ZTEportInstall, USB\VID_19D2&PID_0347&MI_03
+%ZTETraceGeneral%  = ZTEportInstall, USB\VID_19D2&PID_0348&MI_03
+
+;;;;;Sound Interface;;;;;
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0074&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0023&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0041&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0085&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0114&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0236&MI_03
+
+;;;;;ACMCOMUSB;;;;;;
+%ZTEACMCOM%        = ZTEportInstall, USB\VID_19D2&PID_0260&MI_02
+%ZTEACMCOM%        = ZTEportInstall, USB\VID_19D2&PID_0296&MI_02
+%ZTEACMCOM%        = ZTEportInstall, USB\VID_19D2&PID_0299&MI_01
+;U795
+%ZTEACMDevice%     = ZTEportInstall, USB\VID_19D2&PID_0338
+%ZTEACMDevice%     = ZTEportInstall, USB\VID_19D2&PID_0361&MI_01
+;N983
+%ZTEACMDevice%     = ZTEportInstall, USB\VID_19D2&PID_0424&MI_02
+
+;;;;;;;VCOM;;;;;;;;
+%ZTEVCOM%          = ZTEportInstall, USB\VID_19D2&PID_0450&MI_01
+%ZTEVCOM%          = ZTEportInstall, USB\VID_19D2&PID_0450&MI_02
+%ZTEVCOM%          = ZTEportInstall, USB\VID_19D2&PID_0450&MI_04
+%ZTEVCOM%          = ZTEportInstall, USB\VID_19D2&PID_0451&MI_01
+
+[ZTEcomSerialPort.NTamd64]
+;Diag Interface
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0020&MI_01
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0005&MI_01
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0081&MI_01
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0011&MI_01
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0102&MI_00
+%ZTEDiagCDMA%      = ZTEportInstall, USB\VID_19D2&PID_0163&MI_01
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1358&MI_01
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1359&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1360&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1366&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_1367&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_0309&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_0398&MI_00
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0074&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0023&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0041&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0085&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0093&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0114&MI_01
+%ZTEDiagTD%        = ZTEportInstall, USB\VID_19D2&PID_0236&MI_01
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0192&MI_01
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0229&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0010&MI_01
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0068&MI_01
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0111&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_1350&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0248&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0249&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0253&MI_02
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0255&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0251&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0252&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0347&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0348&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0295&MI_02
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0339&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0308&MI_02
+;U960D
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0291&MI_00
+;P940A10
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0342&MI_01
+;P864A10
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0423&MI_00
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0432&MI_00
+%ZTEDiagTelecom%   = ZTEportInstall, USB\VID_19D2&PID_0433&MI_00
+;201Z
+%ZTEDiagGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0461&MI_01
+
+;;;;;Diag Interface(Modem);;;;;
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0248&MI_04
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0249&MI_02
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0253&MI_05
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0255&MI_04
+;P864A10
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0423&MI_01
+%ZTEDiagMDM%       = ZTEportInstall, USB\VID_19D2&PID_0432&MI_01
+%ZTEDiagMDMTelecom%= ZTEportInstall, USB\VID_19D2&PID_0433&MI_01
+
+;;;;;AT Interface;;;;;
+%ZTEATCDMA%        = ZTEportInstall, USB\VID_19D2&PID_0011&MI_03
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_1358&MI_03
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_1366&MI_05
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_1367&MI_04
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_0309&MI_03
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_0398&MI_03
+%ZTEATTD%          = ZTEportInstall, USB\VID_19D2&PID_0114&MI_02
+%ZTEATTD%          = ZTEportInstall, USB\VID_19D2&PID_0236&MI_02
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0295&MI_01
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0303&MI_00
+%ZTEATEXT%         = ZTEportInstall, USB\VID_19D2&PID_0303&MI_01
+;P940A10
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0342&MI_00
+;P864A10
+%ZTEATTelecom%     = ZTEportInstall, USB\VID_19D2&PID_0433&MI_04
+;U930HD
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0450&MI_00
+%ZTEATGeneral%     = ZTEportInstall, USB\VID_19D2&PID_0451&MI_00
+
+;;;;;NMEA Interface;;;;;
+%ZTENMEACDMA%      = ZTEportInstall, USB\VID_19D2&PID_0081&MI_02
+%ZTENMEACDMA%      = ZTEportInstall, USB\VID_19D2&PID_0011&MI_02
+%ZTENMEACDMA%      = ZTEportInstall, USB\VID_19D2&PID_0163&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_1358&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_1360&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_1366&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_1367&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_0309&MI_02
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_0398&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0074&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0023&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0041&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0085&MI_02
+%ZTENMEATD%        = ZTEportInstall, USB\VID_19D2&PID_0050&MI_01
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0192&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0010&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0111&MI_01
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_1350&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0248&MI_03
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0251&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0252&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0347&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0348&MI_02
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0308&MI_04
+;P864A10
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0432&MI_03
+%ZTENMEATelecom%   = ZTEportInstall, USB\VID_19D2&PID_0433&MI_03
+;201Z
+%ZTENMEAGeneral%   = ZTEportInstall, USB\VID_19D2&PID_0461&MI_02
+
+;;;;;Trace Interface;;;;;
+%ZTETraceGeneral%  = ZTEportInstall, USB\VID_19D2&PID_0251&MI_03
+%ZTETraceGeneral%  = ZTEportInstall, USB\VID_19D2&PID_0252&MI_03
+%ZTETraceGeneral%  = ZTEportInstall, USB\VID_19D2&PID_0347&MI_03
+%ZTETraceGeneral%  = ZTEportInstall, USB\VID_19D2&PID_0348&MI_03
+
+;;;;;Sound Interface;;;;;
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0074&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0023&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0041&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0085&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0114&MI_03
+%ZTESoundTD%       = ZTEportInstall, USB\VID_19D2&PID_0236&MI_03
+
+;;;;;ACMCOMUSB;;;;;;
+%ZTEACMCOM%        = ZTEportInstall, USB\VID_19D2&PID_0260&MI_02
+%ZTEACMCOM%        = ZTEportInstall, USB\VID_19D2&PID_0296&MI_02
+%ZTEACMCOM%        = ZTEportInstall, USB\VID_19D2&PID_0299&MI_01
+;U795
+%ZTEACMDevice%     = ZTEportInstall, USB\VID_19D2&PID_0338
+%ZTEACMDevice%     = ZTEportInstall, USB\VID_19D2&PID_0361&MI_01
+;N983
+%ZTEACMDevice%     = ZTEportInstall, USB\VID_19D2&PID_0424&MI_02
+
+;;;;;;;VCOM;;;;;;;;
+%ZTEVCOM%          = ZTEportInstall, USB\VID_19D2&PID_0450&MI_01
+%ZTEVCOM%          = ZTEportInstall, USB\VID_19D2&PID_0450&MI_02
+%ZTEVCOM%          = ZTEportInstall, USB\VID_19D2&PID_0450&MI_04
+%ZTEVCOM%          = ZTEportInstall, USB\VID_19D2&PID_0451&MI_01
+
+[ZTEportInstall.NT]
+CopyFiles  = ZTEportInstall.NT.Copy
+AddReg     = All, AddReg.NT
+
+[ZTEportInstall.NT.Copy]
+zghsser.sys
+
+[ZTEportInstall.NT.Services]
+AddService = zghsser, 0x00000002, ZTEport_Service_Inst
+
+[ZTEport_Service_Inst]
+DisplayName   = %ZTEComSerialPortName%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+AddReg        = PortDriver.Service.Reg
+ServiceBinary = %12%\zghsser.sys
+
+[All]
+HKR,,NTMPDriver,,zghsser.sys
+
+[PortDriver.Service.Reg]
+HKR,,QCDriverSelectiveSuspendIdleTime,%FLG_ADDREG_TYPE_DWORD%, 0x00000030
+HKR,,QCDriverPowerManagementEnabled,%FLG_ADDREG_TYPE_DWORD%, 0x00000001
+
+[AddReg.NT]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+ZTE                      = "ZTE Corporation"
+ZTESRCDISK               = "ZTE Multimedia USB COM Driver Disk"
+ZTEComSerialPortName     = "ZTE General Handset Serial Port"
+
+;;;Diag Interface;;;
+ZTEDiagCDMA              = "ZTE CDMA Handset Diagnostics Interface"
+ZTEDiagTelecom           = "CT_ZTE_3GPhone_Diag_Interface"
+ZTEDiagTD                = "ZTE TD Handset diagnostics Interface"
+ZTEDiagDFU               = "ZTE Handset Diagnostic Interface(DFU)"
+ZTEDiagGeneral           = "ZTE Handset Diagnostic Interface"
+
+;;;Diag Interface(Modem);;;
+ZTEDiagMDM               = "ZTE Handset Diag_mdm Interface"
+ZTEDiagMDMTelecom        = "CT_ZTE_3GPhone_DiagMDM_Interface"
+
+;;;AT Interface;;;
+ZTEATCDMA                = "ZTE CDMA Handset AT Interface"
+ZTEATTelecom             = "CT_ZTE_3GPhone_AT_Interface"
+ZTEATTD                  = "ZTE TD Handset AT Interface"
+ZTEATEXT                 = "ZTE Handset AT Extension Interface"
+ZTEATGeneral             = "ZTE Handset AT Interface"
+
+;;;NMEA Interface;;;
+ZTENMEACDMA              = "ZTE CDMA Handset NMEA Interface"
+ZTENMEATelecom           = "CT_ZTE_3GPhone_NMEA_Interface"
+ZTENMEATD                = "ZTE TD Handset NMEA Interface"
+ZTENMEAGeneral           = "ZTE Handset NMEA Device"
+
+;;;Trace Interface;;;
+ZTETraceGeneral          = "ZTE Handset Trace Interface"
+
+;;;Sound Interface;;;
+ZTESoundTD               = "ZTE TD Handset Sound Interface"
+
+;;;ACMCOM;;;
+ZTEACMCOM                = "Android Gadget VCOM Driver"
+ZTEACMDevice             = "Android Gadget VCOM"
+
+;;;VCOM;;;
+ZTEVCOM                  = "ZTE VCOM"
+
+FLG_ADDREG_TYPE_DWORD = 0x00000001
