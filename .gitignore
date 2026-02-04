@@ -1,11 +1,10 @@
-# GTSAlpha-Forensics / Unicorn
-.env
-*.local
+Unicorn/
 node_modules/
-postgres_data/
-.DS_Store
-Thumbs.db
+.env
 *.log
-dist/
-.idea/
-.vscode/
+*.tmp
+temp/
+renderer/node_modules/
+electron-app/node_modules/
+# คัดออกเพราะไฟล์ใหญ่เกิน 100MB (GitHub Limit)
+Unicorn/RV/ThirdPartySoftware/CEF/libcef.dll
